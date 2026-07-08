@@ -14,7 +14,7 @@
                 <h2>Welcome to Mono Academy</h2>
                 <p>Create a free account to track your progress across all 5 modules.</p>
             </div>
-            <form class="modal-form" onsubmit="event.preventDefault(); closeModal();">
+            <form class="modal-form">
                 <div class="form-group">
                     <label for="username">Full Name</label>
                     <input type="text" id="username" placeholder="Enter your name" required>
@@ -144,12 +144,13 @@
             </section>
         </main>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
-        // 🛠️ REPLACE THESE WITH YOUR EXACT SUPABASE DETAILS
+        // 🛠️ REPLACE THE STRING BELOW WITH YOUR EXACT COPIED SUPABASE ANON KEY
         const SUPABASE_URL = "https://nxflxoxypfalnsfaohym.supabase.co";
-        const SUPABASE_ANON_KEY = "sb_publishable_Bf7pGEi99tNUHM-FntOTGw_n5zN_T_N";
+        const SUPABASE_ANON_KEY = "PASTE_YOUR_COPIED_ANON_PUBLIC_KEY_HERE";
 
         // Initialize Supabase client
         const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -201,7 +202,7 @@
             }
         }
 
-        // Attach the script to your sign-up form
+        // Attach the function to your signup form submission
         document.querySelector('.modal-form').onsubmit = handleSignUp;
     </script>
 </body>
