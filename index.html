@@ -144,8 +144,16 @@
             </section>
         </main>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
+        // 🛠️ REPLACE THESE WITH YOUR EXACT SUPABASE DETAILS
+        const SUPABASE_URL = "https://nxflxoxypfalnsfaohym.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_Bf7pGEi99tNUHM-FntOTGw_n5zN_T_N";
+
+        // Initialize Supabase client
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         // Automatically show popup when page finishes loading
         window.onload = function() {
             setTimeout(openModal, 800); 
@@ -157,12 +165,44 @@
 
         function closeModal() {
             document.getElementById("authModal").style.display = "none";
-            // Custom dynamic rename test
-            const nameInput = document.getElementById("username").value;
-            if (nameInput) {
-                document.getElementById("welcomeHeading").innerText = "Welcome back, " + nameInput + ".";
+        }
+
+        // Handle Live Sign Up to Database
+        async function handleSignUp(event) {
+            event.preventDefault();
+            
+            const fullName = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const submitBtn = event.target.querySelector('button');
+
+            submitBtn.innerText = "Creating Account...";
+            submitBtn.disabled = true;
+
+            // Submit data to your real Supabase Database
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        full_name: fullName
+                    }
+                }
+            });
+
+            if (error) {
+                alert("Signup Error: " + error.message);
+                submitBtn.innerText = "Sign Up & Start Learning";
+                submitBtn.disabled = false;
+            } else {
+                alert("Success! Welcome to the Academy. Please check your email inbox to confirm your registration.");
+                closeModal();
+                document.getElementById("welcomeHeading").innerText = "Welcome back, " + fullName + ".";
             }
         }
+
+        // Attach the script to your sign-up form
+        document.querySelector('.modal-form').onsubmit = handleSignUp;
     </script>
 </body>
 </html>
