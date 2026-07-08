@@ -148,25 +148,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
-        // 🛠️ REPLACE THE STRING BELOW WITH YOUR EXACT COPIED SUPABASE ANON KEY
         const SUPABASE_URL = "https://nxflxoxypfalnsfaohym.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_Bf7pGEi99tNUHM-FntOTGw_n5zN_T_N";
 
-        // Initialize Supabase client
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Safely access the global Supabase engine from the window container
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Automatically show popup when page finishes loading
-        window.onload = function() {
-            setTimeout(openModal, 800); 
-        };
-
+        // Control popup visibility state
         function openModal() {
             document.getElementById("authModal").style.display = "flex";
         }
 
+        // Close the popup view gracefully
         function closeModal() {
             document.getElementById("authModal").style.display = "none";
         }
+
+        // Trigger the automatic pop-up window load sequence
+        window.onload = function() {
+            setTimeout(openModal, 800); 
+        };
 
         // Handle Live Sign Up to Database
         async function handleSignUp(event) {
@@ -180,8 +181,8 @@
             submitBtn.innerText = "Creating Account...";
             submitBtn.disabled = true;
 
-            // Submit data to your real Supabase Database
-            const { data, error } = await supabase.auth.signUp({
+            // Submit account payload records directly into Supabase Auth Cloud
+            const { data, error } = await supabaseClient.auth.signUp({
                 email: email,
                 password: password,
                 options: {
@@ -202,7 +203,7 @@
             }
         }
 
-        // Attach the function to your signup form submission
+        // Tie the processing system to your active submit action
         document.querySelector('.modal-form').onsubmit = handleSignUp;
     </script>
 </body>
