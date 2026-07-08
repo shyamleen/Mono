@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <div id="authModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>Welcome to Mono Academy</h2>
+                <p>Create a free account to track your progress across all 5 modules.</p>
+            </div>
+            <form class="modal-form" onsubmit="event.preventDefault(); closeModal();">
+                <div class="form-group">
+                    <label for="username">Full Name</label>
+                    <input type="text" id="username" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a strong password" required>
+                </div>
+                <button type="submit" class="btn-modal-primary">Sign Up & Start Learning</button>
+            </form>
+            <p class="modal-footer">Already have an account? <a href="#" onclick="closeModal()">Log In</a></p>
+        </div>
+    </div>
+
     <div class="dashboard-container">
         <aside class="sidebar">
             <div class="logo-area">
@@ -23,12 +49,9 @@
                     <li><a href="#module5"><span class="mod-num">5</span> Global Standards (CA)</a></li>
                 </ul>
             </nav>
-            <div class="user-profile">
-                <div class="avatar">JD</div>
-                <div class="user-info">
-                    <h4>Jane Doe</h4>
-                    <p>Student</p>
-                </div>
+            
+            <div class="user-profile-actions">
+                <button class="btn-sidebar-auth" onclick="openModal()">Sign In / Register</button>
             </div>
         </aside>
 
@@ -39,15 +62,15 @@
 
             <section class="welcome-card">
                 <span class="badge">📊 Finance & Accounting</span>
-                <h1>Welcome back, Jane.</h1>
-                <p>You're making great progress in the Accounting Masterclass. Ready to dive into your modules?</p>
+                <h1 id="welcomeHeading">Welcome to Mono Academy</h1>
+                <p>Master foundational and advanced accounting concepts. Sign up to save your lesson completions.</p>
                 <div class="course-stats">
                     <span>📁 5 Modules</span>
                     <span>📖 30 Lessons</span>
                     <span>⏳ 16 Hours</span>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn-primary">Resume Lesson</button>
+                    <button class="btn-primary" onclick="openModal()">Get Started</button>
                     <button class="btn-secondary">View Syllabus</button>
                 </div>
             </section>
@@ -121,5 +144,25 @@
             </section>
         </main>
     </div>
+
+    <script>
+        // Automatically show popup when page finishes loading
+        window.onload = function() {
+            setTimeout(openModal, 800); 
+        };
+
+        function openModal() {
+            document.getElementById("authModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("authModal").style.display = "none";
+            // Custom dynamic rename test
+            const nameInput = document.getElementById("username").value;
+            if (nameInput) {
+                document.getElementById("welcomeHeading").innerText = "Welcome back, " + nameInput + ".";
+            }
+        }
+    </script>
 </body>
 </html>
