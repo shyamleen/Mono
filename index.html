@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mono Academy - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <span class="logo-m">M</span>
+                <h2>Mono Academy</h2>
+            </div>
+            <nav class="nav-menu">
+                <p class="menu-label">COURSE MODULES</p>
+                <ul>
+                    <li class="active"><a href="#module1"><span class="mod-num">1</span> Accounting Basics</a></li>
+                    <li><a href="#module2"><span class="mod-num">2</span> Financial Statements</a></li>
+                    <li><a href="#module3"><span class="mod-num">3</span> Ratio Analysis</a></li>
+                    <li><a href="#module4"><span class="mod-num">4</span> Advanced Corporate</a></li>
+                    <li><a href="#module5"><span class="mod-num">5</span> Global Standards (CA)</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">JD</div>
+                <div class="user-info">
+                    <h4>Jane Doe</h4>
+                    <p>Student</p>
+                </div>
+            </div>
+        </aside>
 
+        <main class="main-content">
+            <header class="content-header">
+                <p class="breadcrumb">Courses &gt; Accounting Masterclass</p>
+            </header>
+
+            <section class="welcome-card">
+                <span class="badge">📊 Finance & Accounting</span>
+                <h1>Welcome back, Jane.</h1>
+                <p>You're making great progress in the Accounting Masterclass. Ready to dive into your modules?</p>
+                <div class="course-stats">
+                    <span>📁 5 Modules</span>
+                    <span>📖 30 Lessons</span>
+                    <span>⏳ 16 Hours</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-primary">Resume Lesson</button>
+                    <button class="btn-secondary">View Syllabus</button>
+                </div>
+            </section>
+
+            <section class="modules-section">
+                <h3>Course Modules</h3>
+                
+                <div class="modules-grid">
+                    <div class="module-card completed">
+                        <div class="card-icon">✓</div>
+                        <div class="card-details">
+                            <span class="status-badge">COMPLETED</span>
+                            <h4>1. Accounting Basics</h4>
+                            <p>Learn the core principles of double-entry accounting, debits and credits, and the fundamental equation.</p>
+                        </div>
+                        <div class="card-meta">
+                            <span>6 Lessons</span>
+                            <span class="duration">2.5 hours</span>
+                        </div>
+                    </div>
+
+                    <div class="module-card active">
+                        <div class="card-icon">▶</div>
+                        <div class="card-details">
+                            <span class="status-badge progress">IN PROGRESS</span>
+                            <h4>2. Financial Statements</h4>
+                            <p>Master how to construct and read Income Statements, Balance Sheets, and Cash Flow metrics.</p>
+                        </div>
+                        <div class="card-meta">
+                            <span>6 Lessons</span>
+                            <span class="duration">3.5 hours</span>
+                        </div>
+                    </div>
+
+                    <div class="module-card locked">
+                        <div class="card-icon">🔒</div>
+                        <div class="card-details">
+                            <h4>3. Ratio Analysis and Financial Health</h4>
+                            <p>Evaluate corporate health using working capital metrics, profitability margins, and liquidity ratios.</p>
+                        </div>
+                        <div class="card-meta">
+                            <span>6 Lessons</span>
+                            <span class="duration">3 hours</span>
+                        </div>
+                    </div>
+
+                    <div class="module-card locked">
+                        <div class="card-icon">🔒</div>
+                        <div class="card-details">
+                            <h4>4. Advanced Corporate Accounting</h4>
+                            <p>Dive deep into complex topics like inventory costing methods, depreciation, and bad debt allowance.</p>
+                        </div>
+                        <div class="card-meta">
+                            <span>6 Lessons</span>
+                            <span class="duration">4 hours</span>
+                        </div>
+                    </div>
+
+                    <div class="module-card locked">
+                        <div class="card-icon">🔒</div>
+                        <div class="card-details">
+                            <h4>5. Global Standards & Advanced Transactions</h4>
+                            <p>Explore elite-level Chartered Accountant concepts: consolidations, deferred taxes, and forensic auditing.</p>
+                        </div>
+                        <div class="card-meta">
+                            <span>6 Lessons</span>
+                            <span class="duration">3 hours</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
