@@ -6,43 +6,60 @@
     <title>Mono Academy - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Smooth scrolling behavior when clicking sidebar menu buttons */
+        /* Forces smooth scrolling when links are triggered */
         html {
             scroll-behavior: smooth;
         }
-        /* Extra styling to make the target sections stand out when clicked */
+        
+        /* Make sure all sidebar items look like clickable links */
+        .nav-menu ul li a {
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        /* Container styling for the content blocks down the page */
         .module-section-block {
             margin-top: 40px;
-            padding: 20px;
-            background: #fff;
+            padding: 25px;
+            background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            scroll-margin-top: 20px; /* Prevents the header from clipping content */
+            scroll-margin-top: 40px; /* Keeps the top bar from covering titles */
+            border: 1px solid #e2e8f0;
         }
+        
         .lesson-list {
             margin-top: 15px;
             list-style: none;
             padding: 0;
         }
+        
         .lesson-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #eee;
+            padding: 14px;
+            border-bottom: 1px solid #edf2f7;
         }
+        
         .lesson-item:last-child {
             border-bottom: none;
         }
+        
         .btn-start-lesson {
             background: #2563eb;
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 500;
         }
+        
         .btn-start-lesson:hover {
             background: #1d4ed8;
         }
@@ -83,12 +100,12 @@
             </div>
             <nav class="nav-menu">
                 <p class="menu-label">COURSE MODULES</p>
-                <ul>
-                    <li class="active"><a href="#module1"><span class="mod-num">1</span> Accounting Basics</a></li>
-                    <li><a href="#module2"><span class="mod-num">2</span> Financial Statements</a></li>
-                    <li><a href="#module3"><span class="mod-num">3</span> Ratio Analysis</a></li>
-                    <li><a href="#module4"><span class="mod-num">4</span> Advanced Corporate</a></li>
-                    <li><a href="#module5"><span class="mod-num">5</span> Global Standards (CA)</a></li>
+                <ul id="sidebarMenu">
+                    <li class="active"><a onclick="navigateToModule('module1', this)"><span class="mod-num">1</span> Accounting Basics</a></li>
+                    <li><a onclick="navigateToModule('module2', this)"><span class="mod-num">2</span> Financial Statements</a></li>
+                    <li><a onclick="navigateToModule('module3', this)"><span class="mod-num">3</span> Ratio Analysis</a></li>
+                    <li><a onclick="navigateToModule('module4', this)"><span class="mod-num">4</span> Advanced Corporate</a></li>
+                    <li><a onclick="navigateToModule('module5', this)"><span class="mod-num">5</span> Global Standards (CA)</a></li>
                 </ul>
             </nav>
             
@@ -120,7 +137,7 @@
             <section class="modules-section">
                 <h3>Course Progress Grid</h3>
                 <div class="modules-grid">
-                    <div class="module-card completed">
+                    <div class="module-card completed" onclick="document.getElementById('module1').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
                         <div class="card-icon">✓</div>
                         <div class="card-details">
                             <span class="status-badge">COMPLETED</span>
@@ -133,7 +150,7 @@
                         </div>
                     </div>
 
-                    <div class="module-card active">
+                    <div class="module-card active" onclick="document.getElementById('module2').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
                         <div class="card-icon">▶</div>
                         <div class="card-details">
                             <span class="status-badge progress">IN PROGRESS</span>
@@ -146,7 +163,7 @@
                         </div>
                     </div>
 
-                    <div class="module-card locked">
+                    <div class="module-card locked" onclick="document.getElementById('module3').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
                         <div class="card-icon">🔒</div>
                         <div class="card-details">
                             <h4>3. Ratio Analysis and Financial Health</h4>
@@ -162,37 +179,59 @@
 
             <section id="module1" class="module-section-block">
                 <h3>Module 1: Accounting Basics</h3>
-                <p>Click a lesson below to start exploring core debit and credit calculations.</p>
+                <p>Explore foundational guidelines of balancing organizational cash workflows.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 1.1: The Fundamental Accounting Equation</span>
-                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 1.1...')">Start</button>
+                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 1.1 Content...')">Start</button>
                     </li>
                     <li class="lesson-item">
                         <span>📖 Lesson 1.2: Double-Entry Rules (Debits vs Credits)</span>
-                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 1.2...')">Start</button>
+                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 1.2 Content...')">Start</button>
                     </li>
                 </ul>
             </section>
 
             <section id="module2" class="module-section-block">
                 <h3>Module 2: Financial Statements</h3>
-                <p>Construct clear, structured corporate metrics reporting documents.</p>
+                <p>Construct clear Balance Sheets and functional trackable corporate financial breakdowns.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 2.1: Structuring the Balance Sheet</span>
-                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 2.1...')">Start</button>
+                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 2.1 Content...')">Start</button>
                     </li>
                 </ul>
             </section>
 
             <section id="module3" class="module-section-block">
                 <h3>Module 3: Ratio Analysis and Financial Health</h3>
-                <p>Analyze operational scale values and calculate key investment ratios.</p>
+                <p>Analyze performance metrics using business liquidity variables.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 3.1: Liquidity and Current Ratios</span>
-                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 3.1...')">Start</button>
+                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 3.1 Content...')">Start</button>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="module4" class="module-section-block">
+                <h3>Module 4: Advanced Corporate Accounting</h3>
+                <p>Advanced corporate structural tracking workflows setup container.</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <span>📖 Lesson 4.1: Amortization & Depreciation Asset Valuations</span>
+                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 4.1 Content...')">Start</button>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="module5" class="module-section-block">
+                <h3>Module 5: Global Standards (CA)</h3>
+                <p>International standard parameters matching global audit frameworks guidelines.</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <span>📖 Lesson 5.1: IFRS vs US GAAP Rules Overview</span>
+                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 5.1 Content...')">Start</button>
                     </li>
                 </ul>
             </section>
@@ -219,6 +258,22 @@
         window.onload = function() {
             setTimeout(openModal, 800); 
         };
+
+        // Navigation engine to handle clicking left menu list buttons
+        function navigateToModule(targetId, elementClicked) {
+            // 1. Scroll directly down to the target section block layout
+            const targetBlock = document.getElementById(targetId);
+            if(targetBlock) {
+                targetBlock.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // 2. Clear the '.active' class state text accent styling from old sidebar tabs
+            const menuItems = document.querySelectorAll('#sidebarMenu li');
+            menuItems.forEach(li => li.classList.remove('active'));
+            
+            // 3. Highlight the clicked tab row link item
+            elementClicked.parentElement.classList.add('active');
+        }
 
         // Handle Quick Sign Up & Bypass Rate Limits
         async function handleSignUp(event) { 
