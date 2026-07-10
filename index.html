@@ -6,12 +6,12 @@
     <title>Mono Academy - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Forces smooth scrolling when links are triggered */
+        /* Smooth scrolling when links are clicked */
         html {
             scroll-behavior: smooth;
         }
         
-        /* Make sure all sidebar items look like clickable links */
+        /* Ensure all sidebar items look like clickable links */
         .nav-menu ul li a {
             cursor: pointer !important;
             display: flex !important;
@@ -27,7 +27,7 @@
             background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            scroll-margin-top: 40px; /* Keeps the top bar from covering titles */
+            scroll-margin-top: 40px; 
             border: 1px solid #e2e8f0;
         }
         
@@ -65,7 +65,7 @@
             background: #1d4ed8;
         }
 
-        /* SPREADSHEET VIEWER CONTAINER EXERCISE POPUP */
+        /* INTERACTIVE LESSON VIEWER MODAL OVERLAYS */
         .lesson-viewer-modal {
             display: none;
             position: fixed;
@@ -73,36 +73,95 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
             z-index: 9999;
         }
         .viewer-box {
             background: white;
-            padding: 30px;
+            padding: 35px;
             border-radius: 16px;
             width: 90%;
-            max-width: 600px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            max-width: 750px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
         .viewer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 2px solid #f1f5f9;
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
         .btn-close-viewer {
-            background: #ef4444;
-            color: white;
+            background: #f1f5f9;
+            color: #475569;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
         }
+        .btn-close-viewer:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        /* QUIZ CONTAINER INTERACTIVE ELEMENTS */
+        .quiz-container {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #2563eb;
+        }
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        .quiz-feedback {
+            margin-top: 12px;
+            font-weight: 600;
+            display: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        /* TERM HIGHLIGHT STYLES */
+        .hl-asset { background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-liability { background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-equity { background: #dcfce7; color: #166534; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-lang { background: #fef9c3; color: #854d0e; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        
+        .acct-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .acct-table th, .acct-table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+        }
+        .acct-table th { background: #f8fafc; }
     </style>
 </head>
 <body>
@@ -135,10 +194,10 @@
     <div id="lessonViewerModal" class="lesson-viewer-modal">
         <div class="viewer-box">
             <div class="viewer-header">
-                <h3 id="activeLessonTitle">Active Lesson Workspace</h3>
-                <button class="btn-close-viewer" onclick="closeLessonViewer()">Close X</button>
+                <h2 id="activeLessonTitle">Active Lesson Workspace</h2>
+                <button class="btn-close-viewer" onclick="closeLessonViewer()">Close Workbook</button>
             </div>
-            <div id="activeLessonContent" style="font-size: 16px; line-height: 1.6; color: #334155;">
+            <div id="activeLessonContent">
                 </div>
         </div>
     </div>
@@ -196,8 +255,8 @@
                             <p>Learn the core principles of double-entry accounting, debits and credits, and the fundamental equation.</p>
                         </div>
                         <div class="card-meta">
-                            <span>6 Lessons</span>
-                            <span class="duration">2.5 hours</span>
+                            <span>2 Lessons Installed</span>
+                            <span class="duration">Interactive</span>
                         </div>
                     </div>
 
@@ -209,8 +268,8 @@
                             <p>Master how to construct and read Income Statements, Balance Sheets, and Cash Flow metrics.</p>
                         </div>
                         <div class="card-meta">
-                            <span>6 Lessons</span>
-                            <span class="duration">3.5 hours</span>
+                            <span>1 Lesson</span>
+                            <span class="duration">Next Up</span>
                         </div>
                     </div>
 
@@ -221,8 +280,8 @@
                             <p>Evaluate corporate health using working capital metrics, profitability margins, and liquidity ratios.</p>
                         </div>
                         <div class="card-meta">
-                            <span>6 Lessons</span>
-                            <span class="duration">3 hours</span>
+                            <span>1 Lesson</span>
+                            <span class="duration">Locked</span>
                         </div>
                     </div>
                 </div>
@@ -232,12 +291,12 @@
                 <h3>Module 1: Accounting Basics</h3>
                 <ul class="lesson-list">
                     <li class="lesson-item">
-                        <span>📖 Lesson 1.1: The Fundamental Accounting Equation</span>
-                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 1.1: The Fundamental Accounting Equation', 'Welcome to your workspace! The central rule of all accounting operations is: Assets = Liabilities + Equity. Every transaction must preserve this balance.')">Start</button>
+                        <span>📖 Lesson 1.1: What is Accounting and Why Does It Matter?</span>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(1.1)">Start Workbook</button>
                     </li>
                     <li class="lesson-item">
-                        <span>📖 Lesson 1.2: Double-Entry Rules (Debits vs Credits)</span>
-                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 1.2: Double-Entry Rules', 'Debits track incoming resources and properties, while credits log outgoing value streams, financing origins, and equity stakes.')">Start</button>
+                        <span>📖 Lesson 1.2: Assets, Liabilities, Equity & The Golden Formula</span>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(1.2)">Start Workbook</button>
                     </li>
                 </ul>
             </section>
@@ -247,7 +306,7 @@
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 2.1: Structuring the Balance Sheet</span>
-                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 2.1: Structuring the Balance Sheet', 'The Balance Sheet provides a financial snapshot of a company at a specific moment, detailing what it owns, what it owes, and shareholder stakes.')">Start</button>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(2.1)">Start Workbook</button>
                     </li>
                 </ul>
             </section>
@@ -257,7 +316,7 @@
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 3.1: Liquidity and Current Ratios</span>
-                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 3.1: Liquidity and Current Ratios', 'Liquidity ratios assess a business\'s capacity to pay off immediate short-term debts using accessible liquid working capital items.')">Start</button>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(3.1)">Start Workbook</button>
                     </li>
                 </ul>
             </section>
@@ -267,7 +326,7 @@
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 4.1: Amortization & Depreciation Asset Valuations</span>
-                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 4.1: Amortization & Depreciation', 'Learn how to distribute the cost of physical and intangible assets over their useful working lifecycle.')">Start</button>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(4.1)">Start Workbook</button>
                     </li>
                 </ul>
             </section>
@@ -277,7 +336,7 @@
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 5.1: IFRS vs US GAAP Rules Overview</span>
-                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 5.1: IFRS vs US GAAP Rules', 'Explore structural variations between global financial reporting systems and corporate metrics guidelines.')">Start</button>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(5.1)">Start Workbook</button>
                     </li>
                 </ul>
             </section>
@@ -305,39 +364,155 @@
             setTimeout(openModal, 800); 
         };
 
-        // Navigation engine to handle clicking left menu list buttons
         function navigateToModule(targetId, elementClicked) {
             const targetBlock = document.getElementById(targetId);
             if(targetBlock) {
                 targetBlock.scrollIntoView({ behavior: 'smooth' });
             }
-            
             const menuItems = document.querySelectorAll('#sidebarMenu li');
             menuItems.forEach(li => li.classList.remove('active'));
-            
             elementClicked.parentElement.classList.add('active');
-        }
-
-        // Live Interactive Workspace Loader Engine
-        function launchLesson(title, standardText) {
-            document.getElementById("activeLessonTitle").innerText = title;
-            document.getElementById("activeLessonContent").innerHTML = `
-                <p>${standardText}</p>
-                <div style="margin-top: 25px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #2563eb;">
-                    <strong>🎓 Sandbox Mode Active:</strong> Use this panel to review concepts and track your completion progress.
-                </div>
-            `;
-            document.getElementById("lessonViewerModal").style.display = "flex";
         }
 
         function closeLessonViewer() {
             document.getElementById("lessonViewerModal").style.display = "none";
         }
 
+        // QUIZ VALIDATION ENGINE
+        function checkAnswer(selectedOption, isCorrect, feedbackId) {
+            const feedbackBox = document.getElementById(feedbackId);
+            feedbackBox.style.display = "block";
+            
+            // Highlight selected button
+            const options = selectedOption.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(btn => {
+                btn.style.background = "white";
+                btn.style.borderColor = "#e2e8f0";
+            });
+
+            if (isCorrect) {
+                selectedOption.style.background = "#dcfce7";
+                selectedOption.style.borderColor = "#22c55e";
+                feedbackBox.style.background = "#dcfce7";
+                feedbackBox.style.color = "#166534";
+                feedbackBox.innerText = "🎉 Correct! Great job analyzing the concept.";
+            } else {
+                selectedOption.style.background = "#fee2e2";
+                selectedOption.style.borderColor = "#ef4444";
+                feedbackBox.style.background = "#fee2e2";
+                feedbackBox.style.color = "#991b1b";
+                feedbackBox.innerText = "❌ Incorrect. Hint: Reread the core definition above and try again!";
+            }
+        }
+
+        // DYNAMIC LESSON SOURCE COMPILER ENGINE
+        function loadLessonViewer(lessonId) {
+            const titleEl = document.getElementById("activeLessonTitle");
+            const contentEl = document.getElementById("activeLessonContent");
+            
+            if (lessonId === 1.1) {
+                titleEl.innerText = "Lesson 1.1 Workbook";
+                contentEl.innerHTML = `
+                    <p>Imagine you and your friends decide to open a custom sneaker-printing business. You buy blank shoes, pay for paint, sell a few pairs, and even pay a friend to help with marketing. At the end of the month, you look at your bank account and wonder: <em>Are we actually making money, or are we burning through our savings?</em> This is exactly where accounting comes to the rescue.</p>
+                    
+                    <h3>What is Accounting?</h3>
+                    <p>At its core, accounting is the <span class="hl-lang">"language of business."</span> It is the structured process of tracking, recording, analyzing, and reporting financial transactions. Instead of guessing based on a bank account's vibe, accounting uses a set system to map out exact financial operational health.</p>
+                    
+                    <div class="quiz-container">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>What is referred to as the 'language of business'?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb1')">A) Marketing analytics profiles</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb1')">B) Accounting systems and reports</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb1')">C) CEO strategic guidelines</button>
+                        <div id="fb1" class="quiz-feedback"></div>
+                    </div>
+
+                    <h3>Three Simple Steps:</h3>
+                    <ul>
+                        <li><strong>Recording:</strong> Tracking every single dollar that comes in (revenue) and goes out (expenses).</li>
+                        <li><strong>Summarizing:</strong> Grouping transactions into statements so they make logical sense.</li>
+                        <li><strong>Reporting:</strong> Presenting metrics data to stakeholders making big strategic choices.</li>
+                    </ul>
+
+                    <h3>The Three Core Financial Statements</h3>
+                    <table class="acct-table">
+                        <thead>
+                            <tr>
+                                <th>Financial Statement</th>
+                                <th>What It Tells You</th>
+                                <th>The Big Question It Answers</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Income Statement</strong></td>
+                                <td>Shows revenues and expenses over a specific period.</td>
+                                <td>Did we make a profit or a loss?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Balance Sheet</strong></td>
+                                <td>Shows what the business owns and what it owes at a specific moment.</td>
+                                <td>What is the business worth right now?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cash Flow Statement</strong></td>
+                                <td>Tracks actual physical liquid cash moving in and out.</td>
+                                <td>Do we have enough cash to pay bills today?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>The Accountant's Role</h3>
+                    <p>If a business were a professional sports team, the CEO is the head coach making big plays, and the sales team scores points. But who is keeping score, analyzing game tape, and making sure the team doesn't break rules?</p>
+                    <p><strong>That is the accountant.</strong> They evaluate fraud prevention, pinpoint cost cutting, and structure metrics to model future financial risks.</p>
+                `;
+            } 
+            else if (lessonId === 1.2) {
+                titleEl.innerText = "Lesson 1.2 Workbook";
+                contentEl.innerHTML = `
+                    <h3>Understanding the Building Blocks of Corporate Wealth</h3>
+                    <p>To measure corporate wealth, accountants use three foundational tracking variables: Assets, Liabilities, and Owner's Equity.</p>
+                    
+                    <ul>
+                        <li><span class="hl-asset">Assets</span>: Anything of value that a business owns or controls that generates future economic benefit (Cash, Inventory, Equipment, Patents).</li>
+                        <li><span class="hl-liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Bank Loans, Accounts Payable, Mortgages).</li>
+                        <li><span class="hl-equity">Owner's Equity</span>: Represents the owner's remaining residual stake in the business after all debts are deducted from assets (Contributed Capital, Retained Earnings).</li>
+                    </ul>
+
+                    <div class="quiz-container">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>If a bookstore owes money to its book publisher supplier for inventory bought on credit, what is that debt categorized as?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb2')">A) Current Asset resource</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb2')">B) Liability obligation (Accounts Payable)</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb2')">C) Retained Owner's Equity</button>
+                        <div id="fb2" class="quiz-feedback"></div>
+                    </div>
+
+                    <h3>The Golden Formula of Accounting</h3>
+                    <p>To guarantee perfect balance, every corporate operation uses the <strong>Accounting Equation</strong>:</p>
+                    <p style="text-align:center; font-size: 20px; font-weight: bold; background: #f8fafc; padding: 15px; border-radius: 8px;">
+                        Assets = Liabilities + Owner's Equity
+                    </p>
+                    <p>This formula must always balance perfectly down to the single penny. This absolute balance is sustained via <strong>Double-Entry Bookkeeping</strong>, which requires every economic event to be recorded in at least two separate accounts as balancing dual changes.</p>
+                `;
+            }
+            else {
+                // FALLBACK PLACEHOLDERS FOR LESSONS 2, 3, 4, 5
+                titleEl.innerText = `Module ${Math.floor(lessonId)} Content Loaded`;
+                contentEl.innerHTML = `
+                    <p>Excellent! You successfully triggered the tracking container for this advanced module area.</p>
+                    <div style="padding: 20px; background: #f0fdf4; border: 1px dashed #22c55e; border-radius: 8px; margin-top: 15px;">
+                        <strong>📚 Next Lesson Slot Unlocked:</strong> Send over your specific reading text inputs for this statement slot, and we will update it with interactive highlights and quizzes instantly!
+                    </div>
+                `;
+            }
+            
+            document.getElementById("lessonViewerModal").style.display = "flex";
+        }
+
         // Handle Quick Sign Up & Bypass Rate Limits
         async function handleSignUp(event) { 
             event.preventDefault(); 
-            
             const fullName = document.getElementById("username").value; 
             const email = document.getElementById("email").value; 
             const password = document.getElementById("password").value; 
