@@ -140,15 +140,6 @@
             font-weight: 500;
             cursor: pointer;
         }
-        .btn-secondary {
-            background: white;
-            border: 1px solid #cbd5e1;
-            color: #475569;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-        }
 
         /* Module Grid Maps */
         .modules-section h3 {
@@ -303,12 +294,13 @@
             border-color: #fca5a5;
         }
 
-        /* LAZY SCROLL ENGINE FADE IN EFFECT CONFIGS */
+        /* DYNAMIC LAZY SCROLL ENGINE FADE IN EFFECT CONFIGS */
         .lazy-hl {
-            transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+            transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
             padding: 2px 6px;
             border-radius: 4px;
             background-color: transparent;
+            color: inherit;
         }
         .lazy-hl.triggered-asset { background-color: #dbeafe; color: #1e40af; font-weight: 600; }
         .lazy-hl.triggered-liability { background-color: #fee2e2; color: #991b1b; font-weight: 600; }
@@ -317,9 +309,10 @@
 
         /* SCROLL INBOUND INTERACTIVE BLOCK ANIMATION */
         .scroll-reveal-card {
-            opacity: 0.3;
-            transform: translateY(15px);
-            transition: all 0.6s ease;
+            opacity: 0.25;
+            transform: translateY(20px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 35px;
         }
         .scroll-reveal-card.revealed {
             opacity: 1;
@@ -437,7 +430,7 @@
 </head>
 <body>
 
-    <div id="lessonViewerModal" class="lesson-viewer-modal">
+    <div id="lessonViewerModal" class="lesson-viewer-modal" onscroll="runScrollHighlightEngine()">
         <div class="viewer-box">
             <div class="viewer-header">
                 <h2 id="activeLessonTitle">Lesson Workbook</h2>
@@ -462,9 +455,6 @@
                 <ul id="sidebarMenu">
                     <li class="active"><a onclick="navigateToModule('module1', this)"><span class="mod-num">1</span> Accounting Basics</a></li>
                     <li><a onclick="navigateToModule('module2', this)"><span class="mod-num">2</span> Financial Statements</a></li>
-                    <li><a onclick="navigateToModule('module3', this)"><span class="mod-num">3</span> Ratio Analysis</a></li>
-                    <li><a onclick="navigateToModule('module4', this)"><span class="mod-num">4</span> Advanced Corporate</a></li>
-                    <li><a onclick="navigateToModule('module5', this)"><span class="mod-num">5</span> Global Standards (CA)</a></li>
                 </ul>
             </nav>
         </aside>
@@ -477,14 +467,14 @@
             <section class="welcome-card">
                 <span class="badge">📊 Finance & Accounting</span>
                 <h1 id="welcomeHeading">Welcome back, Shyamleen.</h1>
-                <p>Master foundational and advanced accounting concepts. Sign up to save your lesson completions.</p>
+                <p>Master foundational and advanced accounting concepts. Progress is tracked locally in your session workspace.</p>
                 <div class="course-stats">
-                    <span>📁 5 Modules</span>
-                    <span>📖 30 Lessons</span>
-                    <span>⏳ 16 Hours</span>
+                    <span>📁 2 Modules Active</span>
+                    <span>📖 7 Lessons In Scope</span>
+                    <span>⏳ Core Certification Track</span>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn-primary">View Syllabus</button>
+                    <button class="btn-primary">View Syllabus Track</button>
                 </div>
             </section>
 
@@ -596,36 +586,34 @@
                 selectedOption.style.borderColor = "#ef4444";
                 feedbackBox.style.background = "#fee2e2";
                 feedbackBox.style.color = "#991b1b";
-                feedbackBox.innerText = "❌ Incorrect. Hint: Double-check the core guidelines outlined above and try again!";
+                feedbackBox.innerText = "❌ Incorrect. Look closely back at the core framework rules above and check your calculation values!";
             }
         }
 
-        /* ATTACHES LAZY INTERACTIVE HIGHLIGHTING ENGINE ON WORKBOOK INJECTION */
-        function initializeScrollHighlightEngine() {
-            const elementsToWatch = document.querySelectorAll('.lazy-hl, .scroll-reveal-card');
-            
-            const observerOptions = {
-                root: document.getElementById('lessonViewerModal'),
-                rootMargin: '0px 0px -15% 0px',
-                threshold: 0.2
-            };
+        /* HIGH FIDELITY REAL-TIME SCROLL HIGHLIGHT DETECTOR ENGINE */
+        function runScrollHighlightEngine() {
+            const container = document.getElementById('lessonViewerModal');
+            const containerTop = container.getBoundingClientRect().top;
+            const triggerPoint = window.innerHeight * 0.85; // Element hits 85% depth from top of display canvas
 
-            const highlightObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (entry.target.classList.contains('lazy-hl')) {
-                            const type = entry.target.getAttribute('data-type');
-                            entry.target.classList.add(`triggered-${type}`);
-                        } else if (entry.target.classList.contains('scroll-reveal-card')) {
-                            entry.target.classList.add('revealed');
-                        }
-                        // Stop observing once highlighted/revealed to lock visual state
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+            // Reveal cards layout processing
+            const revealCards = container.querySelectorAll('.scroll-reveal-card:not(.revealed)');
+            revealCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top - containerTop < triggerPoint) {
+                    card.classList.add('revealed');
+                }
+            });
 
-            elementsToWatch.forEach(el => highlightObserver.observe(el));
+            // Dynamic text highlighting execution processing
+            const lazyHighlights = container.querySelectorAll('.lazy-hl');
+            lazyHighlights.forEach(hl => {
+                const rect = hl.getBoundingClientRect();
+                if (rect.top - containerTop < triggerPoint) {
+                    const type = hl.getAttribute('data-type');
+                    hl.classList.add(`triggered-${type}`);
+                }
+            });
         }
 
         function loadLessonViewer(lessonId) {
@@ -635,15 +623,15 @@
             document.body.style.overflow = "hidden";
             
             if (lessonId === 1.1) {
-                titleEl.innerText = "Lesson 1.1 Workbook";
+                titleEl.innerText = "Lesson 1.1: Introduction to Corporate Tracking";
                 contentEl.innerHTML = `
                     <div class="scroll-reveal-card revealed">
-                        <p>Imagine you and your friends decide to open a custom sneaker-printing business. You buy blank shoes, pay for paint, sell a few pairs, and even pay a friend to help with marketing. At the end of the month, you look at your bank account and wonder: <em>Are we actually making money, or are we burning through our savings?</em> This is exactly where accounting comes to the rescue.</p>
+                        <p>Imagine launching an independent custom sneaker design workspace with your friends. You write down the baseline parameters: you lease a professional commercial printer, buy plain structural shoes, purchase heavy industrial paints, and secure web storage infrastructure. After three weeks of operating, you have processed dozens of incoming transactions. How do you assess if your venture is truly profitable, or if you are simply draining equity capital assets? This is where professional financial tracking applies.</p>
                     </div>
                     
                     <div class="scroll-reveal-card">
                         <h3>What is Accounting?</h3>
-                        <p>At its core, accounting is the <span class="lazy-hl" data-type="lang">"language of business."</span> It is the structured process of tracking, recording, analyzing, and reporting financial transactions. Instead of guessing based on a bank account's vibe, accounting uses a set system to map out exact financial operational health.</p>
+                        <p>Accounting operates uniformly as the <span class="lazy-hl" data-type="lang">"universal language of business."</span> It is a systematically standardized data framework created to measure, record, analyze, classify, and communicate structural financial parameters across economic groups. Without a comprehensive method to normalize transaction values, corporate leadership would be blind to operational efficiencies.</p>
                     </div>
                     
                     <div class="quiz-container scroll-reveal-card">
@@ -655,98 +643,116 @@
                     </div>
 
                     <div class="scroll-reveal-card">
-                        <h3>Three Simple Steps Breakdown:</h3>
+                        <h3>The Operational Core Functions</h3>
                         <ul>
-                            <li><strong>Recording:</strong> Tracking every single dollar that comes in (revenue) and goes out (expenses).</li>
-                            <li><strong>Summarizing:</strong> Grouping these transactions into financial statements so they actually make sense.</li>
-                            <li><strong>Reporting:</strong> Presenting these statements to the people who need to make big decisions.</li>
+                            <li><strong>Chronological Recording:</strong> Aggregating all monetary transfers, invoicing, resource acquisitions, and expenditure values immediately at source entry.</li>
+                            <li><strong>Systematic Summarization:</strong> Classifying diverse corporate data metrics into clear, audit-ready structures known globally as financial statements.</li>
+                            <li><strong>Strategic Communication:</strong> Relaying these balanced diagnostic statements to executive boards, lending institutions, and regulatory agencies.</li>
                         </ul>
                     </div>
                 `;
             } 
             else if (lessonId === 1.2) {
-                titleEl.innerText = "Lesson 1.2 Workbook";
+                titleEl.innerText = "Lesson 1.2: Assets, Liabilities, Equity & The Golden Formula";
                 contentEl.innerHTML = `
                     <div class="scroll-reveal-card revealed">
                         <h3>Understanding the Building Blocks of Corporate Wealth</h3>
-                        <p>If you want to understand the true financial health of any business, you need to look past its daily sales. You need to look at what the business actually possesses, what it owes to others, and what is truly left over for the people who started it.</p>
+                        <p>To accurately compute the net financial position of a business organization, we must bypass casual turnover figures and isolate its structural foundation into three essential components: resources held, obligations pending, and ownership shares.</p>
                     </div>
                     
                     <div class="scroll-reveal-card">
+                        <h3>The Three Core Pillars Defined</h3>
                         <ul>
-                            <li><span class="lazy-hl" data-type="asset">Assets</span>: Anything of value that a business owns or controls that can be used to generate future economic benefit (Cash, Inventory, Equipment).</li>
-                            <li><span class="lazy-hl" data-type="liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Accounts Payable, Loans).</li>
-                            <li><span class="lazy-hl" data-type="equity">Owner's Equity</span>: Represents the owner’s residual stake in the business. It is the true net worth of the company.</li>
+                            <li><span class="lazy-hl" data-type="asset">Assets</span>: Probable future economic benefits obtained or controlled by a particular entity as a result of past transactions. Examples include corporate cash accounts, material inventories, factory equipment, and uncollected customer receivables.</li>
+                            <li><span class="lazy-hl" data-type="liability">Liabilities</span>: Present obligations of a particular entity to transfer assets or provide services to other entities in the future as a result of past events. Examples include institutional bank debts, long-term mortgages, and vendor accounts payable invoices.</li>
+                            <li><span class="lazy-hl" data-type="equity">Owner's Equity</span>: The residual interest in the assets of an entity that remains after deducting its liabilities. This reflects the net economic value belonging directly to shareholders or founders.</li>
                         </ul>
                     </div>
 
                     <div class="scroll-reveal-card">
-                        <p>To guarantee balance, every corporate tracking metric uses the <strong>Accounting Equation</strong>:</p>
+                        <h3>The Immutable Accounting Equation</h3>
+                        <p>Every transactional change recorded by an accountant must strictly maintain structural balance. The fundamental equation serves as the mathematical foundation for all double-entry financial frameworks globally:</p>
                         <p style="text-align:center; font-size: 22px; font-weight: bold; background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
                             Assets = Liabilities + Owner's Equity
                         </p>
+                        <p>This means that everything a business owns (Assets) was either funded by borrowing money from creditors (Liabilities) or invested by the owners themselves (Owner's Equity).</p>
+                    </div>
+
+                    <div class="quiz-container scroll-reveal-card">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>If a company has $50,000 in Assets and owes $20,000 in Liabilities, what is the value of Owner's Equity?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb12')">A) $70,000</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb12')">B) $30,000</button>
+                        <div id="fb12" class="quiz-feedback"></div>
                     </div>
                 `;
             }
             else if (lessonId === 1.3) {
-                titleEl.innerText = "Lesson 1.3: The T-Account System";
+                titleEl.innerText = "Lesson 1.3: The T-Account Visual Mapping Engine";
                 contentEl.innerHTML = `
                     <div class="scroll-reveal-card revealed">
-                        <p>If you have ever watched an accountant work, you might have seen them sketch out a series of large, capital letters "T" on a piece of paper or a whiteboard. This isn't just random doodling—they are using T-accounts, one of the most powerful visual tools in the financial world.</p>
-                        <p>A T-account is a simplified, visual representation of an individual account in a company’s general ledger. It acts like a mini-scale that allows accountants to track how specific business events increase or decrease the money in that account.</p>
+                        <p>To record complex business transactions without errors, accountants map accounts using structural tools known as T-Accounts. A T-Account is an elegantly simplified visual representation of an individual ledger account page, organized to mimic the capital letter "T". It functions as a clear visual scale, enabling auditors to track exactly how specific business transactions increase or decrease individual financial accounts.</p>
                     </div>
                     
                     <div class="scroll-reveal-card">
-                        <h3>The Anatomy of a T-Account</h3>
-                        <p>The T-account splits the tracking of an account into three basic parts:</p>
+                        <h3>The Structural Layout of a T-Account</h3>
+                        <p>Every individual asset, liability, and equity line item maintains its own independent T-Account. The interface divides the tracking of an account into three clear regions:</p>
                         <ul>
-                            <li><strong>The Title:</strong> Written across the very top bar of the T (e.g., "Cash," "Inventory").</li>
-                            <li><strong>The Left Side (Debit):</strong> Reserved exclusively for Debits (often abbreviated as Dr.).</li>
-                            <li><strong>The Right Side (Credit):</strong> Reserved exclusively for Credits (often abbreviated as Cr.).</li>
+                            <li><strong>The Title Header:</strong> Positioned across the top horizontal axis (e.g., "Cash", "Accounts Payable").</li>
+                            <li><strong>The Left Column Space:</strong> Designated strictly for <span class="lazy-hl" data-type="asset">Debit (Dr.) entries</span>.</li>
+                            <li><strong>The Right Column Space:</strong> Designated strictly for <span class="lazy-hl" data-type="liability">Credit (Cr.) entries</span>.</li>
                         </ul>
                     </div>
 
-                    <div class="t-art-box scroll-reveal-card">            Account Title
-    ------------------------------
-       Left Side   |   Right Side
-                   |
-        DEBIT      |     CREDIT
-        (Dr.)      |     (Cr.)</div>
+                    <div class="t-art-box scroll-reveal-card">                  Account Name / Title
+    ------------------------------------------------------
+       Left Margin Column      |      Right Margin Column
+                               |
+         DEBIT VALUE           |         CREDIT VALUE
+         Abbreviated (Dr.)     |         Abbreviated (Cr.)
+                               |</div>
 
                     <div class="scroll-reveal-card">
-                        <h3>The Golden Rule of T-Accounts</h3>
-                        <p>Forget the everyday definitions of "debit" and "credit" used by banks. In accounting, <span class="lazy-hl" data-type="lang">"Debit simply means Left, and Credit simply means Right."</span> They do not inherently mean "plus" or "minus."</p>
-                    </div>
-
-                    <div class="scroll-reveal-card">
-                        <h3>How Debits and Credits Work</h3>
-                        <p>Whether a debit or a credit increases or decreases an account depends entirely on what type of account it is:</p>
+                        <h3>The Absolute Accounting Rule of Debits and Credits</h3>
+                        <p>You must completely forget everyday bank terms, where "debiting" a card feels like a reduction. In accounting, <span class="lazy-hl" data-type="lang">"Debit simply means Left, and Credit simply means Right."</span> They are directional instructions, not mathematical symbols. Whether a debit increases or decreases an account depends entirely on what type of account it is.</p>
                         <ul>
-                            <li><strong>Accounts on the LEFT side of the equation (Assets):</strong> Are increased on the left side (Debit) and decreased on the right side (Credit).</li>
-                            <li><strong>Accounts on the RIGHT side of the equation (Liabilities & Equity):</strong> Are increased on the right side (Credit) and decreased on the left side (Debit).</li>
+                            <li><strong>Left-Side Equation Accounts (Assets):</strong> Increased on their natural side—the left (Debit). Decreased on the opposite side—the right (Credit).</li>
+                            <li><strong>Right-Side Equation Accounts (Liabilities & Equity):</strong> Increased on their natural side—the right (Credit). Decreased on the opposite side—the left (Debit).</li>
                         </ul>
                     </div>
 
                     <table class="acct-table scroll-reveal-card">
                         <thead>
                             <tr>
-                                <th>Account Type</th>
-                                <th>Left Side (Debit)</th>
-                                <th>Right Side (Credit)</th>
+                                <th>Account Classification Block</th>
+                                <th>Left Column Entry (Debit)</th>
+                                <th>Right Column Entry (Credit)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>Asset (e.g., Cash, Equipment)</td><td><strong>Increases (+)</strong></td><td>Decreases (-)</td></tr>
-                            <tr><td>Liability (e.g., Loans, Payables)</td><td>Decreases (-)</td><td><strong>Increases (+)</strong></td></tr>
-                            <tr><td>Owner's Equity (e.g., Capital)</td><td>Decreases (-)</td><td><strong>Increases (+)</strong></td></tr>
+                            <tr><td>Asset Accounts (e.g., Cash, Supplies, Equipment)</td><td><strong>Increases Account (+)</strong></td><td>Decreases Account (-)</td></tr>
+                            <tr><td>Liability Accounts (e.g., Vendor Payables, Loans)</td><td>Decreases Account (-)</td><td><strong>Increases Account (+)</strong></td></tr>
+                            <tr><td>Owner's Equity Accounts (e.g., Capital Investment)</td><td>Decreases Account (-)</td><td><strong>Increases Account (+)</strong></td></tr>
                         </tbody>
                     </table>
+
+                    <div class="scroll-reveal-card">
+                        <h3>Determining Account Balances</h3>
+                        <p>To find the formal closing balance of a T-account at the end of an accounting period, you follow a strict formula:</p>
+                        <ol>
+                            <li>Sum the total dollar values listed in the Left (Debit) column.</li>
+                            <li>Sum the total dollar values listed in the Right (Credit) column.</li>
+                            <li>Subtract the smaller total from the larger total.</li>
+                            <li>Write the remaining difference on the side that had the larger initial sum. This number is your <strong>ending account balance</strong>.</li>
+                        </ol>
+                    </div>
 
                     <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>An account has $12,000 total on its left side and $5,000 total on its right side. What is the ending balance type and amount?</p>
                         <button class="quiz-option" onclick="checkAnswer(this, true, 'fb13')">A) Debit balance of $7,000</button>
                         <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">B) Credit balance of $7,000</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">C) Debit balance of $17,000</button>
                         <div id="fb13" class="quiz-feedback"></div>
                     </div>
                 `;
@@ -755,32 +761,50 @@
                 titleEl.innerText = "Lesson 1.4: Rules for Increasing & Decreasing Accounts";
                 contentEl.innerHTML = `
                     <div class="scroll-reveal-card revealed">
-                        <p>When you first dive into accounting, the biggest hurdle isn't the math—it's learning how to change the numbers. If you buy a new piece of equipment, do you add to it or subtract from it?</p>
+                        <p>The core challenge of accounting is mastering the structural logic of changing financial values. If a company acquires heavy manufacturing machinery, pays cash down for inventory, or clears a vendor debt, you must know exactly how to reflect that change across the ledger without breaking the accounting equation.</p>
                     </div>
                     
                     <div class="scroll-reveal-card">
-                        <h3>The Core Rules: Left vs. Right</h3>
-                        <p><strong>1. Accounts on the Left Side: Assets</strong><br>Because Assets sit on the left side of the equation, their "home" or normal balance is on the left (Debit) side.</p>
+                        <h3>Deep-Dive Rules for the Core Accounts</h3>
+                        <p>The directional rules governing debits and credits align directly with where an account sits in the accounting equation ($Assets = Liabilities + Owner's Equity$).</p>
+                        <p><strong>1. Asset Accounts (Left Side of the Equation)</strong><br>Because assets are on the left, their "normal" balance is a debit. To increase an asset, you record a debit. To decrease it, you record a credit.</p>
+                        <p><strong>2. Liability and Equity Accounts (Right Side of the Equation)</strong><br>Because these accounts are on the right, their "normal" balance is a credit. To increase them, you record a credit. To decrease them, you record a debit.</p>
+                    </div>
+
+                    <div class="scroll-reveal-card">
+                        <h3>The Expanded Framework: Revenues and Expenses</h3>
+                        <p>Owner's Equity changes over time through everyday trading operations. It increases when the business generates revenue and decreases when it incurs expenses. This gives us two final, critical tracking rules:</p>
                         <ul>
-                            <li>To increase an Asset, you <span class="lazy-hl" data-type="asset">Debit it</span> (left side).</li>
-                            <li>To decrease an Asset, you Credit it (right side).</li>
+                            <li><span class="lazy-hl" data-type="equity">Revenues Increase Equity</span>: Because equity increases with a credit, revenues are increased with a <strong>Credit</strong> entry.</li>
+                            <li><span class="lazy-hl" data-type="liability">Expenses Decrease Equity</span>: Because expenses pull equity down, they do the opposite. Expenses are increased with a <strong>Debit</strong> entry.</li>
                         </ul>
                     </div>
 
                     <div class="scroll-reveal-card">
-                        <p><strong>2. Accounts on the Right Side: Liabilities & Equity</strong><br>Because Liabilities and Owner's Equity sit on the right side of the equation, their normal balance is on the right (Credit) side.</p>
-                        <ul>
-                            <li>To increase a Liability or Equity, you <span class="lazy-hl" data-type="liability">Credit it</span> (right side).</li>
-                            <li>To decrease a Liability or Equity, you Debit it (left side).</li>
-                        </ul>
+                        <h3>The Master Normal Balance Chart</h3>
+                        <table class="acct-table">
+                            <thead>
+                                <th>Account Group</th>
+                                <th>Normal Balance Side</th>
+                                <th>To INCREASE Record</th>
+                                <th>To DECREASE Record</th>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Asset</strong></td><td>Debit (Left)</td><td>Debit</td><td>Credit</td></tr>
+                                <tr><td><strong>Liability</strong></td><td>Credit (Right)</td><td>Credit</td><td>Debit</td></tr>
+                                <tr><td><strong>Equity Base</strong></td><td>Credit (Right)</td><td>Credit</td><td>Debit</td></tr>
+                                <tr><td><strong>Revenue</strong></td><td>Credit (Right)</td><td>Credit</td><td>Debit</td></tr>
+                                <tr><td><strong>Expense</strong></td><td>Debit (Left)</td><td>Debit</td><td>Credit</td></tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="scroll-reveal-card">
-                        <h3>An Easy Acronym to Remember: DEALER</h3>
-                        <p>Split the word into two groups to remember who gets increased by what:</p>
+                        <h3>Memory Shortcut: The DEALER System</h3>
+                        <p>To make memorizing these rules simple, accountants often divide the word <strong>DEALER</strong> into two clear functional groups:</p>
                         <ul>
-                            <li><strong>DEA (Debit):</strong> Expenses, Assets, Losses are increased by Debit.</li>
-                            <li><strong>LER (Credit):</strong> Liabilities, Equity, Revenue are increased by Credit.</li>
+                            <li><strong>D-E-A (Increased by Debit):</strong> <strong>D</strong>ividends, <strong>E</strong>xpenses, and <strong>A</strong>ssets.</li>
+                            <li><strong>L-E-R (Increased by Credit):</strong> <strong>L</strong>iabilities, <strong>E</strong>quity, and <strong>R</strong>evenue.</li>
                         </ul>
                     </div>
 
@@ -794,48 +818,68 @@
                 `;
             }
             else if (lessonId === 1.5) {
-                titleEl.innerText = "Lesson 1.5: Recording Day-to-Day Transactions";
+                titleEl.innerText = "Lesson 1.5: Recording Day-to-Day Journal Transactions";
                 contentEl.innerHTML = `
                     <div class="scroll-reveal-card revealed">
-                        <p>Imagine running a busy coffee shop. In a single hour, you might sell forty lattes, receive a delivery of coffee beans with an invoice attached, and pay a technician. To prevent chaos, accountants use a strict, chronological system called the General Journal.</p>
+                        <p>In a single morning, a busy modern company might sell a product to dozens of clients, accept raw material shipments accompanied by vendor payment terms, pay factory workers, and settle utility bills. To keep these events organized, accountants use a strict chronological system known as the General Journal.</p>
                     </div>
                     
                     <div class="scroll-reveal-card">
-                        <h3>Step 1: Gathering the Source Documents</h3>
-                        <p>An accountant never guesses or relies on memory. Every transaction must be backed up by a source document:</p>
+                        <h3>The First Step: Validating Source Documentation</h3>
+                        <p>A professional accountant never entries values based on memory or hearsay. Every single entry into the journal must be backed by a verifiable source document—the concrete proof that a financial transaction occurred.</p>
                         <ul>
-                            <li><strong>Receipts:</strong> Proof of cash or card purchases.</li>
-                            <li><strong>Invoices:</strong> Bills sent to customers or received from suppliers.</li>
+                            <li><strong>Invoices:</strong> Official forms indicating billing terms for sales made on credit.</li>
+                            <li><strong>Receipts:</strong> Immediate documentation verifying cash exchanges or digital payments.</li>
+                            <li><strong>Bank Statements:</strong> Verifiable institutional records of automated wire transfers, deposits, and fees.</li>
                         </ul>
                     </div>
 
                     <div class="scroll-reveal-card">
-                        <h3>The Anatomy of a Journal Entry</h3>
-                        <p>Journal entries follow a standardized structure so that any business professional can read them:</p>
+                        <h3>The Standard Anatomy of a General Journal Entry</h3>
+                        <p>The General Journal functions as the daily log book of a business. To ensure clarity for global auditors, entries follow a strict structural formatting standard:</p>
                         <ul>
-                            <li><strong>The Debit Account:</strong> Written first, tight against the left margin.</li>
-                            <li><strong>The Credit Account:</strong> Written second, <span class="lazy-hl" data-type="lang">indented slightly to the right</span>.</li>
+                            <li><strong>The Header Date:</strong> Listed first on the left column.</li>
+                            <li><strong>The Debit Account Line:</strong> Written flush against the left margin. The value is placed in the Left Debit numeric column.</li>
+                            <li><strong>The Credit Account Line:</strong> Placed beneath the debit line and <span class="lazy-hl" data-type="lang">indented slightly to the right</span>. The value is placed in the Right Credit numeric column.</li>
+                            <li><strong>The Explanation:</strong> A short, italicized narrative note underneath providing context or referencing a specific source invoice.</li>
                         </ul>
                     </div>
 
-                    <table class="acct-table scroll-reveal-card">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Account Titles and Explanation</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>July 1</td>
-                                <td>Inventory<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Purchased inventory for cash)</em></td>
-                                <td>$800</td>
-                                <td><br>$800</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="scroll-reveal-card">
+                        <h3>Comprehensive Walkthrough Example</h3>
+                        <p>Let's look at three transactions in the General Journal to see how they keep the accounting equation in perfect balance:</p>
+                        <table class="acct-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Account Titles and Narrative Explanation</th>
+                                    <th>Debit (Dr.)</th>
+                                    <th>Credit (Cr.)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oct 1</td>
+                                    <td>Equipment<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Purchased corporate computer systems for cash)</em></td>
+                                    <td>$3,500</td>
+                                    <td><br>$3,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 3</td>
+                                    <td>Accounts Receivable<br>&nbsp;&nbsp;&nbsp;&nbsp;Service Revenue<br><em>(Billed corporate client for custom engineering design)</em></td>
+                                    <td>$4,200</td>
+                                    <td><br>$4,200</td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 5</td>
+                                    <td>Rent Expense<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Settled office storage unit rental invoice)</em></td>
+                                    <td>$1,200</td>
+                                    <td><br>$1,200</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Notice that for every entry, the total debited amount matches the credited amount perfectly, keeping the system beautifully self-correcting.</p>
+                    </div>
 
                     <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
@@ -850,38 +894,92 @@
                 titleEl.innerText = "Lesson 1.6: Posting Entries to the General Ledger";
                 contentEl.innerHTML = `
                     <div class="scroll-reveal-card revealed">
-                        <p>While the General Journal is the diary of the business, the General Ledger is the financial library. Every single account has its own dedicated page or record in the ledger.</p>
+                        <p>While the General Journal serves as a reliable chronological log of daily transactions, it has a major limitation: it doesn't give you instant visibility into individual accounts. If management wants to know the company's real-time cash balance, flipping through thousands of sequential journal entries to calculate the running total would be incredibly inefficient. This is why we use the General Ledger.</p>
                     </div>
                     
                     <div class="scroll-reveal-card">
-                        <h3>What is Posting?</h3>
-                        <p><span class="lazy-hl" data-type="lang">Posting is the process of transferring info</span> from the chronological General Journal into the specific accounts of the General Ledger.</p>
+                        <h3>What is the General Ledger?</h3>
+                        <p>The General Ledger functions as a well-organized financial library. In this framework, every account (such as Cash, Inventory, and Equipment) has its own dedicated record page. <span class="lazy-hl" data-type="lang">Posting is the mechanical process</span> of transferring data from the chronological General Journal into these specific account ledger pages.</p>
                     </div>
 
                     <div class="scroll-reveal-card">
-                        <h3>The Step-by-Step Posting Process</h3>
+                        <h3>The Five-Step Posting Routine</h3>
+                        <p>Posting requires no new analysis; it is a systematic data-entry routine designed to build a reliable financial database:</p>
                         <ol>
-                            <li>Locate the specific account ledger page.</li>
-                            <li>Transfer the exact date.</li>
-                            <li>Transfer the dollar amounts into matching columns.</li>
-                            <li>Update the running balance.</li>
+                            <li><strong>Locate the Account:</strong> Find the specific account's dedicated record page in the general ledger.</li>
+                            <li><strong>Transfer the Date:</strong> Enter the exact transaction date from the journal line entry.</li>
+                            <li><strong>Transfer the Value:</strong> Copy the exact dollar amount into the identical column. Journal debits become ledger debits, and journal credits become ledger credits.</li>
+                            <li><strong>Update the Running Balance:</strong> Calculate the new running total for that account immediately after posting the entry.</li>
+                            <li><strong>Record the Posting Reference (Post. Ref.):</strong> Enter the cross-reference code (like J1 for Journal Page 1) in both books to create an easily auditable paper trail.</li>
                         </ol>
+                    </div>
+
+                    <div class="scroll-reveal-card">
+                        <h3>Visualizing the Data Flow</h3>
+                        <p><strong>General Journal Record Line Example (Page 4)</strong></p>
+                        <table class="acct-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Account Name</th>
+                                    <th>Post. Ref.</th>
+                                    <th>Debit</th>
+                                    <th>Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nov 12</td>
+                                    <td>Supplies<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash</td>
+                                    <td>120<br>101</td>
+                                    <td>$600</td>
+                                    <td><br>$600</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p><strong>Ledger Page Execution View: Cash Account (No. 101)</strong></p>
+                        <table class="acct-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description / Notes</th>
+                                    <th>Post. Ref.</th>
+                                    <th>Debit</th>
+                                    <th>Credit</th>
+                                    <th>Running Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Nov 01</td><td>Opening Balance Brought Forward</td><td>—</td><td>—</td><td>—</td><td>$9,500 (Dr.)</td></tr>
+                                <tr><td>Nov 12</td><td>Office Supplies Purchase</td><td>J4</td><td>—</td><td>$600</td><td><strong>$8,900 (Dr.)</strong></td></tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>What specific name is given to the ledger database log book tracking sorting columns?</p>
+                        <p>What specific name is given to the sorted record book tracking individual running balances?</p>
                         <button class="quiz-option" onclick="checkAnswer(this, true, 'fb16')">A) The General Ledger</button>
                         <button class="quiz-option" onclick="checkAnswer(this, false, 'fb16')">B) The Chronological Daily Journal</button>
                         <div id="fb16" class="quiz-feedback"></div>
                     </div>
                 `;
             }
+            else if (lessonId === 2.1) {
+                titleEl.innerText = "Lesson 2.1: Structuring the Balance Sheet";
+                contentEl.innerHTML = `
+                    <div class="scroll-reveal-card revealed">
+                        <h3>The Balance Sheet Framework</h3>
+                        <p>The Balance Sheet provides a detailed financial snapshot of a business at a specific point in time, arranging its financial position into Assets, Liabilities, and Owner's Equity to demonstrate the Accounting Equation in action.</p>
+                    </div>
+                `;
+            }
 
             document.getElementById("lessonViewerModal").style.display = "block";
             
-            // Turn on the Intersection Observer scrolling framework
-            initializeScrollHighlightEngine();
+            // Instantly evaluate elements currently visible inside the viewport upon workspace generation
+            setTimeout(runScrollHighlightEngine, 50);
         }
     </script>
 </body>
