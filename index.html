@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mono Academy - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Smooth scrolling behavior when clicking sidebar menu buttons */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Extra styling to make the target sections stand out when clicked */
+        .module-section-block {
+            margin-top: 40px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            scroll-margin-top: 20px; /* Prevents the header from clipping content */
+        }
+        .lesson-list {
+            margin-top: 15px;
+            list-style: none;
+            padding: 0;
+        }
+        .lesson-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+        .btn-start-lesson {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-start-lesson:hover {
+            background: #1d4ed8;
+        }
+    </style>
 </head>
 <body>
 
@@ -76,7 +118,7 @@
             </section>
 
             <section class="modules-section">
-                <h3>Course Modules</h3>
+                <h3>Course Progress Grid</h3>
                 <div class="modules-grid">
                     <div class="module-card completed">
                         <div class="card-icon">✓</div>
@@ -117,6 +159,44 @@
                     </div>
                 </div>
             </section>
+
+            <section id="module1" class="module-section-block">
+                <h3>Module 1: Accounting Basics</h3>
+                <p>Click a lesson below to start exploring core debit and credit calculations.</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <span>📖 Lesson 1.1: The Fundamental Accounting Equation</span>
+                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 1.1...')">Start</button>
+                    </li>
+                    <li class="lesson-item">
+                        <span>📖 Lesson 1.2: Double-Entry Rules (Debits vs Credits)</span>
+                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 1.2...')">Start</button>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="module2" class="module-section-block">
+                <h3>Module 2: Financial Statements</h3>
+                <p>Construct clear, structured corporate metrics reporting documents.</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <span>📖 Lesson 2.1: Structuring the Balance Sheet</span>
+                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 2.1...')">Start</button>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="module3" class="module-section-block">
+                <h3>Module 3: Ratio Analysis and Financial Health</h3>
+                <p>Analyze operational scale values and calculate key investment ratios.</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <span>📖 Lesson 3.1: Liquidity and Current Ratios</span>
+                        <button class="btn-start-lesson" onclick="alert('Opening Lesson 3.1...')">Start</button>
+                    </li>
+                </ul>
+            </section>
+
         </main>
     </div>
 
