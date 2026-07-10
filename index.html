@@ -58,10 +58,50 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
+            transition: background 0.2s ease;
         }
         
         .btn-start-lesson:hover {
             background: #1d4ed8;
+        }
+
+        /* SPREADSHEET VIEWER CONTAINER EXERCISE POPUP */
+        .lesson-viewer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .viewer-box {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .btn-close-viewer {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -89,6 +129,17 @@
                 <button type="submit" class="btn-modal-primary">Sign Up & Start Learning</button>
             </form>
             <p class="modal-footer">Already have an account? <a href="#" onclick="closeModal()">Log In</a></p>
+        </div>
+    </div>
+
+    <div id="lessonViewerModal" class="lesson-viewer-modal">
+        <div class="viewer-box">
+            <div class="viewer-header">
+                <h3 id="activeLessonTitle">Active Lesson Workspace</h3>
+                <button class="btn-close-viewer" onclick="closeLessonViewer()">Close X</button>
+            </div>
+            <div id="activeLessonContent" style="font-size: 16px; line-height: 1.6; color: #334155;">
+                </div>
         </div>
     </div>
 
@@ -179,59 +230,54 @@
 
             <section id="module1" class="module-section-block">
                 <h3>Module 1: Accounting Basics</h3>
-                <p>Explore foundational guidelines of balancing organizational cash workflows.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 1.1: The Fundamental Accounting Equation</span>
-                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 1.1 Content...')">Start</button>
+                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 1.1: The Fundamental Accounting Equation', 'Welcome to your workspace! The central rule of all accounting operations is: Assets = Liabilities + Equity. Every transaction must preserve this balance.')">Start</button>
                     </li>
                     <li class="lesson-item">
                         <span>📖 Lesson 1.2: Double-Entry Rules (Debits vs Credits)</span>
-                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 1.2 Content...')">Start</button>
+                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 1.2: Double-Entry Rules', 'Debits track incoming resources and properties, while credits log outgoing value streams, financing origins, and equity stakes.')">Start</button>
                     </li>
                 </ul>
             </section>
 
             <section id="module2" class="module-section-block">
                 <h3>Module 2: Financial Statements</h3>
-                <p>Construct clear Balance Sheets and functional trackable corporate financial breakdowns.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 2.1: Structuring the Balance Sheet</span>
-                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 2.1 Content...')">Start</button>
+                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 2.1: Structuring the Balance Sheet', 'The Balance Sheet provides a financial snapshot of a company at a specific moment, detailing what it owns, what it owes, and shareholder stakes.')">Start</button>
                     </li>
                 </ul>
             </section>
 
             <section id="module3" class="module-section-block">
                 <h3>Module 3: Ratio Analysis and Financial Health</h3>
-                <p>Analyze performance metrics using business liquidity variables.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 3.1: Liquidity and Current Ratios</span>
-                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 3.1 Content...')">Start</button>
+                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 3.1: Liquidity and Current Ratios', 'Liquidity ratios assess a business\'s capacity to pay off immediate short-term debts using accessible liquid working capital items.')">Start</button>
                     </li>
                 </ul>
             </section>
 
             <section id="module4" class="module-section-block">
                 <h3>Module 4: Advanced Corporate Accounting</h3>
-                <p>Advanced corporate structural tracking workflows setup container.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 4.1: Amortization & Depreciation Asset Valuations</span>
-                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 4.1 Content...')">Start</button>
+                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 4.1: Amortization & Depreciation', 'Learn how to distribute the cost of physical and intangible assets over their useful working lifecycle.')">Start</button>
                     </li>
                 </ul>
             </section>
 
             <section id="module5" class="module-section-block">
                 <h3>Module 5: Global Standards (CA)</h3>
-                <p>International standard parameters matching global audit frameworks guidelines.</p>
                 <ul class="lesson-list">
                     <li class="lesson-item">
                         <span>📖 Lesson 5.1: IFRS vs US GAAP Rules Overview</span>
-                        <button class="btn-start-lesson" onclick="alert('Starting Lesson 5.1 Content...')">Start</button>
+                        <button class="btn-start-lesson" onclick="launchLesson('Lesson 5.1: IFRS vs US GAAP Rules', 'Explore structural variations between global financial reporting systems and corporate metrics guidelines.')">Start</button>
                     </li>
                 </ul>
             </section>
@@ -261,18 +307,31 @@
 
         // Navigation engine to handle clicking left menu list buttons
         function navigateToModule(targetId, elementClicked) {
-            // 1. Scroll directly down to the target section block layout
             const targetBlock = document.getElementById(targetId);
             if(targetBlock) {
                 targetBlock.scrollIntoView({ behavior: 'smooth' });
             }
             
-            // 2. Clear the '.active' class state text accent styling from old sidebar tabs
             const menuItems = document.querySelectorAll('#sidebarMenu li');
             menuItems.forEach(li => li.classList.remove('active'));
             
-            // 3. Highlight the clicked tab row link item
             elementClicked.parentElement.classList.add('active');
+        }
+
+        // Live Interactive Workspace Loader Engine
+        function launchLesson(title, standardText) {
+            document.getElementById("activeLessonTitle").innerText = title;
+            document.getElementById("activeLessonContent").innerHTML = `
+                <p>${standardText}</p>
+                <div style="margin-top: 25px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #2563eb;">
+                    <strong>🎓 Sandbox Mode Active:</strong> Use this panel to review concepts and track your completion progress.
+                </div>
+            `;
+            document.getElementById("lessonViewerModal").style.display = "flex";
+        }
+
+        function closeLessonViewer() {
+            document.getElementById("lessonViewerModal").style.display = "none";
         }
 
         // Handle Quick Sign Up & Bypass Rate Limits
@@ -287,14 +346,12 @@
             submitBtn.innerText = "Creating Account...";
             submitBtn.disabled = true; 
             
-            // 1. Submit to Supabase 
             const { data: signUpData, error: signUpError } = await supabaseClient.auth.signUp({ 
                 email: email, 
                 password: password, 
                 options: { data: { full_name: fullName } } 
             }); 
             
-            // 2. SMART BYPASS: Even if a rate limit or confirmation error happens, we let you straight into the site! 
             if (signUpError && !signUpError.message.includes("rate limit")) { 
                 alert("Signup Error: " + signUpError.message); 
                 submitBtn.innerText = "Sign Up & Start Learning"; 
@@ -302,7 +359,6 @@
                 return; 
             } 
             
-            // Success transition! 
             alert("Success! Welcome to Mono Academy (Local Sandbox Session Loaded)."); 
             closeModal(); 
             document.getElementById("welcomeHeading").innerText = "Welcome back, " + fullName + ".";
