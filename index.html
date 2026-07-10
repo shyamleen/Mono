@@ -1,32 +1,32 @@
 // Handle Quick Sign Up & Bypass Rate Limits
-async function handleSignUp(event) {
-    event.preventDefault();
+async function handleSignUp(event) { 
+    event.preventDefault(); 
     
-    const fullName = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const submitBtn = event.target.querySelector('button');
-
+    const fullName = document.getElementById("username").value; 
+    const email = document.getElementById("email").value; 
+    const password = document.getElementById("password").value; 
+    const submitBtn = event.target.querySelector('button'); 
+    
     submitBtn.innerText = "Creating Account...";
-    submitBtn.disabled = true;
-
-    // 1. Submit to Supabase
-    const { data: signUpData, error: signUpError } = await supabaseClient.auth.signUp({
-        email: email,
-        password: password,
-        options: { data: { full_name: fullName } }
-    });
-
-    // 2. SMART BYPASS: Even if a rate limit or confirmation error happens, we let you straight into the site!
-    if (signUpError && !signUpError.message.includes("rate limit")) {
-        alert("Signup Error: " + signUpError.message);
-        submitBtn.innerText = "Sign Up & Start Learning";
-        submitBtn.disabled = false;
-        return;
-    }
-
-    // Success transition!
-    alert("Success! Welcome to Mono Academy (Local Sandbox Session Loaded).");
-    closeModal();
+    submitBtn.disabled = true; 
+    
+    // 1. Submit to Supabase 
+    const { data: signUpData, error: signUpError } = await supabaseClient.auth.signUp({ 
+        email: email, 
+        password: password, 
+        options: { data: { full_name: fullName } } 
+    }); 
+    
+    // 2. SMART BYPASS: Even if a rate limit or confirmation error happens, we let you straight into the site! 
+    if (signUpError && !signUpError.message.includes("rate limit")) { 
+        alert("Signup Error: " + signUpError.message); 
+        submitBtn.innerText = "Sign Up & Start Learning"; 
+        submitBtn.disabled = false; 
+        return; 
+    } 
+    
+    // Success transition! 
+    alert("Success! Welcome to Mono Academy (Local Sandbox Session Loaded)."); 
+    closeModal(); 
     document.getElementById("welcomeHeading").innerText = "Welcome back, " + fullName + ".";
 }
