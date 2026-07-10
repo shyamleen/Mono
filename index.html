@@ -4,51 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mono Academy - Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Smooth scrolling when links are clicked */
+        /* Base Page Setup */
         html {
             scroll-behavior: smooth;
         }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
         
-        /* Ensure all sidebar items look like clickable links */
-        .nav-menu ul li a {
-            cursor: pointer !important;
-            display: flex !important;
-            align-items: center;
-            width: 100%;
-            text-decoration: none;
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
         }
 
-        /* Container styling for the content blocks down the page */
-        .module-section-block {
-            margin-top: 40px;
-            padding: 25px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            scroll-margin-top: 40px; 
-            border: 1px solid #e2e8f0;
+        /* Sidebar Navigation Layout */
+        .sidebar {
+            width: 260px;
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #1e293b;
         }
-        
-        .lesson-list {
-            margin-top: 15px;
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .logo-m {
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+        .logo-area h2 {
+            font-size: 18px;
+            margin: 0;
+            color: white;
+        }
+        .menu-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+        .nav-menu ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
-        
+        .nav-menu ul li {
+            margin-bottom: 8px;
+        }
+        .nav-menu ul li a {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 6px;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .nav-menu ul li.active a, .nav-menu ul li a:hover {
+            background: #1e293b;
+            color: white;
+        }
+        .mod-num {
+            background: #334155;
+            color: #94a3b8;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        /* Main Workspace Contents */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            max-width: 1200px;
+        }
+        .breadcrumb {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+        .welcome-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .badge {
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 99px;
+        }
+        .welcome-card h1 {
+            font-size: 28px;
+            margin: 16px 0 8px 0;
+            color: #0f172a;
+        }
+        .course-stats {
+            display: flex;
+            gap: 24px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #475569;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn-secondary {
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Module Grid Maps */
+        .modules-section h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .module-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            position: relative;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .card-details h4 {
+            margin: 4px 0;
+            font-size: 16px;
+        }
+        .card-details p {
+            margin: 0;
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .status-badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #16a34a;
+        }
+        .status-badge.progress {
+            color: #2563eb;
+        }
+        .card-meta {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* Module Outline Slots */
+        .module-section-block {
+            margin-top: 32px;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            scroll-margin-top: 30px; 
+            border: 1px solid #e2e8f0;
+        }
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0 0;
+        }
         .lesson-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px;
-            border-bottom: 1px solid #edf2f7;
+            padding: 14px 0;
+            border-bottom: 1px solid #f1f5f9;
         }
-        
         .lesson-item:last-child {
             border-bottom: none;
         }
-        
         .btn-start-lesson {
             background: #2563eb;
             color: white;
@@ -58,14 +241,13 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: background 0.2s ease;
+            transition: background 0.2s;
         }
-        
         .btn-start-lesson:hover {
             background: #1d4ed8;
         }
 
-        /* TRUE FULLSCREEN HIGH-FIDELITY WORKBOOK CANVAS SYSTEM */
+        /* PREMIUM REFINED FULLSCREEN CANVAS WINDOW */
         .lesson-viewer-modal {
             display: none;
             position: fixed;
@@ -78,108 +260,135 @@
             overflow-y: auto;
         }
         .viewer-box {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 50px 30px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #1e293b;
-            line-height: 1.75;
-            font-size: 16px;
+            padding: 60px 40px;
+            color: #334155;
+            line-height: 1.8;
+            font-size: 17px;
         }
         .viewer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 20px;
-            margin-bottom: 35px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 24px;
+            margin-bottom: 40px;
         }
         .viewer-header h2 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             color: #0f172a;
             margin: 0;
         }
+        
+        /* SLEEK NEW MODAL CLOSE INTERFACE */
         .btn-close-viewer {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             font-size: 14px;
-            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
         }
         .btn-close-viewer:hover {
-            background: #dc2626;
+            background: #fee2e2;
+            color: #ef4444;
+            border-color: #fca5a5;
         }
 
-        /* PREMIUM CONTENT AND ILLUSTRATIVE LAYOUT ELEMENTS */
+        /* LAZY SCROLL ENGINE FADE IN EFFECT CONFIGS */
+        .lazy-hl {
+            transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: transparent;
+        }
+        .lazy-hl.triggered-asset { background-color: #dbeafe; color: #1e40af; font-weight: 600; }
+        .lazy-hl.triggered-liability { background-color: #fee2e2; color: #991b1b; font-weight: 600; }
+        .lazy-hl.triggered-equity { background-color: #dcfce7; color: #166534; font-weight: 600; }
+        .lazy-hl.triggered-lang { background-color: #fef9c3; color: #854d0e; font-weight: 600; }
+
+        /* SCROLL INBOUND INTERACTIVE BLOCK ANIMATION */
+        .scroll-reveal-card {
+            opacity: 0.3;
+            transform: translateY(15px);
+            transition: all 0.6s ease;
+        }
+        .scroll-reveal-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* TEXT CONTENT WORKBOOKS LAYOUT ELEMENTS */
         .viewer-box h3 {
             font-size: 22px;
             font-weight: 700;
             color: #0f172a;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 16px;
         }
         .viewer-box p {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         .viewer-box ul, .viewer-box ol {
-            margin-bottom: 20px;
-            padding-left: 25px;
+            margin-bottom: 24px;
+            padding-left: 24px;
         }
         .viewer-box li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        /* INTERACTIVE CHECKPOINT QUIZ ELEMENTS */
+        /* CHECKPOINT COMPONENT INTERFACES */
         .quiz-container {
-            margin: 35px 0;
-            padding: 25px;
+            margin: 40px 0;
+            padding: 28px;
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-left: 5px solid #2563eb;
+            border-left: 4px solid #2563eb;
             border-radius: 12px;
         }
         .quiz-container strong {
             display: block;
-            font-size: 15px;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: #2563eb;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .quiz-container p {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
             color: #0f172a;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .quiz-option {
             display: block;
             width: 100%;
-            padding: 14px 18px;
-            margin: 10px 0;
+            padding: 14px 20px;
+            margin: 12px 0;
             background: #ffffff;
-            border: 1px solid #cbd5e1;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
             text-align: left;
             cursor: pointer;
             font-size: 15px;
             font-weight: 500;
-            color: #334155;
+            color: #475569;
             transition: all 0.2s ease;
         }
         .quiz-option:hover {
             background: #f1f5f9;
-            border-color: #94a3b8;
+            border-color: #cbd5e1;
         }
         .quiz-feedback {
-            margin-top: 15px;
+            margin-top: 16px;
             font-weight: 600;
             display: none;
             padding: 12px 16px;
@@ -187,29 +396,23 @@
             font-size: 15px;
         }
 
-        /* REFINED VISUAL BADGES AND TERM HIGHLIGHTS */
-        .hl-asset { background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-        .hl-liability { background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-        .hl-equity { background: #dcfce7; color: #166534; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-        .hl-lang { background: #fef9c3; color: #854d0e; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-        
-        /* DATA AND FINANCIAL SCALABLE ACCOUNTING TABLES */
+        /* FINANCIAL BALANCING TRACKING DATA TABLES */
         .acct-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
+            margin: 32px 0;
             font-size: 15px;
         }
         .acct-table th {
             background: #f1f5f9;
             color: #334155;
             font-weight: 600;
-            padding: 12px 16px;
+            padding: 14px 18px;
             border: 1px solid #cbd5e1;
             text-align: left;
         }
         .acct-table td {
-            padding: 12px 16px;
+            padding: 14px 18px;
             border: 1px solid #e2e8f0;
             color: #475569;
         }
@@ -217,16 +420,16 @@
             background: #f8fafc;
         }
 
-        /* TEXT ART WORKSPACE STRUCTURE FOR DESIGN GRAPHICS */
+        /* LEDGER WORKSPACE VISUAL TEXT ENGINE GRAPHICS */
         .t-art-box {
             font-family: "Courier New", Courier, monospace;
             background: #0f172a;
             color: #38bdf8;
-            padding: 20px;
+            padding: 24px;
             border-radius: 8px;
             white-space: pre;
             overflow-x: auto;
-            margin: 20px 0;
+            margin: 24px 0;
             font-size: 14px;
             line-height: 1.4;
         }
@@ -234,36 +437,14 @@
 </head>
 <body>
 
-    <div id="authModal" class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h2>Welcome to Mono Academy</h2>
-                <p>Create a free account to track your progress across all 5 modules.</p>
-            </div>
-            <form class="modal-form" onsubmit="handleSignUp(event)">
-                <div class="form-group">
-                    <label for="username">Full Name</label>
-                    <input type="text" id="username" placeholder="Enter your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="name@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Create a strong password" required>
-                </div>
-                <button type="submit" class="btn-modal-primary">Sign Up & Start Learning</button>
-            </form>
-            <p class="modal-footer">Already have an account? <a href="#" onclick="closeModal()">Log In</a></p>
-        </div>
-    </div>
-
     <div id="lessonViewerModal" class="lesson-viewer-modal">
         <div class="viewer-box">
             <div class="viewer-header">
                 <h2 id="activeLessonTitle">Lesson Workbook</h2>
-                <button class="btn-close-viewer" onclick="closeLessonViewer()">Close X</button>
+                <button class="btn-close-viewer" onclick="closeLessonViewer()">
+                    <span>Close</span>
+                    <span style="font-size: 16px; line-height: 1;">&times;</span>
+                </button>
             </div>
             <div id="activeLessonContent">
                 </div>
@@ -286,10 +467,6 @@
                     <li><a onclick="navigateToModule('module5', this)"><span class="mod-num">5</span> Global Standards (CA)</a></li>
                 </ul>
             </nav>
-            
-            <div class="user-profile-actions">
-                <button class="btn-sidebar-auth" onclick="openModal()">Sign In / Register</button>
-            </div>
         </aside>
 
         <main class="main-content">
@@ -299,7 +476,7 @@
 
             <section class="welcome-card">
                 <span class="badge">📊 Finance & Accounting</span>
-                <h1 id="welcomeHeading">Welcome to Mono Academy</h1>
+                <h1 id="welcomeHeading">Welcome back, Shyamleen.</h1>
                 <p>Master foundational and advanced accounting concepts. Sign up to save your lesson completions.</p>
                 <div class="course-stats">
                     <span>📁 5 Modules</span>
@@ -307,15 +484,14 @@
                     <span>⏳ 16 Hours</span>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn-primary" onclick="openModal()">Get Started</button>
-                    <button class="btn-secondary">View Syllabus</button>
+                    <button class="btn-primary">View Syllabus</button>
                 </div>
             </section>
 
             <section class="modules-section">
                 <h3>Course Progress Grid</h3>
                 <div class="modules-grid">
-                    <div class="module-card completed" onclick="document.getElementById('module1').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
+                    <div class="module-card" onclick="document.getElementById('module1').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
                         <div class="card-icon">✓</div>
                         <div class="card-details">
                             <span class="status-badge">COMPLETED</span>
@@ -323,12 +499,11 @@
                             <p>Learn the core principles of double-entry accounting, debits and credits, and the fundamental equation.</p>
                         </div>
                         <div class="card-meta">
-                            <span>6 Lessons Installed</span>
-                            <span class="duration">Interactive</span>
+                            <span class="duration">2.5 hours</span>
                         </div>
                     </div>
 
-                    <div class="module-card active" onclick="document.getElementById('module2').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
+                    <div class="module-card" onclick="document.getElementById('module2').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
                         <div class="card-icon">▶</div>
                         <div class="card-details">
                             <span class="status-badge progress">IN PROGRESS</span>
@@ -336,8 +511,7 @@
                             <p>Master how to construct and read Income Statements, Balance Sheets, and Cash Flow metrics.</p>
                         </div>
                         <div class="card-meta">
-                            <span>1 Lesson Available</span>
-                            <span class="duration">Next Up</span>
+                            <span class="duration">3.5 hours</span>
                         </div>
                     </div>
                 </div>
@@ -382,60 +556,10 @@
                     </li>
                 </ul>
             </section>
-
-            <section id="module3" class="module-section-block">
-                <h3>Module 3: Ratio Analysis and Financial Health</h3>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <span>📖 Lesson 3.1: Liquidity and Current Ratios</span>
-                        <button class="btn-start-lesson" onclick="loadLessonViewer(3.1)">Start Workbook</button>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="module4" class="module-section-block">
-                <h3>Module 4: Advanced Corporate Accounting</h3>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <span>📖 Lesson 4.1: Amortization & Depreciation Valuations</span>
-                        <button class="btn-start-lesson" onclick="loadLessonViewer(4.1)">Start Workbook</button>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="module5" class="module-section-block">
-                <h3>Module 5: Global Standards (CA)</h3>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <span>📖 Lesson 5.1: IFRS vs US GAAP Rules Overview</span>
-                        <button class="btn-start-lesson" onclick="loadLessonViewer(5.1)">Start Workbook</button>
-                    </li>
-                </ul>
-            </section>
-
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script>
-        const SUPABASE_URL = "https://nxflxoxypfalnsfaohym.supabase.co";
-        const SUPABASE_ANON_KEY = "sb_publishable_Bf7pGEi99tNUHM-FntOTGw_n5zN_T_N";
-
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        function openModal() {
-            document.getElementById("authModal").style.display = "flex";
-        }
-
-        function closeModal() {
-            document.getElementById("authModal").style.display = "none";
-        }
-
-        window.onload = function() {
-            setTimeout(openModal, 800); 
-        };
-
         function navigateToModule(targetId, elementClicked) {
             const targetBlock = document.getElementById(targetId);
             if(targetBlock) {
@@ -448,7 +572,7 @@
 
         function closeLessonViewer() {
             document.getElementById("lessonViewerModal").style.display = "none";
-            document.body.style.overflow = "auto"; // restore main scrollbars
+            document.body.style.overflow = "auto";
         }
 
         function checkAnswer(selectedOption, isCorrect, feedbackId) {
@@ -458,7 +582,7 @@
             const options = selectedOption.parentElement.querySelectorAll('.quiz-option');
             options.forEach(btn => {
                 btn.style.background = "#ffffff";
-                btn.style.borderColor = "#cbd5e1";
+                btn.style.borderColor = "#e2e8f0";
             });
 
             if (isCorrect) {
@@ -476,21 +600,53 @@
             }
         }
 
+        /* ATTACHES LAZY INTERACTIVE HIGHLIGHTING ENGINE ON WORKBOOK INJECTION */
+        function initializeScrollHighlightEngine() {
+            const elementsToWatch = document.querySelectorAll('.lazy-hl, .scroll-reveal-card');
+            
+            const observerOptions = {
+                root: document.getElementById('lessonViewerModal'),
+                rootMargin: '0px 0px -15% 0px',
+                threshold: 0.2
+            };
+
+            const highlightObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('lazy-hl')) {
+                            const type = entry.target.getAttribute('data-type');
+                            entry.target.classList.add(`triggered-${type}`);
+                        } else if (entry.target.classList.contains('scroll-reveal-card')) {
+                            entry.target.classList.add('revealed');
+                        }
+                        // Stop observing once highlighted/revealed to lock visual state
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            elementsToWatch.forEach(el => highlightObserver.observe(el));
+        }
+
         function loadLessonViewer(lessonId) {
             const titleEl = document.getElementById("activeLessonTitle");
             const contentEl = document.getElementById("activeLessonContent");
             
-            document.body.style.overflow = "hidden"; // Prevent background page scrolling
+            document.body.style.overflow = "hidden";
             
             if (lessonId === 1.1) {
                 titleEl.innerText = "Lesson 1.1 Workbook";
                 contentEl.innerHTML = `
-                    <p>Imagine you and your friends decide to open a custom sneaker-printing business. You buy blank shoes, pay for paint, sell a few pairs, and even pay a friend to help with marketing. At the end of the month, you look at your bank account and wonder: <em>Are we actually making money, or are we burning through our savings?</em> This is exactly where accounting comes to the rescue.</p>
+                    <div class="scroll-reveal-card revealed">
+                        <p>Imagine you and your friends decide to open a custom sneaker-printing business. You buy blank shoes, pay for paint, sell a few pairs, and even pay a friend to help with marketing. At the end of the month, you look at your bank account and wonder: <em>Are we actually making money, or are we burning through our savings?</em> This is exactly where accounting comes to the rescue.</p>
+                    </div>
                     
-                    <h3>What is Accounting?</h3>
-                    <p>At its core, accounting is the <span class="hl-lang">"language of business."</span> It is the structured process of tracking, recording, analyzing, and reporting financial transactions. Instead of guessing based on a bank account's vibe, accounting uses a set system to map out exact financial operational health.</p>
+                    <div class="scroll-reveal-card">
+                        <h3>What is Accounting?</h3>
+                        <p>At its core, accounting is the <span class="lazy-hl" data-type="lang">"language of business."</span> It is the structured process of tracking, recording, analyzing, and reporting financial transactions. Instead of guessing based on a bank account's vibe, accounting uses a set system to map out exact financial operational health.</p>
+                    </div>
                     
-                    <div class="quiz-container">
+                    <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>What is referred to as the 'language of business'?</p>
                         <button class="quiz-option" onclick="checkAnswer(this, false, 'fb11')">A) Marketing analytics profiles</button>
@@ -498,65 +654,80 @@
                         <div id="fb11" class="quiz-feedback"></div>
                     </div>
 
-                    <h3>Three Simple Steps Breakdown:</h3>
-                    <ul>
-                        <li><strong>Recording:</strong> Tracking every single dollar that comes in (revenue) and goes out (expenses).</li>
-                        <li><strong>Summarizing:</strong> Grouping these transactions into financial statements so they actually make sense.</li>
-                        <li><strong>Reporting:</strong> Presenting these statements to the people who need to make big decisions.</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <h3>Three Simple Steps Breakdown:</h3>
+                        <ul>
+                            <li><strong>Recording:</strong> Tracking every single dollar that comes in (revenue) and goes out (expenses).</li>
+                            <li><strong>Summarizing:</strong> Grouping these transactions into financial statements so they actually make sense.</li>
+                            <li><strong>Reporting:</strong> Presenting these statements to the people who need to make big decisions.</li>
+                        </ul>
+                    </div>
                 `;
             } 
             else if (lessonId === 1.2) {
                 titleEl.innerText = "Lesson 1.2 Workbook";
                 contentEl.innerHTML = `
-                    <h3>Understanding the Building Blocks of Corporate Wealth</h3>
-                    <p>If you want to understand the true financial health of any business, you need to look past its daily sales. You need to look at what the business actually possesses, what it owes to others, and what is truly left over for the people who started it.</p>
+                    <div class="scroll-reveal-card revealed">
+                        <h3>Understanding the Building Blocks of Corporate Wealth</h3>
+                        <p>If you want to understand the true financial health of any business, you need to look past its daily sales. You need to look at what the business actually possesses, what it owes to others, and what is truly left over for the people who started it.</p>
+                    </div>
                     
-                    <ul>
-                        <li><span class="hl-asset">Assets</span>: Anything of value that a business owns or controls that can be used to generate future economic benefit (Cash, Inventory, Equipment).</li>
-                        <li><span class="hl-liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Accounts Payable, Loans).</li>
-                        <li><span class="hl-equity">Owner's Equity</span>: Represents the owner’s residual stake in the business. It is the true net worth of the company.</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <ul>
+                            <li><span class="lazy-hl" data-type="asset">Assets</span>: Anything of value that a business owns or controls that can be used to generate future economic benefit (Cash, Inventory, Equipment).</li>
+                            <li><span class="lazy-hl" data-type="liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Accounts Payable, Loans).</li>
+                            <li><span class="lazy-hl" data-type="equity">Owner's Equity</span>: Represents the owner’s residual stake in the business. It is the true net worth of the company.</li>
+                        </ul>
+                    </div>
 
-                    <p>To guarantee balance, every corporate tracking metric uses the <strong>Accounting Equation</strong>:</p>
-                    <p style="text-align:center; font-size: 22px; font-weight: bold; background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 8px;">
-                        Assets = Liabilities + Owner's Equity
-                    </p>
+                    <div class="scroll-reveal-card">
+                        <p>To guarantee balance, every corporate tracking metric uses the <strong>Accounting Equation</strong>:</p>
+                        <p style="text-align:center; font-size: 22px; font-weight: bold; background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
+                            Assets = Liabilities + Owner's Equity
+                        </p>
+                    </div>
                 `;
             }
             else if (lessonId === 1.3) {
-                titleEl.innerText = "Lesson 1.3: The T-Account System: The Accountant's Visual Map";
+                titleEl.innerText = "Lesson 1.3: The T-Account System";
                 contentEl.innerHTML = `
-                    <p>If you have ever watched an accountant work, you might have seen them sketch out a series of large, capital letters "T" on a piece of paper or a whiteboard. This isn't just random doodling—they are using T-accounts, one of the most powerful visual tools in the financial world.</p>
-                    <p>A T-account is a simplified, visual representation of an individual account in a company’s general ledger. It acts like a mini-scale that allows accountants to track how specific business events increase or decrease the money in that account.</p>
+                    <div class="scroll-reveal-card revealed">
+                        <p>If you have ever watched an accountant work, you might have seen them sketch out a series of large, capital letters "T" on a piece of paper or a whiteboard. This isn't just random doodling—they are using T-accounts, one of the most powerful visual tools in the financial world.</p>
+                        <p>A T-account is a simplified, visual representation of an individual account in a company’s general ledger. It acts like a mini-scale that allows accountants to track how specific business events increase or decrease the money in that account.</p>
+                    </div>
                     
-                    <h3>The Anatomy of a T-Account</h3>
-                    <p>The T-account gets its name because it looks exactly like the letter T. It splits the tracking of an account into three basic parts:</p>
-                    <ul>
-                        <li><strong>The Title:</strong> Written across the very top bar of the T (e.g., "Cash," "Inventory," or "Accounts Payable").</li>
-                        <li><strong>The Left Side (Debit):</strong> Reserved exclusively for Debits (often abbreviated as Dr.).</li>
-                        <li><strong>The Right Side (Credit):</strong> Reserved exclusively for Credits (often abbreviated as Cr.).</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <h3>The Anatomy of a T-Account</h3>
+                        <p>The T-account splits the tracking of an account into three basic parts:</p>
+                        <ul>
+                            <li><strong>The Title:</strong> Written across the very top bar of the T (e.g., "Cash," "Inventory").</li>
+                            <li><strong>The Left Side (Debit):</strong> Reserved exclusively for Debits (often abbreviated as Dr.).</li>
+                            <li><strong>The Right Side (Credit):</strong> Reserved exclusively for Credits (often abbreviated as Cr.).</li>
+                        </ul>
+                    </div>
 
-                    <div class="t-art-box">            Account Title
+                    <div class="t-art-box scroll-reveal-card">            Account Title
     ------------------------------
        Left Side   |   Right Side
                    |
         DEBIT      |     CREDIT
-        (Dr.)      |     (Cr.)
-                   |</div>
+        (Dr.)      |     (Cr.)</div>
 
-                    <h3>The Golden Rule of T-Accounts</h3>
-                    <p>Forget the everyday definitions of "debit" and "credit" used by banks or retail stores. In accounting, <strong>Debit simply means Left, and Credit simply means Right.</strong> They do not inherently mean "plus" or "minus."</p>
+                    <div class="scroll-reveal-card">
+                        <h3>The Golden Rule of T-Accounts</h3>
+                        <p>Forget the everyday definitions of "debit" and "credit" used by banks. In accounting, <span class="lazy-hl" data-type="lang">"Debit simply means Left, and Credit simply means Right."</span> They do not inherently mean "plus" or "minus."</p>
+                    </div>
 
-                    <h3>How Debits and Credits Work</h3>
-                    <p>Whether a debit or a credit increases or decreases an account depends entirely on what type of account it is. This ties directly back to the Accounting Equation (Assets = Liabilities + Owner's Equity).</p>
-                    <ul>
-                        <li><strong>Accounts on the LEFT side of the equation (Assets):</strong> Are increased on the left side (Debit) and decreased on the right side (Credit).</li>
-                        <li><strong>Accounts on the RIGHT side of the equation (Liabilities & Equity):</strong> Are increased on the right side (Credit) and decreased on the left side (Debit).</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <h3>How Debits and Credits Work</h3>
+                        <p>Whether a debit or a credit increases or decreases an account depends entirely on what type of account it is:</p>
+                        <ul>
+                            <li><strong>Accounts on the LEFT side of the equation (Assets):</strong> Are increased on the left side (Debit) and decreased on the right side (Credit).</li>
+                            <li><strong>Accounts on the RIGHT side of the equation (Liabilities & Equity):</strong> Are increased on the right side (Credit) and decreased on the left side (Debit).</li>
+                        </ul>
+                    </div>
 
-                    <table class="acct-table">
+                    <table class="acct-table scroll-reveal-card">
                         <thead>
                             <tr>
                                 <th>Account Type</th>
@@ -571,99 +742,49 @@
                         </tbody>
                     </table>
 
-                    <h3>T-Accounts in Action: A Real-World Example</h3>
-                    <p>To see how T-accounts make double-entry bookkeeping easier to visualize, let's look at a business that takes out a $5,000 bank loan. Because every transaction must affect at least two accounts to keep the accounting equation balanced, we open two T-accounts: a Cash account (an Asset) and a Bank Loan account (a Liability).</p>
-                    <ol>
-                        <li>Cash increases by $5,000. Since Cash is an asset, we place this on the left (Debit) side.</li>
-                        <li>Bank Loan increases by $5,000. Since a loan is a liability, we place this on the right (Credit) side.</li>
-                    </ol>
-
-                    <div class="t-art-box">          Cash (Asset)                    Bank Loan (Liability)
-    ------------------------            ------------------------
-    Dr. (+)      |   Cr. (-)            Dr. (-)      |   Cr. (+)
-    $5,000       |                      |                $5,000
-                 |                      |</div>
-
-                    <p>Notice how the system naturally self-corrects: the total dollar amount debited ($5,000 on the left) perfectly matches the total dollar amount credited ($5,000 on the right).</p>
-
-                    <h3>Finding the Account Balance</h3>
-                    <p>To find the final balance using a T-account, follow these steps:</p>
-                    <ol>
-                        <li>Add up everything on the Debit (left) side.</li>
-                        <li>Add up everything on the Credit (right) side.</li>
-                        <li>Subtract the smaller side from the larger side.</li>
-                        <li>Write the remaining difference on the side that had the larger total. This is called the <strong>ending balance</strong>.</li>
-                    </ol>
-                    <p>For example, if your Cash T-account has a total of $10,000 on the Debit side (money coming in) and $4,000 on the Credit side (money spent), the account has a <strong>Debit Balance of $6,000</strong> ($10,000 - $4,000).</p>
-
-                    <div class="quiz-container">
+                    <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>An account has $12,000 total on its left side and $5,000 total on its right side. What is the ending balance type and amount?</p>
                         <button class="quiz-option" onclick="checkAnswer(this, true, 'fb13')">A) Debit balance of $7,000</button>
                         <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">B) Credit balance of $7,000</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">C) Debit balance of $17,000</button>
                         <div id="fb13" class="quiz-feedback"></div>
                     </div>
                 `;
             }
             else if (lessonId === 1.4) {
-                titleEl.innerText = "Lesson 1.4: The Rules for Increasing and Decreasing Accounts: Master the Grid";
+                titleEl.innerText = "Lesson 1.4: Rules for Increasing & Decreasing Accounts";
                 contentEl.innerHTML = `
-                    <p>When you first dive into accounting, the biggest hurdle isn't the math—it's learning how to change the numbers. If you buy a new piece of equipment, do you add to it or subtract from it? What if you pay off a debt?</p>
-                    <p>To keep track of these changes, accounting uses a system of Debits (Dr.) and Credits (Cr.). As we learned with T-accounts, Debit simply means Left and Credit simply means Right. They do not mean "plus" or "minus." Whether a debit increases or decreases an account depends entirely on the type of account you are dealing with.</p>
+                    <div class="scroll-reveal-card revealed">
+                        <p>When you first dive into accounting, the biggest hurdle isn't the math—it's learning how to change the numbers. If you buy a new piece of equipment, do you add to it or subtract from it?</p>
+                    </div>
                     
-                    <h3>The Core Rules: Left vs. Right</h3>
-                    <p>The rules for increasing and decreasing accounts are directly tied to which side of the accounting equation (Assets = Liabilities + Owner's Equity) the account lives on.</p>
-                    <p><strong>1. Accounts on the Left Side: Assets</strong><br>Because Assets sit on the left side of the equation, their "home" or normal balance is on the left (Debit) side.</p>
-                    <ul>
-                        <li>To increase an Asset, you <strong>Debit</strong> it (left side).</li>
-                        <li>To decrease an Asset, you <strong>Credit</strong> it (right side).</li>
-                    </ul>
-                    <p><strong>2. Accounts on the Right Side: Liabilities & Equity</strong><br>Because Liabilities and Owner's Equity sit on the right side of the equation, their "home" or normal balance is on the right (Credit) side.</p>
-                    <ul>
-                        <li>To increase a Liability or Equity account, you <strong>Credit</strong> it (right side).</li>
-                        <li>To decrease a Liability or Equity account, you <strong>Debit</strong> it (left side).</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <h3>The Core Rules: Left vs. Right</h3>
+                        <p><strong>1. Accounts on the Left Side: Assets</strong><br>Because Assets sit on the left side of the equation, their "home" or normal balance is on the left (Debit) side.</p>
+                        <ul>
+                            <li>To increase an Asset, you <span class="lazy-hl" data-type="asset">Debit it</span> (left side).</li>
+                            <li>To decrease an Asset, you Credit it (right side).</li>
+                        </ul>
+                    </div>
 
-                    <h3>Expanding the Rules: Revenue and Expenses</h3>
-                    <p>Owner's Equity is a big umbrella. As a business operates, its equity changes based on two main things: Revenue (money earned from sales) and Expenses (the costs of running the business). Because they affect equity, they have their own special rules:</p>
-                    <ul>
-                        <li><strong>Revenue increases Owner's Equity:</strong> Since equity increases with a credit, Revenue is increased with a Credit and decreased with a Debit.</li>
-                        <li><strong>Expenses decrease Owner's Equity:</strong> Because expenses pull equity down, they do the opposite. Expenses are increased with a Debit and decreased with a Credit.</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <p><strong>2. Accounts on the Right Side: Liabilities & Equity</strong><br>Because Liabilities and Owner's Equity sit on the right side of the equation, their normal balance is on the right (Credit) side.</p>
+                        <ul>
+                            <li>To increase a Liability or Equity, you <span class="lazy-hl" data-type="liability">Credit it</span> (right side).</li>
+                            <li>To decrease a Liability or Equity, you Debit it (left side).</li>
+                        </ul>
+                    </div>
 
-                    <h3>The Master Cheat Sheet</h3>
-                    <table class="acct-table">
-                        <thead>
-                            <tr>
-                                <th>Account Type</th>
-                                <th>Normal Balance</th>
-                                <th>To INCREASE</th>
-                                <th>To DECREASE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Asset (Cash, Inventory, Equipment)</td><td>Debit</td><td><strong>Debit (Left)</strong></td><td>Credit (Right)</td></tr>
-                            <tr><td>Liability (Loans, Accounts Payable)</td><td>Credit</td><td><strong>Credit (Right)</strong></td><td>Debit (Left)</td></tr>
-                            <tr><td>Owner's Equity (Capital)</td><td>Credit</td><td><strong>Credit (Right)</strong></td><td>Debit (Left)</td></tr>
-                            <tr><td>Revenue (Sales, Fees Earned)</td><td>Credit</td><td><strong>Credit (Right)</strong></td><td>Debit (Left)</td></tr>
-                            <tr><td>Expense (Rent, Salaries, Utilities)</td><td>Debit</td><td><strong>Debit (Left)</strong></td><td>Credit (Right)</td></tr>
-                        </tbody>
-                    </table>
+                    <div class="scroll-reveal-card">
+                        <h3>An Easy Acronym to Remember: DEALER</h3>
+                        <p>Split the word into two groups to remember who gets increased by what:</p>
+                        <ul>
+                            <li><strong>DEA (Debit):</strong> Expenses, Assets, Losses are increased by Debit.</li>
+                            <li><strong>LER (Credit):</strong> Liabilities, Equity, Revenue are increased by Credit.</li>
+                        </ul>
+                    </div>
 
-                    <h3>An Easy Acronym to Remember: DEALER</h3>
-                    <p>Split the word into two groups to remember who gets increased by what:</p>
-                    <ul>
-                        <li><strong>DEA (Debit):</strong> Expenses, Assets, Losses are increased by Debit.</li>
-                        <li><strong>LER (Credit):</strong> Liabilities, Equity, Revenue are increased by Credit.</li>
-                    </ul>
-
-                    <h3>Real-World Practice Scenarios</h3>
-                    <p><strong>Scenario A: Paying $1,200 Cash for Monthly Rent</strong><br>Rent Expense is increasing. According to our rules, an expense is increased by a Debit. Cash (an Asset) is decreasing because you are paying it out. An asset is decreased by a Credit.<br><em>The Entry: Debit Rent Expense $1,200 | Credit Cash $1,200.</em></p>
-                    <p><strong>Scenario B: Selling a Service to a Customer on Credit for $500</strong><br>Accounts Receivable (an Asset representing money a customer owes you) is increasing. An asset increases with a Debit. Service Revenue is increasing because you made a sale. Revenue increases with a Credit.<br><em>The Entry: Debit Accounts Receivable $500 | Credit Service Revenue $500.</em></p>
-                    <p><strong>Scenario C: Paying Off a $2,000 Bank Loan</strong><br>Bank Loan (a Liability) is decreasing because you owe less money now. A liability decreases with a Debit. Cash (an Asset) is decreasing to pay the bill. An asset decreases with a Credit.<br><em>The Entry: Debit Bank Loan $2,000 | Credit Cash $2,000.</em></p>
-
-                    <div class="quiz-container">
+                    <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>When your business earns revenue by delivering services, how is the increase in Revenue recorded?</p>
                         <button class="quiz-option" onclick="checkAnswer(this, false, 'fb14')">A) With a Debit line entry</button>
@@ -673,34 +794,31 @@
                 `;
             }
             else if (lessonId === 1.5) {
-                titleEl.innerText = "Lesson 1.5: Recording Day-to-Day Transactions: The General Journal";
+                titleEl.innerText = "Lesson 1.5: Recording Day-to-Day Transactions";
                 contentEl.innerHTML = `
-                    <p>Imagine running a busy coffee shop. In a single hour, you might sell forty lattes, receive a delivery of coffee beans with an invoice attached, pay a repair technician to fix an espresso machine, and swipe a corporate card for a new batch of ceramic mugs.</p>
-                    <p>If you tried to remember all these events at the end of the month, your financial records would be a disaster. To prevent this chaos, accountants use a strict, chronological system called recording day-to-day transactions. This process captures every financial event the moment it happens, ensuring no detail is lost.</p>
+                    <div class="scroll-reveal-card revealed">
+                        <p>Imagine running a busy coffee shop. In a single hour, you might sell forty lattes, receive a delivery of coffee beans with an invoice attached, and pay a technician. To prevent chaos, accountants use a strict, chronological system called the General Journal.</p>
+                    </div>
                     
-                    <h3>Step 1: Gathering the Source Documents</h3>
-                    <p>An accountant never guesses or relies on memory. Every transaction must be backed up by a source document—the physical or digital proof that an exchange of value actually took place.</p>
-                    <ul>
-                        <li><strong>Receipts:</strong> Proof of cash or card purchases (e.g., buying gas for a delivery truck).</li>
-                        <li><strong>Invoices:</strong> Bills sent to customers or received from suppliers requiring payment at a later date.</li>
-                        <li><strong>Bank Statements:</strong> Official logs showing electronic funds transfers, deposits, and bank fees.</li>
-                        <li><strong>Payroll Records:</strong> Timecards and spreadsheets showing exactly how much employees are owed.</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <h3>Step 1: Gathering the Source Documents</h3>
+                        <p>An accountant never guesses or relies on memory. Every transaction must be backed up by a source document:</p>
+                        <ul>
+                            <li><strong>Receipts:</strong> Proof of cash or card purchases.</li>
+                            <li><strong>Invoices:</strong> Bills sent to customers or received from suppliers.</li>
+                        </ul>
+                    </div>
 
-                    <h3>Step 2: The Journal Entry</h3>
-                    <p>Once an accountant has the source document, they translate that event into the "diary of the business," known as the General Journal. The process of entering a transaction here is called making a journal entry.</p>
-                    <p>Journal entries follow a standardized structure so that any business professional in the world can read them. They rely entirely on the rules of double-entry bookkeeping, meaning every entry must have at least one debit and at least one credit, and the total dollar amounts must match perfectly.</p>
-                    <p><strong>The Anatomy of a Journal Entry:</strong></p>
-                    <ul>
-                        <li><strong>The Date:</strong> When the transaction occurred.</li>
-                        <li><strong>The Debit Account:</strong> Written first, tight against the left margin.</li>
-                        <li><strong>The Credit Account:</strong> Written second, indented slightly to the right.</li>
-                        <li><strong>The Dollar Amounts:</strong> Placed in separate Debit and Credit columns.</li>
-                        <li><strong>The Description:</strong> A brief note at the bottom explaining the transaction.</li>
-                    </ul>
+                    <div class="scroll-reveal-card">
+                        <h3>The Anatomy of a Journal Entry</h3>
+                        <p>Journal entries follow a standardized structure so that any business professional can read them:</p>
+                        <ul>
+                            <li><strong>The Debit Account:</strong> Written first, tight against the left margin.</li>
+                            <li><strong>The Credit Account:</strong> Written second, <span class="lazy-hl" data-type="lang">indented slightly to the right</span>.</li>
+                        </ul>
+                    </div>
 
-                    <h3>Real-World Examples in the General Journal</h3>
-                    <table class="acct-table">
+                    <table class="acct-table scroll-reveal-card">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -712,26 +830,14 @@
                         <tbody>
                             <tr>
                                 <td>July 1</td>
-                                <td>Inventory<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Purchased clothing inventory for cash)</em></td>
+                                <td>Inventory<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Purchased inventory for cash)</em></td>
                                 <td>$800</td>
                                 <td><br>$800</td>
-                            </tr>
-                            <tr>
-                                <td>July 3</td>
-                                <td>Accounts Receivable<br>&nbsp;&nbsp;&nbsp;&nbsp;Service Revenue<br><em>(Billed client for web design services)</em></td>
-                                <td>$1,500</td>
-                                <td><br>$1,500</td>
-                            </tr>
-                            <tr>
-                                <td>July 5</td>
-                                <td>Utilities Expense<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Paid monthly electricity bill)</em></td>
-                                <td>$300</td>
-                                <td><br>$300</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <div class="quiz-container">
+                    <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>Which account is indented to the right side inside a standard general journal structure?</p>
                         <button class="quiz-option" onclick="checkAnswer(this, false, 'fb15')">A) The Debit account title line</button>
@@ -741,86 +847,28 @@
                 `;
             }
             else if (lessonId === 1.6) {
-                titleEl.innerText = "Lesson 1.6: Posting Entries to the General Ledger: Organizing the Financial Library";
+                titleEl.innerText = "Lesson 1.6: Posting Entries to the General Ledger";
                 contentEl.innerHTML = `
-                    <p>Imagine you are writing a detailed history book about a company's daily life. Writing everything down in the General Journal is like writing a chronological diary. It tells you exactly what happened on July 1st, July 2nd, and July 3rd.</p>
-                    <p>But what happens if the CEO walks into your office and asks: "Exactly how much cash do we have right now?" If you only have the journal, you would have to flip through hundreds of pages, add up every single debit to cash, and subtract every single credit to cash. That would take hours. To solve this problem, accountants use a process called posting to the General Ledger.</p>
+                    <div class="scroll-reveal-card revealed">
+                        <p>While the General Journal is the diary of the business, the General Ledger is the financial library. Every single account has its own dedicated page or record in the ledger.</p>
+                    </div>
                     
-                    <h3>What is the General Ledger?</h3>
-                    <p>While the General Journal is the diary of the business, the General Ledger is the financial library.</p>
-                    <p>The General Ledger is a collection of all the individual accounts used by a company (such as Cash, Accounts Receivable, Inventory, Accounts Payable, and Retained Earnings). Every single account has its own dedicated page or record in the ledger.</p>
-                    <p>Posting is simply the process of transferring the information from the chronological General Journal into the specific accounts of the General Ledger.</p>
+                    <div class="scroll-reveal-card">
+                        <h3>What is Posting?</h3>
+                        <p><span class="lazy-hl" data-type="lang">Posting is the process of transferring info</span> from the chronological General Journal into the specific accounts of the General Ledger.</p>
+                    </div>
 
-                    <h3>The Step-by-Step Posting Process</h3>
-                    <p>Posting is entirely mechanical. You aren't analyzing new information; you are simply moving data from one book to another to stay organized.</p>
-                    <ol>
-                        <li><strong>Locate the Account:</strong> Look at the first line of your journal entry and find that specific account's page in the ledger.</li>
-                        <li><strong>Transfer the Date:</strong> Copy the exact date of the transaction from the journal to the ledger account.</li>
-                        <li><strong>Transfer the Amount:</strong> Copy the dollar amount into the exact same column. If it was a Debit in the journal, post it as a Debit in the ledger. If it was a Credit, post it as a Credit.</li>
-                        <li><strong>Update the Balance:</strong> Calculate the new, running balance of that specific ledger account.</li>
-                        <li><strong>Enter the Post Reference (Post. Ref.):</strong> Write a cross-reference number in both books. This links the journal page to the ledger page so anyone can audit the path the money took.</li>
-                    </ol>
+                    <div class="scroll-reveal-card">
+                        <h3>The Step-by-Step Posting Process</h3>
+                        <ol>
+                            <li>Locate the specific account ledger page.</li>
+                            <li>Transfer the exact date.</li>
+                            <li>Transfer the dollar amounts into matching columns.</li>
+                            <li>Update the running balance.</li>
+                        </ol>
+                    </div>
 
-                    <h3>A Visual Example of Posting</h3>
-                    <p><strong>General Journal (Page 1)</strong></p>
-                    <table class="acct-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Account Titles</th>
-                                <th>Post. Ref.</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Aug 1</td>
-                                <td>Advertising Expense<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash</td>
-                                <td>501<br>101</td>
-                                <td>$1,000</td>
-                                <td><br>$1,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <p><strong>The Ledger Accounts (After Posting)</strong></p>
-                    <p><strong>Account: Cash (Account No. 101)</strong></p>
-                    <table class="acct-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Explanation</th>
-                                <th>Post. Ref.</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                                <th>Running Balance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Aug 1</td><td>Starting Balance</td><td>—</td><td>—</td><td>—</td><td>$5,000 (Dr.)</td></tr>
-                            <tr><td>Aug 1</td><td>Advertising</td><td>J1</td><td>—</td><td>$1,000</td><td><strong>$4,000 (Dr.)</strong></td></tr>
-                        </tbody>
-                    </table>
-
-                    <p><strong>Account: Advertising Expense (Account No. 501)</strong></p>
-                    <table class="acct-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Explanation</th>
-                                <th>Post. Ref.</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                                <th>Running Balance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Aug 1</td><td>Advertising</td><td>J1</td><td>$1,000</td><td>—</td><td><strong>$1,000 (Dr.)</strong></td></tr>
-                        </tbody>
-                    </table>
-
-                    <div class="quiz-container">
+                    <div class="quiz-container scroll-reveal-card">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>What specific name is given to the ledger database log book tracking sorting columns?</p>
                         <button class="quiz-option" onclick="checkAnswer(this, true, 'fb16')">A) The General Ledger</button>
@@ -829,45 +877,11 @@
                     </div>
                 `;
             }
-            else {
-                titleEl.innerText = `Module ${Math.floor(lessonId)} Sandbox Loaded`;
-                contentEl.innerHTML = `
-                    <p>Excellent! You successfully triggered the workspace container for this advanced module area.</p>
-                    <div style="padding: 25px; background: #f0fdf4; border: 1px dashed #22c55e; border-radius: 12px; margin-top: 20px;">
-                        <strong>📚 Advanced Material Slot Ready:</strong> Next reading segments text assets mapped out perfectly.
-                    </div>
-                `;
-            }
-            
-            document.getElementById("lessonViewerModal").style.display = "block";
-        }
 
-        async function handleSignUp(event) { 
-            event.preventDefault(); 
-            const fullName = document.getElementById("username").value; 
-            const email = document.getElementById("email").value; 
-            const password = document.getElementById("password").value; 
-            const submitBtn = event.target.querySelector('button'); 
+            document.getElementById("lessonViewerModal").style.display = "block";
             
-            submitBtn.innerText = "Creating Account...";
-            submitBtn.disabled = true; 
-            
-            const { data: signUpData, error: signUpError } = await supabaseClient.auth.signUp({ 
-                email: email, 
-                password: password, 
-                options: { data: { full_name: fullName } } 
-            }); 
-            
-            if (signUpError && !signUpError.message.includes("rate limit")) { 
-                alert("Signup Error: " + signUpError.message); 
-                submitBtn.innerText = "Sign Up & Start Learning"; 
-                submitBtn.disabled = false; 
-                return; 
-            } 
-            
-            alert("Success! Welcome to Mono Academy (Local Sandbox Session Loaded)."); 
-            closeModal(); 
-            document.getElementById("welcomeHeading").innerText = "Welcome back, " + fullName + ".";
+            // Turn on the Intersection Observer scrolling framework
+            initializeScrollHighlightEngine();
         }
     </script>
 </body>
