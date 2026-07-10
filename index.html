@@ -128,6 +128,13 @@
         .viewer-box p {
             margin-bottom: 20px;
         }
+        .viewer-box ul, .viewer-box ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        .viewer-box li {
+            margin-bottom: 8px;
+        }
 
         /* INTERACTIVE CHECKPOINT QUIZ ELEMENTS */
         .quiz-container {
@@ -465,7 +472,7 @@
                 selectedOption.style.borderColor = "#ef4444";
                 feedbackBox.style.background = "#fee2e2";
                 feedbackBox.style.color = "#991b1b";
-                feedbackBox.innerText = "❌ Incorrect. Hint: Double-check the core balance sheet rules outlined above and try again!";
+                feedbackBox.innerText = "❌ Incorrect. Hint: Double-check the core guidelines outlined above and try again!";
             }
         }
 
@@ -476,19 +483,18 @@
             document.body.style.overflow = "hidden"; // Prevent background page scrolling
             
             if (lessonId === 1.1) {
-                titleEl.innerText = "Lesson 1.1: What is Accounting and Why Does It Matter?";
+                titleEl.innerText = "Lesson 1.1 Workbook";
                 contentEl.innerHTML = `
                     <p>Imagine you and your friends decide to open a custom sneaker-printing business. You buy blank shoes, pay for paint, sell a few pairs, and even pay a friend to help with marketing. At the end of the month, you look at your bank account and wonder: <em>Are we actually making money, or are we burning through our savings?</em> This is exactly where accounting comes to the rescue.</p>
                     
                     <h3>What is Accounting?</h3>
-                    <p>At its core, accounting is the <span class="hl-lang">"language of business."</span> It is the process of tracking, recording, analyzing, and reporting a business's financial transactions. Instead of just guessing how a business is doing based on the vibe of a bank account, accounting provides a structured, rule-based system to see the exact financial health of an operation.</p>
+                    <p>At its core, accounting is the <span class="hl-lang">"language of business."</span> It is the structured process of tracking, recording, analyzing, and reporting financial transactions. Instead of guessing based on a bank account's vibe, accounting uses a set system to map out exact financial operational health.</p>
                     
                     <div class="quiz-container">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>What is referred to as the 'language of business'?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb11')">A) Marketing performance trackers</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb11')">B) Accounting tracking systems and metrics</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb11')">C) Venture capital budget outlines</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb11')">A) Marketing analytics profiles</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb11')">B) Accounting systems and reports</button>
                         <div id="fb11" class="quiz-feedback"></div>
                     </div>
 
@@ -498,103 +504,135 @@
                         <li><strong>Summarizing:</strong> Grouping these transactions into financial statements so they actually make sense.</li>
                         <li><strong>Reporting:</strong> Presenting these statements to the people who need to make big decisions.</li>
                     </ul>
-
-                    <h3>The Three Core Financial Statements</h3>
-                    <table class="acct-table">
-                        <thead>
-                            <tr>
-                                <th>Financial Statement</th>
-                                <th>What It Tells You</th>
-                                <th>The Big Question It Answers</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Income Statement</strong></td>
-                                <td>Shows revenues and expenses over a specific period (like a month or a year).</td>
-                                <td>Did we make a profit or a loss?</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Balance Sheet</strong></td>
-                                <td>Shows what the business owns (assets) and what it owes (liabilities) at a specific moment.</td>
-                                <td>What is the business worth right now?</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Cash Flow Statement</strong></td>
-                                <td>Tracks the actual cash moving in and out of the business.</td>
-                                <td>Do we have enough physical cash to pay our bills today?</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3>The Accountant's Role</h3>
-                    <p>If a business were a professional sports team, the CEO might be the head coach making the big plays, and the sales team might be the players scoring the points. But who is keeping score, analyzing the game tape, and making sure the team doesn't get disqualified for breaking the rules?</p>
-                    <p><strong>That is the accountant.</strong> They handle bookkeeping, tax compliance, budgeting, fraud prevention, cost cutting, and model strategic metrics for big corporate expansions.</p>
                 `;
             } 
             else if (lessonId === 1.2) {
-                titleEl.innerText = "Lesson 1.2: Assets, Liabilities, Equity & The Golden Formula";
+                titleEl.innerText = "Lesson 1.2 Workbook";
                 contentEl.innerHTML = `
                     <h3>Understanding the Building Blocks of Corporate Wealth</h3>
                     <p>If you want to understand the true financial health of any business, you need to look past its daily sales. You need to look at what the business actually possesses, what it owes to others, and what is truly left over for the people who started it.</p>
                     
                     <ul>
-                        <li><span class="hl-asset">Assets</span>: Anything of value that a business owns or controls that can be used to generate future economic benefit (Cash, Inventory, Equipment, PP&E, Patents).</li>
-                        <li><span class="hl-liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Accounts Payable, Wages Payable, Loans, Mortgages).</li>
-                        <li><span class="hl-equity">Owner's Equity</span>: Represents the owner’s residual stake in the business. It is the true net worth of the company (Contributed Capital, Retained Earnings).</li>
+                        <li><span class="hl-asset">Assets</span>: Anything of value that a business owns or controls that can be used to generate future economic benefit (Cash, Inventory, Equipment).</li>
+                        <li><span class="hl-liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Accounts Payable, Loans).</li>
+                        <li><span class="hl-equity">Owner's Equity</span>: Represents the owner’s residual stake in the business. It is the true net worth of the company.</li>
                     </ul>
 
-                    <div class="quiz-container">
-                        <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>If a business owes money to its material suppliers for fabrics bought on credit, what is that debt categorized as?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb12')">A) Current Asset tracking metric</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb12')">B) Liability obligation (Accounts Payable)</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb12')">C) Retained Corporate Owner Equity</button>
-                        <div id="fb12" class="quiz-feedback"></div>
-                    </div>
-
-                    <h3>The Golden Formula of Accounting</h3>
                     <p>To guarantee balance, every corporate tracking metric uses the <strong>Accounting Equation</strong>:</p>
                     <p style="text-align:center; font-size: 22px; font-weight: bold; background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 8px;">
                         Assets = Liabilities + Owner's Equity
                     </p>
-                    <p>This formula must always balance perfectly down to a single penny. Every resource owned by a company was paid for either by borrowing money (Liabilities) or by using the owners' own funds (Owner's Equity).</p>
                 `;
             }
             else if (lessonId === 1.3) {
-                titleEl.innerText = "Lesson 1.3: The T-Account Visual Mapping Engine";
+                titleEl.innerText = "Lesson 1.3: The T-Account System: The Accountant's Visual Map";
                 contentEl.innerHTML = `
+                    <p>If you have ever watched an accountant work, you might have seen them sketch out a series of large, capital letters "T" on a piece of paper or a whiteboard. This isn't just random doodling—they are using T-accounts, one of the most powerful visual tools in the financial world.</p>
                     <p>A T-account is a simplified, visual representation of an individual account in a company’s general ledger. It acts like a mini-scale that allows accountants to track how specific business events increase or decrease the money in that account.</p>
                     
                     <h3>The Anatomy of a T-Account</h3>
+                    <p>The T-account gets its name because it looks exactly like the letter T. It splits the tracking of an account into three basic parts:</p>
+                    <ul>
+                        <li><strong>The Title:</strong> Written across the very top bar of the T (e.g., "Cash," "Inventory," or "Accounts Payable").</li>
+                        <li><strong>The Left Side (Debit):</strong> Reserved exclusively for Debits (often abbreviated as Dr.).</li>
+                        <li><strong>The Right Side (Credit):</strong> Reserved exclusively for Credits (often abbreviated as Cr.).</li>
+                    </ul>
+
                     <div class="t-art-box">            Account Title
     ------------------------------
        Left Side   |   Right Side
                    |
         DEBIT      |     CREDIT
-        (Dr.)      |     (Cr.)</div>
-                    
-                    <p><strong>The Golden Rule:</strong> Forget everyday definitions of "debit" and "credit". In accounting, <strong>Debit simply means Left</strong>, and <strong>Credit simply means Right</strong>. They do not inherently mean plus or minus.</p>
+        (Dr.)      |     (Cr.)
+                   |</div>
+
+                    <h3>The Golden Rule of T-Accounts</h3>
+                    <p>Forget the everyday definitions of "debit" and "credit" used by banks or retail stores. In accounting, <strong>Debit simply means Left, and Credit simply means Right.</strong> They do not inherently mean "plus" or "minus."</p>
+
+                    <h3>How Debits and Credits Work</h3>
+                    <p>Whether a debit or a credit increases or decreases an account depends entirely on what type of account it is. This ties directly back to the Accounting Equation (Assets = Liabilities + Owner's Equity).</p>
+                    <ul>
+                        <li><strong>Accounts on the LEFT side of the equation (Assets):</strong> Are increased on the left side (Debit) and decreased on the right side (Credit).</li>
+                        <li><strong>Accounts on the RIGHT side of the equation (Liabilities & Equity):</strong> Are increased on the right side (Credit) and decreased on the left side (Debit).</li>
+                    </ul>
+
+                    <table class="acct-table">
+                        <thead>
+                            <tr>
+                                <th>Account Type</th>
+                                <th>Left Side (Debit)</th>
+                                <th>Right Side (Credit)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Asset (e.g., Cash, Equipment)</td><td><strong>Increases (+)</strong></td><td>Decreases (-)</td></tr>
+                            <tr><td>Liability (e.g., Loans, Payables)</td><td>Decreases (-)</td><td><strong>Increases (+)</strong></td></tr>
+                            <tr><td>Owner's Equity (e.g., Capital)</td><td>Decreases (-)</td><td><strong>Increases (+)</strong></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>T-Accounts in Action: A Real-World Example</h3>
+                    <p>To see how T-accounts make double-entry bookkeeping easier to visualize, let's look at a business that takes out a $5,000 bank loan. Because every transaction must affect at least two accounts to keep the accounting equation balanced, we open two T-accounts: a Cash account (an Asset) and a Bank Loan account (a Liability).</p>
+                    <ol>
+                        <li>Cash increases by $5,000. Since Cash is an asset, we place this on the left (Debit) side.</li>
+                        <li>Bank Loan increases by $5,000. Since a loan is a liability, we place this on the right (Credit) side.</li>
+                    </ol>
+
+                    <div class="t-art-box">          Cash (Asset)                    Bank Loan (Liability)
+    ------------------------            ------------------------
+    Dr. (+)      |   Cr. (-)            Dr. (-)      |   Cr. (+)
+    $5,000       |                      |                $5,000
+                 |                      |</div>
+
+                    <p>Notice how the system naturally self-corrects: the total dollar amount debited ($5,000 on the left) perfectly matches the total dollar amount credited ($5,000 on the right).</p>
+
+                    <h3>Finding the Account Balance</h3>
+                    <p>To find the final balance using a T-account, follow these steps:</p>
+                    <ol>
+                        <li>Add up everything on the Debit (left) side.</li>
+                        <li>Add up everything on the Credit (right) side.</li>
+                        <li>Subtract the smaller side from the larger side.</li>
+                        <li>Write the remaining difference on the side that had the larger total. This is called the <strong>ending balance</strong>.</li>
+                    </ol>
+                    <p>For example, if your Cash T-account has a total of $10,000 on the Debit side (money coming in) and $4,000 on the Credit side (money spent), the account has a <strong>Debit Balance of $6,000</strong> ($10,000 - $4,000).</p>
 
                     <div class="quiz-container">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>In the standard T-account visual diagram framework, what does 'Debit' mean?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb13')">A) The Left Side of the T-Account</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">B) An automatic deduction of available cash funds</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">C) The Right Side of the ledger account</button>
+                        <p>An account has $12,000 total on its left side and $5,000 total on its right side. What is the ending balance type and amount?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb13')">A) Debit balance of $7,000</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">B) Credit balance of $7,000</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">C) Debit balance of $17,000</button>
                         <div id="fb13" class="quiz-feedback"></div>
                     </div>
-
-                    <h3>Finding the Account Balance</h3>
-                    <p>At the end of a validation cycle, subtract the smaller side from the larger side. Write the remaining difference on the side that had the larger total. This is called the <strong>ending balance</strong>.</p>
                 `;
             }
             else if (lessonId === 1.4) {
-                titleEl.innerText = "Lesson 1.4: Rules for Increasing & Decreasing Accounts";
+                titleEl.innerText = "Lesson 1.4: The Rules for Increasing and Decreasing Accounts: Master the Grid";
                 contentEl.innerHTML = `
-                    <h3>The Master Blueprint Matrix</h3>
-                    <p>The rules for increasing and decreasing accounts are directly tied to which side of the accounting equation the account lives on.</p>
+                    <p>When you first dive into accounting, the biggest hurdle isn't the math—it's learning how to change the numbers. If you buy a new piece of equipment, do you add to it or subtract from it? What if you pay off a debt?</p>
+                    <p>To keep track of these changes, accounting uses a system of Debits (Dr.) and Credits (Cr.). As we learned with T-accounts, Debit simply means Left and Credit simply means Right. They do not mean "plus" or "minus." Whether a debit increases or decreases an account depends entirely on the type of account you are dealing with.</p>
                     
+                    <h3>The Core Rules: Left vs. Right</h3>
+                    <p>The rules for increasing and decreasing accounts are directly tied to which side of the accounting equation (Assets = Liabilities + Owner's Equity) the account lives on.</p>
+                    <p><strong>1. Accounts on the Left Side: Assets</strong><br>Because Assets sit on the left side of the equation, their "home" or normal balance is on the left (Debit) side.</p>
+                    <ul>
+                        <li>To increase an Asset, you <strong>Debit</strong> it (left side).</li>
+                        <li>To decrease an Asset, you <strong>Credit</strong> it (right side).</li>
+                    </ul>
+                    <p><strong>2. Accounts on the Right Side: Liabilities & Equity</strong><br>Because Liabilities and Owner's Equity sit on the right side of the equation, their "home" or normal balance is on the right (Credit) side.</p>
+                    <ul>
+                        <li>To increase a Liability or Equity account, you <strong>Credit</strong> it (right side).</li>
+                        <li>To decrease a Liability or Equity account, you <strong>Debit</strong> it (left side).</li>
+                    </ul>
+
+                    <h3>Expanding the Rules: Revenue and Expenses</h3>
+                    <p>Owner's Equity is a big umbrella. As a business operates, its equity changes based on two main things: Revenue (money earned from sales) and Expenses (the costs of running the business). Because they affect equity, they have their own special rules:</p>
+                    <ul>
+                        <li><strong>Revenue increases Owner's Equity:</strong> Since equity increases with a credit, Revenue is increased with a Credit and decreased with a Debit.</li>
+                        <li><strong>Expenses decrease Owner's Equity:</strong> Because expenses pull equity down, they do the opposite. Expenses are increased with a Debit and decreased with a Credit.</li>
+                    </ul>
+
+                    <h3>The Master Cheat Sheet</h3>
                     <table class="acct-table">
                         <thead>
                             <tr>
@@ -605,37 +643,63 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>Asset</strong> (Cash, Equipment)</td><td>Debit</td><td>Debit (Left)</td><td>Credit (Right)</td></tr>
-                            <tr><td><strong>Liability</strong> (Loans, Payables)</td><td>Credit</td><td>Credit (Right)</td><td>Debit (Left)</td></tr>
-                            <tr><td><strong>Owner's Equity</strong> (Capital)</td><td>Credit</td><td>Credit (Right)</td><td>Debit (Left)</td></tr>
-                            <tr><td><strong>Revenue</strong> (Sales, Fees)</td><td>Credit</td><td>Credit (Right)</td><td>Debit (Left)</td></tr>
-                            <tr><td><strong>Expense</strong> (Rent, Salaries)</td><td>Debit</td><td>Debit (Left)</td><td>Credit (Right)</td></tr>
+                            <tr><td>Asset (Cash, Inventory, Equipment)</td><td>Debit</td><td><strong>Debit (Left)</strong></td><td>Credit (Right)</td></tr>
+                            <tr><td>Liability (Loans, Accounts Payable)</td><td>Credit</td><td><strong>Credit (Right)</strong></td><td>Debit (Left)</td></tr>
+                            <tr><td>Owner's Equity (Capital)</td><td>Credit</td><td><strong>Credit (Right)</strong></td><td>Debit (Left)</td></tr>
+                            <tr><td>Revenue (Sales, Fees Earned)</td><td>Credit</td><td><strong>Credit (Right)</strong></td><td>Debit (Left)</td></tr>
+                            <tr><td>Expense (Rent, Salaries, Utilities)</td><td>Debit</td><td><strong>Debit (Left)</strong></td><td>Credit (Right)</td></tr>
                         </tbody>
                     </table>
 
+                    <h3>An Easy Acronym to Remember: DEALER</h3>
+                    <p>Split the word into two groups to remember who gets increased by what:</p>
+                    <ul>
+                        <li><strong>DEA (Debit):</strong> Expenses, Assets, Losses are increased by Debit.</li>
+                        <li><strong>LER (Credit):</strong> Liabilities, Equity, Revenue are increased by Credit.</li>
+                    </ul>
+
+                    <h3>Real-World Practice Scenarios</h3>
+                    <p><strong>Scenario A: Paying $1,200 Cash for Monthly Rent</strong><br>Rent Expense is increasing. According to our rules, an expense is increased by a Debit. Cash (an Asset) is decreasing because you are paying it out. An asset is decreased by a Credit.<br><em>The Entry: Debit Rent Expense $1,200 | Credit Cash $1,200.</em></p>
+                    <p><strong>Scenario B: Selling a Service to a Customer on Credit for $500</strong><br>Accounts Receivable (an Asset representing money a customer owes you) is increasing. An asset increases with a Debit. Service Revenue is increasing because you made a sale. Revenue increases with a Credit.<br><em>The Entry: Debit Accounts Receivable $500 | Credit Service Revenue $500.</em></p>
+                    <p><strong>Scenario C: Paying Off a $2,000 Bank Loan</strong><br>Bank Loan (a Liability) is decreasing because you owe less money now. A liability decreases with a Debit. Cash (an Asset) is decreasing to pay the bill. An asset decreases with a Credit.<br><em>The Entry: Debit Bank Loan $2,000 | Credit Cash $2,000.</em></p>
+
                     <div class="quiz-container">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>What is the rule to INCREASE an Asset account (like Cash or Inventory)?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb14')">A) Place the entry on the Left Side (Debit)</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb14')">B) Place the entry on the Right Side (Credit)</button>
+                        <p>When your business earns revenue by delivering services, how is the increase in Revenue recorded?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb14')">A) With a Debit line entry</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb14')">B) With a Credit line entry</button>
                         <div id="fb14" class="quiz-feedback"></div>
                     </div>
-
-                    <h3>The Easy Acronym: DEALER</h3>
-                    <ul>
-                        <li><strong>DEA</strong>: Dividends, Expenses, Assets are increased by <strong>Debit</strong>.</li>
-                        <li><strong>LER</strong>: Liabilities, Equity, Revenue are increased by <strong>Credit</strong>.</li>
-                    </ul>
                 `;
             }
             else if (lessonId === 1.5) {
-                titleEl.innerText = "Lesson 1.5: Recording Day-to-Day Journal Transactions";
+                titleEl.innerText = "Lesson 1.5: Recording Day-to-Day Transactions: The General Journal";
                 contentEl.innerHTML = `
-                    <p>Accountants use a strict chronological system called a <strong>General Journal</strong>. It acts like a diary of the business, capturing every transaction using source documents (receipts, invoices, bank records) as physical proof.</p>
+                    <p>Imagine running a busy coffee shop. In a single hour, you might sell forty lattes, receive a delivery of coffee beans with an invoice attached, pay a repair technician to fix an espresso machine, and swipe a corporate card for a new batch of ceramic mugs.</p>
+                    <p>If you tried to remember all these events at the end of the month, your financial records would be a disaster. To prevent this chaos, accountants use a strict, chronological system called recording day-to-day transactions. This process captures every financial event the moment it happens, ensuring no detail is lost.</p>
                     
-                    <h3>Anatomy of a Standard Journal Entry</h3>
-                    <p>Debits are always written first against the left margin. Credits are written second and indented slightly to the right.</p>
+                    <h3>Step 1: Gathering the Source Documents</h3>
+                    <p>An accountant never guesses or relies on memory. Every transaction must be backed up by a source document—the physical or digital proof that an exchange of value actually took place.</p>
+                    <ul>
+                        <li><strong>Receipts:</strong> Proof of cash or card purchases (e.g., buying gas for a delivery truck).</li>
+                        <li><strong>Invoices:</strong> Bills sent to customers or received from suppliers requiring payment at a later date.</li>
+                        <li><strong>Bank Statements:</strong> Official logs showing electronic funds transfers, deposits, and bank fees.</li>
+                        <li><strong>Payroll Records:</strong> Timecards and spreadsheets showing exactly how much employees are owed.</li>
+                    </ul>
 
+                    <h3>Step 2: The Journal Entry</h3>
+                    <p>Once an accountant has the source document, they translate that event into the "diary of the business," known as the General Journal. The process of entering a transaction here is called making a journal entry.</p>
+                    <p>Journal entries follow a standardized structure so that any business professional in the world can read them. They rely entirely on the rules of double-entry bookkeeping, meaning every entry must have at least one debit and at least one credit, and the total dollar amounts must match perfectly.</p>
+                    <p><strong>The Anatomy of a Journal Entry:</strong></p>
+                    <ul>
+                        <li><strong>The Date:</strong> When the transaction occurred.</li>
+                        <li><strong>The Debit Account:</strong> Written first, tight against the left margin.</li>
+                        <li><strong>The Credit Account:</strong> Written second, indented slightly to the right.</li>
+                        <li><strong>The Dollar Amounts:</strong> Placed in separate Debit and Credit columns.</li>
+                        <li><strong>The Description:</strong> A brief note at the bottom explaining the transaction.</li>
+                    </ul>
+
+                    <h3>Real-World Examples in the General Journal</h3>
                     <table class="acct-table">
                         <thead>
                             <tr>
@@ -652,26 +716,76 @@
                                 <td>$800</td>
                                 <td><br>$800</td>
                             </tr>
+                            <tr>
+                                <td>July 3</td>
+                                <td>Accounts Receivable<br>&nbsp;&nbsp;&nbsp;&nbsp;Service Revenue<br><em>(Billed client for web design services)</em></td>
+                                <td>$1,500</td>
+                                <td><br>$1,500</td>
+                            </tr>
+                            <tr>
+                                <td>July 5</td>
+                                <td>Utilities Expense<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Paid monthly electricity bill)</em></td>
+                                <td>$300</td>
+                                <td><br>$300</td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <div class="quiz-container">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>When recording a standard transaction, how is the Credit line formatted?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb15')">A) It is written first against the far left margin</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb15')">B) It is written second and indented slightly to the right</button>
+                        <p>Which account is indented to the right side inside a standard general journal structure?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb15')">A) The Debit account title line</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb15')">B) The Credit account title line</button>
                         <div id="fb15" class="quiz-feedback"></div>
                     </div>
                 `;
             }
             else if (lessonId === 1.6) {
-                titleEl.innerText = "Lesson 1.6: Posting Entries to the General Ledger";
+                titleEl.innerText = "Lesson 1.6: Posting Entries to the General Ledger: Organizing the Financial Library";
                 contentEl.innerHTML = `
-                    <p>While the General Journal is the chronological diary, the <strong>General Ledger is the financial library</strong>. Every single account (Cash, Accounts Receivable, Inventory) has its own dedicated log tracking its running balance.</p>
+                    <p>Imagine you are writing a detailed history book about a company's daily life. Writing everything down in the General Journal is like writing a chronological diary. It tells you exactly what happened on July 1st, July 2nd, and July 3rd.</p>
+                    <p>But what happens if the CEO walks into your office and asks: "Exactly how much cash do we have right now?" If you only have the journal, you would have to flip through hundreds of pages, add up every single debit to cash, and subtract every single credit to cash. That would take hours. To solve this problem, accountants use a process called posting to the General Ledger.</p>
                     
-                    <h3>The Posting Process</h3>
-                    <p>Posting is simply the mechanical process of transferring the transaction information from the journal sheets into the specific pages of the general ledger.</p>
+                    <h3>What is the General Ledger?</h3>
+                    <p>While the General Journal is the diary of the business, the General Ledger is the financial library.</p>
+                    <p>The General Ledger is a collection of all the individual accounts used by a company (such as Cash, Accounts Receivable, Inventory, Accounts Payable, and Retained Earnings). Every single account has its own dedicated page or record in the ledger.</p>
+                    <p>Posting is simply the process of transferring the information from the chronological General Journal into the specific accounts of the General Ledger.</p>
 
+                    <h3>The Step-by-Step Posting Process</h3>
+                    <p>Posting is entirely mechanical. You aren't analyzing new information; you are simply moving data from one book to another to stay organized.</p>
+                    <ol>
+                        <li><strong>Locate the Account:</strong> Look at the first line of your journal entry and find that specific account's page in the ledger.</li>
+                        <li><strong>Transfer the Date:</strong> Copy the exact date of the transaction from the journal to the ledger account.</li>
+                        <li><strong>Transfer the Amount:</strong> Copy the dollar amount into the exact same column. If it was a Debit in the journal, post it as a Debit in the ledger. If it was a Credit, post it as a Credit.</li>
+                        <li><strong>Update the Balance:</strong> Calculate the new, running balance of that specific ledger account.</li>
+                        <li><strong>Enter the Post Reference (Post. Ref.):</strong> Write a cross-reference number in both books. This links the journal page to the ledger page so anyone can audit the path the money took.</li>
+                    </ol>
+
+                    <h3>A Visual Example of Posting</h3>
+                    <p><strong>General Journal (Page 1)</strong></p>
+                    <table class="acct-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Account Titles</th>
+                                <th>Post. Ref.</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Aug 1</td>
+                                <td>Advertising Expense<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash</td>
+                                <td>501<br>101</td>
+                                <td>$1,000</td>
+                                <td><br>$1,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>The Ledger Accounts (After Posting)</strong></p>
+                    <p><strong>Account: Cash (Account No. 101)</strong></p>
                     <table class="acct-table">
                         <thead>
                             <tr>
@@ -685,26 +799,42 @@
                         </thead>
                         <tbody>
                             <tr><td>Aug 1</td><td>Starting Balance</td><td>—</td><td>—</td><td>—</td><td>$5,000 (Dr.)</td></tr>
-                            <tr><td>Aug 1</td><td>Advertising Expense</td><td>J1</td><td>—</td><td>$1,000</td><td>$4,000 (Dr.)</td></tr>
+                            <tr><td>Aug 1</td><td>Advertising</td><td>J1</td><td>—</td><td>$1,000</td><td><strong>$4,000 (Dr.)</strong></td></tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Account: Advertising Expense (Account No. 501)</strong></p>
+                    <table class="acct-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Explanation</th>
+                                <th>Post. Ref.</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                                <th>Running Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Aug 1</td><td>Advertising</td><td>J1</td><td>$1,000</td><td>—</td><td><strong>$1,000 (Dr.)</strong></td></tr>
                         </tbody>
                     </table>
 
                     <div class="quiz-container">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>What does the process of 'Posting to the Ledger' help you achieve?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb16')">A) Sorts random entries into clean boxes with a real-time running balance</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb16')">B) Acts as an initial receipt for customer retail points</button>
+                        <p>What specific name is given to the ledger database log book tracking sorting columns?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb16')">A) The General Ledger</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb16')">B) The Chronological Daily Journal</button>
                         <div id="fb16" class="quiz-feedback"></div>
                     </div>
                 `;
             }
             else {
-                // FALLBACK INTERACTION DESIGNER FOR OTHER SEGMENTS
                 titleEl.innerText = `Module ${Math.floor(lessonId)} Sandbox Loaded`;
                 contentEl.innerHTML = `
                     <p>Excellent! You successfully triggered the workspace container for this advanced module area.</p>
                     <div style="padding: 25px; background: #f0fdf4; border: 1px dashed #22c55e; border-radius: 12px; margin-top: 20px;">
-                        <strong>📚 Advanced Material Slot Ready:</strong> Paste in your reading texts for this segment when you have them, and we will build matching inline quiz modules for them instantly!
+                        <strong>📚 Advanced Material Slot Ready:</strong> Next reading segments text assets mapped out perfectly.
                     </div>
                 `;
             }
