@@ -65,103 +65,164 @@
             background: #1d4ed8;
         }
 
-        /* INTERACTIVE LESSON VIEWER MODAL OVERLAYS */
+        /* TRUE FULLSCREEN HIGH-FIDELITY WORKBOOK CANVAS SYSTEM */
         .lesson-viewer-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+            width: 100vw;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 99999;
+            overflow-y: auto;
         }
         .viewer-box {
-            background: white;
-            padding: 35px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 750px;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 30px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e293b;
+            line-height: 1.75;
+            font-size: 16px;
         }
         .viewer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+        .viewer-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0;
         }
         .btn-close-viewer {
-            background: #f1f5f9;
-            color: #475569;
+            background: #ef4444;
+            color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.2s;
+            font-size: 14px;
+            transition: background 0.2s;
         }
         .btn-close-viewer:hover {
-            background: #e2e8f0;
-            color: #0f172a;
+            background: #dc2626;
         }
 
-        /* QUIZ CONTAINER INTERACTIVE ELEMENTS */
+        /* PREMIUM CONTENT AND ILLUSTRATIVE LAYOUT ELEMENTS */
+        .viewer-box h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .viewer-box p {
+            margin-bottom: 20px;
+        }
+
+        /* INTERACTIVE CHECKPOINT QUIZ ELEMENTS */
         .quiz-container {
-            margin: 25px 0;
-            padding: 20px;
+            margin: 35px 0;
+            padding: 25px;
             background: #f8fafc;
-            border-radius: 10px;
-            border-left: 4px solid #2563eb;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #2563eb;
+            border-radius: 12px;
+        }
+        .quiz-container strong {
+            display: block;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        .quiz-container p {
+            font-size: 17px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 15px;
         }
         .quiz-option {
             display: block;
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
             text-align: left;
             cursor: pointer;
             font-size: 15px;
-            transition: all 0.2s;
+            font-weight: 500;
+            color: #334155;
+            transition: all 0.2s ease;
         }
         .quiz-option:hover {
             background: #f1f5f9;
-            border-color: #cbd5e1;
+            border-color: #94a3b8;
         }
         .quiz-feedback {
-            margin-top: 12px;
+            margin-top: 15px;
             font-weight: 600;
             display: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 15px;
         }
 
-        /* TERM HIGHLIGHT STYLES */
+        /* REFINED VISUAL BADGES AND TERM HIGHLIGHTS */
         .hl-asset { background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
         .hl-liability { background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
         .hl-equity { background: #dcfce7; color: #166534; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
         .hl-lang { background: #fef9c3; color: #854d0e; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
         
+        /* DATA AND FINANCIAL SCALABLE ACCOUNTING TABLES */
         .acct-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            margin: 25px 0;
+            font-size: 15px;
         }
-        .acct-table th, .acct-table td {
-            border: 1px solid #e2e8f0;
-            padding: 10px;
+        .acct-table th {
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
             text-align: left;
         }
-        .acct-table th { background: #f8fafc; }
+        .acct-table td {
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+        }
+        .acct-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* TEXT ART WORKSPACE STRUCTURE FOR DESIGN GRAPHICS */
+        .t-art-box {
+            font-family: "Courier New", Courier, monospace;
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            white-space: pre;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -194,8 +255,8 @@
     <div id="lessonViewerModal" class="lesson-viewer-modal">
         <div class="viewer-box">
             <div class="viewer-header">
-                <h2 id="activeLessonTitle">Active Lesson Workspace</h2>
-                <button class="btn-close-viewer" onclick="closeLessonViewer()">Close Workbook</button>
+                <h2 id="activeLessonTitle">Lesson Workbook</h2>
+                <button class="btn-close-viewer" onclick="closeLessonViewer()">Close X</button>
             </div>
             <div id="activeLessonContent">
                 </div>
@@ -255,7 +316,7 @@
                             <p>Learn the core principles of double-entry accounting, debits and credits, and the fundamental equation.</p>
                         </div>
                         <div class="card-meta">
-                            <span>2 Lessons Installed</span>
+                            <span>6 Lessons Installed</span>
                             <span class="duration">Interactive</span>
                         </div>
                     </div>
@@ -268,20 +329,8 @@
                             <p>Master how to construct and read Income Statements, Balance Sheets, and Cash Flow metrics.</p>
                         </div>
                         <div class="card-meta">
-                            <span>1 Lesson</span>
+                            <span>1 Lesson Available</span>
                             <span class="duration">Next Up</span>
-                        </div>
-                    </div>
-
-                    <div class="module-card locked" onclick="document.getElementById('module3').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
-                        <div class="card-icon">🔒</div>
-                        <div class="card-details">
-                            <h4>3. Ratio Analysis and Financial Health</h4>
-                            <p>Evaluate corporate health using working capital metrics, profitability margins, and liquidity ratios.</p>
-                        </div>
-                        <div class="card-meta">
-                            <span>1 Lesson</span>
-                            <span class="duration">Locked</span>
                         </div>
                     </div>
                 </div>
@@ -297,6 +346,22 @@
                     <li class="lesson-item">
                         <span>📖 Lesson 1.2: Assets, Liabilities, Equity & The Golden Formula</span>
                         <button class="btn-start-lesson" onclick="loadLessonViewer(1.2)">Start Workbook</button>
+                    </li>
+                    <li class="lesson-item">
+                        <span>📖 Lesson 1.3: The T-Account Visual Mapping Engine</span>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(1.3)">Start Workbook</button>
+                    </li>
+                    <li class="lesson-item">
+                        <span>📖 Lesson 1.4: Rules for Increasing & Decreasing Accounts</span>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(1.4)">Start Workbook</button>
+                    </li>
+                    <li class="lesson-item">
+                        <span>📖 Lesson 1.5: Recording Day-to-Day Journal Transactions</span>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(1.5)">Start Workbook</button>
+                    </li>
+                    <li class="lesson-item">
+                        <span>📖 Lesson 1.6: Posting Entries to the General Ledger</span>
+                        <button class="btn-start-lesson" onclick="loadLessonViewer(1.6)">Start Workbook</button>
                     </li>
                 </ul>
             </section>
@@ -325,7 +390,7 @@
                 <h3>Module 4: Advanced Corporate Accounting</h3>
                 <ul class="lesson-list">
                     <li class="lesson-item">
-                        <span>📖 Lesson 4.1: Amortization & Depreciation Asset Valuations</span>
+                        <span>📖 Lesson 4.1: Amortization & Depreciation Valuations</span>
                         <button class="btn-start-lesson" onclick="loadLessonViewer(4.1)">Start Workbook</button>
                     </li>
                 </ul>
@@ -376,18 +441,17 @@
 
         function closeLessonViewer() {
             document.getElementById("lessonViewerModal").style.display = "none";
+            document.body.style.overflow = "auto"; // restore main scrollbars
         }
 
-        // QUIZ VALIDATION ENGINE
         function checkAnswer(selectedOption, isCorrect, feedbackId) {
             const feedbackBox = document.getElementById(feedbackId);
             feedbackBox.style.display = "block";
             
-            // Highlight selected button
             const options = selectedOption.parentElement.querySelectorAll('.quiz-option');
             options.forEach(btn => {
-                btn.style.background = "white";
-                btn.style.borderColor = "#e2e8f0";
+                btn.style.background = "#ffffff";
+                btn.style.borderColor = "#cbd5e1";
             });
 
             if (isCorrect) {
@@ -395,43 +459,44 @@
                 selectedOption.style.borderColor = "#22c55e";
                 feedbackBox.style.background = "#dcfce7";
                 feedbackBox.style.color = "#166534";
-                feedbackBox.innerText = "🎉 Correct! Great job analyzing the concept.";
+                feedbackBox.innerText = "🎉 Correct! Outstanding work verifying this concept.";
             } else {
                 selectedOption.style.background = "#fee2e2";
                 selectedOption.style.borderColor = "#ef4444";
                 feedbackBox.style.background = "#fee2e2";
                 feedbackBox.style.color = "#991b1b";
-                feedbackBox.innerText = "❌ Incorrect. Hint: Reread the core definition above and try again!";
+                feedbackBox.innerText = "❌ Incorrect. Hint: Double-check the core balance sheet rules outlined above and try again!";
             }
         }
 
-        // DYNAMIC LESSON SOURCE COMPILER ENGINE
         function loadLessonViewer(lessonId) {
             const titleEl = document.getElementById("activeLessonTitle");
             const contentEl = document.getElementById("activeLessonContent");
             
+            document.body.style.overflow = "hidden"; // Prevent background page scrolling
+            
             if (lessonId === 1.1) {
-                titleEl.innerText = "Lesson 1.1 Workbook";
+                titleEl.innerText = "Lesson 1.1: What is Accounting and Why Does It Matter?";
                 contentEl.innerHTML = `
                     <p>Imagine you and your friends decide to open a custom sneaker-printing business. You buy blank shoes, pay for paint, sell a few pairs, and even pay a friend to help with marketing. At the end of the month, you look at your bank account and wonder: <em>Are we actually making money, or are we burning through our savings?</em> This is exactly where accounting comes to the rescue.</p>
                     
                     <h3>What is Accounting?</h3>
-                    <p>At its core, accounting is the <span class="hl-lang">"language of business."</span> It is the structured process of tracking, recording, analyzing, and reporting financial transactions. Instead of guessing based on a bank account's vibe, accounting uses a set system to map out exact financial operational health.</p>
+                    <p>At its core, accounting is the <span class="hl-lang">"language of business."</span> It is the process of tracking, recording, analyzing, and reporting a business's financial transactions. Instead of just guessing how a business is doing based on the vibe of a bank account, accounting provides a structured, rule-based system to see the exact financial health of an operation.</p>
                     
                     <div class="quiz-container">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
                         <p>What is referred to as the 'language of business'?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb1')">A) Marketing analytics profiles</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb1')">B) Accounting systems and reports</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb1')">C) CEO strategic guidelines</button>
-                        <div id="fb1" class="quiz-feedback"></div>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb11')">A) Marketing performance trackers</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb11')">B) Accounting tracking systems and metrics</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb11')">C) Venture capital budget outlines</button>
+                        <div id="fb11" class="quiz-feedback"></div>
                     </div>
 
-                    <h3>Three Simple Steps:</h3>
+                    <h3>Three Simple Steps Breakdown:</h3>
                     <ul>
                         <li><strong>Recording:</strong> Tracking every single dollar that comes in (revenue) and goes out (expenses).</li>
-                        <li><strong>Summarizing:</strong> Grouping transactions into statements so they make logical sense.</li>
-                        <li><strong>Reporting:</strong> Presenting metrics data to stakeholders making big strategic choices.</li>
+                        <li><strong>Summarizing:</strong> Grouping these transactions into financial statements so they actually make sense.</li>
+                        <li><strong>Reporting:</strong> Presenting these statements to the people who need to make big decisions.</li>
                     </ul>
 
                     <h3>The Three Core Financial Statements</h3>
@@ -446,71 +511,207 @@
                         <tbody>
                             <tr>
                                 <td><strong>Income Statement</strong></td>
-                                <td>Shows revenues and expenses over a specific period.</td>
+                                <td>Shows revenues and expenses over a specific period (like a month or a year).</td>
                                 <td>Did we make a profit or a loss?</td>
                             </tr>
                             <tr>
                                 <td><strong>Balance Sheet</strong></td>
-                                <td>Shows what the business owns and what it owes at a specific moment.</td>
+                                <td>Shows what the business owns (assets) and what it owes (liabilities) at a specific moment.</td>
                                 <td>What is the business worth right now?</td>
                             </tr>
                             <tr>
                                 <td><strong>Cash Flow Statement</strong></td>
-                                <td>Tracks actual physical liquid cash moving in and out.</td>
-                                <td>Do we have enough cash to pay bills today?</td>
+                                <td>Tracks the actual cash moving in and out of the business.</td>
+                                <td>Do we have enough physical cash to pay our bills today?</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <h3>The Accountant's Role</h3>
-                    <p>If a business were a professional sports team, the CEO is the head coach making big plays, and the sales team scores points. But who is keeping score, analyzing game tape, and making sure the team doesn't break rules?</p>
-                    <p><strong>That is the accountant.</strong> They evaluate fraud prevention, pinpoint cost cutting, and structure metrics to model future financial risks.</p>
+                    <p>If a business were a professional sports team, the CEO might be the head coach making the big plays, and the sales team might be the players scoring the points. But who is keeping score, analyzing the game tape, and making sure the team doesn't get disqualified for breaking the rules?</p>
+                    <p><strong>That is the accountant.</strong> They handle bookkeeping, tax compliance, budgeting, fraud prevention, cost cutting, and model strategic metrics for big corporate expansions.</p>
                 `;
             } 
             else if (lessonId === 1.2) {
-                titleEl.innerText = "Lesson 1.2 Workbook";
+                titleEl.innerText = "Lesson 1.2: Assets, Liabilities, Equity & The Golden Formula";
                 contentEl.innerHTML = `
                     <h3>Understanding the Building Blocks of Corporate Wealth</h3>
-                    <p>To measure corporate wealth, accountants use three foundational tracking variables: Assets, Liabilities, and Owner's Equity.</p>
+                    <p>If you want to understand the true financial health of any business, you need to look past its daily sales. You need to look at what the business actually possesses, what it owes to others, and what is truly left over for the people who started it.</p>
                     
                     <ul>
-                        <li><span class="hl-asset">Assets</span>: Anything of value that a business owns or controls that generates future economic benefit (Cash, Inventory, Equipment, Patents).</li>
-                        <li><span class="hl-liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Bank Loans, Accounts Payable, Mortgages).</li>
-                        <li><span class="hl-equity">Owner's Equity</span>: Represents the owner's remaining residual stake in the business after all debts are deducted from assets (Contributed Capital, Retained Earnings).</li>
+                        <li><span class="hl-asset">Assets</span>: Anything of value that a business owns or controls that can be used to generate future economic benefit (Cash, Inventory, Equipment, PP&E, Patents).</li>
+                        <li><span class="hl-liability">Liabilities</span>: A legal or financial obligation that a business owes to an outside party (Accounts Payable, Wages Payable, Loans, Mortgages).</li>
+                        <li><span class="hl-equity">Owner's Equity</span>: Represents the owner’s residual stake in the business. It is the true net worth of the company (Contributed Capital, Retained Earnings).</li>
                     </ul>
 
                     <div class="quiz-container">
                         <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>If a bookstore owes money to its book publisher supplier for inventory bought on credit, what is that debt categorized as?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb2')">A) Current Asset resource</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb2')">B) Liability obligation (Accounts Payable)</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb2')">C) Retained Owner's Equity</button>
-                        <div id="fb2" class="quiz-feedback"></div>
+                        <p>If a business owes money to its material suppliers for fabrics bought on credit, what is that debt categorized as?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb12')">A) Current Asset tracking metric</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb12')">B) Liability obligation (Accounts Payable)</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb12')">C) Retained Corporate Owner Equity</button>
+                        <div id="fb12" class="quiz-feedback"></div>
                     </div>
 
                     <h3>The Golden Formula of Accounting</h3>
-                    <p>To guarantee perfect balance, every corporate operation uses the <strong>Accounting Equation</strong>:</p>
-                    <p style="text-align:center; font-size: 20px; font-weight: bold; background: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <p>To guarantee balance, every corporate tracking metric uses the <strong>Accounting Equation</strong>:</p>
+                    <p style="text-align:center; font-size: 22px; font-weight: bold; background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 8px;">
                         Assets = Liabilities + Owner's Equity
                     </p>
-                    <p>This formula must always balance perfectly down to the single penny. This absolute balance is sustained via <strong>Double-Entry Bookkeeping</strong>, which requires every economic event to be recorded in at least two separate accounts as balancing dual changes.</p>
+                    <p>This formula must always balance perfectly down to a single penny. Every resource owned by a company was paid for either by borrowing money (Liabilities) or by using the owners' own funds (Owner's Equity).</p>
+                `;
+            }
+            else if (lessonId === 1.3) {
+                titleEl.innerText = "Lesson 1.3: The T-Account Visual Mapping Engine";
+                contentEl.innerHTML = `
+                    <p>A T-account is a simplified, visual representation of an individual account in a company’s general ledger. It acts like a mini-scale that allows accountants to track how specific business events increase or decrease the money in that account.</p>
+                    
+                    <h3>The Anatomy of a T-Account</h3>
+                    <div class="t-art-box">            Account Title
+    ------------------------------
+       Left Side   |   Right Side
+                   |
+        DEBIT      |     CREDIT
+        (Dr.)      |     (Cr.)</div>
+                    
+                    <p><strong>The Golden Rule:</strong> Forget everyday definitions of "debit" and "credit". In accounting, <strong>Debit simply means Left</strong>, and <strong>Credit simply means Right</strong>. They do not inherently mean plus or minus.</p>
+
+                    <div class="quiz-container">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>In the standard T-account visual diagram framework, what does 'Debit' mean?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb13')">A) The Left Side of the T-Account</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">B) An automatic deduction of available cash funds</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">C) The Right Side of the ledger account</button>
+                        <div id="fb13" class="quiz-feedback"></div>
+                    </div>
+
+                    <h3>Finding the Account Balance</h3>
+                    <p>At the end of a validation cycle, subtract the smaller side from the larger side. Write the remaining difference on the side that had the larger total. This is called the <strong>ending balance</strong>.</p>
+                `;
+            }
+            else if (lessonId === 1.4) {
+                titleEl.innerText = "Lesson 1.4: Rules for Increasing & Decreasing Accounts";
+                contentEl.innerHTML = `
+                    <h3>The Master Blueprint Matrix</h3>
+                    <p>The rules for increasing and decreasing accounts are directly tied to which side of the accounting equation the account lives on.</p>
+                    
+                    <table class="acct-table">
+                        <thead>
+                            <tr>
+                                <th>Account Type</th>
+                                <th>Normal Balance</th>
+                                <th>To INCREASE</th>
+                                <th>To DECREASE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Asset</strong> (Cash, Equipment)</td><td>Debit</td><td>Debit (Left)</td><td>Credit (Right)</td></tr>
+                            <tr><td><strong>Liability</strong> (Loans, Payables)</td><td>Credit</td><td>Credit (Right)</td><td>Debit (Left)</td></tr>
+                            <tr><td><strong>Owner's Equity</strong> (Capital)</td><td>Credit</td><td>Credit (Right)</td><td>Debit (Left)</td></tr>
+                            <tr><td><strong>Revenue</strong> (Sales, Fees)</td><td>Credit</td><td>Credit (Right)</td><td>Debit (Left)</td></tr>
+                            <tr><td><strong>Expense</strong> (Rent, Salaries)</td><td>Debit</td><td>Debit (Left)</td><td>Credit (Right)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="quiz-container">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>What is the rule to INCREASE an Asset account (like Cash or Inventory)?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb14')">A) Place the entry on the Left Side (Debit)</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb14')">B) Place the entry on the Right Side (Credit)</button>
+                        <div id="fb14" class="quiz-feedback"></div>
+                    </div>
+
+                    <h3>The Easy Acronym: DEALER</h3>
+                    <ul>
+                        <li><strong>DEA</strong>: Dividends, Expenses, Assets are increased by <strong>Debit</strong>.</li>
+                        <li><strong>LER</strong>: Liabilities, Equity, Revenue are increased by <strong>Credit</strong>.</li>
+                    </ul>
+                `;
+            }
+            else if (lessonId === 1.5) {
+                titleEl.innerText = "Lesson 1.5: Recording Day-to-Day Journal Transactions";
+                contentEl.innerHTML = `
+                    <p>Accountants use a strict chronological system called a <strong>General Journal</strong>. It acts like a diary of the business, capturing every transaction using source documents (receipts, invoices, bank records) as physical proof.</p>
+                    
+                    <h3>Anatomy of a Standard Journal Entry</h3>
+                    <p>Debits are always written first against the left margin. Credits are written second and indented slightly to the right.</p>
+
+                    <table class="acct-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Account Titles and Explanation</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>July 1</td>
+                                <td>Inventory<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash<br><em>(Purchased clothing inventory for cash)</em></td>
+                                <td>$800</td>
+                                <td><br>$800</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="quiz-container">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>When recording a standard transaction, how is the Credit line formatted?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb15')">A) It is written first against the far left margin</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb15')">B) It is written second and indented slightly to the right</button>
+                        <div id="fb15" class="quiz-feedback"></div>
+                    </div>
+                `;
+            }
+            else if (lessonId === 1.6) {
+                titleEl.innerText = "Lesson 1.6: Posting Entries to the General Ledger";
+                contentEl.innerHTML = `
+                    <p>While the General Journal is the chronological diary, the <strong>General Ledger is the financial library</strong>. Every single account (Cash, Accounts Receivable, Inventory) has its own dedicated log tracking its running balance.</p>
+                    
+                    <h3>The Posting Process</h3>
+                    <p>Posting is simply the mechanical process of transferring the transaction information from the journal sheets into the specific pages of the general ledger.</p>
+
+                    <table class="acct-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Explanation</th>
+                                <th>Post. Ref.</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                                <th>Running Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Aug 1</td><td>Starting Balance</td><td>—</td><td>—</td><td>—</td><td>$5,000 (Dr.)</td></tr>
+                            <tr><td>Aug 1</td><td>Advertising Expense</td><td>J1</td><td>—</td><td>$1,000</td><td>$4,000 (Dr.)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="quiz-container">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>What does the process of 'Posting to the Ledger' help you achieve?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb16')">A) Sorts random entries into clean boxes with a real-time running balance</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb16')">B) Acts as an initial receipt for customer retail points</button>
+                        <div id="fb16" class="quiz-feedback"></div>
+                    </div>
                 `;
             }
             else {
-                // FALLBACK PLACEHOLDERS FOR LESSONS 2, 3, 4, 5
-                titleEl.innerText = `Module ${Math.floor(lessonId)} Content Loaded`;
+                // FALLBACK INTERACTION DESIGNER FOR OTHER SEGMENTS
+                titleEl.innerText = `Module ${Math.floor(lessonId)} Sandbox Loaded`;
                 contentEl.innerHTML = `
-                    <p>Excellent! You successfully triggered the tracking container for this advanced module area.</p>
-                    <div style="padding: 20px; background: #f0fdf4; border: 1px dashed #22c55e; border-radius: 8px; margin-top: 15px;">
-                        <strong>📚 Next Lesson Slot Unlocked:</strong> Send over your specific reading text inputs for this statement slot, and we will update it with interactive highlights and quizzes instantly!
+                    <p>Excellent! You successfully triggered the workspace container for this advanced module area.</p>
+                    <div style="padding: 25px; background: #f0fdf4; border: 1px dashed #22c55e; border-radius: 12px; margin-top: 20px;">
+                        <strong>📚 Advanced Material Slot Ready:</strong> Paste in your reading texts for this segment when you have them, and we will build matching inline quiz modules for them instantly!
                     </div>
                 `;
             }
             
-            document.getElementById("lessonViewerModal").style.display = "flex";
+            document.getElementById("lessonViewerModal").style.display = "block";
         }
 
-        // Handle Quick Sign Up & Bypass Rate Limits
         async function handleSignUp(event) { 
             event.preventDefault(); 
             const fullName = document.getElementById("username").value; 
