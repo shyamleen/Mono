@@ -733,13 +733,39 @@
                         </ul>
                     </div>
 
-                    <div class="t-art-box scroll-reveal-card">                  Account Name / Title
-    ------------------------------------------------------
-       Left Margin Column      |      Right Margin Column
-                               |
-         DEBIT VALUE           |         CREDIT VALUE
-         Abbreviated (Dr.)     |         Abbreviated (Cr.)
-                               |</div>
+                    <div class="scroll-reveal-card" style="margin: 32px auto; max-width: 600px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04); overflow: hidden;">
+    <div style="background: #0f172a; color: #ffffff; padding: 16px; text-align: center;">
+        <h4 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #38bdf8;">
+            Account Name / Title
+        </h4>
+    </div>
+
+    <div style="display: flex; background: #ffffff; position: relative;">
+        <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #cbd5e1;"></div>
+
+        <div style="flex: 1; padding: 24px 20px; text-align: center; background: #f8fafc; transition: background 0.3s;" 
+             onmouseenter="this.style.background='#eff6ff'" onmouseleave="this.style.background='#f8fafc'">
+            <span style="display: inline-block; background: #dbeafe; color: #1e40af; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; margin-bottom: 12px;">
+                LEFT MARGIN
+            </span>
+            <h5 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #1e293b;">DEBIT</h5>
+            <p style="margin: 0; font-size: 13px; font-family: monospace; color: #64748b; font-weight: 600;">Abbreviated: (Dr.)</p>
+        </div>
+
+        <div style="flex: 1; padding: 24px 20px; text-align: center; background: #ffffff; transition: background 0.3s;" 
+             onmouseenter="this.style.background='#fef2f2'" onmouseleave="this.style.background='#ffffff'">
+            <span style="display: inline-block; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; margin-bottom: 12px;">
+                RIGHT MARGIN
+            </span>
+            <h5 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #1e293b;">CREDIT</h5>
+            <p style="margin: 0; font-size: 13px; font-family: monospace; color: #64748b; font-weight: 600;">Abbreviated: (Cr.)</p>
+        </div>
+    </div>
+
+    <div style="background: #f1f5f9; border-top: 1px solid #e2e8f0; padding: 12px 16px; text-align: center; font-size: 13px; color: #475569; font-weight: 500;">
+        💡 <strong>Pro Tip:</strong> Hover over either column to visualize the accounting balance weights!
+    </div>
+</div>
 
                     <div class="scroll-reveal-card">
                         <h3>The Absolute Accounting Rule of Debits and Credits</h3>
