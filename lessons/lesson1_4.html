@@ -1,59 +1,28 @@
-titleEl.innerText = "Lesson 1.4: Rules for Increasing & Decreasing Accounts";
-                contentEl.innerHTML = `
-                    <div class="scroll-reveal-card revealed">
-                        <p>The core challenge of accounting is mastering the structural logic of changing financial values. If a company acquires heavy manufacturing machinery, pays cash down for inventory, or clears a vendor debt, you must know exactly how to reflect that change across the ledger without breaking the accounting equation.</p>
-                    </div>
-                    
-                    <div class="scroll-reveal-card">
-                        <h3>Deep-Dive Rules for the Core Accounts</h3>
-                        <p>The directional rules governing debits and credits align directly with where an account sits in the accounting equation ($Assets = Liabilities + Owner's Equity$).</p>
-                        <p><strong>1. Asset Accounts (Left Side of the Equation)</strong><br>Because assets are on the left, their "normal" balance is a debit. To increase an asset, you record a debit. To decrease it, you record a credit.</p>
-                        <p><strong>2. Liability and Equity Accounts (Right Side of the Equation)</strong><br>Because these accounts are on the right, their "normal" balance is a credit. To increase them, you record a credit. To decrease them, you record a debit.</p>
-                    </div>
+<div class="scroll-reveal-card">
+    <h2 style="margin-top:0; font-size: 24px; color: #0f172a;">Lesson 1.4: Double-Entry Matrix Rules</h2>
+    <p style="line-height: 1.6; color: #475569;">Under double-entry bookkeeping, total accounting transactions must maintain net equal status across systems. You cannot execute a debit entry without logging an offset matching credit entry.</p>
+</div>
 
-                    <div class="scroll-reveal-card">
-                        <h3>The Expanded Framework: Revenues and Expenses</h3>
-                        <p>Owner's Equity changes over time through everyday trading operations. It increases when the business generates revenue and decreases when it incurs expenses. This gives us two final, critical tracking rules:</p>
-                        <ul>
-                            <li><span class="lazy-hl" data-type="equity">Revenues Increase Equity</span>: Because equity increases with a credit, revenues are increased with a <strong>Credit</strong> entry.</li>
-                            <li><span class="lazy-hl" data-type="liability">Expenses Decrease Equity</span>: Because expenses pull equity down, they do the opposite. Expenses are increased with a <strong>Debit</strong> entry.</li>
-                        </ul>
-                    </div>
-
-                    <div class="scroll-reveal-card">
-                        <h3>The Master Normal Balance Chart</h3>
-                        <table class="acct-table">
-                            <thead>
-                                <th>Account Group</th>
-                                <th>Normal Balance Side</th>
-                                <th>To INCREASE Record</th>
-                                <th>To DECREASE Record</th>
-                            </thead>
-                            <tbody>
-                                <tr><td><strong>Asset</strong></td><td>Debit (Left)</td><td>Debit</td><td>Credit</td></tr>
-                                <tr><td><strong>Liability</strong></td><td>Credit (Right)</td><td>Credit</td><td>Debit</td></tr>
-                                <tr><td><strong>Equity Base</strong></td><td>Credit (Right)</td><td>Credit</td><td>Debit</td></tr>
-                                <tr><td><strong>Revenue</strong></td><td>Credit (Right)</td><td>Credit</td><td>Debit</td></tr>
-                                <tr><td><strong>Expense</strong></td><td>Debit (Left)</td><td>Debit</td><td>Credit</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="scroll-reveal-card">
-                        <h3>Memory Shortcut: The DEALER System</h3>
-                        <p>To make memorizing these rules simple, accountants often divide the word <strong>DEALER</strong> into two clear functional groups:</p>
-                        <ul>
-                            <li><strong>D-E-A (Increased by Debit):</strong> <strong>D</strong>ividends, <strong>E</strong>xpenses, and <strong>A</strong>ssets.</li>
-                            <li><strong>L-E-R (Increased by Credit):</strong> <strong>L</strong>iabilities, <strong>E</strong>quity, and <strong>R</strong>evenue.</li>
-                        </ul>
-                    </div>
-
-                    <div class="quiz-container scroll-reveal-card">
-                        <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>When your business earns revenue by delivering services, how is the increase in Revenue recorded?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb14')">A) With a Debit line entry</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb14')">B) With a Credit line entry</button>
-                        <div id="fb14" class="quiz-feedback"></div>
-                    </div>
-                `;
-            }
+<div class="scroll-reveal-card">
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; text-align: left;">
+        <thead>
+            <tr style="background: #0f172a; color: white;">
+                <th style="padding: 12px; border-radius: 6px 0 0 0;">Account Category</th>
+                <th style="padding: 12px;">Debit (Left Side) Effect</th>
+                <th style="padding: 12px; border-radius: 0 6px 0 0;">Credit (Right Side) Effect</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                <td style="padding: 12px; font-weight: 600; color: #1e40af;">Assets</td>
+                <td style="padding: 12px; color: #16a34a; font-weight:600;">➕ Increases Value</td>
+                <td style="padding: 12px; color: #ef4444;">➖ Decreases Value</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 12px; font-weight: 600; color: #991b1b;">Liabilities</td>
+                <td style="padding: 12px; color: #ef4444;">➖ Decreases Value</td>
+                <td style="padding: 12px; color: #16a34a; font-weight:600;">➕ Increases Value</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
