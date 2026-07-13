@@ -1,0 +1,75 @@
+titleEl.innerText = "Lesson 1.6: Posting Entries to the General Ledger";
+                contentEl.innerHTML = `
+                    <div class="scroll-reveal-card revealed">
+                        <p>While the General Journal serves as a reliable chronological log of daily transactions, it has a major limitation: it doesn't give you instant visibility into individual accounts. If management wants to know the company's real-time cash balance, flipping through thousands of sequential journal entries to calculate the running total would be incredibly inefficient. This is why we use the General Ledger.</p>
+                    </div>
+                    
+                    <div class="scroll-reveal-card">
+                        <h3>What is the General Ledger?</h3>
+                        <p>The General Ledger functions as a well-organized financial library. In this framework, every account (such as Cash, Inventory, and Equipment) has its own dedicated record page. <span class="lazy-hl" data-type="lang">Posting is the mechanical process</span> of transferring data from the chronological General Journal into these specific account ledger pages.</p>
+                    </div>
+
+                    <div class="scroll-reveal-card">
+                        <h3>The Five-Step Posting Routine</h3>
+                        <p>Posting requires no new analysis; it is a systematic data-entry routine designed to build a reliable financial database:</p>
+                        <ol>
+                            <li><strong>Locate the Account:</strong> Find the specific account's dedicated record page in the general ledger.</li>
+                            <li><strong>Transfer the Date:</strong> Enter the exact transaction date from the journal line entry.</li>
+                            <li><strong>Transfer the Value:</strong> Copy the exact dollar amount into the identical column. Journal debits become ledger debits, and journal credits become ledger credits.</li>
+                            <li><strong>Update the Running Balance:</strong> Calculate the new running total for that account immediately after posting the entry.</li>
+                            <li><strong>Record the Posting Reference (Post. Ref.):</strong> Enter the cross-reference code (like J1 for Journal Page 1) in both books to create an easily auditable paper trail.</li>
+                        </ol>
+                    </div>
+
+                    <div class="scroll-reveal-card">
+                        <h3>Visualizing the Data Flow</h3>
+                        <p><strong>General Journal Record Line Example (Page 4)</strong></p>
+                        <table class="acct-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Account Name</th>
+                                    <th>Post. Ref.</th>
+                                    <th>Debit</th>
+                                    <th>Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nov 12</td>
+                                    <td>Supplies<br>&nbsp;&nbsp;&nbsp;&nbsp;Cash</td>
+                                    <td>120<br>101</td>
+                                    <td>$600</td>
+                                    <td><br>$600</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p><strong>Ledger Page Execution View: Cash Account (No. 101)</strong></p>
+                        <table class="acct-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description / Notes</th>
+                                    <th>Post. Ref.</th>
+                                    <th>Debit</th>
+                                    <th>Credit</th>
+                                    <th>Running Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Nov 01</td><td>Opening Balance Brought Forward</td><td>—</td><td>—</td><td>—</td><td>$9,500 (Dr.)</td></tr>
+                                <tr><td>Nov 12</td><td>Office Supplies Purchase</td><td>J4</td><td>—</td><td>$600</td><td><strong>$8,900 (Dr.)</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quiz-container scroll-reveal-card">
+                        <strong>⚡ Quick Checkpoint Quiz:</strong>
+                        <p>What specific name is given to the sorted record book tracking individual running balances?</p>
+                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb16')">A) The General Ledger</button>
+                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb16')">B) The Chronological Daily Journal</button>
+                        <div id="fb16" class="quiz-feedback"></div>
+                    </div>
+                `;
+            }
