@@ -1,135 +1,41 @@
- titleEl.innerText = "Lesson 1.3: The T-Account Visual Mapping Engine";
-                contentEl.innerHTML = `
-                   <div class="scroll-reveal-card TAccountWrapper" style="margin: 32px auto; max-width: 600px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04); overflow: hidden;">
-    
+<div class="scroll-reveal-card">
+    <h2 style="margin-top:0; font-size: 24px; color: #0f172a;">Lesson 1.3: The T-Account System Framework</h2>
+    <p style="line-height: 1.6; color: #475569;">To view historical tracking without creating complicated calculation sheets, accountants use a visual split mapping tool called a T-Account.</p>
+</div>
+
+<div class="scroll-reveal-card TAccountWrapper" style="margin: 32px auto; max-width: 600px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04); overflow: hidden;">
     <style>
-        .TAccountWrapper .debit-side-pane,
-        .TAccountWrapper .credit-side-pane {
-            flex: 1; 
-            padding: 24px 20px; 
-            text-align: center; 
-            transition: background-color 0.25s ease;
-        }
-        /* Hover Side Backgrounds */
-        .TAccountWrapper .debit-side-pane:hover {
-            background-color: #eff6ff !important;
-        }
-        .TAccountWrapper .credit-side-pane:hover {
-            background-color: #fef2f2 !important;
-        }
-
-        /* Inline Slide-Down Hint Banners */
-        .TAccountWrapper .account-slide-hint {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #f8fafc;
-            font-size: 13px;
-            color: #334155;
-            line-height: 1.5;
-        }
-
-        /* Show details on hover */
-        .TAccountWrapper .debit-side-pane:hover .account-slide-hint {
-            max-height: 80px;
-            opacity: 1;
-            padding-top: 12px;
-            margin-top: 12px;
-            border-top: 1px dashed #bfdbfe;
-        }
-        .TAccountWrapper .credit-side-pane:hover .account-slide-hint {
-            max-height: 80px;
-            opacity: 1;
-            padding-top: 12px;
-            margin-top: 12px;
-            border-top: 1px dashed #fecaca;
-        }
+        .TAccountWrapper .debit-side-pane, .TAccountWrapper .credit-side-pane { flex: 1; padding: 24px 20px; text-align: center; transition: background-color 0.25s ease; }
+        .TAccountWrapper .debit-side-pane:hover { background-color: #eff6ff !important; }
+        .TAccountWrapper .credit-side-pane:hover { background-color: #fef2f2 !important; }
+        .TAccountWrapper .account-slide-hint { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: #f8fafc; font-size: 13px; color: #334155; }
+        .TAccountWrapper .debit-side-pane:hover .account-slide-hint { max-height: 80px; opacity: 1; padding-top: 12px; margin-top: 12px; border-top: 1px dashed #bfdbfe; }
+        .TAccountWrapper .credit-side-pane:hover .account-slide-hint { max-height: 80px; opacity: 1; padding-top: 12px; margin-top: 12px; border-top: 1px dashed #fecaca; }
     </style>
 
     <div style="background: #0f172a; color: #ffffff; padding: 16px; text-align: center;">
-        <h4 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #38bdf8;">
-            Account Name / Title
-        </h4>
+        <h4 style="margin: 0; font-size: 16px; font-weight: 700; text-transform: uppercase; color: #38bdf8;">Cash Account / Ledger View</h4>
     </div>
 
     <div style="display: flex; background: #ffffff; position: relative;">
         <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #cbd5e1; z-index: 10;"></div>
 
         <div class="debit-side-pane" style="background: #f8fafc;">
-            <span style="display: inline-block; background: #dbeafe; color: #1e40af; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; margin-bottom: 12px;">
-                LEFT MARGIN
-            </span>
-            <h5 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #1e293b;">DEBIT</h5>
-            <p style="margin: 0; font-size: 13px; font-family: monospace; color: #64748b; font-weight: 600;">Abbreviated: (Dr.)</p>
-            
+            <span style="display: inline-block; background: #dbeafe; color: #1e40af; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 99px; margin-bottom: 8px;">LEFT SIDE</span>
+            <h5 style="margin: 0 0 4px 0; font-size: 18px; font-weight: 800; color: #1e293b;">DEBIT</h5>
+            <p style="margin: 0; font-size: 12px; color: #64748b; font-family: monospace;">(Dr.)</p>
             <div class="account-slide-hint">
-                <span style="color: #2563eb; font-weight: 700;">📈 Increases:</span> Assets & Expenses<br>
-                <span style="color: #64748b; font-weight: 600;">📉 Decreases:</span> Liabilities & Equity
+                <span style="color: #2563eb; font-weight: 700;">📈 Increases:</span> Assets & Expenses
             </div>
         </div>
 
         <div class="credit-side-pane" style="background: #ffffff;">
-            <span style="display: inline-block; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; margin-bottom: 12px;">
-                RIGHT MARGIN
-            </span>
-            <h5 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #1e293b;">CREDIT</h5>
-            <p style="margin: 0; font-size: 13px; font-family: monospace; color: #64748b; font-weight: 600;">Abbreviated: (Cr.)</p>
-            
+            <span style="display: inline-block; background: #fee2e2; color: #991b1b; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 99px; margin-bottom: 8px;">RIGHT SIDE</span>
+            <h5 style="margin: 0 0 4px 0; font-size: 18px; font-weight: 800; color: #1e293b;">CREDIT</h5>
+            <p style="margin: 0; font-size: 12px; color: #64748b; font-family: monospace;">(Cr.)</p>
             <div class="account-slide-hint">
-                <span style="color: #16a34a; font-weight: 700;">📈 Increases:</span> Liabilities, Equity, & Revenue<br>
-                <span style="color: #64748b; font-weight: 600;">📉 Decreases:</span> Assets
+                <span style="color: #16a34a; font-weight: 700;">📈 Increases:</span> Liabilities & Equity
             </div>
         </div>
     </div>
-
-    <div style="background: #f1f5f9; border-top: 1px solid #e2e8f0; padding: 12px 16px; text-align: center; font-size: 13px; color: #475569; font-weight: 500;">
-        💡 <strong>Pro Tip:</strong> Hover over either column to expand and view the golden entry balance rules!
-    </div>
 </div>
-
-                    <div class="scroll-reveal-card">
-                        <h3>The Absolute Accounting Rule of Debits and Credits</h3>
-                        <p>You must completely forget everyday bank terms, where "debiting" a card feels like a reduction. In accounting, <span class="lazy-hl" data-type="lang">"Debit simply means Left, and Credit simply means Right."</span> They are directional instructions, not mathematical symbols. Whether a debit increases or decreases an account depends entirely on what type of account it is.</p>
-                        <ul>
-                            <li><strong>Left-Side Equation Accounts (Assets):</strong> Increased on their natural side—the left (Debit). Decreased on the opposite side—the right (Credit).</li>
-                            <li><strong>Right-Side Equation Accounts (Liabilities & Equity):</strong> Increased on their natural side—the right (Credit). Decreased on the opposite side—the left (Debit).</li>
-                        </ul>
-                    </div>
-
-                    <table class="acct-table scroll-reveal-card">
-                        <thead>
-                            <tr>
-                                <th>Account Classification Block</th>
-                                <th>Left Column Entry (Debit)</th>
-                                <th>Right Column Entry (Credit)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Asset Accounts (e.g., Cash, Supplies, Equipment)</td><td><strong>Increases Account (+)</strong></td><td>Decreases Account (-)</td></tr>
-                            <tr><td>Liability Accounts (e.g., Vendor Payables, Loans)</td><td>Decreases Account (-)</td><td><strong>Increases Account (+)</strong></td></tr>
-                            <tr><td>Owner's Equity Accounts (e.g., Capital Investment)</td><td>Decreases Account (-)</td><td><strong>Increases Account (+)</strong></td></tr>
-                        </tbody>
-                    </table>
-
-                    <div class="scroll-reveal-card">
-                        <h3>Determining Account Balances</h3>
-                        <p>To find the formal closing balance of a T-account at the end of an accounting period, you follow a strict formula:</p>
-                        <ol>
-                            <li>Sum the total dollar values listed in the Left (Debit) column.</li>
-                            <li>Sum the total dollar values listed in the Right (Credit) column.</li>
-                            <li>Subtract the smaller total from the larger total.</li>
-                            <li>Write the remaining difference on the side that had the larger initial sum. This number is your <strong>ending account balance</strong>.</li>
-                        </ol>
-                    </div>
-
-                    <div class="quiz-container scroll-reveal-card">
-                        <strong>⚡ Quick Checkpoint Quiz:</strong>
-                        <p>An account has $12,000 total on its left side and $5,000 total on its right side. What is the ending balance type and amount?</p>
-                        <button class="quiz-option" onclick="checkAnswer(this, true, 'fb13')">A) Debit balance of $7,000</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">B) Credit balance of $7,000</button>
-                        <button class="quiz-option" onclick="checkAnswer(this, false, 'fb13')">C) Debit balance of $17,000</button>
-                        <div id="fb13" class="quiz-feedback"></div>
-                    </div>
-                `;
-            }
