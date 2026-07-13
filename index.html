@@ -727,10 +727,9 @@
             flex: 1; 
             padding: 24px 20px; 
             text-align: center; 
-            transition: all 0.25s ease;
-            position: relative;
+            transition: background-color 0.25s ease;
         }
-        /* Hover Backgrounds */
+        /* Hover Side Backgrounds */
         .TAccountWrapper .debit-side-pane:hover {
             background-color: #eff6ff !important;
         }
@@ -738,31 +737,32 @@
             background-color: #fef2f2 !important;
         }
 
-        /* Tooltip Box Base Settings */
-        .TAccountWrapper .account-hint-box {
-            position: absolute;
-            bottom: 105%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            width: 90%;
-            background: #1e293b;
-            color: #ffffff;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            line-height: 1.4;
-            text-align: left;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        /* Inline Slide-Down Hint Banners */
+        .TAccountWrapper .account-slide-hint {
+            max-height: 0;
             opacity: 0;
-            pointer-events: none;
-            transition: all 0.25s ease;
-            z-index: 100;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #f8fafc;
+            font-size: 13px;
+            color: #334155;
+            line-height: 1.5;
         }
-        /* Reveal Tooltip on Hover */
-        .TAccountWrapper .debit-side-pane:hover .account-hint-box,
-        .TAccountWrapper .credit-side-pane:hover .account-hint-box {
+
+        /* Show details on hover */
+        .TAccountWrapper .debit-side-pane:hover .account-slide-hint {
+            max-height: 80px;
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px dashed #bfdbfe;
+        }
+        .TAccountWrapper .credit-side-pane:hover .account-slide-hint {
+            max-height: 80px;
+            opacity: 1;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px dashed #fecaca;
         }
     </style>
 
@@ -772,40 +772,38 @@
         </h4>
     </div>
 
-    <div style="display: flex; background: #ffffff; position: relative; overflow: visible;">
+    <div style="display: flex; background: #ffffff; position: relative;">
         <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #cbd5e1; z-index: 10;"></div>
 
         <div class="debit-side-pane" style="background: #f8fafc;">
-            <div class="account-hint-box">
-                <strong>📈 Debit Side Rules:</strong><br>
-                Increases Assets & Expenses.<br>
-                Decreases Liabilities & Equity.
-            </div>
-            
             <span style="display: inline-block; background: #dbeafe; color: #1e40af; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; margin-bottom: 12px;">
                 LEFT MARGIN
             </span>
             <h5 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #1e293b;">DEBIT</h5>
             <p style="margin: 0; font-size: 13px; font-family: monospace; color: #64748b; font-weight: 600;">Abbreviated: (Dr.)</p>
+            
+            <div class="account-slide-hint">
+                <span style="color: #2563eb; font-weight: 700;">📈 Increases:</span> Assets & Expenses<br>
+                <span style="color: #64748b; font-weight: 600;">📉 Decreases:</span> Liabilities & Equity
+            </div>
         </div>
 
         <div class="credit-side-pane" style="background: #ffffff;">
-            <div class="account-hint-box">
-                <strong>📉 Credit Side Rules:</strong><br>
-                Increases Liabilities, Equity, & Revenue.<br>
-                Decreases Assets.
-            </div>
-
             <span style="display: inline-block; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 99px; margin-bottom: 12px;">
                 RIGHT MARGIN
             </span>
             <h5 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #1e293b;">CREDIT</h5>
             <p style="margin: 0; font-size: 13px; font-family: monospace; color: #64748b; font-weight: 600;">Abbreviated: (Cr.)</p>
+            
+            <div class="account-slide-hint">
+                <span style="color: #16a34a; font-weight: 700;">📈 Increases:</span> Liabilities, Equity, & Revenue<br>
+                <span style="color: #64748b; font-weight: 600;">📉 Decreases:</span> Assets
+            </div>
         </div>
     </div>
 
     <div style="background: #f1f5f9; border-top: 1px solid #e2e8f0; padding: 12px 16px; text-align: center; font-size: 13px; color: #475569; font-weight: 500;">
-        💡 <strong>Pro Tip:</strong> Hover over either column to visualize the accounting balance weights!
+        💡 <strong>Pro Tip:</strong> Hover over either column to expand and view the golden entry balance rules!
     </div>
 </div>
 
