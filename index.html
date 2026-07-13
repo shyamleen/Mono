@@ -5,90 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mono Academy | Accounting Masterclass</title>
     <style>
-        /* Keep all your original dashboard CSS styles right here */
-        body { font-family: system-ui, sans-serif; background: #f8fafc; margin: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; margin: 0; color: #1e293b; }
         .dashboard-container { display: flex; min-height: 100vh; }
-        .sidebar { width: 260px; background: #0f172a; color: white; padding: 24px; }
-        .main-content { flex: 1; padding: 40px; }
-        .workbook-viewport { background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .sidebar { width: 280px; background: #0f172a; color: white; padding: 24px; box-sizing: border-box; }
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+        .workbook-viewport { background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03); max-width: 800px; margin: 0 auto; }
         
-        /* Your original text-highlighting engine classes */
-        .lazy-hl { transition: background-color 0.3s ease; }
-        .triggered-lang { background-color: #fef08a !important; } /* Yellow */
-        .triggered-asset { background-color: #bfdbfe !important; } /* Blue */
-        .triggered-liability { background-color: #fecaca !important; } /* Red */
-        .triggered-equity { background-color: #bbf7d0 !important; } /* Green */
+        /* Highlighting System */
+        .lazy-hl { transition: background-color 0.3s ease; padding: 2px 4px; border-radius: 4px; font-weight: 500; }
+        .triggered-lang { background-color: #fef08a !important; color: #854d0e; } /* Yellow */
+        .triggered-asset { background-color: #dbeafe !important; color: #1e40af; } /* Blue */
+        .triggered-liability { background-color: #fee2e2 !important; color: #991b1b; } /* Red */
+        .triggered-equity { background-color: #dcfce7 !important; color: #166534; } /* Green */
         
-        .scroll-reveal-card { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .scroll-reveal-card { opacity: 0; transform: translateY(15px); transition: all 0.5s ease; margin-bottom: 24px; }
         .scroll-reveal-card.visible { opacity: 1; transform: translateY(0); }
+        
+        .nav-btn { display: block; width: 100%; text-align: left; background: none; border: none; color: #94a3b8; padding: 10px 12px; cursor: pointer; font-size: 14px; border-radius: 6px; transition: all 0.2s; }
+        .nav-btn:hover { background: #1e293b; color: white; }
     </style>
 </head>
 <body>
 
     <div class="dashboard-container">
         <div class="sidebar">
-            <h2>Mono Academy</h2>
+            <h2 style="margin: 0; font-size: 20px; color: white;">Mono Academy</h2>
             <hr style="border-color: #334155; margin: 20px 0;">
-            <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 12px;"><button onclick="loadLessonContent(1.1)" style="background: none; color: white; border: none; cursor: pointer;">Lesson 1.1: Intro</button></li>
-                <li style="margin-bottom: 12px;"><button onclick="loadLessonContent(1.2)" style="background: none; color: white; border: none; cursor: pointer;">Lesson 1.2: Double-Entry</button></li>
-                <li style="margin-bottom: 12px;"><button onclick="loadLessonContent(1.3)" style="background: none; color: white; border: none; cursor: pointer;">Lesson 1.3: T-Accounts</button></li>
-            </ul>
+            <p style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Module 1: Foundations</p>
+            <button class="nav-btn" onclick="loadLessonContent(1.1)">Lesson 1.1: Introduction</button>
+            <button class="nav-btn" onclick="loadLessonContent(1.2)">Lesson 1.2: Accounting Equation</button>
+            <button class="nav-btn" onclick="loadLessonContent(1.3)">Lesson 1.3: T-Accounts System</button>
+            <button class="nav-btn" onclick="loadLessonContent(1.4)">Lesson 1.4: Rules of Debit & Credit</button>
+            <button class="nav-btn" onclick="loadLessonContent(1.5)">Lesson 1.5: Ledger Posting</button>
+            <button class="nav-btn" onclick="loadLessonContent(1.6)">Lesson 1.6: Trial Balance Intro</button>
         </div>
 
         <div class="main-content">
             <div id="workbook-content-area" class="workbook-viewport">
-                <h3>Welcome back!</h3>
-                <p>Select a lesson from the sidebar module menu to start exploring core calculations.</p>
+                <h2 style="margin-top: 0;">Welcome to Mono Academy!</h2>
+                <p>Please choose a lesson from the sidebar outline on the left to pull its ledger models into your view screen.</p>
             </div>
         </div>
     </div>
 
     <script>
-        // FUNCTION A: The Dynamic File Loader
         function loadLessonContent(lessonId) {
             const container = document.getElementById("workbook-content-area");
             
-            // Map the clicked ID directly to your new clean sub-files
-            let fileName = "";
-            if (lessonId === 1.1) fileName = "lessons/lesson1_1.html";
-            else if (lessonId === 1.2) fileName = "lessons/lesson1_2.html";
-            else if (lessonId === 1.3) fileName = "lessons/lesson1_3.html";
-            
-            if (!fileName) return;
+            // Map the selection parameter directly to your sub-files directory
+            let fileName = `lessons/lesson1_${lessonId.toString().split('.')[1]}.html`;
 
-            // Fetch the content file automatically over your local connection
             fetch(fileName)
                 .then(response => {
-                    if (!response.ok) throw new Error("Lesson file could not be fetched.");
+                    if (!response.ok) throw new Error("Lesson file context missing.");
                     return response.text();
                 })
                 .then(htmlContent => {
-                    // Inject the lesson file directly into the container viewport
                     container.innerHTML = htmlContent;
-                    
-                    // REBOOT the scroll highlights so they scan your fresh text content!
                     runScrollHighlightEngine();
                 })
                 .catch(error => {
-                    console.error("Error:", error);
-                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600;">⚠️ Error loading lesson file contents.</p>`;
+                    console.error(error);
+                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600;">⚠️ Could not fetch lesson elements.</p>`;
                 });
         }
 
-        // FUNCTION B: Your Highlight & Reveal Animation Setup
         function runScrollHighlightEngine() {
-            const revealCards = document.querySelectorAll('.scroll-reveal-card');
-            const highlightSpans = document.querySelectorAll('.lazy-hl');
-
-            // Setup your intersection observers or scroll listeners here
-            console.log("Highlight engine rebooted for new text layout blocks!");
-            
-            // Simple mockup behavior: Make everything visible immediately on inject
-            revealCards.forEach(card => card.classList.add('visible'));
-            highlightSpans.forEach(span => {
+            // Instant load initialization block to ensure stability inside sub-components
+            document.querySelectorAll('.scroll-reveal-card').forEach(card => card.classList.add('visible'));
+            document.querySelectorAll('.lazy-hl').forEach(span => {
                 const type = span.getAttribute('data-type');
-                span.classList.add(`triggered-${type}`);
+                if(type) span.classList.add(`triggered-${type}`);
             });
         }
     </script>
