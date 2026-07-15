@@ -18,9 +18,9 @@
         </div>
     </div>
 
-    <div style="background: #fdfaf6; border: 1px solid #fed7aa; border-radius: 16px; padding: 20px; margin-bottom: 24px; position: relative; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="background: #fdfaf6; border: 1px solid #fed7aa; border-radius: 16px; padding: 20px; margin-bottom: 24px; position: relative; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
         
-        <div style="display: flex; justify-content: space-around; align-items: flex-end; flex-grow: 1; margin-bottom: 12px;" id="bakery-kitchen-view">
+        <div style="display: flex; justify-content: flex-start; align-items: flex-end; flex-wrap: wrap; gap: 8px; flex-grow: 1; margin-bottom: 12px; width: 100%; max-width: 100%; overflow: hidden;" id="bakery-kitchen-view">
             </div>
 
         <div style="height: 8px; background: #f0a973; border-radius: 4px; width: 100%; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);"></div>
@@ -83,7 +83,7 @@
             </span>
         </div>
 
-        <div id="sim-display-mockup" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; font-family: 'Courier New', Courier, monospace; font-size: 14px; font-weight: 600; padding: 18px; border-radius: 10px; min-height: 90px; line-height: 1.5; display: flex; align-items: center; margin-bottom: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+        <div id="sim-display-mockup" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; font-family: 'Courier New', Courier, monospace; font-size: 13px; font-weight: 600; padding: 18px; border-radius: 10px; min-height: 110px; line-height: 1.6; display: flex; flex-direction: column; justify-content: center; margin-bottom: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;">
             🔍 [Economic Event]: Sold baking goods to a customer for $100 cash. Invoice receipt generated.
         </div>
 
@@ -116,44 +116,50 @@
     let bakeryCash = 150;
     let bakeryInventory = 5;
 
-    // Helper to render cute cupcakes and flour bags inside the kitchen box
+    // Helper to render cute cupcakes and flour bags inside the kitchen box safely
     function renderBakeryKitchen() {
         const view = document.getElementById("bakery-kitchen-view");
         if (!view) return;
 
         let elementsHtml = "";
 
+        // Wrap ingredients in a flex-container block to prevent grid clipping
+        elementsHtml += `<div style="display: flex; gap: 4px; flex-wrap: wrap; align-items: flex-end; max-width: 70%;">`;
+
         // Render flour & sugar bags based on inventory
         for (let i = 0; i < bakeryInventory; i++) {
-            // Stack them offset slightly for style
             elementsHtml += `
-                <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: -2px; transition: all 0.3s ease;">
-                    <span style="font-size: 28px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));">🌾</span>
-                    <span style="font-size: 9px; background: #e0f2fe; color: #0369a1; padding: 1px 4px; border-radius: 4px; font-weight: 700; margin-top: -4px;">flour</span>
+                <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2px;">
+                    <span style="font-size: 24px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));">🌾</span>
+                    <span style="font-size: 8px; background: #e0f2fe; color: #0369a1; padding: 1px 3px; border-radius: 4px; font-weight: 700; margin-top: -2px;">flour</span>
                 </div>
             `;
         }
 
+        elementsHtml += `</div><div style="display: flex; gap: 6px; align-items: flex-end; margin-left: auto;">`;
+
         // Render baked display cupcakes
-        const cupcakeCount = Math.min(bakeryInventory * 2, 6); // Max 6 visual cupcakes
+        const cupcakeCount = Math.min(bakeryInventory * 2, 4); // Capped to look tidy
         for (let i = 0; i < cupcakeCount; i++) {
             elementsHtml += `
                 <div style="display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05)); animation: bounce 1.5s infinite alternate; animation-delay: ${i * 0.1}s;">
-                    <span style="font-size: 32px;">🧁</span>
+                    <span style="font-size: 28px;">🧁</span>
                 </div>
             `;
         }
 
         // Add a cute little decorative oven
         elementsHtml += `
-            <div style="background: #e2e8f0; border: 3px solid #cbd5e1; border-radius: 8px; width: 56px; height: 50px; display: flex; align-items: center; justify-content: center; position: relative;">
-                <div style="background: #f97316; border-radius: 4px; width: 38px; height: 18px; margin-top: 10px; box-shadow: inset 0 0 8px #ea580c; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; font-weight: 800;">
+            <div style="background: #e2e8f0; border: 3px solid #cbd5e1; border-radius: 8px; width: 50px; height: 46px; display: flex; align-items: center; justify-content: center; position: relative; margin-left: 10px;">
+                <div style="background: #f97316; border-radius: 4px; width: 34px; height: 16px; margin-top: 10px; box-shadow: inset 0 0 8px #ea580c; display: flex; align-items: center; justify-content: center; font-size: 8px; color: white; font-weight: 800;">
                     ${bakeryInventory > 0 ? '♨️' : 'OFF'}
                 </div>
-                <div style="position: absolute; top: 4px; left: 4px; background: #475569; width: 6px; height: 6px; border-radius: 50%;"></div>
-                <div style="position: absolute; top: 4px; right: 4px; background: #ef4444; width: 6px; height: 6px; border-radius: 50%;"></div>
+                <div style="position: absolute; top: 4px; left: 4px; background: #475569; width: 5px; height: 5px; border-radius: 50%;"></div>
+                <div style="position: absolute; top: 4px; right: 4px; background: #ef4444; width: 5px; height: 5px; border-radius: 50%;"></div>
             </div>
         `;
+
+        elementsHtml += `</div>`;
 
         view.innerHTML = elementsHtml;
         
@@ -269,7 +275,7 @@
         1: {
             badge: "Step 1 of 8",
             title: "Identify Transaction",
-            mockup: `🔍 <span style="color:#0369a1;">[Economic Event]</span><br>Sold baked goods to a customer for $100 cash. Receipt #204 generated.`,
+            mockup: `🔍 [Economic Event]\n\nSold baked goods to a customer for $100 cash. Receipt #204 generated.`,
             desc: "The business analyzes the cash register receipt to verify that a real financial transaction occurred.",
             badgeBg: "#e0f2fe",
             badgeText: "#0369a1"
@@ -277,7 +283,7 @@
         2: {
             badge: "Step 2 of 8",
             title: "Record in a Journal",
-            mockup: `✏️ <span style="color:#059669;">[General Journal - Nov 1]</span><br>DEBIT: Cash ............. $100<br>&nbsp;&nbsp;CREDIT: Sales Revenue ..... $100`,
+            mockup: `✏️ [General Journal - Nov 1]\n\nDEBIT: Cash ................. $100\nCREDIT: Sales Revenue ....... $100`,
             desc: "The transaction is typed in chronological order inside the general journal using balanced debit and credit values.",
             badgeBg: "#d1fae5",
             badgeText: "#065f46"
@@ -285,7 +291,7 @@
         3: {
             badge: "Step 3 of 8",
             title: "Post to General Ledger",
-            mockup: `📖 <span style="color:#7c3aed;">[Cash Ledger File]</span><br>--- DR (Debit Side) ---<br>Nov 1 Posting: +$100<br>Current Balance: $100`,
+            mockup: `📖 [Cash Ledger File]\n\n--- DR (Debit Side) ---\nNov 1 Posting: +$100\nCurrent Balance: $100`,
             desc: "The transaction information is copied from the journal into its dedicated T-Account file to keep total balances clean.",
             badgeBg: "#f5f3ff",
             badgeText: "#6d28d9"
@@ -293,7 +299,7 @@
         4: {
             badge: "Step 4 of 8",
             title: "Prepare Trial Balance",
-            mockup: `⚖️ <span style="color:#d97706;">[Trial Balance Sheet]</span><br>Cash Balance: DR $100<br>Revenue Balance: CR $100<br>TOTALS: DR $100 | CR $100 ✅`,
+            mockup: `⚖️ [Trial Balance Sheet]\n\nCash Balance: DR $100\nRevenue Balance: CR $100\nTOTALS: DR $100 | CR $100  ✅`,
             desc: "All active ledger totals are laid out in a sheet to prove that overall debits perfectly equal overall credits.",
             badgeBg: "#fef3c7",
             badgeText: "#92400e"
@@ -301,7 +307,7 @@
         5: {
             badge: "Step 5 of 8",
             title: "Analyze & Adjust",
-            mockup: `🔍 <span style="color:#db2777;">[Worksheet Check]</span><br>Wait! $10 of baking ingredients used up this month haven't been accounted for yet!`,
+            mockup: `🔍 [Worksheet Check]\n\nWait! $10 of baking ingredients used up this month haven't been accounted for yet!`,
             desc: "We look over the worksheet to see if there are any hidden costs, accruals, or asset depreciation to record before the month closes.",
             badgeBg: "#fce7f3",
             badgeText: "#9d174d"
@@ -309,7 +315,7 @@
         6: {
             badge: "Step 6 of 8",
             title: "Adjusting Journal Entries",
-            mockup: `⚙️ <span style="color:#dc2626;">[Adjusting Entries]</span><br>DEBIT: Supplies Expense ..... $10<br>&nbsp;&nbsp;CREDIT: Supplies (Asset) .... $10`,
+            mockup: `⚙️ [Adjusting Entries]\n\nDEBIT: Supplies Expense ..... $10\nCREDIT: Supplies (Asset) .... $10`,
             desc: "Adjusting entries are written to recognize unrecorded expenses, matching our expenses to the exact timeframe they were consumed.",
             badgeBg: "#fee2e2",
             badgeText: "#991b1b"
@@ -317,7 +323,7 @@
         7: {
             badge: "Step 7 of 8",
             title: "Financial Statements",
-            mockup: `📈 <span style="color:#0d9488;">[Income Statement]</span><br>Revenue: $100<br>Less Expenses: ($10)<br>NET INCOME: $90`,
+            mockup: `📈 [Income Statement]\n\nRevenue: $100\nLess Expenses: ($10)\nNET INCOME: $90`,
             desc: "The actual performance reports—including the Income Statement and Balance Sheet—are built for managers and banks.",
             badgeBg: "#ccfbf1",
             badgeText: "#115e59"
@@ -325,7 +331,7 @@
         8: {
             badge: "Step 8 of 8",
             title: "Close the Books",
-            mockup: `🏁 <span style="color:#4b5563;">[Closing Sequence]</span><br>Clear Sales Revenue to $0.<br>Clear Expenses to $0.<br>Transfer Net Income ($90) into Equity!`,
+            mockup: `🏁 [Closing Sequence]\n\nClear Sales Revenue to $0.\nClear Expenses to $0.\nTransfer Net Income ($90) into Equity!`,
             desc: "Temporary income and expense accounts are reset to zero so the system is clean and ready to track the next period's activities!",
             badgeBg: "#f3f4f6",
             badgeText: "#374151"
@@ -341,7 +347,7 @@
         badge.style.color = data.badgeText;
         
         document.getElementById("sim-step-title").innerHTML = data.title;
-        document.getElementById("sim-display-mockup").innerHTML = data.mockup;
+        document.getElementById("sim-display-mockup").textContent = data.mockup;
         document.getElementById("sim-description").innerHTML = data.desc;
 
         // Button visibility toggles
