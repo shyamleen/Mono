@@ -65,48 +65,56 @@
             border-color: #38bdf8;
         }
 
-        /* Sidebar Notes Display List */
-        .sidebar-notes-section {
-            border-top: 1px solid #334155;
-            padding-top: 16px;
-            max-height: 220px;
-            overflow-y: auto;
+        /* Journal Page Layout */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 24px;
         }
-        .sidebar-note-item {
-            background: #1e293b;
-            border-radius: 6px;
-            padding: 8px 10px;
-            margin-bottom: 8px;
-            font-size: 12px;
-            border-left: 3px solid #38bdf8;
+        .journal-note-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
             position: relative;
+            transition: all 0.2s;
         }
-        .sidebar-note-quote {
+        .journal-note-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .journal-note-quote {
+            font-size: 13px;
             font-style: italic;
-            color: #94a3b8;
-            margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .sidebar-note-text {
-            color: #f1f5f9;
-            font-weight: 500;
-            word-break: break-word;
-        }
-        .delete-note-btn {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            background: none;
-            border: none;
             color: #64748b;
-            cursor: pointer;
-            font-size: 11px;
-            padding: 2px;
+            border-left: 3px solid #38bdf8;
+            padding-left: 12px;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
-        .delete-note-btn:hover {
+        .journal-note-text {
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .delete-journal-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #fee2e2;
             color: #ef4444;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .delete-journal-btn:hover {
+            background: #fecaca;
         }
     </style>
 </head>
@@ -149,13 +157,11 @@
                 </button>
             </div>
 
-            <div class="sidebar-notes-section">
-                <p style="font-size: 11px; color: #38bdf8; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.05em; display: flex; justify-content: space-between;">
-                    <span>📝 My Study Notes</span>
-                </p>
-                <div id="sidebar-notes-list">
-                    <p style="font-size: 11px; color: #475569; margin: 0; font-style: italic;">Highlight text in lessons to take a note!</p>
-                </div>
+            <div style="border-top: 1px solid #334155; padding-top: 16px;">
+                <button class="nav-btn" id="nav-notes" onclick="loadNotesPage()">
+                    <span style="display: flex; align-items: center; gap: 8px;">📝 My Study Notes</span>
+                    <span id="notes-counter-badge" style="background: #38bdf8; color: #0f172a; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 99px; transition: all 0.2s;">0</span>
+                </button>
             </div>
         </div>
 
@@ -196,9 +202,24 @@
         window.addEventListener('DOMContentLoaded', () => {
             loadDashboard();
             updateSidebarVisuals();
-            renderSavedNotes();
+            updateNotesBadge();
             initHighlightListener();
         });
+
+        // Update the visual notes counter badge in the sidebar
+        function updateNotesBadge() {
+            const badge = document.getElementById("notes-counter-badge");
+            if (badge) {
+                badge.textContent = studyNotes.length;
+                if (studyNotes.length > 0) {
+                    badge.style.background = "#38bdf8";
+                    badge.style.color = "#0f172a";
+                } else {
+                    badge.style.background = "#334155";
+                    badge.style.color = "#94a3b8";
+                }
+            }
+        }
 
         // FUNCTION 1: Generate the dynamic dashboard tracking board
         function loadDashboard() {
@@ -360,15 +381,12 @@
         // ACTIVE READING: HIGHLIGHT & NOTE ENGINE
         // ==========================================
         function initHighlightListener() {
-            // Listen for highlights in the content viewport area
             document.getElementById("workbook-content-area").addEventListener("mouseup", handleTextSelection);
             document.getElementById("workbook-content-area").addEventListener("touchend", handleTextSelection);
 
-            // Close popup if clicking outside of it
             document.addEventListener("mousedown", (e) => {
                 const popup = document.getElementById("floating-note-box");
                 if (popup.style.display === "block" && !popup.contains(e.target)) {
-                    // Slight delay to prevent immediate closing during text selection
                     setTimeout(closeNotePopup, 100);
                 }
             });
@@ -377,7 +395,6 @@
         function handleTextSelection(event) {
             const selectedText = window.getSelection().toString().trim();
             
-            // Limit triggering to selections longer than 3 characters
             if (selectedText.length > 3) {
                 selectedQuoteText = selectedText;
                 
@@ -386,15 +403,13 @@
                 const inputField = document.getElementById("popup-note-input");
                 
                 selectedDisplay.textContent = `"${selectedText}"`;
-                inputField.value = ""; // Clear old notes input
+                inputField.value = "";
 
-                // Find highlighting boundary positions for relative coordinate mapping
                 const selection = window.getSelection();
                 if (selection.rangeCount > 0) {
                     const range = selection.getRangeAt(0);
                     const rect = range.getBoundingClientRect();
                     
-                    // Add scrolling offsets to match viewport coordinate mappings
                     popup.style.top = `${rect.bottom + window.scrollY + 8}px`;
                     popup.style.left = `${rect.left + window.scrollX}px`;
                     popup.style.display = "block";
@@ -420,31 +435,68 @@
             studyNotes.push(newNote);
             localStorage.setItem('mono_study_notes', JSON.stringify(studyNotes));
             
-            renderSavedNotes();
+            updateNotesBadge();
             closeNotePopup();
-            window.getSelection().removeAllRanges(); // Deselect highlighted text
+            window.getSelection().removeAllRanges();
         }
 
-        function deleteNote(noteId) {
-            studyNotes = studyNotes.filter(note => note.id !== noteId);
-            localStorage.setItem('mono_study_notes', JSON.stringify(studyNotes));
-            renderSavedNotes();
-        }
+        // ==========================================
+        // STUDY JOURNAL (DEDICATED FULL-PAGE VIEW)
+        // ==========================================
+        function loadNotesPage() {
+            // Remove active highlight from all sidebar lesson tabs
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('nav-notes').classList.add('active');
 
-        function renderSavedNotes() {
-            const listContainer = document.getElementById("sidebar-notes-list");
+            const container = document.getElementById("workbook-content-area");
+
             if (studyNotes.length === 0) {
-                listContainer.innerHTML = `<p style="font-size: 11px; color: #475569; margin: 0; font-style: italic;">Highlight text in lessons to take a note!</p>`;
+                container.innerHTML = `
+                    <div style="margin-bottom: 24px;">
+                        <span style="background: rgba(15, 23, 42, 0.05); color: #0f172a; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 99px; text-transform: uppercase;">Study Tools</span>
+                        <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Your Study Notes Journal</h1>
+                        <p style="margin: 0; color: #64748b; font-size: 14px;">Your personal storage locker for lesson selections, definitions, and reminders.</p>
+                    </div>
+                    
+                    <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 16px; padding: 60px 40px; text-align: center; margin-top: 32px;">
+                        <span style="font-size: 48px;">📝</span>
+                        <h3 style="margin: 16px 0 8px 0; font-size: 18px; color: #0f172a;">No study notes saved yet!</h3>
+                        <p style="margin: 0; color: #64748b; font-size: 14px; max-width: 400px; margin: 0 auto; line-height: 1.5;">
+                            When reading your workbook lessons, highlight any text (definitions, steps, formulas) and use the interactive notepad popup to write down your notes.
+                        </p>
+                    </div>
+                `;
                 return;
             }
 
-            listContainer.innerHTML = studyNotes.map(note => `
-                <div class="sidebar-note-item">
-                    <button class="delete-note-btn" onclick="deleteNote(${note.id})" title="Delete Note">✕</button>
-                    <div class="sidebar-note-quote" title="${note.quote.replace(/"/g, '&quot;')}">"${note.quote}"</div>
-                    <div class="sidebar-note-text">${note.text}</div>
+            const notesCardsHtml = studyNotes.map(note => `
+                <div class="journal-note-card" id="note-card-${note.id}">
+                    <button class="delete-journal-btn" onclick="deleteNoteFromJournal(${note.id})">Delete Note</button>
+                    <div class="journal-note-quote">"${note.quote}"</div>
+                    <div class="journal-note-text">${note.text}</div>
                 </div>
             `).join('');
+
+            container.innerHTML = `
+                <div style="margin-bottom: 24px;">
+                    <span style="background: rgba(15, 23, 42, 0.05); color: #0f172a; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 99px; text-transform: uppercase;">Study Tools</span>
+                    <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Your Study Notes Journal</h1>
+                    <p style="margin: 0; color: #64748b; font-size: 14px;">Your personal storage locker for lesson selections, definitions, and reminders.</p>
+                </div>
+
+                <div class="notes-grid">
+                    ${notesCardsHtml}
+                </div>
+            `;
+        }
+
+        // Delete function optimized for the full-page view
+        function deleteNoteFromJournal(noteId) {
+            studyNotes = studyNotes.filter(note => note.id !== noteId);
+            localStorage.setItem('mono_study_notes', JSON.stringify(studyNotes));
+            
+            updateNotesBadge();
+            loadNotesPage(); // Re-render the full-page journal automatically
         }
     </script>
 </body>
