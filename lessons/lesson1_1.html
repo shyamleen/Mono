@@ -1,29 +1,303 @@
 <div class="scroll-reveal-card">
-    <h2 style="margin-top:0; font-size: 24px; color: #0f172a;">Lesson 1.1: Introduction to Corporate Tracking</h2>
-    <p style="line-height: 1.6; color: #475569;">Imagine launching an independent custom sneaker design workspace with your friends. You write down your plan, lease a commercial printer, buy blank structural shoes, purchase heavy industrial paints, and launch a storefront. After operating, how do you track if you are making money or just burning through gear?</p>
+    <h2 style="margin-top:0; font-size: 24px; color: #0f172a;">Lesson 1.1: Introduction to Accounting</h2>
+    <p style="line-height: 1.6; color: #475569;">Let’s try to run a business <em>without</em> knowing or using accounting first and see what happens...</p>
+</div>
+
+<div class="scroll-reveal-card" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 32px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 16px; margin-bottom: 20px;">
+        <h3 style="margin: 0; font-size: 18px; color: #0f172a;">🧁 Chaos Bakery Simulator</h3>
+        <div style="background: #fef2f2; color: #ef4444; font-weight: 700; font-size: 13px; padding: 4px 12px; border-radius: 99px;" id="bakery-status-tag">
+            Status: Flying Blind
+        </div>
+    </div>
+
+    <p style="margin: 0 0 16px 0; font-size: 14px; color: #475569; line-height: 1.5;">
+        You've opened a bakery! Customers are lining up. Click the actions below to bake and make deals—but remember, you aren't keeping any books or tracking expenses!
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+        <div style="background: #f8fafc; padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase;">Estimated Cash</div>
+            <div style="font-size: 20px; font-weight: 800; color: #0f172a;" id="bakery-cash">$150</div>
+        </div>
+        <div style="background: #f8fafc; padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase;">Flour & Sugar Stock</div>
+            <div style="font-size: 20px; font-weight: 800; color: #0f172a;" id="bakery-inventory">5 Batches</div>
+        </div>
+    </div>
+
+    <div style="background: #0f172a; color: #38bdf8; font-family: monospace; font-size: 12px; padding: 12px; border-radius: 8px; min-height: 60px; margin-bottom: 20px;" id="bakery-log">
+        &gt; Bakery opened. Ready to make cash? Click an action below!
+    </div>
+
+    <div style="display: flex; gap: 12px;" id="bakery-actions">
+        <button onclick="playBakeryTurn('sell')" style="flex: 1; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer;">
+            ⚡ Sell 3 Cupcakes (+$15)
+        </button>
+        <button onclick="playBakeryTurn('buy')" style="flex: 1; background: #3b82f6; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer;">
+            🌾 Buy Supplies (-$40)
+        </button>
+    </div>
+
+    <div id="bakery-restart" style="display: none; text-align: center; margin-top: 12px;">
+        <button onclick="resetBakeryGame()" style="background: #64748b; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+            🔄 Try Again
+        </button>
+    </div>
 </div>
 
 <div class="scroll-reveal-card">
-    <h3 style="font-size: 18px; color: #0f172a;">What is Accounting?</h3>
-    <p style="line-height: 1.6; color: #475569;">Accounting operates uniformly as the <span class="lazy-hl" data-type="lang">"universal language of business."</span> It is a systematically standardized data framework created to <span class="lazy-hl" data-type="lang">"measure, record, analyze, and classify"</span> financial records across platforms.</p>
+    <h3 style="font-size: 20px; color: #0f172a; margin-top: 32px;">What is accounting?</h3>
+    <p style="line-height: 1.6; color: #475569; font-size: 15px;">
+        Accounting is known as the <span class="lazy-hl" data-type="lang">language of business</span>. In simple terms, It’s a framework that allows us to <span class="lazy-hl" data-type="lang">measure, record, analyze, and classify</span> financial information.
+    </p>
 </div>
 
 <div class="scroll-reveal-card">
-    <h3 style="font-size: 18px; color: #0f172a; margin-bottom: 16px;">The Operational Core Functions</h3>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; gap: 16px; background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #2563eb; padding: 16px; border-radius: 8px;">
-            <div style="font-size: 20px;">📝</div>
+    <h3 style="font-size: 20px; color: #0f172a; margin-top: 32px; margin-bottom: 8px;">What happens in an accounting cycle that helps us run a business?</h3>
+    <p style="color: #64748b; font-size: 14px; margin: 0 0 20px 0;">The accounting cycle is a standardized, step-by-step process used to capture and organize financial data. Here is the lifecycle of every transaction:</p>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">1</div>
             <div>
-                <h4 style="margin: 0 0 4px 0; font-size: 15px; font-weight: 600;">Chronological Recording</h4>
-                <p style="margin: 0; font-size: 13px; color: #475569;">Aggregating all monetary transfers, invoicing, resource acquisitions, and expenditure values immediately at source entry.</p>
+                <strong style="color: #0f172a;">Identify Transactions:</strong> 
+                <span style="font-size: 14px; color: #475569;">Locate and analyze economic events, such as sales, vendor payments, or receipt of invoices.</span>
             </div>
         </div>
-        <div style="display: flex; gap: 16px; background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #10b981; padding: 16px; border-radius: 8px;">
-            <div style="font-size: 20px;">📊</div>
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">2</div>
             <div>
-                <h4 style="margin: 0 0 4px 0; font-size: 15px; font-weight: 600;">Systematic Summarization</h4>
-                <p style="margin: 0; font-size: 13px; color: #475569;">Classifying diverse corporate data metrics into clear, audit-ready structures known globally as financial statements.</p>
+                <strong style="color: #0f172a;">Record in a Journal:</strong> 
+                <span style="font-size: 14px; color: #475569;">Log transactions chronologically using double-entry bookkeeping, ensuring every debit has a matching credit.</span>
+            </div>
+        </div>
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">3</div>
+            <div>
+                <strong style="color: #0f172a;">Post to the General Ledger:</strong> 
+                <span style="font-size: 14px; color: #475569;">Transfer journal entries into specific accounts to maintain a categorized record of all activity.</span>
+            </div>
+        </div>
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">4</div>
+            <div>
+                <strong style="color: #0f172a;">Prepare Unadjusted Trial Balance:</strong> 
+                <span style="font-size: 14px; color: #475569;">Summarize the ledger at the end of the period to verify that total debits equal total credits.</span>
+            </div>
+        </div>
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">5</div>
+            <div>
+                <strong style="color: #0f172a;">Analyze the Worksheet & Identify Adjustments:</strong> 
+                <span style="font-size: 14px; color: #475569;">Evaluate the trial balance to spot errors or missing entries.</span>
+            </div>
+        </div>
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">6</div>
+            <div>
+                <strong style="color: #0f172a;">Record Adjusting Journal Entries:</strong> 
+                <span style="font-size: 14px; color: #475569;">Account for accruals, deferrals, and depreciation to align with core accounting principles.</span>
+            </div>
+        </div>
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">7</div>
+            <div>
+                <strong style="color: #0f172a;">Generate Financial Statements:</strong> 
+                <span style="font-size: 14px; color: #475569;">Prepare primary financial reports—the Income Statement, Balance Sheet, and Cash Flow Statement.</span>
+            </div>
+        </div>
+        <div style="display: flex; gap: 12px; background: #fff; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 8px;">
+            <div style="background: #dbeafe; color: #1e40af; font-weight: 800; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;">8</div>
+            <div>
+                <strong style="color: #0f172a;">Close the Books:</strong> 
+                <span style="font-size: 14px; color: #475569;">Transfer balances from temporary accounts (revenues and expenses) to permanent equity accounts, resetting the temporary accounts to zero for the next period.</span>
             </div>
         </div>
     </div>
 </div>
+
+<div class="scroll-reveal-card" style="margin-top: 32px;">
+    <p style="line-height: 1.6; color: #475569;">We will be looking into these more deeply in the next lessons.</p>
+    <p style="line-height: 1.6; color: #475569;">For now, look at the simulation of a business doing these steps to get a better understanding.</p>
+</div>
+
+<div class="scroll-reveal-card" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-top: 24px;">
+    <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #0f172a;">⚙️ Live Accounting Cycle Simulator</h3>
+    <p style="margin: 0 0 20px 0; font-size: 13px; color: #64748b;">Step through a clean, tracked transaction using the official cycle steps:</p>
+    
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span id="sim-step-badge" style="background: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; text-transform: uppercase;">
+                Step 1 of 8
+            </span>
+            <span id="sim-step-title" style="font-size: 13px; font-weight: 700; color: #0f172a;">
+                Identify Transaction
+            </span>
+        </div>
+
+        <div id="sim-display-mockup" style="background: #0f172a; color: #e2e8f0; font-family: monospace; font-size: 13px; padding: 16px; border-radius: 8px; min-height: 80px; display: flex; align-items: center; margin-bottom: 16px;">
+            🔍 [Economic Event]: Sold baking goods to a customer for $100 cash. Invoice receipt generated.
+        </div>
+
+        <p id="sim-description" style="margin: 0; font-size: 13px; color: #475569; line-height: 1.5;">
+            The business analyzes a receipt to confirm a real financial transaction occurred.
+        </p>
+    </div>
+
+    <div style="display: flex; gap: 12px; justify-content: space-between;">
+        <button onclick="prevSimStep()" id="sim-prev-btn" style="background: #e2e8f0; color: #475569; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; visibility: hidden;">
+            Previous Step
+        </button>
+        <button onclick="nextSimStep()" id="sim-next-btn" style="background: #0f172a; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            Next Step ➡️
+        </button>
+    </div>
+</div>
+
+<script>
+    // Game 1 State (Chaos Bakery)
+    let bakeryTurn = 0;
+    let bakeryCash = 150;
+    let bakeryInventory = 5;
+
+    function playBakeryTurn(action) {
+        bakeryTurn++;
+        const log = document.getElementById("bakery-log");
+        const cashDisplay = document.getElementById("bakery-cash");
+        const invDisplay = document.getElementById("bakery-inventory");
+
+        if (action === 'sell') {
+            if (bakeryInventory <= 0) {
+                log.innerHTML = "❌ Out of ingredients! You have to buy supplies first before you can bake cupcakes!";
+                return;
+            }
+            bakeryInventory -= 1;
+            bakeryCash += 15;
+            
+            // Chaos Event (Unseen overhead fees!)
+            let eventMsg = "";
+            if (bakeryTurn === 2) {
+                bakeryCash -= 35;
+                eventMsg = " (Wait, a $35 utility bill autopaid itself!)";
+            } else if (bakeryTurn === 4) {
+                bakeryCash -= 80;
+                eventMsg = " (Oh no, the shop landlord charged $80 rent!)";
+            }
+
+            log.innerHTML = `🧁 Sold 3 cupcakes for $15!${eventMsg}`;
+        } else if (action === 'buy') {
+            bakeryCash -= 40;
+            bakeryInventory += 5;
+            log.innerHTML = `🌾 Bought ingredients. Inventory restocked!`;
+        }
+
+        // Render Updates
+        cashDisplay.innerHTML = `$${bakeryCash}`;
+        invDisplay.innerHTML = `${bakeryInventory} Batches`;
+
+        // Check lose condition
+        if (bakeryCash <= 0) {
+            log.innerHTML = `🚨 GAME OVER! Your cash dropped to $${bakeryCash}. Because you weren't keeping track of rent or utilities, your bakery ran out of money! This is why we need accounting.`;
+            document.getElementById("bakery-actions").style.display = "none";
+            document.getElementById("bakery-status-tag").innerHTML = "Status: Bankrupt!";
+            document.getElementById("bakery-restart").style.display = "block";
+        }
+    }
+
+    function resetBakeryGame() {
+        bakeryTurn = 0;
+        bakeryCash = 150;
+        bakeryInventory = 5;
+        document.getElementById("bakery-cash").innerHTML = "$150";
+        document.getElementById("bakery-inventory").innerHTML = "5 Batches";
+        document.getElementById("bakery-log").innerHTML = "&gt; Bakery opened. Ready to make cash? Click an action below!";
+        document.getElementById("bakery-actions").style.display = "flex";
+        document.getElementById("bakery-status-tag").innerHTML = "Status: Flying Blind";
+        document.getElementById("bakery-restart").style.display = "none";
+    }
+
+    // Game 2 State (Structured Accounting Simulation)
+    let currentSimStep = 1;
+    const simStepsData = {
+        1: {
+            badge: "Step 1 of 8",
+            title: "Identify Transaction",
+            mockup: `🔍 [Economic Event]:<br>Sold baked goods to a customer for $100 cash. Receipt #204 generated.`,
+            desc: "The business analyzes the cash register receipt to verify that a real financial transaction occurred."
+        },
+        2: {
+            badge: "Step 2 of 8",
+            title: "Record in a Journal",
+            mockup: `<span style="color:#38bdf8;">Journal Entry (Nov 1):</span><br>DEBIT: Cash ............. $100<br>&nbsp;&nbsp;CREDIT: Sales Revenue ..... $100`,
+            desc: "The transaction is typed in chronological order inside the general journal using balanced debit and credit values."
+        },
+        3: {
+            badge: "Step 3 of 8",
+            title: "Post to the General Ledger",
+            mockup: `<span style="color:#a855f7;">Ledger File (Cash T-Account):</span><br>--- DR (Debit) Side ---<br>Nov 1: $100 (+)<br>Current Balance: $100`,
+            desc: "The transaction information is copied from the journal into its dedicated T-Account file to keep total balances clean."
+        },
+        4: {
+            badge: "Step 4 of 8",
+            title: "Prepare Unadjusted Trial Balance",
+            mockup: `<span style="color:#eab308;">Trial Balance Sheet:</span><br>Cash Account: DR $100 | CR $0<br>Sales Revenue: DR $0 | CR $100<br>TOTALS: DEBITS $100 | CREDITS $100 ✅`,
+            desc: "All active ledger totals are laid out in a sheet to prove that overall debits perfectly equal overall credits."
+        },
+        5: {
+            badge: "Step 5 of 8",
+            title: "Analyze the Worksheet & Identify Adjustments",
+            mockup: `🔍 [Worksheet Sweep]:<br>Wait! $10 of baking ingredients used up this month haven't been accounted for yet!`,
+            desc: "We look over the worksheet to see if there are any hidden costs, accruals, or asset depreciation to record before the month closes."
+        },
+        6: {
+            badge: "Step 6 of 8",
+            title: "Record Adjusting Journal Entries",
+            mockup: `<span style="color:#f43f5e;">Adjusting Journal Entry:</span><br>DEBIT: Supplies Expense ..... $10<br>&nbsp;&nbsp;CREDIT: Supplies (Asset) .... $10`,
+            desc: "Adjusting entries are written to recognize unrecorded expenses, matching our expenses to the exact timeframe they were consumed."
+        },
+        7: {
+            badge: "Step 7 of 8",
+            title: "Generate Financial Statements",
+            mockup: `<span style="color:#10b981;">Income Statement:</span><br>Revenue: $100<br>Less Expenses: ($10)<br>NET INCOME: $90 📈`,
+            desc: "The actual performance reports—including the Income Statement and Balance Sheet—are built for managers and banks."
+        },
+        8: {
+            badge: "Step 8 of 8",
+            title: "Close the Books",
+            mockup: `<span style="color:#64748b;">Closing Entry:</span><br>Clear Sales Revenue to $0.<br>Clear Expenses to $0.<br>Transfer Net Income ($90) into Owner's Equity!`,
+            desc: "Temporary income and expense accounts are reset to zero so the system is clean and ready to track the next period's activities!"
+        }
+    };
+
+    function updateSimInterface() {
+        const data = simStepsData[currentSimStep];
+        document.getElementById("sim-step-badge").innerHTML = data.badge;
+        document.getElementById("sim-step-title").innerHTML = data.title;
+        document.getElementById("sim-display-mockup").innerHTML = data.mockup;
+        document.getElementById("sim-description").innerHTML = data.desc;
+
+        // Button visibility toggles
+        document.getElementById("sim-prev-btn").style.visibility = currentSimStep === 1 ? "hidden" : "visible";
+        document.getElementById("sim-next-btn").innerHTML = currentSimStep === 8 ? "Finish Simulator 🏁" : "Next Step ➡️";
+    }
+
+    function nextSimStep() {
+        if (currentSimStep < 8) {
+            currentSimStep++;
+            updateSimInterface();
+        } else {
+            // If they finish, wrap up nicely
+            currentSimStep = 1;
+            updateSimInterface();
+            alert("Congrats! You have simulated a full transaction cycle. You are ready to start building them yourself!");
+        }
+    }
+
+    function prevSimStep() {
+        if (currentSimStep > 1) {
+            currentSimStep--;
+            updateSimInterface();
+        }
+    }
+</script>
