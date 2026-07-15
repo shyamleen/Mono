@@ -299,3 +299,160 @@
                 { text: "1 month", isCorrect: false, feedback: "Incorrect. A 1-month term is a subsegment of short-term debt, but the full regulatory timeframe limit is defined as up to one year." }
             ]
         },
+        {
+            question: "What account does 'A negative/contra equity account representing stock the company has bought back from the open market' describe?",
+            options: [
+                { text: "Treasury stock", isCorrect: true, feedback: "Correct! Treasury stock is created when a corporation repurchases its own shares from the open market, reducing total outstanding shareholder equity." },
+                { text: "Common stock", isCorrect: false, feedback: "Incorrect. Common stock represents positive equity contributed by owners during the initial sale of stock, not stock repurchases." },
+                { text: "intangible assets", isCorrect: false, feedback: "Incorrect. Intangible assets are long-term assets (like patents or trademarks), whereas stock repurchases directly affect equity accounts." },
+                { text: "Owner’s capital", isCorrect: false, feedback: "Incorrect. Owner's capital records the direct investments made by sole proprietors or partners, not corporate share buybacks." }
+            ]
+        },
+        {
+            question: "What is the accounting equation?",
+            options: [
+                { text: "assets=liabilities+equity", isCorrect: true, feedback: "Correct! This formula balances everything a business owns against its total funding sources: external debts and internal ownership stakes." },
+                { text: "assets+liabilites=equity", isCorrect: false, feedback: "Incorrect. This equation is mathematically incorrect because assets are funded by liabilities and equity." },
+                { text: "equity= liabilities-assets", isCorrect: false, feedback: "Incorrect. The correct subtraction form of the equation is Equity = Assets - Liabilities." }
+            ]
+        }
+    ];
+
+    let currentQuestionIdx = 0;
+    let score = 0;
+    let answeredQuestionsCount = 0;
+    let questionAnswered = false;
+
+    function openPracticeQuiz() {
+        document.getElementById('quizModal').style.display = 'flex';
+        restartQuiz();
+    }
+
+    function closePracticeQuiz() {
+        document.getElementById('quizModal').style.display = 'none';
+    }
+
+    function renderQuestion() {
+        questionAnswered = false;
+        document.getElementById('quizNextBtn').style.display = 'none';
+        document.getElementById('quizFeedbackArea').style.display = 'none';
+        
+        const q = quizQuestions[currentQuestionIdx];
+        
+        // Update stats
+        document.getElementById('quizProgressText').innerText = `Question ${currentQuestionIdx + 1} of ${quizQuestions.length}`;
+        document.getElementById('quizScoreTracker').innerText = `Score: ${score}/${answeredQuestionsCount}`;
+        document.getElementById('quizProgressBar').style.width = `${((currentQuestionIdx + 1) / quizQuestions.length) * 100}%`;
+        
+        // Set question
+        document.getElementById('quizQuestionText').innerText = q.question;
+        
+        // Render options
+        const container = document.getElementById('quizAnswersContainer');
+        container.innerHTML = '';
+        
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.innerText = opt.text;
+            btn.style.textAlign = 'left';
+            btn.style.padding = '12px 16px';
+            btn.style.border = '1px solid #e2e8f0';
+            btn.style.borderRadius = '8px';
+            btn.style.background = 'white';
+            btn.style.fontSize = '13px';
+            btn.style.fontWeight = '600';
+            btn.style.color = '#334155';
+            btn.style.cursor = 'pointer';
+            btn.style.transition = 'all 0.2s';
+            
+            btn.onmouseover = () => { if (!questionAnswered) btn.style.background = '#f8fafc'; };
+            btn.onmouseout = () => { if (!questionAnswered) btn.style.background = 'white'; };
+            
+            btn.onclick = () => selectOption(idx, btn);
+            container.appendChild(btn);
+        });
+    }
+
+    function selectOption(index, clickedBtn) {
+        if (questionAnswered) return;
+        questionAnswered = true;
+        
+        const q = quizQuestions[currentQuestionIdx];
+        const selected = q.options[index];
+        const container = document.getElementById('quizAnswersContainer');
+        const buttons = container.getElementsByTagName('button');
+        
+        answeredQuestionsCount++;
+        
+        if (selected.isCorrect) {
+            score++;
+            clickedBtn.style.background = '#dcfce7';
+            clickedBtn.style.borderColor = '#10b981';
+            clickedBtn.style.color = '#065f46';
+            
+            showFeedback(selected.feedback, true);
+        } else {
+            clickedBtn.style.background = '#fee2e2';
+            clickedBtn.style.borderColor = '#ef4444';
+            clickedBtn.style.color = '#991b1b';
+            
+            // Highlight correct answer in green
+            q.options.forEach((opt, idx) => {
+                if (opt.isCorrect) {
+                    buttons[idx].style.background = '#dcfce7';
+                    buttons[idx].style.borderColor = '#10b981';
+                    buttons[idx].style.color = '#065f46';
+                }
+            });
+            
+            showFeedback(selected.feedback, false);
+        }
+        
+        // Disable cursor changes
+        for (let btn of buttons) {
+            btn.style.cursor = 'default';
+        }
+        
+        document.getElementById('quizScoreTracker').innerText = `Score: ${score}/${answeredQuestionsCount}`;
+        document.getElementById('quizNextBtn').style.display = 'block';
+    }
+
+    function showFeedback(text, isCorrect) {
+        const feedback = document.getElementById('quizFeedbackArea');
+        feedback.innerText = text;
+        feedback.style.display = 'block';
+        if (isCorrect) {
+            feedback.style.background = '#ecfdf5';
+            feedback.style.color = '#047857';
+            feedback.style.border = '1px solid #a7f3d0';
+        } else {
+            feedback.style.background = '#fff5f5';
+            feedback.style.color = '#c53030';
+            feedback.style.border = '1px solid #feb2b2';
+        }
+    }
+
+    function goToNextQuestion() {
+        if (currentQuestionIdx < quizQuestions.length - 1) {
+            currentQuestionIdx++;
+            renderQuestion();
+        } else {
+            // Show complete screen
+            document.getElementById('quizActiveArea').style.display = 'none';
+            document.getElementById('quizNextBtn').style.display = 'none';
+            document.getElementById('quizCompletedArea').style.display = 'block';
+            
+            const pct = Math.round((score / quizQuestions.length) * 100);
+            document.getElementById('finalScoreMessage').innerHTML = `You answered <strong>${score} out of ${quizQuestions.length}</strong> questions correctly (${pct}%).`;
+        }
+    }
+
+    function restartQuiz() {
+        currentQuestionIdx = 0;
+        score = 0;
+        answeredQuestionsCount = 0;
+        document.getElementById('quizActiveArea').style.display = 'block';
+        document.getElementById('quizCompletedArea').style.display = 'none';
+        renderQuestion();
+    }
+</script>
