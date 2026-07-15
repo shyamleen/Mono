@@ -105,13 +105,11 @@
 
         // FUNCTION 1: Generate the dynamic dashboard tracking board
         function loadDashboard() {
-            // Highlight current button active state
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('dashboard-nav-btn').classList.add('active');
 
             const container = document.getElementById("workbook-content-area");
             
-            // Calculate progress metrics
             const totalCount = curriculum.length;
             const completedCount = completedLessons.length;
             const progressPercent = Math.round((completedCount / totalCount) * 100);
@@ -166,9 +164,8 @@
             `;
         }
 
-        // FUNCTION 2: Load lesson HTML safely without browser caching
+        // FUNCTION 2: Load lesson content, force cache bypass, and execute embedded scripts!
         function loadLessonContent(lessonId) {
-            // Update selected nav link color state
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`nav-${lessonId}`);
             if (activeBtn) activeBtn.classList.add('active');
@@ -176,9 +173,10 @@
             const container = document.getElementById("workbook-content-area");
             
             const fileSuffix = String(lessonId).includes('.') ? String(lessonId).split('.')[1] : lessonId;
-            const fileName = `lessons/lesson1_${fileSuffix}.html`;
+            
+            // 1. Appended '?t=' timestamp to force the browser to reload the file completely from the disk
+            const fileName = `lessons/lesson1_${fileSuffix}.html?t=${Date.now()}`;
 
-            // { cache: "no-store" } forces the browser to bypass any stored cache
             fetch(fileName, { cache: "no-store" })
                 .then(response => {
                     if (!response.ok) throw new Error(`Missing page: ${fileName}`);
@@ -187,13 +185,13 @@
                 .then(htmlContent => {
                     const isCompleted = completedLessons.includes(lessonId);
                     
-                    // Inject the content along with dynamic complete/back controls
+                    // Inject layout structure
                     container.innerHTML = `
                         <button onclick="loadDashboard()" style="background: none; border: none; color: #64748b; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-bottom: 20px; padding: 0;">
                             ⬅ Back to Dashboard
                         </button>
                         
-                        ${htmlContent}
+                        <div id="inner-lesson-content">${htmlContent}</div>
                         
                         <div class="lesson-footer-bar">
                             <div>
@@ -216,6 +214,18 @@
                         </div>
                     `;
                     
+                    // 2. Unpack and evaluate script blocks inside the newly inserted lesson content!
+                    const scriptElements = container.querySelectorAll("script");
+                    scriptElements.forEach(oldScript => {
+                        const newScript = document.createElement("script");
+                        // Copy variables/attributes over
+                        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                        // Copy raw script content
+                        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                        // Swap tags to trigger manual execution
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
+                    });
+
                     runScrollHighlightEngine();
                 })
                 .catch(error => {
