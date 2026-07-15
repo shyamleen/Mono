@@ -7,76 +7,241 @@
     <style>
         body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; margin: 0; color: #1e293b; }
         .dashboard-container { display: flex; min-height: 100vh; }
-        .sidebar { width: 280px; background: #0f172a; color: white; padding: 24px; box-sizing: border-box; }
-        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
-        .workbook-viewport { background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03); max-width: 800px; margin: 0 auto; }
         
-        /* Highlighting System */
-        .lazy-hl { transition: background-color 0.3s ease; padding: 2px 4px; border-radius: 4px; font-weight: 500; }
-        .triggered-lang { background-color: #fef08a !important; color: #854d0e; } /* Yellow */
-        .triggered-asset { background-color: #dbeafe !important; color: #1e40af; } /* Blue */
-        .triggered-liability { background-color: #fee2e2 !important; color: #991b1b; } /* Red */
-        .triggered-equity { background-color: #dcfce7 !important; color: #166534; } /* Green */
+        /* Sidebar layout */
+        .sidebar { width: 280px; background: #0f172a; color: white; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .sidebar-menu { flex-grow: 1; }
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; background: #f1f5f9; }
         
+        /* Document Viewport Wrapper */
+        .workbook-viewport { background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04); max-width: 800px; margin: 0 auto; min-height: 400px; position: relative; }
+        
+        /* Sidebar buttons style */
+        .nav-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; text-align: left; background: none; border: none; color: #94a3b8; padding: 12px; cursor: pointer; font-size: 14px; border-radius: 8px; transition: all 0.2s; margin-bottom: 4px; }
+        .nav-btn:hover, .nav-btn.active { background: #1e293b; color: white; }
+        .nav-btn .completion-dot { width: 8px; height: 8px; border-radius: 50%; background: #64748b; }
+        .nav-btn.completed .completion-dot { background: #10b981; box-shadow: 0 0 8px #10b981; }
+
+        /* General layout items */
         .scroll-reveal-card { opacity: 0; transform: translateY(15px); transition: all 0.5s ease; margin-bottom: 24px; }
         .scroll-reveal-card.visible { opacity: 1; transform: translateY(0); }
         
-        .nav-btn { display: block; width: 100%; text-align: left; background: none; border: none; color: #94a3b8; padding: 10px 12px; cursor: pointer; font-size: 14px; border-radius: 6px; transition: all 0.2s; }
-        .nav-btn:hover { background: #1e293b; color: white; }
+        /* Bottom action banner inside lessons */
+        .lesson-footer-bar { margin-top: 40px; padding-top: 24px; border-top: 2px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
     </style>
 </head>
 <body>
 
     <div class="dashboard-container">
         <div class="sidebar">
-            <h2 style="margin: 0; font-size: 20px; color: white;">Mono Academy</h2>
-            <hr style="border-color: #334155; margin: 20px 0;">
-            <p style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">Module 1: Foundations</p>
-            <button class="nav-btn" onclick="loadLessonContent(1.1)">Lesson 1.1: Introduction</button>
-            <button class="nav-btn" onclick="loadLessonContent(1.2)">Lesson 1.2: Accounting Equation</button>
-            <button class="nav-btn" onclick="loadLessonContent(1.3)">Lesson 1.3: T-Accounts System</button>
-            <button class="nav-btn" onclick="loadLessonContent(1.4)">Lesson 1.4: Rules of Debit & Credit</button>
-            <button class="nav-btn" onclick="loadLessonContent(1.5)">Lesson 1.5: Ledger Posting</button>
-            <button class="nav-btn" onclick="loadLessonContent(1.6)">Lesson 1.6: Trial Balance Intro</button>
+            <h2 style="margin: 0 0 4px 0; font-size: 20px; color: white; cursor: pointer;" onclick="loadDashboard()">Mono Academy</h2>
+            <p style="margin: 0 0 16px 0; font-size: 11px; color: #38bdf8; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Foundations Tracker</p>
+            
+            <button class="nav-btn active" id="dashboard-nav-btn" onclick="loadDashboard()" style="margin-bottom: 16px; font-weight: 700; color: #38bdf8;">
+                <span>🏠 Progress Dashboard</span>
+            </button>
+
+            <div class="sidebar-menu">
+                <p style="font-size: 11px; color: #475569; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.05em;">Module 1: Foundations</p>
+                <button class="nav-btn" id="nav-1.1" onclick="loadLessonContent(1.1)">
+                    <span>Lesson 1.1: Introduction</span>
+                    <span class="completion-dot"></span>
+                </button>
+                <button class="nav-btn" id="nav-1.2" onclick="loadLessonContent(1.2)">
+                    <span>Lesson 1.2: Accounting Equation</span>
+                    <span class="completion-dot"></span>
+                </button>
+                <button class="nav-btn" id="nav-1.3" onclick="loadLessonContent(1.3)">
+                    <span>Lesson 1.3: T-Accounts System</span>
+                    <span class="completion-dot"></span>
+                </button>
+                <button class="nav-btn" id="nav-1.4" onclick="loadLessonContent(1.4)">
+                    <span>Lesson 1.4: Debit & Credit Rules</span>
+                    <span class="completion-dot"></span>
+                </button>
+                <button class="nav-btn" id="nav-1.5" onclick="loadLessonContent(1.5)">
+                    <span>Lesson 1.5: Ledger Posting</span>
+                    <span class="completion-dot"></span>
+                </button>
+                <button class="nav-btn" id="nav-1.6" onclick="loadLessonContent(1.6)">
+                    <span>Lesson 1.6: Trial Balance Intro</span>
+                    <span class="completion-dot"></span>
+                </button>
+            </div>
         </div>
 
         <div class="main-content">
             <div id="workbook-content-area" class="workbook-viewport">
-                <h2 style="margin-top: 0;">Welcome to Mono Academy!</h2>
-                <p>Please choose a lesson from the sidebar outline on the left to pull its ledger models into your view screen.</p>
-            </div>
+                </div>
         </div>
     </div>
 
     <script>
-        function loadLessonContent(lessonId) {
+        // Progress State Management
+        let completedLessons = JSON.parse(localStorage.getItem('mono_completed_lessons')) || [];
+        
+        // Define our program curriculum data
+        const curriculum = [
+            { id: 1.1, name: "Lesson 1.1: Introduction to Accounting", desc: "Learn the foundational concepts and why accounting is the language of business." },
+            { id: 1.2, name: "Lesson 1.2: The Core Accounting Equation", desc: "Master the balancing scale of Assets, Liabilities, and Owner's Equity." },
+            { id: 1.3, name: "Lesson 1.3: The T-Accounts System", desc: "Visualize and map ledger entries cleanly using left-side and right-side columns." },
+            { id: 1.4, name: "Lesson 1.4: Double-Entry Matrix Rules", desc: "Understand why every single debit must always align with a matching credit." },
+            { id: 1.5, name: "Lesson 1.5: Ledger Book Posting Execution", desc: "Transfer raw transactions safely into active visual ledger pages." },
+            { id: 1.6, name: "Lesson 1.6: Introduction to the Trial Balance", desc: "Verify ledger accuracy using balanced validation spreadsheets." }
+        ];
+
+        // Initial launch logic
+        window.addEventListener('DOMContentLoaded', () => {
+            loadDashboard();
+            updateSidebarVisuals();
+        });
+
+        // FUNCTION 1: Generate the dynamic dashboard tracking board
+        function loadDashboard() {
+            // Highlight current button active state
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('dashboard-nav-btn').classList.add('active');
+
             const container = document.getElementById("workbook-content-area");
             
-            // Map the selection parameter directly to your sub-files directory
-            let fileName = `lessons/lesson1_${lessonId.toString().split('.')[1]}.html`;
+            // Calculate calculations
+            const totalCount = curriculum.length;
+            const completedCount = completedLessons.length;
+            const progressPercent = Math.round((completedCount / totalCount) * 100);
+
+            let cardsHtml = '';
+            curriculum.forEach(lesson => {
+                const isCompleted = completedLessons.includes(lesson.id);
+                cardsHtml += `
+                    <div style="background: #ffffff; border: 1px solid ${isCompleted ? '#bbf7d0' : '#e2e8f0'}; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.01);"
+                         onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.03)'" 
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.01)'">
+                        <div style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: ${isCompleted ? '#dcfce7' : '#f1f5f9'}; color: ${isCompleted ? '#166534' : '#64748b'};">
+                                    ${isCompleted ? '✓ Completed' : 'Pending'}
+                                </span>
+                            </div>
+                            <h4 style="margin: 0 0 6px 0; font-size: 15px; font-weight: 700; color: #0f172a;">${lesson.name}</h4>
+                            <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.4;">${lesson.desc}</p>
+                        </div>
+                        <button onclick="loadLessonContent(${lesson.id})" style="background: ${isCompleted ? '#f1f5f9' : '#0f172a'}; color: ${isCompleted ? '#475569' : '#ffffff'}; border: none; padding: 10px 18px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+                            ${isCompleted ? 'Review' : 'Start'}
+                        </button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = `
+                <div style="margin-bottom: 24px;">
+                    <span style="background: rgba(15, 23, 42, 0.05); color: #0f172a; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 99px; text-transform: uppercase;">Academy Home</span>
+                    <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Your Mastery Progress</h1>
+                    <p style="margin: 0; color: #64748b; font-size: 14px;">Monitor your journey as you complete lessons in Module 1: Foundations.</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 28px; border-radius: 16px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; gap: 24px;">
+                    <div style="flex-grow: 1;">
+                        <span style="color: #38bdf8; font-size: 12px; font-weight: 800; text-transform: uppercase;">Module completion status</span>
+                        <h2 style="margin: 4px 0 16px 0; font-size: 24px; font-weight: 800;">${progressPercent}% Complete</h2>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden;">
+                            <div style="width: ${progressPercent}%; height: 100%; background: #38bdf8; border-radius: 99px; transition: width 0.5s ease;"></div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; background: rgba(255,255,255,0.05); padding: 16px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                        <div style="font-size: 32px; font-weight: 800; color: #38bdf8; line-height: 1;">${completedCount}</div>
+                        <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin-top: 4px;">of ${totalCount} Done</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    ${cardsHtml}
+                </div>
+            `;
+        }
+
+        // FUNCTION 2: Load lesson HTML and insert utility controls
+        function loadLessonContent(lessonId) {
+            // Update selected nav link color state
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`nav-${lessonId}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const container = document.getElementById("workbook-content-area");
+            
+            const fileSuffix = String(lessonId).includes('.') ? String(lessonId).split('.')[1] : lessonId;
+            const fileName = `lessons/lesson1_${fileSuffix}.html`;
 
             fetch(fileName)
                 .then(response => {
-                    if (!response.ok) throw new Error("Lesson file context missing.");
+                    if (!response.ok) throw new Error(`Missing page: ${fileName}`);
                     return response.text();
                 })
                 .then(htmlContent => {
-                    container.innerHTML = htmlContent;
+                    const isCompleted = completedLessons.includes(lessonId);
+                    
+                    // Inject the content along with dynamic complete/back controls
+                    container.innerHTML = `
+                        <button onclick="loadDashboard()" style="background: none; border: none; color: #64748b; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-bottom: 20px; padding: 0;">
+                            ⬅ Back to Dashboard
+                        </button>
+                        
+                        ${htmlContent}
+                        
+                        <div class="lesson-footer-bar">
+                            <div>
+                                <span style="font-size: 13px; color: #64748b; font-weight: 500;">Finished studying this material?</span>
+                            </div>
+                            <div>
+                                ${isCompleted ? `
+                                    <span style="color: #10b981; font-weight: 700; font-size: 14px; margin-right: 16px; display: inline-flex; align-items: center; gap: 4px;">
+                                        ✓ Completed
+                                    </span>
+                                    <button onclick="loadDashboard()" style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer;">
+                                        Exit Lesson
+                                    </button>
+                                ` : `
+                                    <button onclick="markCompleteAndReturn(${lessonId})" style="background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
+                                        Mark Lesson as Completed ✓
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+                    `;
+                    
                     runScrollHighlightEngine();
                 })
                 .catch(error => {
                     console.error(error);
-                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600;">⚠️ Could not fetch lesson elements.</p>`;
+                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600; padding: 20px; background: #fef2f2; border-radius: 8px;">⚠️ Failed to load lesson files. Check your folder configuration.</p>`;
                 });
         }
 
-        function runScrollHighlightEngine() {
-            // Instant load initialization block to ensure stability inside sub-components
-            document.querySelectorAll('.scroll-reveal-card').forEach(card => card.classList.add('visible'));
-            document.querySelectorAll('.lazy-hl').forEach(span => {
-                const type = span.getAttribute('data-type');
-                if(type) span.classList.add(`triggered-${type}`);
+        // FUNCTION 3: Save completions
+        function markCompleteAndReturn(lessonId) {
+            if (!completedLessons.includes(lessonId)) {
+                completedLessons.push(lessonId);
+                localStorage.setItem('mono_completed_lessons', JSON.stringify(completedLessons));
+            }
+            updateSidebarVisuals();
+            loadDashboard(); // Drop back into dashboard and watch the percentage climb!
+        }
+
+        // FUNCTION 4: Update Sidebar layout checkmarks
+        function updateSidebarVisuals() {
+            curriculum.forEach(lesson => {
+                const btn = document.getElementById(`nav-${lesson.id}`);
+                if (btn) {
+                    if (completedLessons.includes(lesson.id)) {
+                        btn.classList.add('completed');
+                    } else {
+                        btn.classList.remove('completed');
+                    }
+                }
             });
+        }
+
+        function runScrollHighlightEngine() {
+            document.querySelectorAll('.scroll-reveal-card').forEach(card => card.classList.add('visible'));
         }
     </script>
 </body>
