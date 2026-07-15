@@ -28,6 +28,13 @@
         
         /* Bottom action banner inside lessons */
         .lesson-footer-bar { margin-top: 40px; padding-top: 24px; border-top: 2px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Lazy highlighting rules */
+        .lazy-hl { transition: background-color 0.3s ease; padding: 2px 4px; border-radius: 4px; font-weight: 500; }
+        .triggered-lang { background-color: #fef08a !important; color: #854d0e; } /* Yellow */
+        .triggered-asset { background-color: #dbeafe !important; color: #1e40af; } /* Blue */
+        .triggered-liability { background-color: #fee2e2 !important; color: #991b1b; } /* Red */
+        .triggered-equity { background-color: #dcfce7 !important; color: #166534; } /* Green */
     </style>
 </head>
 <body>
@@ -80,7 +87,7 @@
         // Progress State Management
         let completedLessons = JSON.parse(localStorage.getItem('mono_completed_lessons')) || [];
         
-        // Define our program curriculum data
+        // Curriculum Map
         const curriculum = [
             { id: 1.1, name: "Lesson 1.1: Introduction to Accounting", desc: "Learn the foundational concepts and why accounting is the language of business." },
             { id: 1.2, name: "Lesson 1.2: The Core Accounting Equation", desc: "Master the balancing scale of Assets, Liabilities, and Owner's Equity." },
@@ -104,7 +111,7 @@
 
             const container = document.getElementById("workbook-content-area");
             
-            // Calculate calculations
+            // Calculate progress metrics
             const totalCount = curriculum.length;
             const completedCount = completedLessons.length;
             const progressPercent = Math.round((completedCount / totalCount) * 100);
@@ -159,7 +166,7 @@
             `;
         }
 
-        // FUNCTION 2: Load lesson HTML and insert utility controls
+        // FUNCTION 2: Load lesson HTML safely without browser caching
         function loadLessonContent(lessonId) {
             // Update selected nav link color state
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -171,7 +178,8 @@
             const fileSuffix = String(lessonId).includes('.') ? String(lessonId).split('.')[1] : lessonId;
             const fileName = `lessons/lesson1_${fileSuffix}.html`;
 
-            fetch(fileName)
+            // { cache: "no-store" } forces the browser to bypass any stored cache
+            fetch(fileName, { cache: "no-store" })
                 .then(response => {
                     if (!response.ok) throw new Error(`Missing page: ${fileName}`);
                     return response.text();
@@ -223,7 +231,7 @@
                 localStorage.setItem('mono_completed_lessons', JSON.stringify(completedLessons));
             }
             updateSidebarVisuals();
-            loadDashboard(); // Drop back into dashboard and watch the percentage climb!
+            loadDashboard();
         }
 
         // FUNCTION 4: Update Sidebar layout checkmarks
@@ -242,6 +250,10 @@
 
         function runScrollHighlightEngine() {
             document.querySelectorAll('.scroll-reveal-card').forEach(card => card.classList.add('visible'));
+            document.querySelectorAll('.lazy-hl').forEach(span => {
+                const type = span.getAttribute('data-type');
+                if (type) span.classList.add(`triggered-${type}`);
+            });
         }
     </script>
 </body>
