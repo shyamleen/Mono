@@ -8,11 +8,11 @@
 <div class="scroll-reveal-card visible" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 24px; border-radius: 12px; margin-bottom: 32px; text-align: center;">
     <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">The Core Formula</span>
     <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 12px; font-size: 22px; font-weight: 700;">
-        <span class="lazy-hl triggered-asset" style="padding: 6px 16px; border-radius: 8px;">Assets</span>
+        <span style="background: #eff6ff; color: #1e40af; padding: 6px 16px; border-radius: 8px;">Assets</span>
         <span style="color: #64748b;">=</span>
-        <span class="lazy-hl triggered-liability" style="padding: 6px 16px; border-radius: 8px;">Liabilities</span>
+        <span style="background: #fef2f2; color: #991b1b; padding: 6px 16px; border-radius: 8px;">Liabilities</span>
         <span style="color: #64748b;">+</span>
-        <span class="lazy-hl triggered-equity" style="padding: 6px 16px; border-radius: 8px;">Owner's Equity</span>
+        <span style="background: #ecfdf5; color: #065f46; padding: 6px 16px; border-radius: 8px;">Owner's Equity</span>
     </div>
 </div>
 
@@ -221,238 +221,306 @@
         <h4 style="margin: 0; font-size: 14px; font-weight: 700; color: #0f172a;">Ready to verify your understanding?</h4>
         <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Test your knowledge on Lesson 1.2 account definitions with this rapid practice set.</p>
     </div>
-    <button onclick="openPracticeQuiz();" style="border: none; outline: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; background: #3b82f6; color: white; text-decoration: none; font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 8px; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.15); transition: background-color 0.2s;">
+    <label for="quiz_trigger" style="display: inline-flex; align-items: center; justify-content: center; background: #3b82f6; color: white; font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 8px; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.15); cursor: pointer; user-select: none; transition: background-color 0.2s;">
         ⚡ Take Practice Quiz
-    </button>
+    </label>
 </div>
 
-<div id="quizModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 16px;">
-    <div style="background: white; width: 100%; max-width: 540px; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); overflow: hidden; display: flex; flex-direction: column; max-height: 90vh;">
+<input type="checkbox" id="quiz_trigger" style="display: none; position: absolute;" />
+
+<style>
+    /* Trigger action to display the quiz popup overlay */
+    #quiz_trigger:checked ~ #pureQuizModal {
+        display: flex !important;
+    }
+    
+    /* Answer checking animations */
+    .ans-option input[type="radio"] {
+        display: none;
+    }
+    
+    /* When a radio option is checked, reveal its respective feedback banner immediately */
+    .ans-option input[type="radio"]:checked ~ .feedback-banner {
+        display: block !important;
+    }
+    
+    /* Visual coloring of choice indicators on check */
+    .ans-option input[type="radio"]:checked + .choice-card {
+        border-color: #3b82f6 !important;
+        background: #f1f5f9 !important;
+    }
+</style>
+
+<div id="pureQuizModal" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100vw; height: 100vh; background-color: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;">
+    <div style="background: white; width: 100%; max-width: 520px; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); overflow: hidden; display: flex; flex-direction: column; max-height: 90vh; box-sizing: border-box;">
         
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
-            <h3 style="margin: 0; font-size: 16px; font-weight: 800; color: #0f172a;">Lesson 1.2 Practice Quiz</h3>
-            <button onclick="closePracticeQuiz()" style="background: none; border: none; font-size: 20px; color: #94a3b8; cursor: pointer; font-weight: bold; padding: 4px; line-height: 1;">&times;</button>
+            <h3 style="margin: 0; font-size: 15px; font-weight: 800; color: #0f172a;">Lesson 1.2 Interactive Quiz</h3>
+            <label for="quiz_trigger" style="font-size: 20px; color: #94a3b8; cursor: pointer; font-weight: bold; padding: 4px; line-height: 1;">&times;</label>
         </div>
 
-        <div style="padding: 24px; overflow-y: auto; flex: 1;">
+        <div style="padding: 20px 24px; overflow-y: auto; flex: 1; box-sizing: border-box; background: #fafafb;">
             
-            <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 8px; text-transform: uppercase;">
-                <span id="quizProgressText">Question 1 of 6</span>
-                <span id="quizScoreTracker">Score: 0/0</span>
-            </div>
-            <div style="background: #e2e8f0; height: 6px; border-radius: 3px; width: 100%; margin-bottom: 20px; overflow: hidden;">
-                <div id="quizProgressBar" style="background: #3b82f6; height: 100%; width: 16.6%; transition: width 0.3s ease;"></div>
+            <p style="margin: 0 0 16px 0; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px;">
+                Select your answer below for each question to see instant feedback!
+            </p>
+
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <span style="font-size: 10px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Question 1</span>
+                <h4 style="margin: 4px 0 12px 0; font-size: 14px; font-weight: 700; color: #0f172a;">What is accrued expenses?</h4>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="ans-option">
+                        <input type="radio" name="q1" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.15s;">
+                            🟢 A current liability
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 12px; line-height: 1.4;">
+                            <strong>Correct!</strong> Accrued expenses represent incurred operational costs not yet paid or billed that are expected to be settled within a year.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q1" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ A long-term liability
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Long-term liabilities represent debts due after a one-year threshold, whereas accrued expenses are short-term operating costs.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q1" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ equity
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Equity represents the owners' residual stake in the business, not a short-term obligation owed to vendors or employees.
+                        </div>
+                    </label>
+                </div>
             </div>
 
-            <div id="quizActiveArea">
-                <p id="quizQuestionText" style="font-size: 15px; font-weight: 700; color: #0f172a; margin: 0 0 16px 0; line-height: 1.5;"></p>
-                <div id="quizAnswersContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
-                <div id="quizFeedbackArea" style="margin-top: 16px; padding: 12px; border-radius: 8px; font-size: 12px; line-height: 1.5; display: none;"></div>
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <span style="font-size: 10px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Question 2</span>
+                <h4 style="margin: 4px 0 12px 0; font-size: 14px; font-weight: 700; color: #0f172a;">What is PP&E?</h4>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="ans-option">
+                        <input type="radio" name="q2" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ Current asset
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Current assets are expected to be converted into cash or consumed within one year, whereas PP&E serves the business over multiple years.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q2" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            🟢 Noncurrent asset
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 12px; line-height: 1.4;">
+                            <strong>Correct!</strong> Property, Plant, and Equipment (PP&E) consists of physical, long-term operational resources with useful lives stretching beyond a single year.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q2" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ liability
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> PP&E represents valuable resources the company owns and controls to generate value, not outstanding debts or financial obligations.
+                        </div>
+                    </label>
+                </div>
             </div>
 
-            <div id="quizCompletedArea" style="display: none; text-align: center; padding: 12px 0;">
-                <span style="font-size: 40px;">🎉</span>
-                <h4 style="margin: 12px 0 6px 0; font-size: 18px; font-weight: 800; color: #0f172a;">Quiz Completed!</h4>
-                <p id="finalScoreMessage" style="margin: 0 0 20px 0; font-size: 14px; color: #475569; line-height: 1.5;"></p>
-                <button onclick="restartQuiz()" style="border: none; background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);">Reset and Try Again</button>
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <span style="font-size: 10px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Question 3</span>
+                <h4 style="margin: 4px 0 12px 0; font-size: 14px; font-weight: 700; color: #0f172a;">What is the account Owner’s draw used for?</h4>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="ans-option">
+                        <input type="radio" name="q3" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ For the owner to put in money for the business’s use
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> The owner introducing personal funds is recorded in Owner's Capital, not as a withdrawal.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q3" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            🟢 Money that is withdrawn by the owner for personal use
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 12px; line-height: 1.4;">
+                            <strong>Correct!</strong> An Owner's Draw represents capital taken out of a proprietorship or partnership by the owner for personal expenditures.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q3" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ Money withdrawn by stakeholders and employees
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Withdrawals by corporate shareholders are paid as dividends, and employee wages are treated as payroll expenses rather than equity draws.
+                        </div>
+                    </label>
+                </div>
             </div>
+
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <span style="font-size: 10px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Question 4</span>
+                <h4 style="margin: 4px 0 12px 0; font-size: 14px; font-weight: 700; color: #0f172a;">What is the time period for when a debt is considered short term?</h4>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="ans-option">
+                        <input type="radio" name="q4" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            🟢 12 months
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 12px; line-height: 1.4;">
+                            <strong>Correct!</strong> In standard accounting, current or short-term classifications refer to obligations due within a single operating cycle or one year (12 months).
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q4" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ 4 months
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> While 4 months is short-term, the official standard cutoff threshold in accounting extends up to 12 months.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q4" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ 3 years
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Debts maturing beyond one year (such as 3 years) are classified under long-term liabilities.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q4" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ 1 month
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> A 1-month term is a subsegment of short-term debt, but the full regulatory timeframe limit is defined as up to 12 months.
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <span style="font-size: 10px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Question 5</span>
+                <h4 style="margin: 4px 0 12px 0; font-size: 14px; font-weight: 700; color: #0f172a;">What account does "A negative/contra equity account representing stock the company has bought back from the open market" describe?</h4>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="ans-option">
+                        <input type="radio" name="q5" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            🟢 Treasury stock
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 12px; line-height: 1.4;">
+                            <strong>Correct!</strong> Treasury stock is created when a corporation repurchases its own shares from the open market, reducing total outstanding shareholder equity.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q5" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ Common stock
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Common stock represents positive equity contributed by owners during the initial sale of stock, not stock repurchases.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q5" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ intangible assets
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Intangible assets are long-term assets (like patents or trademarks), whereas stock repurchases directly affect equity accounts.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q5" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ Owner’s capital
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> Owner's capital records the direct investments made by sole proprietors or partners, not corporate share buybacks.
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <span style="font-size: 10px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Question 6</span>
+                <h4 style="margin: 4px 0 12px 0; font-size: 14px; font-weight: 700; color: #0f172a;">What is the accounting equation?</h4>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="ans-option">
+                        <input type="radio" name="q6" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            🟢 assets=liabilities+equity
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 12px; line-height: 1.4;">
+                            <strong>Correct!</strong> This formula balances everything a business owns against its total funding sources: external debts and internal ownership stakes.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q6" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ assets+liabilites=equity
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> This equation is mathematically incorrect because assets are funded by liabilities and equity, meaning assets must equal their sum.
+                        </div>
+                    </label>
+
+                    <label class="ans-option">
+                        <input type="radio" name="q6" />
+                        <div class="choice-card" style="padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;">
+                            ⚪ equity= liabilities-assets
+                        </div>
+                        <div class="feedback-banner" style="display: none; margin-top: 8px; padding: 10px; border-radius: 6px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; font-size: 12px; line-height: 1.4;">
+                            <strong>Incorrect.</strong> The correct subtraction form of the equation is Equity = Assets - Liabilities.
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div style="background: #eff6ff; border: 1px dashed #3b82f6; border-radius: 12px; padding: 20px; text-align: center;">
+                <span style="font-size: 32px;">🎉</span>
+                <h4 style="margin: 8px 0 4px 0; font-size: 16px; font-weight: 800; color: #1e3a8a;">Excellent Review Session!</h4>
+                <p style="margin: 0 0 16px 0; font-size: 12px; color: #475569; line-height: 1.5;">You've completed the practice set. Review your chosen feedback blocks above to consolidate your knowledge.</p>
+                
+                <label for="quiz_trigger" style="display: inline-block; border: none; background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);">
+                    Done & Close Quiz
+                </label>
+            </div>
+
         </div>
 
         <div style="display: flex; justify-content: flex-end; padding: 12px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0;">
-            <button id="quizNextBtn" onclick="goToNextQuestion()" style="display: none; background: #0f172a; color: white; border: none; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Next Question ➔</button>
+            <label for="quiz_trigger" style="background: #0f172a; color: white; border: none; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Close Overlay</label>
         </div>
     </div>
 </div>
-
-<script>
-    const quizQuestions = [
-        {
-            question: "What is accrued expenses?",
-            options: [
-                { text: "A current liability", isCorrect: true, feedback: "Correct! Accrued expenses represent incurred operational costs not yet paid or billed that are expected to be settled within a year." },
-                { text: "A long-term liability", isCorrect: false, feedback: "Incorrect. Long-term liabilities represent debts due after a one-year threshold, whereas accrued expenses are short-term operating costs." },
-                { text: "equity", isCorrect: false, feedback: "Incorrect. Equity represents the owners' residual stake in the business, not a short-term obligation owed to vendors or employees." }
-            ]
-        },
-        {
-            question: "What is PP&E?",
-            options: [
-                { text: "Current asset", isCorrect: false, feedback: "Incorrect. Current assets are expected to be converted into cash or consumed within one year, whereas PP&E serves the business over multiple years." },
-                { text: "Noncurrent asset", isCorrect: true, feedback: "Correct! Property, Plant, and Equipment (PP&E) consists of physical, long-term operational resources with useful lives stretching beyond a single year." },
-                { text: "liability", isCorrect: false, feedback: "Incorrect. PP&E represents valuable resources the company owns and controls to generate value, not outstanding debts or financial obligations." }
-            ]
-        },
-        {
-            question: "What is the account Owner’s draw used for?",
-            options: [
-                { text: "For the owner to put in money for the business’s use", isCorrect: false, feedback: "Incorrect. The owner introducing personal funds is recorded in Owner's Capital, not as a withdrawal." },
-                { text: "Money that is withdrawn by the owner for personal use", isCorrect: true, feedback: "Correct! An Owner's Draw represents capital taken out of a proprietorship or partnership by the owner for personal expenditures." },
-                { text: "Money withdrawn by stakeholders and employees", isCorrect: false, feedback: "Incorrect. Withdrawals by corporate shareholders are paid as dividends, and employee wages are treated as payroll expenses rather than equity draws." }
-            ]
-        },
-        {
-            question: "What is the time period for when a debt is considered short term?",
-            options: [
-                { text: "12 months", isCorrect: true, feedback: "Correct! In standard accounting, current or short-term classifications refer to obligations due within a single operating cycle or one year." },
-                { text: "4 months", isCorrect: false, feedback: "Incorrect. While 4 months is short-term, the official standard cutoff threshold in accounting extends up to 12 months." },
-                { text: "3 years", isCorrect: false, feedback: "Incorrect. Debts maturing beyond one year (such as 3 years) are classified under long-term liabilities." },
-                { text: "1 month", isCorrect: false, feedback: "Incorrect. A 1-month term is a subsegment of short-term debt, but the full regulatory timeframe limit is defined as up to one year." }
-            ]
-        },
-        {
-            question: "What account does 'A negative/contra equity account representing stock the company has bought back from the open market' describe?",
-            options: [
-                { text: "Treasury stock", isCorrect: true, feedback: "Correct! Treasury stock is created when a corporation repurchases its own shares from the open market, reducing total outstanding shareholder equity." },
-                { text: "Common stock", isCorrect: false, feedback: "Incorrect. Common stock represents positive equity contributed by owners during the initial sale of stock, not stock repurchases." },
-                { text: "intangible assets", isCorrect: false, feedback: "Incorrect. Intangible assets are long-term assets (like patents or trademarks), whereas stock repurchases directly affect equity accounts." },
-                { text: "Owner’s capital", isCorrect: false, feedback: "Incorrect. Owner's capital records the direct investments made by sole proprietors or partners, not corporate share buybacks." }
-            ]
-        },
-        {
-            question: "What is the accounting equation?",
-            options: [
-                { text: "assets=liabilities+equity", isCorrect: true, feedback: "Correct! This formula balances everything a business owns against its total funding sources: external debts and internal ownership stakes." },
-                { text: "assets+liabilites=equity", isCorrect: false, feedback: "Incorrect. This equation is mathematically incorrect because assets are funded by liabilities and equity." },
-                { text: "equity= liabilities-assets", isCorrect: false, feedback: "Incorrect. The correct subtraction form of the equation is Equity = Assets - Liabilities." }
-            ]
-        }
-    ];
-
-    let currentQuestionIdx = 0;
-    let score = 0;
-    let answeredQuestionsCount = 0;
-    let questionAnswered = false;
-
-    function openPracticeQuiz() {
-        document.getElementById('quizModal').style.display = 'flex';
-        restartQuiz();
-    }
-
-    function closePracticeQuiz() {
-        document.getElementById('quizModal').style.display = 'none';
-    }
-
-    function renderQuestion() {
-        questionAnswered = false;
-        document.getElementById('quizNextBtn').style.display = 'none';
-        document.getElementById('quizFeedbackArea').style.display = 'none';
-        
-        const q = quizQuestions[currentQuestionIdx];
-        
-        // Update stats
-        document.getElementById('quizProgressText').innerText = `Question ${currentQuestionIdx + 1} of ${quizQuestions.length}`;
-        document.getElementById('quizScoreTracker').innerText = `Score: ${score}/${answeredQuestionsCount}`;
-        document.getElementById('quizProgressBar').style.width = `${((currentQuestionIdx + 1) / quizQuestions.length) * 100}%`;
-        
-        // Set question
-        document.getElementById('quizQuestionText').innerText = q.question;
-        
-        // Render options
-        const container = document.getElementById('quizAnswersContainer');
-        container.innerHTML = '';
-        
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement('button');
-            btn.innerText = opt.text;
-            btn.style.textAlign = 'left';
-            btn.style.padding = '12px 16px';
-            btn.style.border = '1px solid #e2e8f0';
-            btn.style.borderRadius = '8px';
-            btn.style.background = 'white';
-            btn.style.fontSize = '13px';
-            btn.style.fontWeight = '600';
-            btn.style.color = '#334155';
-            btn.style.cursor = 'pointer';
-            btn.style.transition = 'all 0.2s';
-            
-            btn.onmouseover = () => { if (!questionAnswered) btn.style.background = '#f8fafc'; };
-            btn.onmouseout = () => { if (!questionAnswered) btn.style.background = 'white'; };
-            
-            btn.onclick = () => selectOption(idx, btn);
-            container.appendChild(btn);
-        });
-    }
-
-    function selectOption(index, clickedBtn) {
-        if (questionAnswered) return;
-        questionAnswered = true;
-        
-        const q = quizQuestions[currentQuestionIdx];
-        const selected = q.options[index];
-        const container = document.getElementById('quizAnswersContainer');
-        const buttons = container.getElementsByTagName('button');
-        
-        answeredQuestionsCount++;
-        
-        if (selected.isCorrect) {
-            score++;
-            clickedBtn.style.background = '#dcfce7';
-            clickedBtn.style.borderColor = '#10b981';
-            clickedBtn.style.color = '#065f46';
-            
-            showFeedback(selected.feedback, true);
-        } else {
-            clickedBtn.style.background = '#fee2e2';
-            clickedBtn.style.borderColor = '#ef4444';
-            clickedBtn.style.color = '#991b1b';
-            
-            // Highlight correct answer in green
-            q.options.forEach((opt, idx) => {
-                if (opt.isCorrect) {
-                    buttons[idx].style.background = '#dcfce7';
-                    buttons[idx].style.borderColor = '#10b981';
-                    buttons[idx].style.color = '#065f46';
-                }
-            });
-            
-            showFeedback(selected.feedback, false);
-        }
-        
-        // Disable cursor changes
-        for (let btn of buttons) {
-            btn.style.cursor = 'default';
-        }
-        
-        document.getElementById('quizScoreTracker').innerText = `Score: ${score}/${answeredQuestionsCount}`;
-        document.getElementById('quizNextBtn').style.display = 'block';
-    }
-
-    function showFeedback(text, isCorrect) {
-        const feedback = document.getElementById('quizFeedbackArea');
-        feedback.innerText = text;
-        feedback.style.display = 'block';
-        if (isCorrect) {
-            feedback.style.background = '#ecfdf5';
-            feedback.style.color = '#047857';
-            feedback.style.border = '1px solid #a7f3d0';
-        } else {
-            feedback.style.background = '#fff5f5';
-            feedback.style.color = '#c53030';
-            feedback.style.border = '1px solid #feb2b2';
-        }
-    }
-
-    function goToNextQuestion() {
-        if (currentQuestionIdx < quizQuestions.length - 1) {
-            currentQuestionIdx++;
-            renderQuestion();
-        } else {
-            // Show complete screen
-            document.getElementById('quizActiveArea').style.display = 'none';
-            document.getElementById('quizNextBtn').style.display = 'none';
-            document.getElementById('quizCompletedArea').style.display = 'block';
-            
-            const pct = Math.round((score / quizQuestions.length) * 100);
-            document.getElementById('finalScoreMessage').innerHTML = `You answered <strong>${score} out of ${quizQuestions.length}</strong> questions correctly (${pct}%).`;
-        }
-    }
-
-    function restartQuiz() {
-        currentQuestionIdx = 0;
-        score = 0;
-        answeredQuestionsCount = 0;
-        document.getElementById('quizActiveArea').style.display = 'block';
-        document.getElementById('quizCompletedArea').style.display = 'none';
-        renderQuestion();
-    }
-</script>
