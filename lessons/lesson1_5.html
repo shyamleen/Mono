@@ -6,318 +6,500 @@
     <title>Lesson 1.5: The Trial Balance</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --success: #10b981;
-            --danger: #ef4444;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --border: #e2e8f0;
+            --bg-dark: #0a1128;
+            --panel-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary-blue: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent-green: #10b981;
+            --danger-red: #ef4444;
+            --border-light: #e2e8f0;
+            --highlight-bg: #f8fafc;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f1f5f9;
-            color: var(--dark);
-            line-height: 1.6;
+            color: var(--text-main);
             margin: 0;
-            padding: 20px;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
+        .lesson-container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--panel-bg);
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            padding: 40px;
+            box-sizing: border-box;
         }
 
-        h1, h2, h3 {
-            color: var(--primary);
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--primary-blue);
         }
 
         h1 {
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f172a;
             margin-top: 0;
+            margin-bottom: 12px;
         }
 
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: var(--light);
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
+        .intro-text {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 32px;
         }
 
-        /* Interactive Simulator Styles */
-        .simulator-box {
-            background: #fff;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
+        .section-card {
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            background: #ffffff;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        .nested-list {
+            list-style-type: none;
+            padding-left: 16px;
+            margin-top: 8px;
+        }
+
+        .nested-list li {
+            margin-bottom: 6px;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .pill-debit {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .pill-credit {
+            background-color: #fef2f2;
+            color: #b91c1c;
+        }
+
+        /* Interactive Sheet Styles */
+        .interactive-section {
+            background-color: var(--highlight-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .interactive-section h3 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #0f172a;
+            margin-bottom: 12px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            margin-bottom: 16px;
         }
 
         th {
-            background-color: var(--primary);
-            color: white;
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 14px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
         }
 
         input[type="number"] {
-            width: 100px;
-            padding: 6px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
+            width: 100%;
+            max-width: 120px;
+            padding: 8px;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
         }
 
-        .balance-indicator {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 6px;
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .row-total {
+            background-color: #f8fafc;
             font-weight: bold;
         }
 
-        .balanced {
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
+        .balance-status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
         }
 
-        .unbalanced {
-            background-color: #fee2e2;
-            color: #991b1b;
+        .status-balanced {
+            background-color: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        .status-unbalanced {
+            background-color: #fef2f2;
             border: 1px solid #fecaca;
+            color: #991b1b;
         }
 
         /* Quiz Styles */
-        .quiz-container {
-            margin-top: 40px;
-            border-top: 2px dashed var(--border);
-            padding-top: 30px;
+        .quiz-section {
+            border-top: 1px solid var(--border-light);
+            padding-top: 32px;
+            margin-top: 32px;
         }
 
-        .question {
-            margin-bottom: 25px;
-            background: #fff;
-            padding: 15px;
-            border: 1px solid var(--border);
+        .quiz-header {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .quiz-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .question-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
             border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
         }
 
-        .options-list {
-            list-style-type: none;
-            padding: 0;
+        .question-text {
+            font-weight: 600;
+            font-size: 15px;
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #0f172a;
         }
 
-        .options-list li {
-            margin: 8px 0;
-        }
-
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border: 1px solid var(--border-light);
             border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .option-label:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .option-label input[type="radio"] {
+            margin: 0;
+        }
+
+        /* Footer & Buttons */
+        .footer-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .btn-submit {
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
             transition: background 0.2s;
         }
 
-        button:hover {
+        .btn-submit:hover {
             background-color: #1d4ed8;
         }
 
-        .result-text {
-            font-weight: bold;
-            margin-top: 15px;
+        .btn-complete {
+            background-color: #10b981;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-complete:hover {
+            background-color: #059669;
+        }
+
+        #quiz-feedback {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Lesson 1.5: The Trial Balance</h1>
-    <p>A <strong>Trial Balance</strong> is an internal report that lists the ending balances of every general ledger account to verify that your total debits equal your total credits.</p>
+<div class="lesson-container">
+    <a href="#" class="back-link">← Back to Dashboard</a>
 
-    <div class="section">
+    <h1>Lesson 1.5: The Trial Balance</h1>
+    <p class="intro-text">The Trial balance is a report that lists the ending balances of every general account to verify that total debits equal total credits.</p>
+
+    <div class="section-card">
         <h2>How to Summarize Ledger Balances</h2>
         <ul>
-            <li><strong>Find Ending Balances:</strong> For each account in your general ledger, calculate the final balance by subtracting the smaller side from the larger side. (<em>Example: If an asset has $5,000 in debits and $2,000 in credits, the ending balance is a $3,000 Debit.</em>)</li>
+            <li><strong>Find Ending Balances:</strong> For each account in your general ledger, calculate the final balance by subtracting the smaller side from the larger side.</li>
+            <li><strong>Example:</strong> If an asset has $5,000 in debits and $2,000 in credits, the ending balance is a $3,000 Debit.</li>
             <li><strong>Sort by Type:</strong> Organize the balances into your trial balance worksheet using the standard accounting order: Assets, Liabilities, Equity, Revenues, and Expenses.</li>
-            <li><strong>Normal Balances (Columns):</strong>
-                <ul>
-                    <li><strong>Debit Column:</strong> Assets, Expenses, and Dividends.</li>
-                    <li><strong>Credit Column:</strong> Liabilities, Equity, and Revenue.</li>
+            <li><strong>Normal Balances:</strong>
+                <ul class="nested-list">
+                    <li><span class="pill pill-debit">Debit Column:</span> Assets, Expenses, and Dividends.</li>
+                    <li><span class="pill pill-credit">Credit Column:</span> Liabilities, Equity, and Revenue.</li>
                 </ul>
             </li>
         </ul>
     </div>
 
-    <div class="section" style="border-left-color: var(--success);">
-        <h2>🛠️ Part 1: Interactive Balance Simulator</h2>
-        <p>Try placing the ledger accounts below into their correct normal balance columns to see if they balance out!</p>
+    <div class="interactive-section">
+        <h3>📊 Live Practice Worksheet</h3>
+        <p style="font-size: 14px; color: var(--text-muted); margin-top: 0; margin-bottom: 16px;">
+            Adjust the balances below. Notice how the columns auto-calculate to check if they match perfectly!
+        </p>
         
-        <div class="simulator-box">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Account Name</th>
-                        <th>Classification</th>
-                        <th>Debit ($)</th>
-                        <th>Credit ($)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Cash</strong></td>
-                        <td>Asset</td>
-                        <td><input type="number" id="cash-db" value="3000" oninput="calculateTrialBalance()"></td>
-                        <td><input type="number" id="cash-cr" value="0" readonly style="background:#e2e8f0;"></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Accounts Payable</strong></td>
-                        <td>Liability</td>
-                        <td><input type="number" id="ap-db" value="0" readonly style="background:#e2e8f0;"></td>
-                        <td><input type="number" id="ap-cr" value="1000" oninput="calculateTrialBalance()"></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Owner's Equity</strong></td>
-                        <td>Equity</td>
-                        <td><input type="number" id="eq-db" value="0" readonly style="background:#e2e8f0;"></td>
-                        <td><input type="number" id="eq-cr" value="2000" oninput="calculateTrialBalance()"></td>
-                    </tr>
-                    <tr style="background-color: #f1f5f9; font-weight: bold;">
-                        <td colspan="2">TOTALS</td>
-                        <td id="total-debits">$0</td>
-                        <td id="total-credits">$0</td>
-                    </tr>
-                </tbody>
-            </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Account Title</th>
+                    <th>Account Type</th>
+                    <th>Debit ($)</th>
+                    <th>Credit ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cash</td>
+                    <td>Asset (Normal Debit)</td>
+                    <td><input type="number" id="val-cash" value="3000" oninput="updateSheet()"></td>
+                    <td style="color: #cbd5e1; font-style: italic;">$0</td>
+                </tr>
+                <tr>
+                    <td>Accounts Payable</td>
+                    <td>Liability (Normal Credit)</td>
+                    <td style="color: #cbd5e1; font-style: italic;">$0</td>
+                    <td><input type="number" id="val-ap" value="1000" oninput="updateSheet()"></td>
+                </tr>
+                <tr>
+                    <td>Owner's Equity</td>
+                    <td>Equity (Normal Credit)</td>
+                    <td style="color: #cbd5e1; font-style: italic;">$0</td>
+                    <td><input type="number" id="val-equity" value="2000" oninput="updateSheet()"></td>
+                </tr>
+                <tr class="row-total">
+                    <td colspan="2">TOTALS</td>
+                    <td id="debit-total">$0</td>
+                    <td id="credit-total">$0</td>
+                </tr>
+            </tbody>
+        </table>
 
-            <div id="status-indicator" class="balance-indicator balanced">
-                <span id="status-text">✅ Status: Balanced (Debits = Credits)</span>
-            </div>
+        <div id="status-box" class="balance-status-bar status-balanced">
+            <span id="status-text">✅ Balanced! Total Debits equal Total Credits.</span>
         </div>
     </div>
 
-    <div class="quiz-container">
-        <h2>📝 Lesson 1.5 Review Quiz</h2>
-        
-        <div class="question" id="q1">
-            <p><strong>1. What is the primary purpose of a Trial Balance?</strong></p>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q1" value="wrong1"> To calculate total income tax due.</label></li>
-                <li><label><input type="radio" name="q1" value="correct"> To verify that total debits equal total credits.</label></li>
-                <li><label><input type="radio" name="q1" value="wrong2"> To record daily cash transactions.</label></li>
-            </ul>
+    <div class="section-card">
+        <h2>How to Check Your Math</h2>
+        <ul>
+            <li><strong>Sum the Columns:</strong> Add all values in the debit column to find the total debits. Repeat the process to find the total credits.</li>
+            <li><strong>Compare Totals:</strong> The total sum of the debit column must exactly match the total sum of the credit column.</li>
+            <li><strong>Identify Discrepancies:</strong> If the totals do not match, you have arithmetic or bookkeeping errors that must be investigated and resolved.</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <div class="quiz-header">Ready to verify your understanding?</div>
+        <div class="quiz-subtitle">Test your knowledge of Lesson 1.5 with this rapid practice set.</div>
+
+        <div class="question-card">
+            <p class="question-text">1. What is the main purpose of a Trial Balance report?</p>
+            <label class="option-label"><input type="radio" name="q1" value="incorrect"> To calculate net profit for the period.</label>
+            <label class="option-label"><input type="radio" name="q1" value="correct"> To verify that total debits equal total credits.</label>
+            <label class="option-label"><input type="radio" name="q1" value="incorrect"> To list cash transactions chronologically.</label>
         </div>
 
-        <div class="question" id="q2">
-            <p><strong>2. If an asset account has $5,000 total debits and $2,000 total credits, what is its ending balance?</strong></p>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q2" value="correct"> $3,000 Debit balance</label></li>
-                <li><label><input type="radio" name="q2" value="wrong1"> $3,000 Credit balance</label></li>
-                <li><label><input type="radio" name="q2" value="wrong2"> $7,000 Debit balance</label></li>
-            </ul>
+        <div class="question-card">
+            <p class="question-text">2. If an account has $8,000 in debits and $3,000 in credits, what is the calculated ending balance?</p>
+            <label class="option-label"><input type="radio" name="q2" value="correct"> A $5,000 Debit balance.</label>
+            <label class="option-label"><input type="radio" name="q2" value="incorrect"> A $5,000 Credit balance.</label>
+            <label class="option-label"><input type="radio" name="q2" value="incorrect"> A $11,000 Debit balance.</label>
         </div>
 
-        <div class="question" id="q3">
-            <p><strong>3. Which of the following accounts would normally have its ending balance placed in the Credit column?</strong></p>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q3" value="wrong1"> Cash & Expenses</label></li>
-                <li><label><input type="radio" name="q3" value="wrong2"> Dividends & Assets</label></li>
-                <li><label><input type="radio" name="q3" value="correct"> Liabilities, Equity, and Revenue</label></li>
-            </ul>
+        <div class="question-card">
+            <p class="question-text">3. Which group of accounts ending balances are placed directly in the Debit column?</p>
+            <label class="option-label"><input type="radio" name="q3" value="incorrect"> Liabilities, Equity, and Revenue.</label>
+            <label class="option-label"><input type="radio" name="q3" value="correct"> Assets, Expenses, and Dividends.</label>
+            <label class="option-label"><input type="radio" name="q3" value="incorrect"> Revenues, Assets, and Equity.</label>
         </div>
 
-        <div class="question" id="q4">
-            <p><strong>4. What should you do if the sum of your Debit column does not match the sum of your Credit column?</strong></p>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q4" value="correct"> Investigate arithmetic or bookkeeping entries for errors.</label></li>
-                <li><label><input type="radio" name="q4" value="wrong1"> Force the numbers to match by changing the cash balance.</label></li>
-                <li><label><input type="radio" name="q4" value="wrong2"> Nothing, trial balances rarely match in practice.</label></li>
-            </ul>
+        <div class="question-card">
+            <p class="question-text">4. What is indicated if your total debits do not exactly match your total credits?</p>
+            <label class="option-label"><input type="radio" name="q4" value="incorrect"> The business made a net loss.</label>
+            <label class="option-label"><input type="radio" name="q4" value="correct"> You have arithmetic or bookkeeping errors to investigate and resolve.</label>
+            <label class="option-label"><input type="radio" name="q4" value="incorrect"> Cash was withdrawn by the business owner.</label>
         </div>
 
-        <div class="question" id="q5">
-            <p><strong>5. In what general order are accounts listed on a Trial Balance worksheet?</strong></p>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q5" value="wrong1"> Alphabetical order (A to Z)</label></li>
-                <li><label><input type="radio" name="q5" value="correct"> Assets, Liabilities, Equity, Revenues, Expenses</label></li>
-                <li><label><input type="radio" name="q5" value="wrong2"> Chronological order by transaction date</label></li>
-            </ul>
+        <div class="question-card">
+            <p class="question-text">5. What is the standard accounting order used to sort account types on a Trial Balance worksheet?</p>
+            <label class="option-label"><input type="radio" name="q5" value="correct"> Assets, Liabilities, Equity, Revenues, and Expenses.</label>
+            <label class="option-label"><input type="radio" name="q5" value="incorrect"> Revenues, Expenses, Assets, Liabilities, Equity.</label>
+            <label class="option-label"><input type="radio" name="q5" value="incorrect"> Chronological order of setup.</label>
         </div>
 
-        <button onclick="checkQuiz()">Submit Answers</button>
-        <p id="quiz-result" class="result-text"></p>
+        <div class="footer-action">
+            <p id="quiz-feedback"></p>
+            <button class="btn-submit" onclick="gradeQuiz()">Submit Quiz</button>
+        </div>
+    </div>
+
+    <div class="footer-action" style="margin-top: 48px;">
+        <span style="color: var(--text-muted); font-size: 15px;">Finished studying this material?</span>
+        <button class="btn-complete" onclick="alert('Congratulations! Lesson 1.5 is marked completed. 🎉')">Mark Lesson as Completed ✓</button>
     </div>
 </div>
 
 <script>
-    // Live Trial Balance Calculation
-    function calculateTrialBalance() {
-        const cashDb = parseFloat(document.getElementById('cash-db').value) || 0;
-        const apCr = parseFloat(document.getElementById('ap-cr').value) || 0;
-        const eqCr = parseFloat(document.getElementById('eq-cr').value) || 0;
+    // Live trial balance calculation logic
+    function updateSheet() {
+        const cash = parseFloat(document.getElementById('val-cash').value) || 0;
+        const ap = parseFloat(document.getElementById('val-ap').value) || 0;
+        const equity = parseFloat(document.getElementById('val-equity').value) || 0;
 
-        const totalDebits = cashDb;
-        const totalCredits = apCr + eqCr;
+        const totalDebits = cash;
+        const totalCredits = ap + equity;
 
-        document.getElementById('total-debits').innerText = `$${totalDebits}`;
-        document.getElementById('total-credits').innerText = `$${totalCredits}`;
+        document.getElementById('debit-total').innerText = `$${totalDebits.toLocaleString()}`;
+        document.getElementById('credit-total').innerText = `$${totalCredits.toLocaleString()}`;
 
-        const statusIndicator = document.getElementById('status-indicator');
+        const statusBox = document.getElementById('status-box');
         const statusText = document.getElementById('status-text');
 
         if (totalDebits === totalCredits) {
-            statusIndicator.className = "balance-indicator balanced";
-            statusText.innerText = "✅ Status: Balanced (Debits = Credits)";
+            statusBox.className = "balance-status-bar status-balanced";
+            statusText.innerText = "✅ Balanced! Total Debits equal Total Credits.";
         } else {
-            statusIndicator.className = "balance-indicator unbalanced";
-            statusText.innerText = `❌ Status: Unbalanced! Difference: $${Math.abs(totalDebits - totalCredits)}`;
+            statusBox.className = "balance-status-bar status-unbalanced";
+            const diff = Math.abs(totalDebits - totalCredits);
+            statusText.innerText = `❌ Unbalanced! Discrepancy of $${diff.toLocaleString()} detected.`;
         }
     }
 
-    // Check Quiz Results
-    function checkQuiz() {
+    // Quiz Grading Logic
+    function gradeQuiz() {
         let score = 0;
-        const questions = ['q1', 'q2', 'q3', 'q4', 'q5'];
-        
-        questions.forEach(q => {
-            const selected = document.querySelector(`input[name="${q}"]:checked`);
+        const totalQuestions = 5;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+            const selected = document.querySelector(`input[name="q${i}"]:checked`);
             if (selected && selected.value === 'correct') {
                 score++;
             }
-        });
+        }
 
-        const resultDisplay = document.getElementById('quiz-result');
-        resultDisplay.innerText = `You scored ${score} out of 5!`;
-        if (score === 5) {
-            resultDisplay.style.color = "var(--success)";
+        const feedback = document.getElementById('quiz-feedback');
+        if (score === totalQuestions) {
+            feedback.style.color = "var(--accent-green)";
+            feedback.innerText = `Perfect! 🎉 ${score}/${totalQuestions} correct. You are ready to post ledgers!`;
         } else {
-            resultDisplay.style.color = "var(--danger)";
+            feedback.style.color = "var(--danger-red)";
+            feedback.innerText = `Score: ${score}/${totalQuestions}. Review the textbook sections above and try again!`;
         }
     }
 
-    // Run calculations on load
-    calculateTrialBalance();
+    // Initial calculation run
+    updateSheet();
 </script>
 
 </body>
