@@ -37,8 +37,8 @@
             <p style="font-size: 13px; color: #64748b; margin: 0 0 12px 0;">Select a rule to see its corresponding normal column placement:</p>
             
             <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                <button onclick="toggleNormalColumn('debit')" id="btn_norm_dr" style="flex: 1; padding: 8px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid #bfdbfe; background: #eff6ff; color: #1e40af; cursor: pointer;">Show Debit Column Balances</button>
-                <button onclick="toggleNormalColumn('credit')" id="btn_norm_cr" style="flex: 1; padding: 8px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid #e2e8f0; background: white; color: #475569; cursor: pointer;">Show Credit Column Balances</button>
+                <button onclick="toggleNormalColumn('debit')" id="btn_norm_dr" style="flex: 1; padding: 8px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid #bfdbfe; background: #eff6ff; color: #1e40af; cursor: pointer; outline: none; transition: all 0.2s;">Show Debit Column Balances</button>
+                <button onclick="toggleNormalColumn('credit')" id="btn_norm_cr" style="flex: 1; padding: 8px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid #e2e8f0; background: white; color: #475569; cursor: pointer; outline: none; transition: all 0.2s;">Show Credit Column Balances</button>
             </div>
 
             <div id="visualizer_display" style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; font-size: 13.5px; font-weight: 600; color: #1e3a8a;">
@@ -99,7 +99,7 @@
         <div style="padding: 16px 24px; background: white; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
             <div>
                 <h3 style="margin: 0; font-size: 16px; font-weight: 800; color: #0f172a;">Trial Balance Workshop</h3>
-                <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">Place values in standard accounting order to reconcile columns.</p>
+                <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">Tap a blue value below, then tap an empty box to place it.</p>
             </div>
             <label for="quiz_trigger_l15" style="background: #f1f5f9; color: #64748b; border: none; border-radius: 8px; width: 30px; height: 30px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; user-select: none;">✕</label>
         </div>
@@ -109,9 +109,9 @@
         </div>
 
         <div style="padding: 24px; overflow-y: auto; flex: 1; box-sizing: border-box; background: #f8fafc;">
-            <p style="margin: 0 0 16px 0; font-size: 13px; color: #475569; text-align: center; line-height: 1.5;">
-                Drag amounts from the <strong>Value Deck</strong> into the empty boxes inside the Trial Balance.
-            </p>
+            <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 10px; margin-bottom: 16px; font-size: 12px; color: #0369a1; text-align: center; font-weight: 500;">
+                💡 <strong>How to Play:</strong> Tap a number from the <strong>Value Deck</strong> below to select it, then tap any dashed box in the table to place it. Tap any placed box to clear it.
+            </div>
 
             <div id="quiz_scenarios_l15">
                 <div class="slide-question-l15 active" id="l15_slide_1">
@@ -135,32 +135,32 @@
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Cash (Asset)</div>
-                                <div class="target-slot-l15" data-expected="chip15_3k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_3k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Accounts Payable (Liability)</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
-                                <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Service Revenue (Revenue)</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
-                                <div class="target-slot-l15" data-expected="chip15_3k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_3k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 2px solid #0f172a; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Rent Expense (Expense)</div>
-                                <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 8px 10px; align-items: center; font-size: 12.5px; font-weight: bold; background: #fafafb;">
                                 <div style="color: #0f172a;">Total Balance Sums:</div>
-                                <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Total Dr">Total Dr</div>
-                                <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Total Cr">Total Cr</div>
+                                <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Total Dr" onclick="handleSlotClick(this)">Total Dr</div>
+                                <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Total Cr" onclick="handleSlotClick(this)">Total Cr</div>
                             </div>
                         </div>
                     </div>
@@ -188,38 +188,38 @@
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Equipment (Asset)</div>
-                                <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Owner's Capital (Equity)</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
-                                <div class="target-slot-l15" data-expected="chip15_5k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_5k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Dividends (Contra-Equity)</div>
-                                <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Sales Revenue (Revenue)</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
-                                <div class="target-slot-l15" data-expected="chip15_2k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_2k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 2px solid #0f172a; padding: 8px 10px; align-items: center; font-size: 12.5px;">
                                 <div style="font-weight: 600; color: #0f172a;">Salaries Expense (Expense)</div>
-                                <div class="target-slot-l15" data-expected="chip15_2k" data-placeholder="Empty">Empty</div>
+                                <div class="target-slot-l15" data-expected="chip15_2k" data-placeholder="Empty" onclick="handleSlotClick(this)">Empty</div>
                                 <div style="text-align: right; color: #cbd5e1; padding-right: 6px;">-</div>
                             </div>
 
                             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 8px 10px; align-items: center; font-size: 12.5px; font-weight: bold; background: #fafafb;">
                                 <div style="color: #0f172a;">Total Balances Check:</div>
-                                <div class="target-slot-l15" data-expected="chip15_7k" data-placeholder="Total Dr">Total Dr</div>
-                                <div class="target-slot-l15" data-expected="chip15_7k" data-placeholder="Total Cr">Total Cr</div>
+                                <div class="target-slot-l15" data-expected="chip15_7k" data-placeholder="Total Dr" onclick="handleSlotClick(this)">Total Dr</div>
+                                <div class="target-slot-l15" data-expected="chip15_7k" data-placeholder="Total Cr" onclick="handleSlotClick(this)">Total Cr</div>
                             </div>
                         </div>
                     </div>
@@ -227,14 +227,14 @@
             </div>
 
             <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.01);">
-                <div style="font-weight: 800; font-size: 10px; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em; margin-bottom: 10px; text-align: center;">Draggable Deck</div>
+                <div style="font-weight: 800; font-size: 10px; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em; margin-bottom: 10px; text-align: center;">Value Deck</div>
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;" id="l15_quiz_chip_deck">
-                    <div class="drag-chip-l15" draggable="true" id="chip15_1k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; cursor: grab; user-select: none;">$1,000</div>
-                    <div class="drag-chip-l15" draggable="true" id="chip15_2k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; cursor: grab; user-select: none;">$2,000</div>
-                    <div class="drag-chip-l15" draggable="true" id="chip15_3k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; cursor: grab; user-select: none;">$3,000</div>
-                    <div class="drag-chip-l15" draggable="true" id="chip15_4k" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; font-weight: 700; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; cursor: grab; user-select: none;">$4,000</div>
-                    <div class="drag-chip-l15" draggable="true" id="chip15_5k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; cursor: grab; user-select: none;">$5,000</div>
-                    <div class="drag-chip-l15" draggable="true" id="chip15_7k" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; font-weight: 700; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; cursor: grab; user-select: none;">$7,000</div>
+                    <div class="interactive-chip-l15" id="chip15_1k" onclick="handleChipSelect(this, '$1,000')" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 16px; border-radius: 6px; font-size: 12.5px; cursor: pointer; user-select: none; transition: all 0.2s;">$1,000</div>
+                    <div class="interactive-chip-l15" id="chip15_2k" onclick="handleChipSelect(this, '$2,000')" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 16px; border-radius: 6px; font-size: 12.5px; cursor: pointer; user-select: none; transition: all 0.2s;">$2,000</div>
+                    <div class="interactive-chip-l15" id="chip15_3k" onclick="handleChipSelect(this, '$3,000')" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 16px; border-radius: 6px; font-size: 12.5px; cursor: pointer; user-select: none; transition: all 0.2s;">$3,000</div>
+                    <div class="interactive-chip-l15" id="chip15_4k" onclick="handleChipSelect(this, '$4,000')" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; font-weight: 700; padding: 8px 16px; border-radius: 6px; font-size: 12.5px; cursor: pointer; user-select: none; transition: all 0.2s;">$4,000</div>
+                    <div class="interactive-chip-l15" id="chip15_5k" onclick="handleChipSelect(this, '$5,000')" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 16px; border-radius: 6px; font-size: 12.5px; cursor: pointer; user-select: none; transition: all 0.2s;">$5,000</div>
+                    <div class="interactive-chip-l15" id="chip15_7k" onclick="handleChipSelect(this, '$7,000')" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; font-weight: 700; padding: 8px 16px; border-radius: 6px; font-size: 12.5px; cursor: pointer; user-select: none; transition: all 0.2s;">$7,000</div>
                 </div>
             </div>
 
@@ -253,12 +253,12 @@
 </div>
 
 <style>
-    /* Slide Control Styles matching other files */
+    /* Slide Control Styles */
     .slide-question-l15 { display: none; }
     .slide-question-l15.active { display: block; }
     
     .target-slot-l15 {
-        min-height: 32px;
+        min-height: 34px;
         border: 2px dashed #cbd5e1;
         background: #f8fafc;
         border-radius: 6px;
@@ -268,20 +268,28 @@
         padding: 2px 8px;
         color: #94a3b8;
         font-size: 12px;
-        font-weight: 600;
-        cursor: default;
+        font-weight: 700;
+        cursor: pointer;
         user-select: none;
         transition: all 0.2s;
     }
     
     .target-slot-l15.filled {
         border-style: solid;
-        background: white;
-        color: #0f172a;
+        border-color: #3b82f6;
+        background: #eff6ff;
+        color: #1e3a8a;
     }
 
-    .drag-chip-l15 {
-        transition: transform 0.1s, opacity 0.1s;
+    .interactive-chip-l15:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .interactive-chip-l15.selected {
+        outline: 3px solid #3b82f6;
+        outline-offset: 1px;
+        transform: scale(1.05);
     }
 </style>
 
@@ -289,9 +297,11 @@
     (function() {
         let currentSlideIndexL15 = 1;
         const totalSlidesL15 = 2;
-        let draggedElementL15 = null;
+        
+        let selectedChipId = null;
+        let selectedChipText = "";
 
-        // Interactive Normal Balance Toggle Script
+        // Interactive Normal Balance Visualizer
         window.toggleNormalColumn = function(type) {
             const display = document.getElementById("visualizer_display");
             const btnDr = document.getElementById("btn_norm_dr");
@@ -320,11 +330,60 @@
             }
         };
 
+        // Select active card chip
+        window.handleChipSelect = function(element, text) {
+            // Unselect previous
+            document.querySelectorAll('.interactive-chip-l15').forEach(chip => {
+                chip.classList.remove('selected');
+            });
+
+            if (selectedChipId === element.id) {
+                // Clicking same chip deselects it
+                selectedChipId = null;
+                selectedChipText = "";
+            } else {
+                // Select new chip
+                selectedChipId = element.id;
+                selectedChipText = text;
+                element.classList.add('selected');
+            }
+        };
+
+        // Place or remove chips into worksheet rows
+        window.handleSlotClick = function(slotElement) {
+            // Case 1: Slot is already filled, click to clear it
+            if (slotElement.classList.contains('filled')) {
+                slotElement.innerHTML = slotElement.getAttribute('data-placeholder');
+                slotElement.classList.remove('filled');
+                slotElement.removeAttribute('data-placed-chip-id');
+                slotElement.style.borderColor = '#cbd5e1';
+                slotElement.style.backgroundColor = '#f8fafc';
+                slotElement.style.color = '#94a3b8';
+                return;
+            }
+
+            // Case 2: Placing active selection into empty slot
+            if (selectedChipId) {
+                slotElement.innerText = selectedChipText;
+                slotElement.setAttribute('data-placed-chip-id', selectedChipId);
+                slotElement.classList.add('filled');
+                slotElement.style.borderColor = '#3b82f6';
+                slotElement.style.backgroundColor = '#eff6ff';
+                slotElement.style.color = '#1e3a8a';
+
+                // Clear active selection states
+                document.querySelectorAll('.interactive-chip-l15').forEach(chip => {
+                    chip.classList.remove('selected');
+                });
+                selectedChipId = null;
+                selectedChipText = "";
+            }
+        };
+
         window.toggleL15QuizModal = function(isChecked) {
             const modal = document.getElementById('pureQuizModal_l1_5');
             if (isChecked) {
                 modal.style.display = 'flex';
-                initDragNDropL15();
                 updateProgressBarL15();
             } else {
                 modal.style.display = 'none';
@@ -337,68 +396,24 @@
             bar.style.width = `${percent}%`;
         }
 
-        function initDragNDropL15() {
-            const chips = document.querySelectorAll('.drag-chip-l15');
-            const slots = document.querySelectorAll('.target-slot-l15');
-
-            chips.forEach(chip => {
-                chip.addEventListener('dragstart', function(e) {
-                    draggedElementL15 = this;
-                    e.dataTransfer.setData('text/plain', this.id);
-                });
-            });
-
-            slots.forEach(slot => {
-                slot.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                });
-
-                slot.addEventListener('drop', function(e) {
-                    e.preventDefault();
-                    if (!draggedElementL15) return;
-
-                    // Re-route existing child inside target back to standard deck
-                    const existingChip = this.querySelector('.drag-chip-l15');
-                    if (existingChip) {
-                        document.getElementById('l15_quiz_chip_deck').appendChild(existingChip);
-                    }
-
-                    this.innerHTML = '';
-                    const cloned = draggedElementL15.cloneNode(true);
-                    
-                    cloned.addEventListener('click', function() {
-                        slot.innerHTML = slot.getAttribute('data-placeholder');
-                        slot.classList.remove('filled');
-                        slot.style.borderColor = '#cbd5e1';
-                        slot.style.backgroundColor = '#f8fafc';
-                        document.getElementById('l15_quiz_chip_deck').appendChild(draggedElementL15);
-                    });
-
-                    this.appendChild(cloned);
-                    this.classList.add('filled');
-                    this.style.borderStyle = 'solid';
-                    this.style.borderColor = '#3b82f6';
-                    this.style.backgroundColor = '#eff6ff';
-                });
-            });
-        }
-
         window.checkCurrentSlideL15 = function() {
             const activeSlide = document.getElementById(`l15_slide_${currentSlideIndexL15}`);
             const slots = activeSlide.querySelectorAll('.target-slot-l15');
             let correctCount = 0;
 
             slots.forEach(slot => {
-                const child = slot.querySelector('.drag-chip-l15');
-                const expected = slot.getAttribute('data-expected');
+                const placedChipId = slot.getAttribute('data-placed-chip-id');
+                const expectedId = slot.getAttribute('data-expected');
                 
-                if (child && child.id === expected) {
+                if (placedChipId === expectedId) {
                     correctCount++;
                     slot.style.borderColor = '#10b981';
                     slot.style.backgroundColor = '#f0fdf4';
+                    slot.style.color = '#15803d';
                 } else {
                     slot.style.borderColor = '#ef4444';
                     slot.style.backgroundColor = '#fef2f2';
+                    slot.style.color = '#b91c1c';
                 }
             });
 
@@ -448,11 +463,20 @@
             
             slots.forEach(slot => {
                 slot.classList.remove('filled');
+                slot.removeAttribute('data-placed-chip-id');
                 slot.innerHTML = slot.getAttribute('data-placeholder');
                 slot.style.borderStyle = 'dashed';
                 slot.style.borderColor = '#cbd5e1';
                 slot.style.backgroundColor = '#f8fafc';
+                slot.style.color = '#94a3b8';
             });
+
+            // Unselect deck chips
+            document.querySelectorAll('.interactive-chip-l15').forEach(chip => {
+                chip.classList.remove('selected');
+            });
+            selectedChipId = null;
+            selectedChipText = "";
 
             document.getElementById('btn_check_answer_l15').style.display = 'inline-block';
             document.getElementById('btn_next_question_l15').style.display = 'none';
