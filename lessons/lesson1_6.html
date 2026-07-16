@@ -1,11 +1,19 @@
 <div style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; color: #334155; max-width: 900px; margin: 0 auto; padding: 16px; box-sizing: border-box;">
 
     <div style="background: linear-gradient(135deg, #fafafb 0%, #f4f5f7 100%); border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.01);">
-        <span style="font-size: 11px; font-weight: 800; color: #a5b4fc; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 6px;">Module 1</span>
-        <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: 850; color: #1e293b; letter-spacing: -0.02em;">Lesson 1.6: Mastering Steps 1–4</h1>
-        <p style="margin: 0; color: #64748b; font-size: 15px; line-height: 1.6;">
-            Before we move deeper, let's consolidate our understanding of the first four fundamental pillars of the accounting cycle. Review the chronological flow below, and then test your skills on a fresh business!
-        </p>
+        <span style="font-size: 11px; font-weight: 800; color: #a5b4fc; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 8px;">Module 1</span>
+        <h1 style="margin: 0 0 14px 0; font-size: 28px; font-weight: 850; color: #1e293b; letter-spacing: -0.02em;">Lesson 1.6: Mastering Steps 1–4</h1>
+        
+        <div style="color: #475569; font-size: 14.5px; line-height: 1.6;">
+            <p style="margin: 0 0 12px 0; font-weight: 600; color: #334155;">Let's look at the 4 steps of accounting we have learned so far:</p>
+            <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+                <li><strong>Step 1 - Identify Transactions:</strong> Locate and analyze economic events, such as sales, vendor payments, or receipt of invoices.</li>
+                <li><strong>Step 2 - Record in a Journal:</strong> Log transactions chronologically using double-entry bookkeeping, ensuring every debit has a matching credit.</li>
+                <li><strong>Step 3 - Post to the General Ledger:</strong> Transfer journal entries into specific accounts to maintain a categorized record of all activity.</li>
+                <li><strong>Step 4 - Prepare Unadjusted Trial Balance:</strong> Summarize the ledger at the end of the period to verify that total debits equal total credits.</li>
+            </ul>
+            <p style="margin: 12px 0 0 0; font-weight: 600; color: #4f46e5;">In the scenario below, you will see all 4 of these steps!</p>
+        </div>
     </div>
 
     <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 32px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.01);">
@@ -303,7 +311,7 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             crAcc: "Cash",
             crVal: "$300",
             ledgerName: "Supplies Account Ledger",
-            ledgerTarget: "dr", // Expecting Dr entry
+            ledgerTarget: "dr",
             ledgerVal: "$300",
             deck: [
                 { id: "opt1", text: "Supplies", type: "account" },
@@ -320,7 +328,7 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             crAcc: "Sales Revenue",
             crVal: "$500",
             ledgerName: "Sales Revenue Account Ledger",
-            ledgerTarget: "cr", // Expecting Cr entry
+            ledgerTarget: "cr",
             ledgerVal: "$500",
             deck: [
                 { id: "opt1", text: "Cash", type: "account" },
@@ -465,12 +473,10 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
         document.getElementById("quiz-scenario-counter").textContent = `Step ${index + 1} of ${quizScenarios.length}`;
         document.getElementById("scenario-text").textContent = scenario.scenarioText;
 
-        // Clear feedback
         const feedback = document.getElementById("quiz-feedback");
         feedback.style.display = "none";
         feedback.innerHTML = "";
 
-        // Toggles layouts between Journal/Ledger and Trial Balance
         if (scenario.isTrialBalance) {
             document.getElementById("quiz-main-layout").style.display = "none";
             document.getElementById("trial-balance-workspace").style.display = "block";
@@ -480,7 +486,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             document.getElementById("trial-balance-workspace").style.display = "none";
             document.getElementById("ledger-title").textContent = scenario.ledgerName;
 
-            // Reset targets
             const slots = document.querySelectorAll(".target-slot");
             slots.forEach(slot => {
                 slot.textContent = slot.id.includes("acc") ? "[Tap Account]" : "[Amount]";
@@ -495,7 +500,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             });
         }
 
-        // Set controls
         document.getElementById("btn-check-quiz").style.display = "inline-block";
         document.getElementById("btn-next-scenario").style.display = "none";
 
@@ -512,7 +516,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             chip.textContent = item.text;
             chip.style.padding = "8px 16px";
             
-            // Soft Pastels for Deck Chips
             const isAcc = item.type === "account" || item.type === "tb-acc";
             chip.style.background = isAcc ? "#e0e7ff" : "#dcfce7";
             chip.style.color = isAcc ? "#4338ca" : "#15803d";
@@ -548,7 +551,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
     }
 
     function handleSlotClick(slot) {
-        // Clear if already slotted
         if (slot.getAttribute("data-placed-id")) {
             const placeholder = slot.id.includes("acc") ? "[Tap Account]" : "[Amount]";
             slot.textContent = slot.id.includes("ledger") ? "[Place Value]" : placeholder;
@@ -561,7 +563,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
         }
 
         if (selectedChip) {
-            // Type validation matching expected slot rules
             const slotExpectedType = slot.getAttribute("data-expected-type");
             if (slotExpectedType !== selectedChip.type) {
                 alert(`Invalid placement! This slot expects an ${slotExpectedType.toUpperCase()} element.`);
@@ -597,7 +598,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             rowDiv.style.gap = "10px";
             rowDiv.style.alignItems = "center";
 
-            // Account Slot
             const accSlot = document.createElement("div");
             accSlot.className = "target-slot";
             accSlot.id = `tb-row-acc-${i}`;
@@ -606,7 +606,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             accSlot.style.cssText = "border: 1.5px dashed #cbd5e1; border-radius: 6px; padding: 6px; font-size: 11px; font-weight: 700; text-align: center; cursor: pointer; background: white; min-height: 18px;";
             accSlot.textContent = "[Place Account]";
 
-            // Debit Slot
             const drSlot = document.createElement("div");
             drSlot.className = "target-slot";
             drSlot.id = `tb-row-dr-${i}`;
@@ -615,7 +614,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             drSlot.style.cssText = "border: 1.5px dashed #cbd5e1; border-radius: 6px; padding: 6px; font-size: 11px; font-weight: 700; text-align: center; cursor: pointer; background: white; min-height: 18px;";
             drSlot.textContent = "-";
 
-            // Credit Slot
             const crSlot = document.createElement("div");
             crSlot.className = "target-slot";
             crSlot.id = `tb-row-cr-${i}`;
@@ -644,7 +642,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
         feedback.style.display = "block";
 
         if (scenario.isTrialBalance) {
-            // Validate Unadjusted Trial Balance placements
             let correctRows = 0;
             let missingValue = false;
 
@@ -692,7 +689,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             return;
         }
 
-        // Validate regular 1-7 journal scenarios
         const placedDrAcc = document.getElementById("slot-dr-acc").getAttribute("data-placed-text");
         const placedDrVal = document.getElementById("slot-dr-val").getAttribute("data-placed-text");
         const placedCrAcc = document.getElementById("slot-cr-acc").getAttribute("data-placed-text");
@@ -744,7 +740,6 @@ TOTALS                         $3,000       $3,000  (BALANCED!)`
             quizScenarioIndex++;
             loadScenario(quizScenarioIndex);
         } else {
-            // Completed state!
             const quizArea = document.getElementById("quiz-workspace");
             quizArea.innerHTML = `
                 <div style="background: #dcfce7; border: 2px solid #bbf7d0; border-radius: 16px; padding: 32px; text-align: center;">
