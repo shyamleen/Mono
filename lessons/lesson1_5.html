@@ -1,506 +1,431 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 1.5: The Trial Balance</title>
-    <style>
-        :root {
-            --bg-dark: #0a1128;
-            --panel-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --primary-blue: #3b82f6;
-            --primary-hover: #2563eb;
-            --accent-green: #10b981;
-            --danger-red: #ef4444;
-            --border-light: #e2e8f0;
-            --highlight-bg: #f8fafc;
-        }
+<div style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; color: #1e293b; max-width: 900px; margin: 0 auto; padding: 16px; box-sizing: border-box;">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f1f5f9;
-            color: var(--text-main);
-            margin: 0;
-            padding: 24px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .lesson-container {
-            max-width: 800px;
-            width: 100%;
-            background: var(--panel-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            padding: 40px;
-            box-sizing: border-box;
-        }
-
-        .back-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 24px;
-            font-weight: 500;
-        }
-
-        .back-link:hover {
-            color: var(--primary-blue);
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-top: 0;
-            margin-bottom: 12px;
-        }
-
-        .intro-text {
-            font-size: 16px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        .section-card {
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            background: #ffffff;
-        }
-
-        h2 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-top: 0;
-            margin-bottom: 16px;
-        }
-
-        ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 12px;
-            line-height: 1.6;
-            color: #334155;
-        }
-
-        .nested-list {
-            list-style-type: none;
-            padding-left: 16px;
-            margin-top: 8px;
-        }
-
-        .nested-list li {
-            margin-bottom: 6px;
-        }
-
-        .pill {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .pill-debit {
-            background-color: #eff6ff;
-            color: #1d4ed8;
-        }
-
-        .pill-credit {
-            background-color: #fef2f2;
-            color: #b91c1c;
-        }
-
-        /* Interactive Sheet Styles */
-        .interactive-section {
-            background-color: var(--highlight-bg);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 32px;
-        }
-
-        .interactive-section h3 {
-            margin-top: 0;
-            font-size: 16px;
-            color: #0f172a;
-            margin-bottom: 12px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-            margin-bottom: 16px;
-        }
-
-        th {
-            background-color: #0f172a;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 14px;
-            padding: 12px 16px;
-            text-align: left;
-        }
-
-        td {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-light);
-            font-size: 14px;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            max-width: 120px;
-            padding: 8px;
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        input[type="number"]:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-        }
-
-        .row-total {
-            background-color: #f8fafc;
-            font-weight: bold;
-        }
-
-        .balance-status-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .status-balanced {
-            background-color: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
-        }
-
-        .status-unbalanced {
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #991b1b;
-        }
-
-        /* Quiz Styles */
-        .quiz-section {
-            border-top: 1px solid var(--border-light);
-            padding-top: 32px;
-            margin-top: 32px;
-        }
-
-        .quiz-header {
-            font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .quiz-subtitle {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .question-card {
-            background: #ffffff;
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 16px;
-        }
-
-        .question-text {
-            font-weight: 600;
-            font-size: 15px;
-            margin-top: 0;
-            margin-bottom: 16px;
-            color: #0f172a;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 12px;
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.15s, border-color 0.15s;
-        }
-
-        .option-label:hover {
-            background-color: #f8fafc;
-            border-color: #cbd5e1;
-        }
-
-        .option-label input[type="radio"] {
-            margin: 0;
-        }
-
-        /* Footer & Buttons */
-        .footer-action {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .btn-submit {
-            background-color: #2563eb;
-            color: #ffffff;
-            border: none;
-            padding: 12px 24px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-submit:hover {
-            background-color: #1d4ed8;
-        }
-
-        .btn-complete {
-            background-color: #10b981;
-            color: #ffffff;
-            border: none;
-            padding: 12px 24px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-
-        .btn-complete:hover {
-            background-color: #059669;
-        }
-
-        #quiz-feedback {
-            font-weight: 600;
-            font-size: 16px;
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
-<div class="lesson-container">
-    <a href="#" class="back-link">← Back to Dashboard</a>
-
-    <h1>Lesson 1.5: The Trial Balance</h1>
-    <p class="intro-text">The Trial balance is a report that lists the ending balances of every general account to verify that total debits equal total credits.</p>
-
-    <div class="section-card">
-        <h2>How to Summarize Ledger Balances</h2>
-        <ul>
-            <li><strong>Find Ending Balances:</strong> For each account in your general ledger, calculate the final balance by subtracting the smaller side from the larger side.</li>
-            <li><strong>Example:</strong> If an asset has $5,000 in debits and $2,000 in credits, the ending balance is a $3,000 Debit.</li>
-            <li><strong>Sort by Type:</strong> Organize the balances into your trial balance worksheet using the standard accounting order: Assets, Liabilities, Equity, Revenues, and Expenses.</li>
-            <li><strong>Normal Balances:</strong>
-                <ul class="nested-list">
-                    <li><span class="pill pill-debit">Debit Column:</span> Assets, Expenses, and Dividends.</li>
-                    <li><span class="pill pill-credit">Credit Column:</span> Liabilities, Equity, and Revenue.</li>
-                </ul>
-            </li>
-        </ul>
+    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+        <span style="font-size: 11px; font-weight: 800; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 6px;">Module 1</span>
+        <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: 850; color: #0f172a; letter-spacing: -0.02em;">Lesson 1.5: The Trial Balance</h1>
+        <p style="margin: 0; color: #475569; font-size: 15px; line-height: 1.6;">
+            The Trial balance is a report that lists the ending balances of every general account to verify that total debits equal total credits.
+        </p>
     </div>
 
-    <div class="interactive-section">
-        <h3>📊 Live Practice Worksheet</h3>
-        <p style="font-size: 14px; color: var(--text-muted); margin-top: 0; margin-bottom: 16px;">
-            Adjust the balances below. Notice how the columns auto-calculate to check if they match perfectly!
+    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+        <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
+            <span style="color: #3b82f6;">📊</span> How to Summarize Ledger Balances
+        </h3>
+        <p style="font-size: 14.5px; color: #475569; margin: 0 0 20px 0; line-height: 1.6;">
+            Summarizing your ledger accounts is the first step in creating a trial balance. 
         </p>
         
-        <table>
-            <thead>
-                <tr>
-                    <th>Account Title</th>
-                    <th>Account Type</th>
-                    <th>Debit ($)</th>
-                    <th>Credit ($)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Cash</td>
-                    <td>Asset (Normal Debit)</td>
-                    <td><input type="number" id="val-cash" value="3000" oninput="updateSheet()"></td>
-                    <td style="color: #cbd5e1; font-style: italic;">$0</td>
-                </tr>
-                <tr>
-                    <td>Accounts Payable</td>
-                    <td>Liability (Normal Credit)</td>
-                    <td style="color: #cbd5e1; font-style: italic;">$0</td>
-                    <td><input type="number" id="val-ap" value="1000" oninput="updateSheet()"></td>
-                </tr>
-                <tr>
-                    <td>Owner's Equity</td>
-                    <td>Equity (Normal Credit)</td>
-                    <td style="color: #cbd5e1; font-style: italic;">$0</td>
-                    <td><input type="number" id="val-equity" value="2000" oninput="updateSheet()"></td>
-                </tr>
-                <tr class="row-total">
-                    <td colspan="2">TOTALS</td>
-                    <td id="debit-total">$0</td>
-                    <td id="credit-total">$0</td>
-                </tr>
-            </tbody>
-        </table>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+                <strong style="color: #0f172a; font-size: 15px; display: block; margin-bottom: 6px;">🔍 Find Ending Balances</strong>
+                <span style="color: #475569; font-size: 14px; line-height: 1.5; display: block; margin-bottom: 12px;">
+                    For each account in your general ledger, calculate the final balance by subtracting the smaller side from the larger side.
+                </span>
+                <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 10px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #1e3a8a; line-height: 1.4;">
+                    <strong>Example:</strong> If an asset has $5,000 in debits and $2,000 in credits, the ending balance is a $3,000 Debit.
+                </div>
+            </div>
 
-        <div id="status-box" class="balance-status-bar status-balanced">
-            <span id="status-text">✅ Balanced! Total Debits equal Total Credits.</span>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+                <strong style="color: #0f172a; font-size: 15px; display: block; margin-bottom: 6px;">🗂️ Sort by Type</strong>
+                <span style="color: #475569; font-size: 14px; line-height: 1.5;">
+                    Organize the balances into your trial balance worksheet using the standard accounting order: Assets, Liabilities, Equity, Revenues, and Expenses.
+                </span>
+            </div>
+
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+                <strong style="color: #0f172a; font-size: 15px; display: block; margin-bottom: 10px;">⚖️ Normal Balances</strong>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px;">
+                        <span style="font-weight: 700; color: #15803d; font-size: 13px; display: block; margin-bottom: 4px;">Debit Column</span>
+                        <span style="color: #166534; font-size: 13.5px; font-weight: 600;">Assets, Expenses, and Dividends</span>
+                    </div>
+                    <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 12px;">
+                        <span style="font-weight: 700; color: #b91c1c; font-size: 13px; display: block; margin-bottom: 4px;">Credit Column</span>
+                        <span style="color: #991b1b; font-size: 13.5px; font-weight: 600;">Liabilities, Equity, and Revenue</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="section-card">
-        <h2>How to Check Your Math</h2>
-        <ul>
-            <li><strong>Sum the Columns:</strong> Add all values in the debit column to find the total debits. Repeat the process to find the total credits.</li>
-            <li><strong>Compare Totals:</strong> The total sum of the debit column must exactly match the total sum of the credit column.</li>
-            <li><strong>Identify Discrepancies:</strong> If the totals do not match, you have arithmetic or bookkeeping errors that must be investigated and resolved.</li>
-        </ul>
-    </div>
-
-    <div class="quiz-section">
-        <div class="quiz-header">Ready to verify your understanding?</div>
-        <div class="quiz-subtitle">Test your knowledge of Lesson 1.5 with this rapid practice set.</div>
-
-        <div class="question-card">
-            <p class="question-text">1. What is the main purpose of a Trial Balance report?</p>
-            <label class="option-label"><input type="radio" name="q1" value="incorrect"> To calculate net profit for the period.</label>
-            <label class="option-label"><input type="radio" name="q1" value="correct"> To verify that total debits equal total credits.</label>
-            <label class="option-label"><input type="radio" name="q1" value="incorrect"> To list cash transactions chronologically.</label>
-        </div>
-
-        <div class="question-card">
-            <p class="question-text">2. If an account has $8,000 in debits and $3,000 in credits, what is the calculated ending balance?</p>
-            <label class="option-label"><input type="radio" name="q2" value="correct"> A $5,000 Debit balance.</label>
-            <label class="option-label"><input type="radio" name="q2" value="incorrect"> A $5,000 Credit balance.</label>
-            <label class="option-label"><input type="radio" name="q2" value="incorrect"> A $11,000 Debit balance.</label>
-        </div>
-
-        <div class="question-card">
-            <p class="question-text">3. Which group of accounts ending balances are placed directly in the Debit column?</p>
-            <label class="option-label"><input type="radio" name="q3" value="incorrect"> Liabilities, Equity, and Revenue.</label>
-            <label class="option-label"><input type="radio" name="q3" value="correct"> Assets, Expenses, and Dividends.</label>
-            <label class="option-label"><input type="radio" name="q3" value="incorrect"> Revenues, Assets, and Equity.</label>
-        </div>
-
-        <div class="question-card">
-            <p class="question-text">4. What is indicated if your total debits do not exactly match your total credits?</p>
-            <label class="option-label"><input type="radio" name="q4" value="incorrect"> The business made a net loss.</label>
-            <label class="option-label"><input type="radio" name="q4" value="correct"> You have arithmetic or bookkeeping errors to investigate and resolve.</label>
-            <label class="option-label"><input type="radio" name="q4" value="incorrect"> Cash was withdrawn by the business owner.</label>
-        </div>
-
-        <div class="question-card">
-            <p class="question-text">5. What is the standard accounting order used to sort account types on a Trial Balance worksheet?</p>
-            <label class="option-label"><input type="radio" name="q5" value="correct"> Assets, Liabilities, Equity, Revenues, and Expenses.</label>
-            <label class="option-label"><input type="radio" name="q5" value="incorrect"> Revenues, Expenses, Assets, Liabilities, Equity.</label>
-            <label class="option-label"><input type="radio" name="q5" value="incorrect"> Chronological order of setup.</label>
-        </div>
-
-        <div class="footer-action">
-            <p id="quiz-feedback"></p>
-            <button class="btn-submit" onclick="gradeQuiz()">Submit Quiz</button>
+    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 32px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+        <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
+            <span style="color: #10b981;">🧮</span> How to Check Your Math
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+            <div style="background: #fafafb; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px;">
+                <strong style="color: #0f172a; font-size: 14.5px; display: block; margin-bottom: 6px;">1. Sum the Columns</strong>
+                <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+                    Add all values in the debit column to find the total debits. Repeat the process to find the total credits.
+                </p>
+            </div>
+            <div style="background: #fafafb; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px;">
+                <strong style="color: #0f172a; font-size: 14.5px; display: block; margin-bottom: 6px;">2. Compare Totals</strong>
+                <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+                    The total sum of the debit column must exactly match the total sum of the credit column.
+                </p>
+            </div>
+            <div style="background: #fafafb; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px;">
+                <strong style="color: #0f172a; font-size: 14.5px; display: block; margin-bottom: 6px;">3. Identify Discrepancies</strong>
+                <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+                    If the totals do not match, you have arithmetic or bookkeeping errors that must be investigated and resolved.
+                </p>
+            </div>
         </div>
     </div>
 
-    <div class="footer-action" style="margin-top: 48px;">
-        <span style="color: var(--text-muted); font-size: 15px;">Finished studying this material?</span>
-        <button class="btn-complete" onclick="alert('Congratulations! Lesson 1.5 is marked completed. 🎉')">Mark Lesson as Completed ✓</button>
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.02), 0 4px 6px -2px rgba(0,0,0,0.01); margin-bottom: 40px;">
+        <div style="flex: 1;">
+            <h4 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 850; color: #0f172a;">Ready to summarize and check your math?</h4>
+            <p style="margin: 0; font-size: 13.5px; color: #64748b; line-height: 1.45;">Build an active Trial Balance worksheet using actual ledger balances, sum the accounts, and balance the books!</p>
+        </div>
+        <button onclick="document.getElementById('pureQuizModal_l1_5').style.display = 'flex'" style="display: inline-flex; align-items: center; justify-content: center; background: #3b82f6; color: white; font-size: 13.5px; font-weight: 700; padding: 12px 22px; border: none; border-radius: 10px; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.15); cursor: pointer; user-select: none; transition: all 0.2s; white-space: nowrap;" onmouseover="this.style.backgroundColor='#2563eb'; this.style.transform='translateY(-1px)'" onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='translateY(0)'">
+            ⚡ Start Practice Quiz
+        </button>
     </div>
+
+    <div id="pureQuizModal_l1_5" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); z-index: 9999; justify-content: center; align-items: center; padding: 16px; box-sizing: border-box;">
+        <div style="background: white; border-radius: 20px; width: 100%; max-width: 780px; height: 90vh; max-height: 800px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); display: flex; flex-direction: column; overflow: hidden; border: 1px solid #e2e8f0;">
+            
+            <div style="padding: 20px 28px; background: white; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0; font-size: 17px; font-weight: 850; color: #0f172a;">Trial Balance Workshop</h3>
+                    <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Summarize ledger balances and compare final columns.</p>
+                </div>
+                <button onclick="document.getElementById('pureQuizModal_l1_5').style.display = 'none'" style="background: #f1f5f9; color: #64748b; border: none; border-radius: 8px; width: 32px; height: 32px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center;">✕</button>
+            </div>
+
+            <div style="padding: 24px; overflow-y: auto; flex: 1; box-sizing: border-box; background: #fafafb;">
+                <p style="margin: 0 0 20px 0; font-size: 13.5px; color: #64748b; text-align: center; line-height: 1.5;">
+                    Drag the values from the deck into the correct **Debit** or **Credit** slots in the Trial Balance worksheet below.
+                </p>
+
+                <div id="quiz_scenarios_l15">
+                    
+                    <div class="slide-question-l15 active" id="l15_slide_1">
+                        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.01); margin-bottom: 18px;">
+                            <span style="font-size: 11px; font-weight: 800; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Scenario 1 of 2</span>
+                            <h4 style="margin: 0 0 14px 0; font-size: 15px; font-weight: 850; color: #0f172a; line-height: 1.5;">
+                                Calculate the balances and fill the worksheet.
+                            </h4>
+                            <p style="margin: 0 0 16px 0; font-size: 13px; color: #475569; line-height: 1.5; background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 3px solid #cbd5e1;">
+                                <strong>General Ledger Records:</strong><br>
+                                • Cash has $5,000 in debits and $2,000 in credits.<br>
+                                • Service Revenue has $3,000 in credits.<br>
+                                • Accounts Payable has $1,000 in credits.<br>
+                                • Rent Expense has $1,000 in debits.
+                            </p>
+
+                            <div style="border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: white;">
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; background: #f1f5f9; font-weight: 700; font-size: 12px; color: #475569; border-bottom: 1px solid #e2e8f0; padding: 8px 12px;">
+                                    <div>Account Title</div>
+                                    <div style="text-align: right;">Debit ($)</div>
+                                    <div style="text-align: right;">Credit ($)</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Cash (Asset)</div>
+                                    <div class="target-slot-l15" data-expected="chip15_3k" data-placeholder="Empty">Empty</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Accounts Payable (Liability)</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                    <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty">Empty</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Service Revenue (Revenue)</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                    <div class="target-slot-l15" data-expected="chip15_3k" data-placeholder="Empty">Empty</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 2px solid #0f172a; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Rent Expense (Expense)</div>
+                                    <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty">Empty</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 10px 12px; align-items: center; font-size: 13px; font-weight: bold; background: #fafafb;">
+                                    <div style="color: #0f172a;">Total running sums:</div>
+                                    <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Total Dr">Total Dr</div>
+                                    <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Total Cr">Total Cr</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-question-l15" id="l15_slide_2" style="display: none;">
+                        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.01); margin-bottom: 18px;">
+                            <span style="font-size: 11px; font-weight: 800; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Scenario 2 of 2</span>
+                            <h4 style="margin: 0 0 14px 0; font-size: 15px; font-weight: 850; color: #0f172a; line-height: 1.5;">
+                                Complete the Trial Balance using normal balances.
+                            </h4>
+                            <p style="margin: 0 0 16px 0; font-size: 13px; color: #475569; line-height: 1.5; background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 3px solid #cbd5e1;">
+                                <strong>Balances to Place:</strong><br>
+                                • Owner's Capital ($5,000 credit)<br>
+                                • Equipment ($4,000 debit)<br>
+                                • Dividends ($1,000 debit)<br>
+                                • Salaries Expense ($2,000 debit)<br>
+                                • Sales Revenue ($2,000 credit)
+                            </p>
+
+                            <div style="border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: white;">
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; background: #f1f5f9; font-weight: 700; font-size: 12px; color: #475569; border-bottom: 1px solid #e2e8f0; padding: 8px 12px;">
+                                    <div>Account Title</div>
+                                    <div style="text-align: right;">Debit ($)</div>
+                                    <div style="text-align: right;">Credit ($)</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Equipment (Asset)</div>
+                                    <div class="target-slot-l15" data-expected="chip15_4k" data-placeholder="Empty">Empty</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Owner's Capital (Equity)</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                    <div class="target-slot-l15" data-expected="chip15_5k" data-placeholder="Empty">Empty</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Dividends (Contra-Equity)</div>
+                                    <div class="target-slot-l15" data-expected="chip15_1k" data-placeholder="Empty">Empty</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid #f1f5f9; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Sales Revenue (Revenue)</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                    <div class="target-slot-l15" data-expected="chip15_2k" data-placeholder="Empty">Empty</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 2px solid #0f172a; padding: 8px 12px; align-items: center; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #0f172a;">Salaries Expense (Expense)</div>
+                                    <div class="target-slot-l15" data-expected="chip15_2k" data-placeholder="Empty">Empty</div>
+                                    <div style="text-align: right; color: #cbd5e1; padding-right: 8px;">-</div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 10px 12px; align-items: center; font-size: 13px; font-weight: bold; background: #fafafb;">
+                                    <div style="color: #0f172a;">Total sums:</div>
+                                    <div class="target-slot-l15" data-expected="chip15_7k" data-placeholder="Total Dr">Total Dr</div>
+                                    <div class="target-slot-l15" data-expected="chip15_7k" data-placeholder="Total Cr">Total Cr</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.01);">
+                    <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em; margin-bottom: 12px; text-align: center;">Value Deck</div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;" id="l15_quiz_chip_deck">
+                        <div class="drag-chip-l15" draggable="true" id="chip15_1k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: grab; user-select: none;">$1,000</div>
+                        <div class="drag-chip-l15" draggable="true" id="chip15_2k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: grab; user-select: none;">$2,000</div>
+                        <div class="drag-chip-l15" draggable="true" id="chip15_3k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: grab; user-select: none;">$3,000</div>
+                        <div class="drag-chip-l15" draggable="true" id="chip15_4k" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; font-weight: 700; padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: grab; user-select: none;">$4,000</div>
+                        <div class="drag-chip-l15" draggable="true" id="chip15_5k" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: grab; user-select: none;">$5,000</div>
+                        <div class="drag-chip-l15" draggable="true" id="chip15_7k" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; font-weight: 700; padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: grab; user-select: none;">$7,000</div>
+                    </div>
+                </div>
+
+                <div id="quiz_result_panel_l15" style="display: none; padding: 20px; border-radius: 14px; text-align: center; border: 2px dashed; margin-top: 18px; line-height: 1.5; font-size: 14px;"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: #f8fafc; border-top: 1px solid #e2e8f0;">
+                <button onclick="resetL15Quiz()" style="background: transparent; color: #64748b; font-size: 13px; font-weight: 700; border: none; cursor: pointer; padding: 8px 16px; border-radius: 8px;">Reset Grid</button>
+                <div style="display: flex; gap: 10px;">
+                    <button id="btn_check_answer_l15" onclick="checkCurrentSlideL15()" style="background: #0f172a; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer;">Verify Balances ✔️</button>
+                    <button id="btn_next_question_l15" onclick="nextSlideL15()" style="display: none; background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer;">Next Scenario ➡️</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
+<style>
+    /* Styling active quiz screens */
+    .slide-question-l15 { display: none; }
+    .slide-question-l15.active { display: block; }
+    
+    /* Target Slots CSS mapping */
+    .target-slot-l15 {
+        min-height: 38px;
+        border: 2px dashed #cbd5e1;
+        background: #f8fafc;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 4px 10px;
+        color: #94a3b8;
+        font-size: 12.5px;
+        font-weight: 600;
+        cursor: default;
+        user-select: none;
+        transition: all 0.2s;
+        text-align: right;
+    }
+    
+    .target-slot-l15.filled {
+        border-style: solid;
+        background: white;
+        color: #0f172a;
+    }
+
+    .drag-chip-l15 {
+        transition: transform 0.15s, opacity 0.15s;
+    }
+    .drag-chip-l15:active {
+        transform: scale(0.96);
+        opacity: 0.8;
+    }
+</style>
+
 <script>
-    // Live trial balance calculation logic
-    function updateSheet() {
-        const cash = parseFloat(document.getElementById('val-cash').value) || 0;
-        const ap = parseFloat(document.getElementById('val-ap').value) || 0;
-        const equity = parseFloat(document.getElementById('val-equity').value) || 0;
+    (function() {
+        let currentSlideIndexL15 = 1;
+        const totalSlidesL15 = 2;
+        let draggedElementL15 = null;
 
-        const totalDebits = cash;
-        const totalCredits = ap + equity;
+        // Initialize drag-and-drop bindings
+        function initDragNDrop() {
+            const chips = document.querySelectorAll('.drag-chip-l15');
+            const slots = document.querySelectorAll('.target-slot-l15');
 
-        document.getElementById('debit-total').innerText = `$${totalDebits.toLocaleString()}`;
-        document.getElementById('credit-total').innerText = `$${totalCredits.toLocaleString()}`;
+            chips.forEach(chip => {
+                chip.addEventListener('dragstart', function(e) {
+                    draggedElementL15 = this;
+                    e.dataTransfer.setData('text/plain', this.id);
+                });
+            });
 
-        const statusBox = document.getElementById('status-box');
-        const statusText = document.getElementById('status-text');
+            slots.forEach(slot => {
+                slot.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
 
-        if (totalDebits === totalCredits) {
-            statusBox.className = "balance-status-bar status-balanced";
-            statusText.innerText = "✅ Balanced! Total Debits equal Total Credits.";
-        } else {
-            statusBox.className = "balance-status-bar status-unbalanced";
-            const diff = Math.abs(totalDebits - totalCredits);
-            statusText.innerText = `❌ Unbalanced! Discrepancy of $${diff.toLocaleString()} detected.`;
+                slot.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    if (!draggedElementL15) return;
+
+                    // Clear slot if it's already filled by returning previous chip to deck
+                    const existingChip = this.querySelector('.drag-chip-l15');
+                    if (existingChip) {
+                        document.getElementById('l15_quiz_chip_deck').appendChild(existingChip);
+                    }
+
+                    // Append dragged item
+                    this.innerHTML = '';
+                    const cloned = draggedElementL15.cloneNode(true);
+                    
+                    // Set up event listener on clone so it can also be removed on click
+                    cloned.addEventListener('click', function() {
+                        slot.innerHTML = slot.getAttribute('data-placeholder');
+                        slot.classList.remove('filled');
+                        slot.style.borderColor = '#cbd5e1';
+                        slot.style.backgroundColor = '#f8fafc';
+                        document.getElementById('l15_quiz_chip_deck').appendChild(draggedElementL15);
+                    });
+
+                    this.appendChild(cloned);
+                    this.classList.add('filled');
+                    this.style.borderStyle = 'solid';
+                    this.style.borderColor = '#3b82f6';
+                    this.style.backgroundColor = '#eff6ff';
+                });
+            });
         }
-    }
 
-    // Quiz Grading Logic
-    function gradeQuiz() {
-        let score = 0;
-        const totalQuestions = 5;
+        window.checkCurrentSlideL15 = function() {
+            const activeSlide = document.getElementById(`l15_slide_${currentSlideIndexL15}`);
+            const slots = activeSlide.querySelectorAll('.target-slot-l15');
+            let slideCorrectCount = 0;
+            const totalSlideSlots = slots.length;
 
-        for (let i = 1; i <= totalQuestions; i++) {
-            const selected = document.querySelector(`input[name="q${i}"]:checked`);
-            if (selected && selected.value === 'correct') {
-                score++;
+            slots.forEach(slot => {
+                const childChip = slot.querySelector('.drag-chip-l15');
+                const expectedId = slot.getAttribute('data-expected');
+                
+                if (childChip && childChip.id === expectedId) {
+                    slideCorrectCount++;
+                    slot.style.borderColor = '#10b981';
+                    slot.style.backgroundColor = '#f0fdf4';
+                } else {
+                    slot.style.borderColor = '#ef4444';
+                    slot.style.backgroundColor = '#fef2f2';
+                }
+            });
+
+            const resultPanel = document.getElementById('quiz_result_panel_l15');
+            resultPanel.style.display = 'block';
+
+            if (slideCorrectCount === totalSlideSlots) {
+                resultPanel.style.borderColor = '#10b981';
+                resultPanel.style.backgroundColor = '#f0fdf4';
+                resultPanel.style.color = '#15803d';
+                resultPanel.innerHTML = `<strong>🎉 Balanced! Excellent Math Work!</strong><br>All ledger balances have been correctly computed and categorized under their normal rules!`;
+                
+                document.getElementById('btn_check_answer_l15').style.display = 'none';
+                document.getElementById('btn_next_question_l15').style.display = 'inline-block';
+                if (currentSlideIndexL15 === totalSlidesL15) {
+                    document.getElementById('btn_next_question_l15').innerHTML = 'Finish Practice 🏁';
+                }
+            } else {
+                resultPanel.style.borderColor = '#ef4444';
+                resultPanel.style.backgroundColor = '#fef2f2';
+                resultPanel.style.color = '#b91c1c';
+                resultPanel.innerHTML = `<strong>⚠️ The Trial Balance does not match!</strong><br>Keep checking! Double-check the normal balance categories (Assets/Expenses are Dr, Liabilities/Equity/Revenues are Cr) or calculate again!`;
             }
-        }
+        };
 
-        const feedback = document.getElementById('quiz-feedback');
-        if (score === totalQuestions) {
-            feedback.style.color = "var(--accent-green)";
-            feedback.innerText = `Perfect! 🎉 ${score}/${totalQuestions} correct. You are ready to post ledgers!`;
-        } else {
-            feedback.style.color = "var(--danger-red)";
-            feedback.innerText = `Score: ${score}/${totalQuestions}. Review the textbook sections above and try again!`;
-        }
-    }
+        window.nextSlideL15 = function() {
+            if (currentSlideIndexL15 < totalSlidesL15) {
+                document.getElementById(`l15_slide_${currentSlideIndexL15}`).classList.remove('active');
+                currentSlideIndexL15++;
+                document.getElementById(`l15_slide_${currentSlideIndexL15}`).classList.add('active');
+                
+                // Reset buttons
+                document.getElementById('btn_check_answer_l15').style.display = 'inline-block';
+                document.getElementById('btn_next_question_l15').style.display = 'none';
+                document.getElementById('quiz_result_panel_l15').style.display = 'none';
+                resetL15Quiz();
+            } else {
+                // Done with quiz
+                alert("🎉 Success! You've officially completed Lesson 1.5: The Trial Balance!");
+                document.getElementById('pureQuizModal_l1_5').style.display = 'none';
+                currentSlideIndexL15 = 1;
+                document.getElementById('l15_slide_2').classList.remove('active');
+                document.getElementById('l15_slide_1').classList.add('active');
+                resetL15Quiz();
+            }
+        };
 
-    // Initial calculation run
-    updateSheet();
+        window.resetL15Quiz = function() {
+            const activeSlide = document.getElementById(`l15_slide_${currentSlideIndexL15}`);
+            const slots = activeSlide.querySelectorAll('.target-slot-l15');
+            
+            slots.forEach(slot => {
+                slot.classList.remove('filled');
+                slot.innerHTML = slot.getAttribute('data-placeholder');
+                slot.style.borderStyle = 'dashed';
+                slot.style.borderColor = '#cbd5e1';
+                slot.style.backgroundColor = '#f8fafc';
+            });
+
+            document.getElementById('btn_check_answer_l15').style.display = 'inline-block';
+            document.getElementById('btn_next_question_l15').style.display = 'none';
+            document.getElementById('quiz_result_panel_l15').style.display = 'none';
+        };
+
+        // Initialize on load
+        setTimeout(initDragNDrop, 100);
+    })();
 </script>
-
-</body>
-</html>
