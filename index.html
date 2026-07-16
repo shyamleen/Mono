@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mono Academy | Accounting Masterclass</title>
     <style>
-        /* --- Global Modern Custom Scrollbars --- */
+        /* --- Modern Custom Scrollbars (Fully Cleaned of Overriding Conflicts) --- */
         ::-webkit-scrollbar {
             width: 10px;
             height: 10px;
@@ -17,33 +17,47 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; /* Visible grey thumb */
+            background: #cbd5e1;
             border-radius: 99px;
-            border: 2px solid #f1f5f9; /* Inset padding */
+            border: 2px solid #f1f5f9;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8; 
         }
 
-        body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; margin: 0; color: #1e293b; }
-        .dashboard-container { display: flex; min-height: 100vh; }
+        /* Prevent default browser styles from rendering ugly defaults on mobile/desktop */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            overflow: hidden; /* Handled by internal flex scrolling */
+        }
+
+        .dashboard-container { 
+            display: flex; 
+            height: 100vh; 
+            width: 100vw;
+            overflow: hidden;
+        }
         
-        /* Sidebar layout with lighter blue background */
+        /* Sidebar layout with a beautiful, lighter blue background */
         .sidebar { 
-            width: 280px; 
-            background: #1e293b; /* Slightly lighter, sleek blue background */
+            width: 300px; 
+            background: #2c3e50; /* Vibrant slate-blue background */
             color: #ffffff; 
             padding: 24px; 
             box-sizing: border-box; 
             display: flex; 
             flex-direction: column; 
             height: 100vh; 
-            position: sticky; 
-            top: 0; 
+            flex-shrink: 0;
         }
 
-        /* Dedicated sidebar menu scrollbar styled for high visibility */
+        /* Dedicated sidebar menu viewport with explicit scrolling limits */
         .sidebar-menu { 
             flex-grow: 1; 
             overflow-y: auto; 
@@ -51,31 +65,47 @@
             padding-right: 4px;
         }
 
+        /* Sidebar specific custom scrollbars for extreme visibility */
         .sidebar-menu::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .sidebar-menu::-webkit-scrollbar-track {
-            background: #0f172a; /* Dark track for contrast */
+            background: rgba(0, 0, 0, 0.15);
             border-radius: 99px;
         }
 
         .sidebar-menu::-webkit-scrollbar-thumb {
-            background: #64748b; /* Clearly visible slate thumb */
+            background: rgba(255, 255, 255, 0.25);
             border-radius: 99px;
-            border: 1px solid #0f172a;
         }
 
         .sidebar-menu::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: rgba(255, 255, 255, 0.4);
         }
 
-        .main-content { flex: 1; padding: 40px; overflow-y: auto; background: #f1f5f9; }
+        .main-content { 
+            flex: 1; 
+            padding: 40px; 
+            overflow-y: auto; 
+            background: #f1f5f9; 
+            height: 100vh;
+            box-sizing: border-box;
+        }
         
         /* Document Viewport Wrapper */
-        .workbook-viewport { background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04); max-width: 800px; margin: 0 auto; min-height: 400px; position: relative; }
+        .workbook-viewport { 
+            background: white; 
+            padding: 32px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04); 
+            max-width: 800px; 
+            margin: 0 auto; 
+            min-height: 400px; 
+            position: relative; 
+        }
         
-        /* High-contrast Sidebar buttons (white text against blue) */
+        /* High-contrast Sidebar buttons (Crisp White Text) */
         .nav-btn { 
             display: flex; 
             align-items: center; 
@@ -84,20 +114,80 @@
             text-align: left; 
             background: none; 
             border: none; 
-            color: #e2e8f0; /* Crisp light grey/white */
+            color: #ffffff; /* Crisp White */
             padding: 12px; 
             cursor: pointer; 
             font-size: 14px; 
             border-radius: 8px; 
             transition: all 0.2s; 
             margin-bottom: 4px; 
+            box-sizing: border-box;
         }
+        
+        .nav-btn span {
+            color: #ffffff; /* Ensure inner spans are strictly white */
+        }
+
         .nav-btn:hover, .nav-btn.active { 
-            background: #0f172a; /* Darker blue active state */
-            color: #ffffff; /* Clear white text */
+            background: rgba(255, 255, 255, 0.12); /* Subtle hover highlight */
+            color: #ffffff; 
         }
-        .nav-btn .completion-dot { width: 8px; height: 8px; border-radius: 50%; background: #475569; }
-        .nav-btn.completed .completion-dot { background: #10b981; box-shadow: 0 0 8px #10b981; }
+        
+        .nav-btn .completion-dot { 
+            width: 8px; 
+            height: 8px; 
+            border-radius: 50%; 
+            background: rgba(255, 255, 255, 0.3); 
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        
+        .nav-btn.completed .completion-dot { 
+            background: #10b981; 
+            box-shadow: 0 0 8px #10b981; 
+        }
+
+        /* --- Collapsible Accordion Dropdown Styles --- */
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 12px 6px;
+            cursor: pointer;
+            margin-top: 16px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-left: 4px;
+        }
+
+        .accordion-content.open {
+            max-height: 500px; /* Large enough to fit all content */
+            transition: max-height 0.4s ease-in;
+        }
+
+        .accordion-arrow {
+            transition: transform 0.2s ease;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .accordion-header.active .accordion-arrow {
+            transform: rotate(90deg);
+        }
 
         /* General layout items */
         .scroll-reveal-card { opacity: 0; transform: translateY(15px); transition: all 0.5s ease; margin-bottom: 24px; }
@@ -114,7 +204,6 @@
         .triggered-equity { background-color: #dcfce7 !important; color: #166534; } /* Green */
 
         /* NOTES FEATURE STYLES */
-        /* Floating Note Creator */
         .floating-note-popup {
             position: absolute;
             background: white;
@@ -142,7 +231,6 @@
             border-color: #38bdf8;
         }
 
-        /* Journal Page Layout */
         .notes-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -199,41 +287,47 @@
 
     <div class="dashboard-container">
         <div class="sidebar">
-            <h2 style="margin: 0 0 16px 0; font-size: 20px; color: #ffffff; cursor: pointer;" onclick="loadDashboard()">Mono Academy</h2>
+            <h2 style="margin: 0 0 16px 0; font-size: 20px; color: #ffffff; cursor: pointer; letter-spacing: -0.02em;" onclick="loadDashboard()">Mono Academy</h2>
             
-            <button class="nav-btn active" id="dashboard-nav-btn" onclick="loadDashboard()" style="margin-bottom: 16px; font-weight: 700; color: #ffffff;">
-                <span>🏠 Progress Dashboard</span>
+            <button class="nav-btn active" id="dashboard-nav-btn" onclick="loadDashboard()" style="margin-bottom: 8px; font-weight: 700;">
+                <span style="color: #ffffff;">🏠 Progress Dashboard</span>
             </button>
 
             <div class="sidebar-menu">
-                <p style="font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.05em;">Module 1: Foundations</p>
-                <button class="nav-btn" id="nav-1.1" onclick="loadLessonContent('1.1')">
-                    <span>Lesson 1.1: Introduction</span>
-                    <span class="completion-dot"></span>
+                <button class="accordion-header active" onclick="toggleAccordion('module1-content', this)">
+                    <span>Module 1: Foundations</span>
+                    <span class="accordion-arrow">▶</span>
                 </button>
-                <button class="nav-btn" id="nav-1.2" onclick="loadLessonContent('1.2')">
-                    <span>Lesson 1.2: Accounting Equation</span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.3" onclick="loadLessonContent('1.3')">
-                    <span>Lesson 1.3: T-Accounts System</span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.4" onclick="loadLessonContent('1.4')">
-                    <span>Lesson 1.4: The Journal and Ledger </span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.5" onclick="loadLessonContent('1.5')">
-                    <span>Lesson 1.5: The Trial balance</span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.6" onclick="loadLessonContent('1.6')">
-                    <span>Lesson 1.6: Module 1 review and quiz </span>
-                    <span class="completion-dot"></span>
-                </button>
+                
+                <div id="module1-content" class="accordion-content open">
+                    <button class="nav-btn" id="nav-1.1" onclick="loadLessonContent('1.1')">
+                        <span style="color: #ffffff;">Lesson 1.1: Introduction</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-1.2" onclick="loadLessonContent('1.2')">
+                        <span style="color: #ffffff;">Lesson 1.2: Accounting Equation</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-1.3" onclick="loadLessonContent('1.3')">
+                        <span style="color: #ffffff;">Lesson 1.3: T-Accounts System</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-1.4" onclick="loadLessonContent('1.4')">
+                        <span style="color: #ffffff;">Lesson 1.4: Journal & Ledger</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-1.5" onclick="loadLessonContent('1.5')">
+                        <span style="color: #ffffff;">Lesson 1.5: Trial Balance</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-1.6" onclick="loadLessonContent('1.6')">
+                        <span style="color: #ffffff;">Lesson 1.6: Review & Quiz</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                </div>
             </div>
 
-            <div style="border-top: 1px solid #475569; padding-top: 16px;">
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 16px;">
                 <button class="nav-btn" id="nav-notes" onclick="loadNotesPage()">
                     <span style="display: flex; align-items: center; gap: 8px; color: #ffffff;">📝 My Study Notes</span>
                     <span id="notes-counter-badge" style="background: #38bdf8; color: #0f172a; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 99px; transition: all 0.2s;">0</span>
@@ -282,6 +376,17 @@
             initHighlightListener();
         });
 
+        // Toggle collapsible accordion panels
+        function toggleAccordion(id, btn) {
+            const panel = document.getElementById(id);
+            btn.classList.toggle('active');
+            if (panel.classList.contains('open')) {
+                panel.classList.remove('open');
+            } else {
+                panel.classList.add('open');
+            }
+        }
+
         // Update the visual notes counter badge in the sidebar
         function updateNotesBadge() {
             const badge = document.getElementById("notes-counter-badge");
@@ -291,8 +396,8 @@
                     badge.style.background = "#38bdf8";
                     badge.style.color = "#0f172a";
                 } else {
-                    badge.style.background = "#475569";
-                    badge.style.color = "#cbd5e1";
+                    badge.style.background = "rgba(255, 255, 255, 0.1)";
+                    badge.style.color = "rgba(255, 255, 255, 0.6)";
                 }
             }
         }
@@ -338,7 +443,7 @@
                     <p style="margin: 0; color: #64748b; font-size: 14px;">Monitor your journey as you complete lessons in Module 1: Foundations.</p>
                 </div>
 
-                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 28px; border-radius: 16px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; gap: 24px;">
+                <div style="background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%); padding: 28px; border-radius: 16px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; gap: 24px;">
                     <div style="flex-grow: 1;">
                         <span style="color: #38bdf8; font-size: 12px; font-weight: 800; text-transform: uppercase;">Module completion status</span>
                         <h2 style="margin: 4px 0 16px 0; font-size: 24px; font-weight: 800;">${progressPercent}% Complete</h2>
@@ -358,7 +463,7 @@
             `;
         }
 
-        // FUNCTION 2: Load lesson content, force cache bypass, and execute embedded scripts!
+        // FUNCTION 2: Load lesson content, force cache bypass, and execute embedded scripts
         function loadLessonContent(lessonId) {
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`nav-${lessonId}`);
@@ -520,7 +625,6 @@
         // STUDY JOURNAL (DEDICATED FULL-PAGE VIEW)
         // ==========================================
         function loadNotesPage() {
-            // Remove active highlight from all sidebar lesson tabs
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('nav-notes').classList.add('active');
 
