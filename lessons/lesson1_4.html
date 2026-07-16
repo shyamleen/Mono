@@ -1,170 +1,1312 @@
-<div class="anatomy-container" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 32px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.01);">
-    
-    <div style="margin-bottom: 24px;">
-        <span style="font-size: 11px; font-weight: 800; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Blueprint</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: #0f172a; margin: 4px 0 8px 0;">Anatomy of a Journal Entry</h3>
-        <p style="font-size: 14.5px; color: #64748b; margin: 0; line-height: 1.5;">
-            Every standard journal entry requires <strong>five core components</strong> to be legally complete. Click the interactive cards below to highlight where they live on a real general journal page!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1.4: The Journal and Ledger</title>
+    <style>
+        :root {
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --blue-50: #eff6ff;
+            --blue-100: #dbeafe;
+            --blue-500: #3b82f6;
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --rose-500: #ef4444;
+            --rose-600: #dc2626;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: var(--slate-800);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .lesson-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Card Layouts */
+        .card {
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Typography */
+        h1 {
+            margin: 0 0 12px 0;
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--slate-900);
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            margin: 0;
+            color: var(--slate-600);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Anatomy Section Interactive Matrix */
+        .anatomy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .anatomy-card {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 13.5px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .anatomy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        .anatomy-card:hover, .anatomy-card.active {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue-100);
+        }
+
+        .anatomy-card.active::before {
+            background: var(--blue-500);
+        }
+
+        .anatomy-card.debit.active::before { background: var(--emerald-500); }
+        .anatomy-card.credit.active::before { background: var(--rose-500); }
+
+        .anatomy-card strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .description-box {
+            background: var(--blue-50);
+            border-left: 4px solid var(--blue-500);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            font-size: 14px;
+            color: #1e40af;
+            transition: var(--transition);
+        }
+
+        /* Diagram Highlighting */
+        .anatomy-visualizer {
+            background: var(--slate-900);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 13px;
+            border: 1px solid var(--slate-800);
+        }
+
+        .visual-row {
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .visual-row.highlight {
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+        }
+        .visual-row.highlight-debit {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+        .visual-row.highlight-credit {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        /* Beautiful Tables */
+        .table-container {
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .table-header {
+            background: var(--slate-50);
+            border-bottom: 1px solid var(--slate-200);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header span.title {
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--slate-900);
+        }
+
+        .table-header span.badge {
+            font-size: 11px;
+            background: #e2e8f0;
+            color: var(--slate-600);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .fancy-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13.5px;
+        }
+
+        .fancy-table th {
+            padding: 12px 20px;
+            background: #f8fafc;
+            color: var(--slate-600);
+            font-weight: 700;
+            border-bottom: 2px solid var(--slate-200);
+        }
+
+        .fancy-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--slate-100);
+            color: var(--slate-700);
+        }
+
+        .fancy-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Stepper Styles */
+        .stepper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .step-card {
+            background: white;
+            border: 1.5px solid var(--slate-200);
+            border-radius: 14px;
+            padding: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .step-card:hover {
+            border-color: var(--blue-500);
+            transform: translateY(-2px);
+        }
+
+        .step-num {
+            background: var(--slate-100);
+            color: var(--slate-700);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            border-radius: 50%;
+            font-size: 13px;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+
+        .step-card:hover .step-num {
+            background: var(--blue-500);
+            color: white;
+        }
+
+        .step-card strong {
+            color: var(--slate-900);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            font-size: 13px;
+            color: var(--slate-600);
+            line-height: 1.5;
+        }
+
+        /* Advanced Accordion */
+        .accordion-item {
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+
+        .accordion-item:hover {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--slate-900);
+            font-size: 15.5px;
+            user-select: none;
+            background: white;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: var(--slate-50);
+        }
+
+        .accordion-icon {
+            font-size: 11px;
+            color: var(--blue-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--slate-100);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .accordion-item.active .accordion-icon {
+            background: var(--blue-500);
+            color: white;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 24px;
+            border-top: 1px solid var(--slate-100);
+            background: var(--slate-50);
+        }
+
+        .accordion-item.active .accordion-content {
+            display: block;
+            animation: slideDown 0.25s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ledger-box {
+            background: white;
+            border: 1.5px solid var(--slate-200);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ledger-title {
+            font-weight: 800;
+            border-bottom: 2px solid var(--slate-900);
+            padding-bottom: 6px;
+            text-align: center;
+            color: var(--slate-900);
+            font-size: 13.5px;
+        }
+
+        /* Quiz Banner Trigger */
+        .quiz-trigger-banner {
+            border-top: 1px dashed var(--slate-300);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--blue-500);
+            color: white !important;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition);
+            border: none;
+            text-decoration: none;
+        }
+
+        .quiz-btn:hover {
+            background: var(--blue-600);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.35);
+        }
+
+        /* Quiz Modal & Core Drag and Drop Styling */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-card {
+            background: white;
+            width: 100%;
+            max-width: 820px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            box-sizing: border-box;
+            border: 1px solid var(--slate-200);
+            animation: modalScaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalScaleUp {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .drag-chip-l14 {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            border: 1.5px solid var(--slate-300);
+            color: var(--slate-800);
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: grab;
+            user-select: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .drag-chip-l14:hover, .drag-chip-l14.selected {
+            border-color: var(--blue-500);
+            background: var(--blue-50);
+            color: var(--blue-700);
+        }
+
+        .drag-chip-l14:active {
+            cursor: grabbing;
+        }
+
+        .target-slot-l14 {
+            background: var(--slate-50);
+            border: 1.5px dashed var(--slate-300);
+            border-radius: 8px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            box-sizing: border-box;
+            transition: var(--transition);
+            font-size: 12px;
+            color: var(--slate-400);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .target-slot-l14.dragover, .target-slot-l14.active-target {
+            background: var(--blue-50);
+            border-color: var(--blue-500);
+            border-style: solid;
+        }
+
+        .target-slot-l14.filled {
+            background: white;
+            border-style: solid;
+            border-color: var(--slate-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .target-slot-l14 .drag-chip-l14 {
+            width: 100%;
+            justify-content: center;
+            box-shadow: none;
+            border: none;
+            background: transparent;
+            padding: 4px;
+            font-size: 12.5px;
+        }
+
+        .slide-question-l14 {
+            display: none;
+        }
+        .slide-question-l14.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="lesson-container">
+
+    <div class="card">
+        <h1>Lesson 1.4: The Journal and Ledger</h1>
+        <p>
+            A <strong>Journal Entry</strong> is used in double-entry bookkeeping to officially record a financial transaction. It is the business’s diary, recording transactions chronologically as they happen. In every single entry, total debits must equal total credits in at least two accounts.
         </p>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+    <div class="card">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--slate-900); margin: 0 0 12px 0;">Anatomy of a Journal Entry</h3>
+        <p style="font-size: 14px; color: var(--slate-600); margin: 0 0 20px 0;">
+            Every standard journal entry requires five core components to be legally complete:
+        </p>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;" id="anatomy-selectors">
+        <div class="anatomy-grid">
+            <div class="anatomy-card" id="card-date" onclick="highlightAnatomy('date')">
+                <strong style="color: var(--slate-900);">📅 1. Date</strong>
+                The exact day the financial exchange took place.
+            </div>
+            <div class="anatomy-card" id="card-accounts" onclick="highlightAnatomy('accounts')">
+                <strong style="color: var(--slate-900);">📖 2. Accounts Affected</strong>
+                Debits are written on top. Credits are indented below.
+            </div>
+            <div class="anatomy-card debit" id="card-debit" onclick="highlightAnatomy('debit')">
+                <strong style="color: var(--emerald-600);">➕ 3. Debit Amount</strong>
+                The numeric value recorded in the left-hand column.
+            </div>
+            <div class="anatomy-card credit" id="card-credit" onclick="highlightAnatomy('credit')">
+                <strong style="color: var(--rose-500);">➖ 4. Credit Amount</strong>
+                The numeric value recorded in the right-hand column.
+            </div>
+        </div>
+
+        <div class="description-box" id="card-description" onclick="highlightAnatomy('description')" style="cursor: pointer; margin-bottom: 24px;">
+            <strong>📝 5. Description:</strong> A brief, simple note added to the bottom explaining the business purpose of the transaction.
+        </div>
+
+        <div class="anatomy-visualizer">
+            <div class="visual-row" id="row-date">Date      | Account Titles & Explanation | Debit ($) | Credit ($)</div>
+            <div style="border-bottom: 1px dashed var(--slate-700); margin: 6px 0;"></div>
+            <div class="visual-row" id="row-debit-line">May 15    | Cash                          | 2,000     | -</div>
+            <div class="visual-row" id="row-credit-line">          |   Service Revenue             | -         | 2,000</div>
+            <div class="visual-row" id="row-desc-line">          |   (To record cash sales)     |           | </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--slate-900); margin: 0 0 8px 0;">The General Journal</h3>
+        <p style="font-size: 14px; color: var(--slate-600); margin: 0 0 24px 0;">
+            Study these two examples to see how date matching, indentations, and balanced columns appear in practice:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="title">💼 Example 1: Cash Sale (May 15)</span>
+                    <span class="badge" style="background: #e6f4ea; color: #137333;">Balanced</span>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="fancy-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Account Titles & Explanation</th>
+                                <th style="text-align: right;">Debit ($)</th>
+                                <th style="text-align: right;">Credit ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600; color: var(--slate-900);">May 15</td>
+                                <td style="font-weight: 700; color: var(--slate-900);">Cash <span style="font-weight: normal; font-size: 11.5px; color: var(--slate-400);">(Asset Increases)</span></td>
+                                <td style="text-align: right; color: var(--emerald-600); font-weight: 700;">2,000</td>
+                                <td style="text-align: right; color: var(--slate-400);">-</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="padding-left: 36px; font-weight: 700; color: var(--slate-700);">Service Revenue <span style="font-weight: normal; font-size: 11.5px; color: var(--slate-400);">(Income Increases)</span></td>
+                                <td style="text-align: right; color: var(--slate-400);">-</td>
+                                <td style="text-align: right; color: var(--rose-500); font-weight: 700;">2,000</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="3" style="font-style: italic; color: var(--slate-600); font-size: 12.5px; padding-top: 8px;">
+                                    (To record services provided to a client immediately collected in cash)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="title">🚜 Example 2: Purchasing Equipment on Account (Sept 1)</span>
+                    <span class="badge" style="background: #e6f4ea; color: #137333;">Balanced</span>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="fancy-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Account Titles & Explanation</th>
+                                <th style="text-align: right;">Debit ($)</th>
+                                <th style="text-align: right;">Credit ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600; color: var(--slate-900);">Sept 1</td>
+                                <td style="font-weight: 700; color: var(--slate-900);">Equipment <span style="font-weight: normal; font-size: 11.5px; color: var(--slate-400);">(Asset Increases)</span></td>
+                                <td style="text-align: right; color: var(--emerald-600); font-weight: 700;">10,000</td>
+                                <td style="text-align: right; color: var(--slate-400);">-</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="padding-left: 36px; font-weight: 700; color: var(--slate-700);">Accounts Payable <span style="font-weight: normal; font-size: 11.5px; color: var(--slate-400);">(Liability Increases)</span></td>
+                                <td style="text-align: right; color: var(--slate-400);">-</td>
+                                <td style="text-align: right; color: var(--rose-500); font-weight: 700;">10,000</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="3" style="font-style: italic; color: var(--slate-600); font-size: 12.5px; padding-top: 8px;">
+                                    (To record purchase of feed delivery system with payment terms on account)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h1>The General Ledger</h1>
+        <p>
+            After we have recorded transactions chronologically in the General Journal, we must sort them into separate accounts. This posting process is compiled in the <strong>General Ledger</strong>, tracking running balances for each individual account.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--slate-900); margin: 0 0 8px 0;">Steps to Post a Transaction</h3>
+        <div class="stepper-grid">
+            <div class="step-card" onclick="highlightStep(1)" id="step-1">
+                <div class="step-num">1</div>
+                <strong>Identify the Accounts</strong>
+                <p>Look at your journal entries to determine which specific accounts (e.g., Cash, Capital) are affected.</p>
+            </div>
+            <div class="step-card" onclick="highlightStep(2)" id="step-2">
+                <div class="step-num">2</div>
+                <strong>Record the Date</strong>
+                <p>Enter the transaction date in the ledger account chronologically to preserve the audit trail.</p>
+            </div>
+            <div class="step-card" onclick="highlightStep(3)" id="step-3">
+                <div class="step-num">3</div>
+                <strong>Transfer Amounts</strong>
+                <p>Put debit amounts on the left side and credit amounts on the right side of the ledger account.</p>
+            </div>
+            <div class="step-card" onclick="highlightStep(4)" id="step-4">
+                <div class="step-num">4</div>
+                <strong>Update Running Balance</strong>
+                <p>Calculate the new running balance after every entry (Debits/Credits modify this dynamically).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--slate-900); margin: 0 0 6px 0;">Posting & Balance Ledger Examples</h3>
+        <p style="font-size: 14px; color: var(--slate-600); margin: 0 0 24px 0;">
+            Study these real-world general ledger accounts showing running balances. Note how we combine and net transactions across accounts:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="accordion-item" id="accordion-1">
+                <div class="accordion-header" onclick="toggleAccordion(1)">
+                    <span>💼 Example 1: Cash Investment (July 1)</span>
+                    <span class="accordion-icon" id="acc-btn-1">Expand</span>
+                </div>
+                <div class="accordion-content">
+                    <div style="margin-bottom: 16px; font-weight: 600; color: var(--slate-900);">
+                        Transaction: Owner invests $10,000 into a new business.
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <div class="ledger-box">
+                            <div class="ledger-title">Cash Account Ledger</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px; font-size: 13px;">
+                                <div><strong>Date:</strong> July 1</div>
+                                <div><strong>Debit Entry:</strong> <span style="color: var(--emerald-600); font-weight: 700;">$10,000</span></div>
+                                <div style="border-top: 1px dashed var(--slate-200); padding-top: 6px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: var(--slate-900); font-weight: 700;">$10,000 (Debit)</span></div>
+                            </div>
+                        </div>
+                        <div class="ledger-box">
+                            <div class="ledger-title">Capital Account Ledger</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px; font-size: 13px;">
+                                <div><strong>Date:</strong> July 1</div>
+                                <div><strong>Credit Entry:</strong> <span style="color: var(--rose-600); font-weight: 700;">$10,000</span></div>
+                                <div style="border-top: 1px dashed var(--slate-200); padding-top: 6px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: var(--slate-900); font-weight: 700;">$10,000 (Credit)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="accordion-2">
+                <div class="accordion-header" onclick="toggleAccordion(2)">
+                    <span>🚜 Example 2: Buying Equipment on Account (July 5)</span>
+                    <span class="accordion-icon" id="acc-btn-2">Expand</span>
+                </div>
+                <div class="accordion-content">
+                    <div style="margin-bottom: 16px; font-weight: 600; color: var(--slate-900);">
+                        Transaction: Purchased $5,000 worth of equipment and agreed to pay the vendor later.
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <div class="ledger-box">
+                            <div class="ledger-title">Equipment Account Ledger</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px; font-size: 13px;">
+                                <div><strong>Date:</strong> July 5</div>
+                                <div><strong>Debit Entry:</strong> <span style="color: var(--emerald-600); font-weight: 700;">$5,000</span></div>
+                                <div style="border-top: 1px dashed var(--slate-200); padding-top: 6px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: var(--slate-900); font-weight: 700;">$5,000 (Debit)</span></div>
+                            </div>
+                        </div>
+                        <div class="ledger-box">
+                            <div class="ledger-title">Accounts Payable Ledger</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px; font-size: 13px;">
+                                <div><strong>Date:</strong> July 5</div>
+                                <div><strong>Credit Entry:</strong> <span style="color: var(--rose-600); font-weight: 700;">$5,000</span></div>
+                                <div style="border-top: 1px dashed var(--slate-200); padding-top: 6px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: var(--slate-900); font-weight: 700;">$5,000 (Credit)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="accordion-3">
+                <div class="accordion-header" onclick="toggleAccordion(3)">
+                    <span>💸 Example 3: Paying Off a Liability (July 15)</span>
+                    <span class="accordion-icon" id="acc-btn-3">Expand</span>
+                </div>
+                <div class="accordion-content">
+                    <div style="margin-bottom: 16px; font-weight: 600; color: var(--slate-900);">
+                        Transaction: Pay $2,000 of the liability owed to the supplier from Scenario 2.
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <div class="ledger-box">
+                            <div class="ledger-title">Accounts Payable Ledger</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px; font-size: 13px;">
+                                <div><strong>Date:</strong> July 15</div>
+                                <div><strong>Debit Entry:</strong> <span style="color: var(--emerald-600); font-weight: 700;">$2,000</span></div>
+                                <div style="border-top: 1px dashed var(--slate-200); padding-top: 6px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: var(--slate-900); font-weight: 700;">$3,000 (Credit)</span> <span style="color: var(--slate-400); font-size: 11px;">($5,000 - $2,000)</span></div>
+                            </div>
+                        </div>
+                        <div class="ledger-box">
+                            <div class="ledger-title">Cash Account Ledger</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px; font-size: 13px;">
+                                <div><strong>Date:</strong> July 15</div>
+                                <div><strong>Credit Entry:</strong> <span style="color: var(--rose-600); font-weight: 700;">$2,000</span></div>
+                                <div style="border-top: 1px dashed var(--slate-200); padding-top: 6px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: var(--slate-900); font-weight: 700;">$8,000 (Debit)</span> <span style="color: var(--slate-400); font-size: 11px;">($10,000 - $2,000)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-trigger-banner">
+        <div>
+            <h4 style="margin: 0; font-size: 16px; font-weight: 800; color: var(--slate-900);">Ready to record Journals and post Ledgers?</h4>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: var(--slate-600);">Practice placing your accounts, values, and ledger balances across active general accounts!</p>
+        </div>
+        <button class="quiz-btn" onclick="openQuizModal()">
+            ⚡ Start Quiz
+        </button>
+    </div>
+
+</div>
+
+<div id="pureQuizModal_l1_4" class="modal-overlay">
+    <div class="modal-card">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: var(--slate-50); border-bottom: 1px solid var(--slate-200);">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 20px;">📖</span>
+                <h3 style="margin: 0; font-size: 16px; font-weight: 800; color: var(--slate-900);">Lesson 1.4 Practice Quiz: Journals & Ledgers</h3>
+            </div>
+            <button onclick="closeQuizModal()" style="font-size: 24px; color: var(--slate-400); background: none; border: none; cursor: pointer; transition: var(--transition);">&times;</button>
+        </div>
+
+        <div style="background: var(--slate-100); height: 6px; width: 100%; position: relative;">
+            <div id="quiz_progress_bar_l14" style="background: var(--blue-500); height: 100%; width: 25%; transition: width 0.3s ease;"></div>
+        </div>
+
+        <div style="padding: 24px; overflow-y: auto; flex: 1; box-sizing: border-box; background: var(--slate-50);">
             
-            <div class="anatomy-card active" onclick="highlightComponent('date')" data-component="date" style="border: 2px solid #3b82f6; background: #eff6ff; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
-                <strong style="color: #1e3a8a; display: block; margin-bottom: 4px; font-size: 13.5px;">📅 1. Date</strong>
-                <span style="font-size: 11.5px; color: #1e40af; line-height: 1.4;">The exact day the financial exchange took place.</span>
-            </div>
+            <p style="margin: 0 0 20px 0; font-size: 13.5px; color: var(--slate-600); text-align: center; line-height: 1.5;">
+                Drag the items from the deck or <strong>tap a card and then tap a slot</strong> to place them into the correct **Journal Entries** and **Ledger T-Accounts**. Click Check Answer to verify!
+            </p>
 
-            <div class="anatomy-card" onclick="highlightComponent('accounts')" data-component="accounts" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
-                <strong style="color: #0f172a; display: block; margin-bottom: 4px; font-size: 13.5px;">📖 2. Accounts</strong>
-                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">Debits on top. Credits indented below.</span>
-            </div>
-
-            <div class="anatomy-card" onclick="highlightComponent('debit')" data-component="debit" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
-                <strong style="color: #10b981; display: block; margin-bottom: 4px; font-size: 13.5px;">➕ 3. Debit</strong>
-                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">The numeric value in the left column.</span>
-            </div>
-
-            <div class="anatomy-card" onclick="highlightComponent('credit')" data-component="credit" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
-                <strong style="color: #ef4444; display: block; margin-bottom: 4px; font-size: 13.5px;">➖ 4. Credit</strong>
-                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">The numeric value in the right column.</span>
-            </div>
-
-            <div class="anatomy-card" onclick="highlightComponent('description')" data-component="description" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
-                <strong style="color: #8b5cf6; display: block; margin-bottom: 4px; font-size: 13.5px;">📝 5. Description</strong>
-                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">A brief note explaining the business purpose.</span>
-            </div>
-
-        </div>
-
-        <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 20px; overflow-x: auto; position: relative;">
-            <div style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-                <span>📋 Visualizer:</span> <span id="visualizer-status" style="color: #3b82f6;">Currently Showing: <strong>Date</strong></span>
-            </div>
-
-            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0;">
-                <thead>
-                    <tr style="background: #f1f5f9; color: #475569; font-weight: 700;">
-                        <th style="padding: 10px 14px; width: 15%;">Date</th>
-                        <th style="padding: 10px 14px; width: 55%;">Account Titles & Explanation</th>
-                        <th style="padding: 10px 14px; text-align: right; width: 15%;">Debit ($)</th>
-                        <th style="padding: 10px 14px; text-align: right; width: 15%;">Credit ($)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="visual-date" style="padding: 12px 14px; vertical-align: top; font-weight: 600; color: #0f172a; transition: all 0.3s; background: rgba(59, 130, 246, 0.15); box-shadow: inset 0 0 0 2px #3b82f6;">
-                            May 15
-                        </td>
+            <div id="quiz_scenarios_l14">
+                
+                <div class="slide-question-l14 active" id="l14_slide_1">
+                    <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px;">
+                        <span style="font-size: 11px; font-weight: 800; color: var(--blue-500); text-transform: uppercase; letter-spacing: 0.05em;">Scenario 1 of 4</span>
+                        <h4 style="margin: 6px 0 16px 0; font-size: 15px; font-weight: 800; color: var(--slate-900);">You provide a service for $500, and they guarantee to pay you by the end of the year.</h4>
                         
-                        <td style="padding: 12px 14px; vertical-align: top;">
-                            <div id="visual-account-debit" style="font-weight: 700; color: #0f172a; margin-bottom: 4px; padding: 2px 6px; border-radius: 4px; transition: all 0.3s;">
-                                Cash
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--slate-900); border-bottom: 2px solid var(--slate-900); padding-bottom: 6px; margin-bottom: 12px;">General Journal Entry</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center;">
+                                        <div class="target-slot-l14" data-expected="chip14_ar" data-placeholder="Debit Account">Debit Account</div>
+                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Debit ($)">Debit ($)</div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center; padding-left: 20px;">
+                                        <div class="target-slot-l14" data-expected="chip14_sr" data-placeholder="Credit Account (Indented)">Credit Account</div>
+                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Credit ($)">Credit ($)</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="visual-account-credit" style="font-weight: 700; color: #475569; padding: 2px 6px 2px 24px; border-radius: 4px; transition: all 0.3s;">
-                                Service Revenue
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--blue-500); border-bottom: 2px solid var(--blue-500); padding-bottom: 6px; margin-bottom: 12px;">General Ledger Posting</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600);">Accounts Receivable Ledger Account</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Debit Entry">Debit Entry</div>
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Credit</div>
+                                    </div>
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600); margin-top: 4px;">Sales Revenue Ledger Account</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Debit</div>
+                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Credit Entry">Credit Entry</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="visual-description" style="color: #64748b; font-style: italic; font-size: 12px; margin-top: 10px; padding: 4px 8px; border-radius: 4px; transition: all 0.3s;">
-                                (To record services provided to a client immediately collected in cash)
-                            </div>
-                        </td>
+                        </div>
+                    </div>
+                </div>
 
-                        <td id="visual-debit-val" style="padding: 12px 14px; text-align: right; vertical-align: top; color: #10b981; font-weight: 700; transition: all 0.3s;">
-                            2,000
-                        </td>
+                <div class="slide-question-l14" id="l14_slide_2">
+                    <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px;">
+                        <span style="font-size: 11px; font-weight: 800; color: var(--blue-500); text-transform: uppercase; letter-spacing: 0.05em;">Scenario 2 of 4</span>
+                        <h4 style="margin: 6px 0 16px 0; font-size: 15px; font-weight: 800; color: var(--slate-900);">You buy a new truck for $80,000, paying $25,000 in cash and deciding to pay $55,000 later.</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--slate-900); border-bottom: 2px solid var(--slate-900); padding-bottom: 6px; margin-bottom: 12px;">General Journal Entry</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center;">
+                                        <div class="target-slot-l14" data-expected="chip14_eq" data-placeholder="Debit Account">Debit Account</div>
+                                        <div class="target-slot-l14" data-expected="val14_80k" data-placeholder="Debit ($)">Debit ($)</div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center; padding-left: 20px;">
+                                        <div class="target-slot-l14" data-expected="chip14_cash" data-placeholder="Credit Account 1">Credit Account 1</div>
+                                        <div class="target-slot-l14" data-expected="val14_25k" data-placeholder="Credit ($)">Credit ($)</div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center; padding-left: 20px;">
+                                        <div class="target-slot-l14" data-expected="chip14_ap" data-placeholder="Credit Account 2">Credit Account 2</div>
+                                        <div class="target-slot-l14" data-expected="val14_55k" data-placeholder="Credit ($)">Credit ($)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--blue-500); border-bottom: 2px solid var(--blue-500); padding-bottom: 6px; margin-bottom: 12px;">General Ledger Posting</div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600);">Equipment Account Ledger</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div class="target-slot-l14" data-expected="val14_80k" data-placeholder="Debit Entry">Debit Entry</div>
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 9.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Credit</div>
+                                    </div>
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600); margin-top: 2px;">Cash Account Ledger</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 9.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Debit</div>
+                                        <div class="target-slot-l14" data-expected="val14_25k" data-placeholder="Credit Entry">Credit Entry</div>
+                                    </div>
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600); margin-top: 2px;">Accounts Payable Account Ledger</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 9.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Debit</div>
+                                        <div class="target-slot-l14" data-expected="val14_55k" data-placeholder="Credit Entry">Credit Entry</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                        <td id="visual-credit-val" style="padding: 12px 14px; text-align: right; vertical-align: top; color: #ef4444; font-weight: 700; transition: all 0.3s;">
-                            2,000
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="slide-question-l14" id="l14_slide_3">
+                    <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px;">
+                        <span style="font-size: 11px; font-weight: 800; color: var(--blue-500); text-transform: uppercase; letter-spacing: 0.05em;">Scenario 3 of 4</span>
+                        <h4 style="margin: 6px 0 16px 0; font-size: 15px; font-weight: 800; color: var(--slate-900);">You invest $50,000 into the business bank account.</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--slate-900); border-bottom: 2px solid var(--slate-900); padding-bottom: 6px; margin-bottom: 12px;">General Journal Entry</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center;">
+                                        <div class="target-slot-l14" data-expected="chip14_cash" data-placeholder="Debit Account">Debit Account</div>
+                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Debit ($)">Debit ($)</div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center; padding-left: 20px;">
+                                        <div class="target-slot-l14" data-expected="chip14_cap" data-placeholder="Credit Account (Indented)">Credit Account</div>
+                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Credit ($)">Credit ($)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--blue-500); border-bottom: 2px solid var(--blue-500); padding-bottom: 6px; margin-bottom: 12px;">General Ledger Posting</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600);">Cash Account Ledger</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Debit Entry">Debit Entry</div>
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Credit</div>
+                                    </div>
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600); margin-top: 4px;">Capital Account Ledger</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Debit</div>
+                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Credit Entry">Credit Entry</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-question-l14" id="l14_slide_4">
+                    <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px;">
+                        <span style="font-size: 11px; font-weight: 800; color: var(--blue-500); text-transform: uppercase; letter-spacing: 0.05em;">Scenario 4 of 4</span>
+                        <h4 style="margin: 6px 0 16px 0; font-size: 15px; font-weight: 800; color: var(--slate-900);">You sell goods for $400, but are yet to be paid.</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--slate-900); border-bottom: 2px solid var(--slate-900); padding-bottom: 6px; margin-bottom: 12px;">General Journal Entry</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center;">
+                                        <div class="target-slot-l14" data-expected="chip14_ar" data-placeholder="Debit Account">Debit Account</div>
+                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Debit ($)">Debit ($)</div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; align-items: center; padding-left: 20px;">
+                                        <div class="target-slot-l14" data-expected="chip14_sr" data-placeholder="Credit Account (Indented)">Credit Account</div>
+                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Credit ($)">Credit ($)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; background: white;">
+                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--blue-500); border-bottom: 2px solid var(--blue-500); padding-bottom: 6px; margin-bottom: 12px;">General Ledger Posting</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600);">Accounts Receivable Ledger Account</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Debit Entry">Debit Entry</div>
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Credit</div>
+                                    </div>
+                                    <div style="font-size: 11px; font-weight: 700; color: var(--slate-600); margin-top: 4px;">Sales Revenue Ledger Account</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div style="background: var(--slate-50); border: 1px dashed var(--slate-200); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--slate-400); font-style: italic; min-height: 44px;">No Debit</div>
+                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Credit Entry">Credit Entry</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px;">
+                <div style="margin-bottom: 16px;">
+                    <span style="font-size: 11px; font-weight: 800; color: var(--slate-400); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 10px;">Account Titles</span>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;" id="titles_tray_l14">
+                        <div class="drag-chip-l14" draggable="true" id="chip14_cash" onclick="selectChip(this)">Cash</div>
+                        <div class="drag-chip-l14" draggable="true" id="chip14_ap" onclick="selectChip(this)">Accounts Payable</div>
+                        <div class="drag-chip-l14" draggable="true" id="chip14_ar" onclick="selectChip(this)">Accounts Receivable</div>
+                        <div class="drag-chip-l14" draggable="true" id="chip14_eq" onclick="selectChip(this)">Equipment</div>
+                        <div class="drag-chip-l14" draggable="true" id="chip14_sr" onclick="selectChip(this)">Sales Revenue</div>
+                        <div class="drag-chip-l14" draggable="true" id="chip14_cap" onclick="selectChip(this)">Capital</div>
+                    </div>
+                </div>
+
+                <div>
+                    <span style="font-size: 11px; font-weight: 800; color: var(--slate-400); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 10px;">Amounts & Values</span>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;" id="amounts_tray_l14">
+                        <div class="drag-chip-l14" draggable="true" id="val14_400" onclick="selectChip(this)" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$400</div>
+                        <div class="drag-chip-l14" draggable="true" id="val14_500" onclick="selectChip(this)" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$500</div>
+                        <div class="drag-chip-l14" draggable="true" id="val14_25k" onclick="selectChip(this)" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$25,000</div>
+                        <div class="drag-chip-l14" draggable="true" id="val14_50k" onclick="selectChip(this)" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$50,000</div>
+                        <div class="drag-chip-l14" draggable="true" id="val14_55k" onclick="selectChip(this)" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$55,000</div>
+                        <div class="drag-chip-l14" draggable="true" id="val14_80k" onclick="selectChip(this)" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$80,000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz_result_panel_l14" style="display: none; padding: 20px; border-radius: 12px; text-align: center; border: 2px dashed; margin-bottom: 12px; animation: slideDown 0.25s ease;">
+            </div>
+
         </div>
 
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: var(--slate-50); border-top: 1px solid var(--slate-200);">
+            <button onclick="resetL14Quiz()" style="background: transparent; color: var(--slate-600); border: 1.5px solid var(--slate-300); font-size: 13.5px; font-weight: 700; padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: var(--transition);">Reset Quiz</button>
+            <div style="display: flex; gap: 12px;">
+                <button id="btn_check_answer_l14" onclick="checkCurrentSlideL14()" style="background: var(--blue-500); color: white; border: none; font-size: 13.5px; font-weight: 800; padding: 10px 24px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2); transition: var(--transition);">Check Answer</button>
+                <button id="btn_next_question_l14" onclick="nextSlideL14()" style="display: none; background: var(--emerald-500); color: white; border: none; font-size: 13.5px; font-weight: 800; padding: 10px 24px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2); transition: var(--transition);">Next Question ➡️</button>
+                <button onclick="closeQuizModal()" style="background: var(--slate-900); color: white; border: none; font-size: 13.5px; font-weight: 700; padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: var(--transition);">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    function highlightComponent(component) {
-        // 1. Update Selector Cards UI
-        const cards = document.querySelectorAll('.anatomy-card');
-        cards.forEach(card => {
-            if (card.getAttribute('data-component') === component) {
-                card.style.borderColor = getThemeColor(component).border;
-                card.style.backgroundColor = getThemeColor(component).bg;
-                card.querySelector('strong').style.color = getThemeColor(component).text;
-                if (card.querySelector('span')) {
-                    card.querySelector('span').style.color = getThemeColor(component).subtext;
-                }
-            } else {
-                card.style.borderColor = '#e2e8f0';
-                card.style.backgroundColor = '#fafafb';
-                card.querySelector('strong').style.color = getThemeColor(card.getAttribute('data-component')).defaultStrong;
-                if (card.querySelector('span')) {
-                    card.querySelector('span').style.color = '#64748b';
-                }
-            }
-        });
+    // --- Anatomy Visualizer Hover States ---
+    function highlightAnatomy(component) {
+        // Reset all active classes & highlights
+        document.querySelectorAll('.anatomy-card, .description-box').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.visual-row').forEach(row => row.className = 'visual-row');
 
-        // 2. Clear all highlights from visualizer
-        const elementsToReset = [
-            document.getElementById('visual-date'),
-            document.getElementById('visual-account-debit'),
-            document.getElementById('visual-account-credit'),
-            document.getElementById('visual-debit-val'),
-            document.getElementById('visual-credit-val'),
-            document.getElementById('visual-description')
-        ];
-        elementsToReset.forEach(el => {
-            el.style.background = 'transparent';
-            el.style.boxShadow = 'none';
-        });
+        const card = document.getElementById(`card-${component}`);
+        if (card) card.classList.add('active');
 
-        // 3. Apply active highlight in visualizer
-        const statusText = document.getElementById('visualizer-status');
-        
+        // Apply visual highlights to matching rows in mock ledger representation
         if (component === 'date') {
-            statusText.innerHTML = 'Currently Showing: <strong style="color: #3b82f6;">1. Date</strong>';
-            const target = document.getElementById('visual-date');
-            target.style.background = 'rgba(59, 130, 246, 0.15)';
-            target.style.boxShadow = 'inset 0 0 0 2px #3b82f6';
+            document.getElementById('row-date').classList.add('highlight');
+            document.getElementById('row-debit-line').classList.add('highlight');
         } else if (component === 'accounts') {
-            statusText.innerHTML = 'Currently Showing: <strong style="color: #0f172a;">2. Accounts Affected</strong>';
-            const deb = document.getElementById('visual-account-debit');
-            const cred = document.getElementById('visual-account-credit');
-            deb.style.background = 'rgba(15, 23, 42, 0.1)';
-            deb.style.boxShadow = '0 0 0 1px #0f172a';
-            cred.style.background = 'rgba(15, 23, 42, 0.1)';
-            cred.style.boxShadow = '0 0 0 1px #0f172a';
+            document.getElementById('row-debit-line').classList.add('highlight');
+            document.getElementById('row-credit-line').classList.add('highlight');
         } else if (component === 'debit') {
-            statusText.innerHTML = 'Currently Showing: <strong style="color: #10b981;">3. Debit Amount</strong>';
-            const target = document.getElementById('visual-debit-val');
-            target.style.background = 'rgba(16, 185, 129, 0.15)';
-            target.style.boxShadow = 'inset 0 0 0 2px #10b981';
+            document.getElementById('row-debit-line').classList.add('highlight-debit');
         } else if (component === 'credit') {
-            statusText.innerHTML = 'Currently Showing: <strong style="color: #ef4444;">4. Credit Amount</strong>';
-            const target = document.getElementById('visual-credit-val');
-            target.style.background = 'rgba(239, 68, 68, 0.15)';
-            target.style.boxShadow = 'inset 0 0 0 2px #ef4444';
+            document.getElementById('row-credit-line').classList.add('highlight-credit');
         } else if (component === 'description') {
-            statusText.innerHTML = 'Currently Showing: <strong style="color: #8b5cf6;">5. Description</strong>';
-            const target = document.getElementById('visual-description');
-            target.style.background = 'rgba(139, 92, 246, 0.15)';
-            target.style.boxShadow = '0 0 0 2px #8b5cf6';
+            document.getElementById('row-desc-line').classList.add('highlight');
         }
     }
 
-    // Color helper map
-    function getThemeColor(component) {
-        const colors = {
-            date: { border: '#3b82f6', bg: '#eff6ff', text: '#1e3a8a', subtext: '#1e40af', defaultStrong: '#0f172a' },
-            accounts: { border: '#0f172a', bg: '#f1f5f9', text: '#0f172a', subtext: '#334155', defaultStrong: '#0f172a' },
-            debit: { border: '#10b981', bg: '#ecfdf5', text: '#065f46', subtext: '#047857', defaultStrong: '#10b981' },
-            credit: { border: '#ef4444', bg: '#fdf2f2', text: '#991b1b', subtext: '#b91c1c', defaultStrong: '#ef4444' },
-            description: { border: '#8b5cf6', bg: '#f5f3ff', text: '#5b21b6', subtext: '#6d28d9', defaultStrong: '#8b5cf6' }
-        };
-        return colors[component];
+    // Initialize with default state
+    highlightAnatomy('date');
+
+    // --- Interactive Steps Timeline ---
+    function highlightStep(stepNum) {
+        document.querySelectorAll('.step-card').forEach(card => {
+            card.style.borderColor = 'var(--slate-200)';
+            card.style.background = 'white';
+        });
+        const activeCard = document.getElementById(`step-${stepNum}`);
+        if (activeCard) {
+            activeCard.style.borderColor = 'var(--blue-500)';
+            activeCard.style.background = 'var(--blue-50)';
+        }
+    }
+
+    // --- Elegant Accordions ---
+    function toggleAccordion(index) {
+        const target = document.getElementById(`accordion-${index}`);
+        const btn = document.getElementById(`acc-btn-${index}`);
+        const isActive = target.classList.contains('active');
+
+        // Collapse all first
+        document.querySelectorAll('.accordion-item').forEach(item => item.classList.remove('active'));
+        document.querySelectorAll('.accordion-icon').forEach(icon => icon.textContent = 'Expand');
+
+        if (!isActive) {
+            target.classList.add('active');
+            btn.textContent = 'Collapse';
+        }
+    }
+
+    // --- Interactive Quiz Controller ---
+    let currentSlideIndexL14 = 1;
+    const totalSlidesL14 = 4;
+    let draggedElementL14 = null;
+    let selectedChipL14 = null; // Click-to-place state tracker
+
+    function openQuizModal() {
+        document.getElementById('pureQuizModal_l1_4').style.display = 'flex';
+        resetL14Quiz();
+    }
+
+    const closeQuizModal = () => {
+        document.getElementById('pureQuizModal_l1_4').style.display = 'none';
+    };
+
+    // Tap-to-select functionality for mobile & desktop fallback
+    function selectChip(element) {
+        // Deselect current if selected
+        if (selectedChipL14) {
+            selectedChipL14.classList.remove('selected');
+        }
+        
+        if (selectedChipL14 === element) {
+            selectedChipL14 = null;
+        } else {
+            selectedChipL14 = element;
+            element.classList.add('selected');
+        }
+    }
+
+    (function initDragAndDropL14() {
+        // Register standard drag events
+        document.querySelectorAll('.drag-chip-l14').forEach(chip => {
+            chip.addEventListener('dragstart', (e) => {
+                draggedElementL14 = chip;
+                e.dataTransfer.setData('text/plain', chip.id);
+                e.dataTransfer.effectAllowed = 'move';
+                chip.style.opacity = '0.5';
+            });
+
+            chip.addEventListener('dragend', () => {
+                chip.style.opacity = '1';
+                draggedElementL14 = null;
+            });
+        });
+
+        // Setup dropzones
+        document.querySelectorAll('.target-slot-l14').forEach(slot => {
+            slot.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                slot.classList.add('dragover');
+            });
+
+            slot.addEventListener('dragleave', () => {
+                slot.classList.remove('dragover');
+            });
+
+            // Handle click placement (Tap-to-place)
+            slot.addEventListener('click', () => {
+                if (selectedChipL14) {
+                    placeItemInSlot(slot, selectedChipL14);
+                    // Clear selection
+                    selectedChipL14.classList.remove('selected');
+                    selectedChipL14 = null;
+                } else {
+                    // Clicked a filled slot to clear/return it
+                    const existingChip = slot.querySelector('.drag-chip-l14');
+                    if (existingChip) {
+                        clearSlot(slot);
+                    }
+                }
+            });
+
+            slot.addEventListener('drop', (e) => {
+                e.preventDefault();
+                slot.classList.remove('dragover');
+
+                if (draggedElementL14) {
+                    placeItemInSlot(slot, draggedElementL14);
+                }
+            });
+        });
+    })();
+
+    function placeItemInSlot(slot, element) {
+        // Clear if slot contains anything
+        const existingChip = slot.querySelector('.drag-chip-l14');
+        if (existingChip) {
+            existingChip.remove();
+        }
+
+        slot.innerHTML = '';
+        const clone = element.cloneNode(true);
+        
+        // Remove interactive helper hooks inside cloned placement item
+        clone.classList.remove('selected');
+        clone.removeAttribute('draggable');
+        clone.onclick = null;
+
+        // Custom click event inside target slot to click-to-remove
+        clone.addEventListener('click', (e) => {
+            e.stopPropagation();
+            clearSlot(slot);
+        });
+
+        slot.appendChild(clone);
+        slot.classList.add('filled');
+        slot.style.borderStyle = 'solid';
+        slot.style.borderColor = 'var(--blue-500)';
+        slot.style.backgroundColor = 'white';
+    }
+
+    function clearSlot(slot) {
+        slot.innerHTML = slot.getAttribute('data-placeholder');
+        slot.classList.remove('filled');
+        slot.style.borderStyle = 'dashed';
+        slot.style.borderColor = 'var(--slate-300)';
+        slot.style.backgroundColor = 'var(--slate-50)';
+    }
+
+    function checkCurrentSlideL14() {
+        const activeSlide = document.getElementById(`l14_slide_${currentSlideIndexL14}`);
+        const slots = activeSlide.querySelectorAll('.target-slot-l14');
+        let slideCorrectCount = 0;
+        const totalSlideSlots = slots.length;
+
+        slots.forEach(slot => {
+            const childChip = slot.querySelector('.drag-chip-l14');
+            const expectedId = slot.getAttribute('data-expected');
+
+            if (childChip && childChip.id === expectedId) {
+                slideCorrectCount++;
+                slot.style.borderColor = 'var(--emerald-500)';
+                slot.style.backgroundColor = '#f0fdf4';
+            } else {
+                slot.style.borderColor = 'var(--rose-500)';
+                slot.style.backgroundColor = '#fef2f2';
+            }
+        });
+
+        const resultPanel = document.getElementById('quiz_result_panel_l14');
+        resultPanel.style.display = 'block';
+
+        if (slideCorrectCount === totalSlideSlots) {
+            resultPanel.style.backgroundColor = '#ecfdf5';
+            resultPanel.style.borderColor = 'var(--emerald-500)';
+            resultPanel.style.color = '#065f46';
+            resultPanel.innerHTML = `
+                <span style="font-size: 24px;">🎉</span>
+                <h4 style="margin: 4px 0; font-size: 15px; font-weight: 800;">Entry & Posting Correct!</h4>
+                <p style="margin: 0; font-size: 12.5px;">Perfect debit-credit matching and ledger posting. Click "Next Question" to proceed.</p>
+            `;
+            
+            document.getElementById('btn_check_answer_l14').style.display = 'none';
+            if (currentSlideIndexL14 < totalSlidesL14) {
+                document.getElementById('btn_next_question_l14').style.display = 'inline-block';
+            } else {
+                // Perfect quiz completion screen
+                resultPanel.innerHTML = `
+                    <span style="font-size: 32px;">🏆</span>
+                    <h4 style="margin: 6px 0; font-size: 16px; font-weight: 800;">Module Complete!</h4>
+                    <p style="margin: 0; font-size: 13px;">You have successfully journals-entered and ledger-posted every practice transaction. Ready to move on to Lesson 1.5!</p>
+                `;
+            }
+        } else {
+            resultPanel.style.backgroundColor = '#fff5f5';
+            resultPanel.style.borderColor = '#feb2b2';
+            resultPanel.style.color = '#9b2c2c';
+            resultPanel.innerHTML = `
+                <span style="font-size: 24px;">✏️</span>
+                <h4 style="margin: 4px 0; font-size: 15px; font-weight: 800;">Entry Out of Balance</h4>
+                <p style="margin: 0; font-size: 12.5px;">Make sure your debit and credit accounts are placed on the right lines and equal each other!</p>
+            `;
+        }
+    }
+
+    function nextSlideL14() {
+        if (currentSlideIndexL14 < totalSlidesL14) {
+            document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.remove('active');
+            currentSlideIndexL14++;
+            document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.add('active');
+            
+            const progressBar = document.getElementById('quiz_progress_bar_l14');
+            const progressPercent = (currentSlideIndexL14 / totalSlidesL14) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            document.getElementById('btn_check_answer_l14').style.display = 'inline-block';
+            document.getElementById('btn_next_question_l14').style.display = 'none';
+            document.getElementById('quiz_result_panel_l14').style.display = 'none';
+        }
+    }
+
+    function resetL14Quiz() {
+        if (selectedChipL14) {
+            selectedChipL14.classList.remove('selected');
+            selectedChipL14 = null;
+        }
+
+        document.querySelectorAll('.target-slot-l14').forEach(slot => {
+            clearSlot(slot);
+        });
+
+        document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.remove('active');
+        currentSlideIndexL14 = 1;
+        document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.add('active');
+        
+        document.getElementById('quiz_progress_bar_l14').style.width = '25%';
+
+        document.getElementById('btn_check_answer_l14').style.display = 'inline-block';
+        document.getElementById('btn_next_question_l14').style.display = 'none';
+        
+        const resultPanel = document.getElementById('quiz_result_panel_l14');
+        resultPanel.style.display = 'none';
+        resultPanel.innerHTML = '';
     }
 </script>
+
+</body>
+</html>
