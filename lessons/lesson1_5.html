@@ -166,7 +166,7 @@
                     </div>
                 </div>
 
-                <div class="slide-question-l15" id="l15_slide_2" style="display: none;">
+                <div class="slide-question-l15" id="l15_slide_2">
                     <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.01); margin-bottom: 16px;">
                         <span style="font-size: 11px; font-weight: 800; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Scenario 2 of 2</span>
                         <h4 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 800; color: #0f172a;">Sort by Standard Account Normal Rules:</h4>
@@ -255,7 +255,7 @@
 <style>
     /* Slide Control Styles */
     .slide-question-l15 { display: none; }
-    .slide-question-l15.active { display: block; }
+    .slide-question-l15.active { display: block !important; }
     
     .target-slot-l15 {
         min-height: 34px;
@@ -446,7 +446,7 @@
                 document.getElementById(`l15_slide_${currentSlideIndexL15}`).classList.add('active');
                 updateProgressBarL15();
                 
-                // Clear state of the newly displayed slide elements
+                // Clear active/reset configurations
                 resetL15Quiz();
             } else {
                 alert("🎉 Brilliant! You verified and generated a matched Trial Balance worksheet!");
