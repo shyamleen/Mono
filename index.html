@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mono Academy | Accounting Masterclass</title>
     <style>
-        /* --- Modern Custom Scrollbars (Fully Cleaned of Overriding Conflicts) --- */
+        /* --- Modern Custom Scrollbars (Optimized for High Visibility) --- */
         ::-webkit-scrollbar {
             width: 10px;
             height: 10px;
@@ -26,7 +26,7 @@
             background: #94a3b8; 
         }
 
-        /* Prevent default browser styles from rendering ugly defaults on mobile/desktop */
+        /* Prevent default browser styles from rendering ugly defaults */
         html, body {
             margin: 0;
             padding: 0;
@@ -46,7 +46,7 @@
         
         /* Sidebar layout with a beautiful, lighter blue background */
         .sidebar { 
-            width: 300px; 
+            width: 310px; 
             background: #2c3e50; /* Vibrant slate-blue background */
             color: #ffffff; 
             padding: 24px; 
@@ -115,9 +115,9 @@
             background: none; 
             border: none; 
             color: #ffffff; /* Crisp White */
-            padding: 12px; 
+            padding: 10px 12px; 
             cursor: pointer; 
-            font-size: 14px; 
+            font-size: 13px; 
             border-radius: 8px; 
             transition: all 0.2s; 
             margin-bottom: 4px; 
@@ -295,33 +295,152 @@
 
             <div class="sidebar-menu">
                 <button class="accordion-header active" onclick="toggleAccordion('module1-content', this)">
-                    <span>Module 1: Foundations</span>
+                    <span>Module 1: Accounting Basics</span>
                     <span class="accordion-arrow">▶</span>
                 </button>
-                
                 <div id="module1-content" class="accordion-content open">
                     <button class="nav-btn" id="nav-1.1" onclick="loadLessonContent('1.1')">
-                        <span style="color: #ffffff;">Lesson 1.1: Introduction</span>
+                        <span>Lesson 1.1: Introduction to accounting</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.2" onclick="loadLessonContent('1.2')">
-                        <span style="color: #ffffff;">Lesson 1.2: Accounting Equation</span>
+                        <span>Lesson 1.2: Accounting Equation</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.3" onclick="loadLessonContent('1.3')">
-                        <span style="color: #ffffff;">Lesson 1.3: T-Accounts System</span>
+                        <span>Lesson 1.3: Debits and Credits</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.4" onclick="loadLessonContent('1.4')">
-                        <span style="color: #ffffff;">Lesson 1.4: Journal & Ledger</span>
+                        <span>Lesson 1.4: The Journal and Ledger</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.5" onclick="loadLessonContent('1.5')">
-                        <span style="color: #ffffff;">Lesson 1.5: Trial Balance</span>
+                        <span>Lesson 1.5: The trial balance</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.6" onclick="loadLessonContent('1.6')">
-                        <span style="color: #ffffff;">Lesson 1.6: Review & Quiz</span>
+                        <span>Lesson 1.6: Module 1 review and quiz</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                </div>
+
+                <button class="accordion-header" onclick="toggleAccordion('module2-content', this)">
+                    <span>Module 2: Financial Statements</span>
+                    <span class="accordion-arrow">▶</span>
+                </button>
+                <div id="module2-content" class="accordion-content">
+                    <button class="nav-btn" id="nav-2.1" onclick="loadLessonContent('2.1')">
+                        <span>Lesson 2.1: Introduction to financial statements</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-2.2" onclick="loadLessonContent('2.2')">
+                        <span>Lesson 2.2: The income statement</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-2.3" onclick="loadLessonContent('2.3')">
+                        <span>Lesson 2.3: The balance sheet</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-2.4" onclick="loadLessonContent('2.4')">
+                        <span>Lesson 2.4: Statement of Owner’s Equity</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-2.5" onclick="loadLessonContent('2.5')">
+                        <span>Lesson 2.5: The cash flow statement</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-2.6" onclick="loadLessonContent('2.6')">
+                        <span>Lesson 2.6: Module 2 Capstone</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                </div>
+
+                <button class="accordion-header" onclick="toggleAccordion('module3-content', this)">
+                    <span>Module 3: Ratio Analysis & Health</span>
+                    <span class="accordion-arrow">▶</span>
+                </button>
+                <div id="module3-content" class="accordion-content">
+                    <button class="nav-btn" id="nav-3.1" onclick="loadLessonContent('3.1')">
+                        <span>Lesson 3.1: Working capital and liquidity ratios</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-3.2" onclick="loadLessonContent('3.2')">
+                        <span>Lesson 3.2: Profitability ratios</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-3.3" onclick="loadLessonContent('3.3')">
+                        <span>Lesson 3.3: Efficiency ratios</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-3.4" onclick="loadLessonContent('3.4')">
+                        <span>Lesson 3.4: Solvency ratios</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-3.5" onclick="loadLessonContent('3.5')">
+                        <span>Lesson 3.5: Reading an annual report</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-3.6" onclick="loadLessonContent('3.6')">
+                        <span>Lesson 3.6: Module 3 Investor Analysis</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                </div>
+
+                <button class="accordion-header" onclick="toggleAccordion('module4-content', this)">
+                    <span>Module 4: Advanced Corporate</span>
+                    <span class="accordion-arrow">▶</span>
+                </button>
+                <div id="module4-content" class="accordion-content">
+                    <button class="nav-btn" id="nav-4.1" onclick="loadLessonContent('4.1')">
+                        <span>Lesson 4.1: Inventory costing methods</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-4.2" onclick="loadLessonContent('4.2')">
+                        <span>Lesson 4.2: Depreciation and amortization</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-4.3" onclick="loadLessonContent('4.3')">
+                        <span>Lesson 4.3: Accounts receivable and bad debt</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-4.4" onclick="loadLessonContent('4.4')">
+                        <span>Lesson 4.4: Liabilities</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-4.5" onclick="loadLessonContent('4.5')">
+                        <span>Lesson 4.5: Corporate equity</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                </div>
+
+                <button class="accordion-header" onclick="toggleAccordion('module5-content', this)">
+                    <span>Module 5: Global Standards</span>
+                    <span class="accordion-arrow">▶</span>
+                </button>
+                <div id="module5-content" class="accordion-content">
+                    <button class="nav-btn" id="nav-5.1" onclick="loadLessonContent('5.1')">
+                        <span>Lesson 5.1: Business Combinations and Consolidations</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-5.2" onclick="loadLessonContent('5.2')">
+                        <span>Lesson 5.2: Deferred Taxes and Accrual Complexity</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-5.3" onclick="loadLessonContent('5.3')">
+                        <span>Lesson 5.3: Advanced Financial Instruments & Hedging</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-5.4" onclick="loadLessonContent('5.4')">
+                        <span>Lesson 5.4: IFRS vs. US GAAP & Revenue Recognition</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-5.5" onclick="loadLessonContent('5.5')">
+                        <span>Lesson 5.5: Forensic Accounting & Auditing Standards</span>
+                        <span class="completion-dot"></span>
+                    </button>
+                    <button class="nav-btn" id="nav-5.6" onclick="loadLessonContent('5.6')">
+                        <span>Lesson 5.6: Case Study & Boardroom Presentation</span>
                         <span class="completion-dot"></span>
                     </button>
                 </div>
@@ -358,14 +477,46 @@
         
         let selectedQuoteText = ""; // Holds current text highlight selection
         
-        // Curriculum Map
+        // Comprehensive Curriculum Map
         const curriculum = [
-            { id: "1.1", name: "Lesson 1.1: Introduction to Accounting", desc: "Learn the foundational concepts and why accounting is the language of business." },
-            { id: "1.2", name: "Lesson 1.2: The Core Accounting Equation", desc: "Master the balancing scale of Assets, Liabilities, and Owner's Equity." },
-            { id: "1.3", name: "Lesson 1.3: The T-Accounts System", desc: "Visualize and map ledger entries cleanly using left-side and right-side columns." },
-            { id: "1.4", name: "Lesson 1.4: Double-Entry Matrix Rules", desc: "Understand why every single debit must always align with a matching credit." },
-            { id: "1.5", name: "Lesson 1.5: Ledger Book Posting Execution", desc: "Transfer raw transactions safely into active visual ledger pages." },
-            { id: "1.6", name: "Lesson 1.6: Introduction to the Trial Balance", desc: "Verify ledger accuracy using balanced validation spreadsheets." }
+            // Module 1: Accounting Basics
+            { id: "1.1", name: "Lesson 1.1: Introduction to accounting", desc: "What is accounting and why does it matter?" },
+            { id: "1.2", name: "Lesson 1.2: Accounting Equation", desc: "Assets, liabilities, and owner’s equity and the Golden formula." },
+            { id: "1.3", name: "Lesson 1.3: Debits and Credits", desc: "The T-account system and the rules for increasing and decreasing accounts." },
+            { id: "1.4", name: "Lesson 1.4: The Journal and Ledger", desc: "Recording day-to-day transactions and posting entries." },
+            { id: "1.5", name: "Lesson 1.5: The trial balance", desc: "How to check your math and summarize balances." },
+            { id: "1.6", name: "Lesson 1.6: Module 1 review and quiz", desc: "Test your understanding of base accounting principles." },
+
+            // Module 2: Financial statements
+            { id: "2.1", name: "Lesson 2.1: Introduction to financial statements", desc: "Overview of types and purpose of statements." },
+            { id: "2.2", name: "Lesson 2.2: The income statement", desc: "How to read and construct an income statement." },
+            { id: "2.3", name: "Lesson 2.3: The balance sheet", desc: "How to read and build a balance sheet." },
+            { id: "2.4", name: "Lesson 2.4: Statement of Owner’s Equity", desc: "How to read and create an equity statement." },
+            { id: "2.5", name: "Lesson 2.5: The cash flow statement", desc: "How to analyze and construct cash flows." },
+            { id: "2.6", name: "Lesson 2.6: Module 2 Capstone: Building a full financial statement set", desc: "Integrating calculations into full reporting structures." },
+
+            // Module 3: Ratio Analysis and financial health
+            { id: "3.1", name: "Lesson 3.1: Working capital and liquidity ratios", desc: "Understanding working capital and key liquidity checks." },
+            { id: "3.2", name: "Lesson 3.2: Profitability ratios", desc: "Gross margins and overall profitability ratios." },
+            { id: "3.3", name: "Lesson 3.3: Efficiency ratios", desc: "Inventory and asset turnovers." },
+            { id: "3.4", name: "Lesson 3.4: Solvency ratios", desc: "Deep dive solvency checks parts 1 and 2." },
+            { id: "3.5", name: "Lesson 3.5: Reading an annual report", desc: "Calculating ratios quiz and active review." },
+            { id: "3.6", name: "Lesson 3.6: Module 3 Investor Analysis", desc: "Synthesizing ratios to perform complete analyses." },
+
+            // Module 4: Advanced corporate accounting
+            { id: "4.1", name: "Lesson 4.1: Inventory costing methods", desc: "Why we measure inventory and the different methodologies." },
+            { id: "4.2", name: "Lesson 4.2: Depreciation and amortization", desc: "Straight-line and double-declining operations." },
+            { id: "4.3", name: "Lesson 4.3: Accounts receivable and bad debt", desc: "Understanding receivables and bad debt GAAP procedures." },
+            { id: "4.4", name: "Lesson 4.4: Liabilities", desc: "Analyzing advanced liability accounts." },
+            { id: "4.5", name: "Lesson 4.5: Corporate equity", desc: "Stocks, dividends, and retained earnings quiz." },
+
+            // Module 5: Global Standards and Advanced Corporate Transactions
+            { id: "5.1", name: "Lesson 5.1: Business Combinations and Consolidations", desc: "Parent and subsidiary accounting metrics." },
+            { id: "5.2", name: "Lesson 5.2: Deferred Taxes and Accrual Complexity", desc: "Temporary versus permanent book-to-tax structures." },
+            { id: "5.3", name: "Lesson 5.3: Advanced Financial Instruments & Hedging", desc: "Accounting for derivatives, options, and futures." },
+            { id: "5.4", name: "Lesson 5.4: IFRS vs. US GAAP & Revenue Recognition", desc: "Asc 606 and international standards." },
+            { id: "5.5", name: "Lesson 5.5: Forensic Accounting & Auditing Standards", desc: "Detecting earnings fraud and studying opinions." },
+            { id: "5.6", name: "Lesson 5.6: Chartered Accountant Case Study & Boardroom Presentation", desc: "Study final presentation and exam." }
         ];
 
         // Initial launch logic
@@ -440,12 +591,12 @@
                 <div style="margin-bottom: 24px;">
                     <span style="background: rgba(15, 23, 42, 0.05); color: #0f172a; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 99px; text-transform: uppercase;">Academy Home</span>
                     <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Your Mastery Progress</h1>
-                    <p style="margin: 0; color: #64748b; font-size: 14px;">Monitor your journey as you complete lessons in Module 1: Foundations.</p>
+                    <p style="margin: 0; color: #64748b; font-size: 14px;">Monitor your journey as you complete lessons in Mono Academy.</p>
                 </div>
 
                 <div style="background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%); padding: 28px; border-radius: 16px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; gap: 24px;">
                     <div style="flex-grow: 1;">
-                        <span style="color: #38bdf8; font-size: 12px; font-weight: 800; text-transform: uppercase;">Module completion status</span>
+                        <span style="color: #38bdf8; font-size: 12px; font-weight: 800; text-transform: uppercase;">Overall completion status</span>
                         <h2 style="margin: 4px 0 16px 0; font-size: 24px; font-weight: 800;">${progressPercent}% Complete</h2>
                         <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden;">
                             <div style="width: ${progressPercent}%; height: 100%; background: #38bdf8; border-radius: 99px; transition: width 0.5s ease;"></div>
