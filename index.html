@@ -22,6 +22,14 @@
         .nav-btn .completion-dot { width: 8px; height: 8px; border-radius: 50%; background: #64748b; }
         .nav-btn.completed .completion-dot { background: #10b981; box-shadow: 0 0 8px #10b981; }
 
+        /* Dropdown/Accordion Styles */
+        .module-dropdown { margin-bottom: 16px; }
+        .module-summary { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.05em; cursor: pointer; list-style: none; user-select: none; padding: 4px 0; }
+        .module-summary::-webkit-details-marker { display: none; }
+        .module-summary::after { content: '▶'; font-size: 8px; color: #64748b; transition: transform 0.2s; margin-left: 8px; }
+        .module-dropdown[open] .module-summary::after { transform: rotate(90deg); }
+        .module-lessons { padding-left: 4px; }
+
         /* General layout items */
         .scroll-reveal-card { opacity: 0; transform: translateY(15px); transition: all 0.5s ease; margin-bottom: 24px; }
         .scroll-reveal-card.visible { opacity: 1; transform: translateY(0); }
@@ -130,31 +138,155 @@
             </button>
 
             <div class="sidebar-menu">
-                <p style="font-size: 11px; color: #475569; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.05em;">Module 1: Foundations</p>
-                <button class="nav-btn" id="nav-1.1" onclick="loadLessonContent('1.1')">
-                    <span>Lesson 1.1: Introduction</span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.2" onclick="loadLessonContent('1.2')">
-                    <span>Lesson 1.2: Accounting Equation</span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.3" onclick="loadLessonContent('1.3')">
-                    <span>Lesson 1.3: T-Accounts System</span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.4" onclick="loadLessonContent('1.4')">
-                    <span>Lesson 1.4: The Journal and Ledger </span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.5" onclick="loadLessonContent('1.5')">
-                    <span>Lesson 1.5: The Trial balance</span>
-                    <span class="completion-dot"></span>
-                </button>
-                <button class="nav-btn" id="nav-1.6" onclick="loadLessonContent('1.6')">
-                    <span>Lesson 1.6: Module 1 review and quiz </span>
-                    <span class="completion-dot"></span>
-                </button>
+                <details class="module-dropdown" open>
+                    <summary class="module-summary">Module 1: Foundations</summary>
+                    <div class="module-lessons">
+                        <button class="nav-btn" id="nav-1.1" onclick="loadLessonContent('1.1')">
+                            <span>Lesson 1.1: Introduction</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-1.2" onclick="loadLessonContent('1.2')">
+                            <span>Lesson 1.2: Accounting Equation</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-1.3" onclick="loadLessonContent('1.3')">
+                            <span>Lesson 1.3: T-Accounts System</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-1.4" onclick="loadLessonContent('1.4')">
+                            <span>Lesson 1.4: Journal and Ledger</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-1.5" onclick="loadLessonContent('1.5')">
+                            <span>Lesson 1.5: Trial Balance</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-1.6" onclick="loadLessonContent('1.6')">
+                            <span>Lesson 1.6: Review & Quiz</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                    </div>
+                </details>
+
+                <details class="module-dropdown">
+                    <summary class="module-summary">Module 2: Financial Statements</summary>
+                    <div class="module-lessons">
+                        <button class="nav-btn" id="nav-2.1" onclick="loadLessonContent('2.1')">
+                            <span>Lesson 2.1: Intro to Statements</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-2.2" onclick="loadLessonContent('2.2')">
+                            <span>Lesson 2.2: Income Statement</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-2.3" onclick="loadLessonContent('2.3')">
+                            <span>Lesson 2.3: Balance Sheet</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-2.4" onclick="loadLessonContent('2.4')">
+                            <span>Lesson 2.4: Cash Flow Statement</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-2.5" onclick="loadLessonContent('2.5')">
+                            <span>Lesson 2.5: Equity Statement</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-2.6" onclick="loadLessonContent('2.6')">
+                            <span>Lesson 2.6: Module 2 Assessment</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                    </div>
+                </details>
+
+                <details class="module-dropdown">
+                    <summary class="module-summary">Module 3: Ratio Analysis</summary>
+                    <div class="module-lessons">
+                        <button class="nav-btn" id="nav-3.1" onclick="loadLessonContent('3.1')">
+                            <span>Lesson 3.1: Liquidity Ratios</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-3.2" onclick="loadLessonContent('3.2')">
+                            <span>Lesson 3.2: Solvency Ratios</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-3.3" onclick="loadLessonContent('3.3')">
+                            <span>Lesson 3.3: Profitability Ratios</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-3.4" onclick="loadLessonContent('3.4')">
+                            <span>Lesson 3.4: Efficiency Ratios</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-3.5" onclick="loadLessonContent('3.5')">
+                            <span>Lesson 3.5: DuPont Analysis</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-3.6" onclick="loadLessonContent('3.6')">
+                            <span>Lesson 3.6: Module 3 Assessment</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                    </div>
+                </details>
+
+                <details class="module-dropdown">
+                    <summary class="module-summary">Module 4: Advanced Corporate</summary>
+                    <div class="module-lessons">
+                        <button class="nav-btn" id="nav-4.1" onclick="loadLessonContent('4.1')">
+                            <span>Lesson 4.1: Consolidation Rules</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-4.2" onclick="loadLessonContent('4.2')">
+                            <span>Lesson 4.2: Equity Method</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-4.3" onclick="loadLessonContent('4.3')">
+                            <span>Lesson 4.3: Deferred Taxes</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-4.4" onclick="loadLessonContent('4.4')">
+                            <span>Lesson 4.4: Pension Accounting</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-4.5" onclick="loadLessonContent('4.5')">
+                            <span>Lesson 4.5: Share-Based Payments</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-4.6" onclick="loadLessonContent('4.6')">
+                            <span>Lesson 4.6: Module 4 Assessment</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                    </div>
+                </details>
+
+                <details class="module-dropdown">
+                    <summary class="module-summary">Module 5: Global Standards</summary>
+                    <div class="module-lessons">
+                        <button class="nav-btn" id="nav-5.1" onclick="loadLessonContent('5.1')">
+                            <span>Lesson 5.1: IFRS vs US GAAP</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-5.2" onclick="loadLessonContent('5.2')">
+                            <span>Lesson 5.2: Forex Translation</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-5.3" onclick="loadLessonContent('5.3')">
+                            <span>Lesson 5.3: Hyperinflationary</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-5.4" onclick="loadLessonContent('5.4')">
+                            <span>Lesson 5.4: Segment Reporting</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-5.5" onclick="loadLessonContent('5.5')">
+                            <span>Lesson 5.5: Transfer Pricing</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                        <button class="nav-btn" id="nav-5.6" onclick="loadLessonContent('5.6')">
+                            <span>Lesson 5.6: Module 5 Assessment</span>
+                            <span class="completion-dot"></span>
+                        </button>
+                    </div>
+                </details>
             </div>
 
             <div style="border-top: 1px solid #334155; padding-top: 16px;">
@@ -190,12 +322,45 @@
         
         // Curriculum Map
         const curriculum = [
+            // Module 1
             { id: "1.1", name: "Lesson 1.1: Introduction to Accounting", desc: "Learn the foundational concepts and why accounting is the language of business." },
             { id: "1.2", name: "Lesson 1.2: The Core Accounting Equation", desc: "Master the balancing scale of Assets, Liabilities, and Owner's Equity." },
             { id: "1.3", name: "Lesson 1.3: The T-Accounts System", desc: "Visualize and map ledger entries cleanly using left-side and right-side columns." },
             { id: "1.4", name: "Lesson 1.4: Double-Entry Matrix Rules", desc: "Understand why every single debit must always align with a matching credit." },
             { id: "1.5", name: "Lesson 1.5: Ledger Book Posting Execution", desc: "Transfer raw transactions safely into active visual ledger pages." },
-            { id: "1.6", name: "Lesson 1.6: Introduction to the Trial Balance", desc: "Verify ledger accuracy using balanced validation spreadsheets." }
+            { id: "1.6", name: "Lesson 1.6: Introduction to the Trial Balance", desc: "Verify ledger accuracy using balanced validation spreadsheets." },
+
+            // Module 2
+            { id: "2.1", name: "Lesson 2.1: Intro to Financial Statements", desc: "Placeholder lesson for Financial Statements." },
+            { id: "2.2", name: "Lesson 2.2: Income Statement Analysis", desc: "Placeholder lesson for Financial Statements." },
+            { id: "2.3", name: "Lesson 2.3: Balance Sheet Architecture", desc: "Placeholder lesson for Financial Statements." },
+            { id: "2.4", name: "Lesson 2.4: Cash Flow Statement Metrics", desc: "Placeholder lesson for Financial Statements." },
+            { id: "2.5", name: "Lesson 2.5: Statement of Shareholders' Equity", desc: "Placeholder lesson for Financial Statements." },
+            { id: "2.6", name: "Lesson 2.6: Module 2 Exam and Review", desc: "Placeholder lesson for Financial Statements." },
+
+            // Module 3
+            { id: "3.1", name: "Lesson 3.1: Liquidity & Working Capital", desc: "Placeholder lesson for Ratio Analysis and financial health." },
+            { id: "3.2", name: "Lesson 3.2: Solvency & Leverage Multipliers", desc: "Placeholder lesson for Ratio Analysis and financial health." },
+            { id: "3.3", name: "Lesson 3.3: Profitability Margins", desc: "Placeholder lesson for Ratio Analysis and financial health." },
+            { id: "3.4", name: "Lesson 3.4: Asset Efficiency & Turnovers", desc: "Placeholder lesson for Ratio Analysis and financial health." },
+            { id: "3.5", name: "Lesson 3.5: DuPont Framework Analysis", desc: "Placeholder lesson for Ratio Analysis and financial health." },
+            { id: "3.6", name: "Lesson 3.6: Module 3 Exam and Review", desc: "Placeholder lesson for Ratio Analysis and financial health." },
+
+            // Module 4
+            { id: "4.1", name: "Lesson 4.1: Consolidation Theory", desc: "Placeholder lesson for Advanced corporate accounting." },
+            { id: "4.2", name: "Lesson 4.2: Equity Method Accounting", desc: "Placeholder lesson for Advanced corporate accounting." },
+            { id: "4.3", name: "Lesson 4.3: Deferred Tax Asset Liability", desc: "Placeholder lesson for Advanced corporate accounting." },
+            { id: "4.4", name: "Lesson 4.4: Pension Plan Calculations", desc: "Placeholder lesson for Advanced corporate accounting." },
+            { id: "4.5", name: "Lesson 4.5: Share-Based Comp Plans", desc: "Placeholder lesson for Advanced corporate accounting." },
+            { id: "4.6", name: "Lesson 4.6: Module 4 Exam and Review", desc: "Placeholder lesson for Advanced corporate accounting." },
+
+            // Module 5
+            { id: "5.1", name: "Lesson 5.1: Global IFRS vs US GAAP", desc: "Placeholder lesson for Global Standards and Advanced Corporate Transactions." },
+            { id: "5.2", name: "Lesson 5.2: Forex Translations & Hedging", desc: "Placeholder lesson for Global Standards and Advanced Corporate Transactions." },
+            { id: "5.3", name: "Lesson 5.3: Hyperinflationary Environments", desc: "Placeholder lesson for Global Standards and Advanced Corporate Transactions." },
+            { id: "5.4", name: "Lesson 5.4: Segment & Subsidiary Disclosures", desc: "Placeholder lesson for Global Standards and Advanced Corporate Transactions." },
+            { id: "5.5", name: "Lesson 5.5: Transfer Pricing Frameworks", desc: "Placeholder lesson for Global Standards and Advanced Corporate Transactions." },
+            { id: "5.6", name: "Lesson 5.6: Module 5 Exam and Review", desc: "Placeholder lesson for Global Standards and Advanced Corporate Transactions." }
         ];
 
         // Initial launch logic
@@ -290,8 +455,11 @@
 
             const container = document.getElementById("workbook-content-area");
             
-            const fileSuffix = String(lessonId).includes('.') ? String(lessonId).split('.')[1] : lessonId;
-            const fileName = `lessons/lesson1_${fileSuffix}.html?t=${Date.now()}`;
+            // Adjust to find correct filename (e.g. lesson1_1.html, lesson2_1.html, etc.)
+            const parts = String(lessonId).split('.');
+            const moduleNum = parts[0];
+            const lessonNum = parts[1];
+            const fileName = `lessons/lesson${moduleNum}_${lessonNum}.html?t=${Date.now()}`;
 
             fetch(fileName, { cache: "no-store" })
                 .then(response => {
@@ -422,6 +590,9 @@
             selectedQuoteText = "";
         }
 
+        // ==========================================
+        // STUDY JOURNAL (DEDICATED FULL-PAGE VIEW)
+        // ==========================================
         function saveNote() {
             const noteText = document.getElementById("popup-note-input").value.trim();
             if (!noteText) return;
@@ -440,9 +611,6 @@
             window.getSelection().removeAllRanges();
         }
 
-        // ==========================================
-        // STUDY JOURNAL (DEDICATED FULL-PAGE VIEW)
-        // ==========================================
         function loadNotesPage() {
             // Remove active highlight from all sidebar lesson tabs
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
