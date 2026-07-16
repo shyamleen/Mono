@@ -1,746 +1,170 @@
-<div class="scroll-reveal-card visible" style="margin-bottom: 24px;">
-    <h1 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 800; color: #0f172a;">Lesson 1.4: The Journal and Ledger</h1>
-    <p style="margin: 0; color: #64748b; font-size: 14.5px; line-height: 1.6;">
-        A <strong>Journal Entry</strong> is used in double-entry bookkeeping to officially record a financial transaction. It is the business’s diary, recording transactions chronologically as they happen. In every single entry, total debits must equal total credits in at least two accounts.
-    </p>
-</div>
-
-<div class="scroll-reveal-card visible" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 32px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
-    <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin: 0 0 12px 0;">Anatomy of a Journal Entry</h3>
-    <p style="font-size: 13.5px; color: #64748b; margin: 0 0 16px 0; line-height: 1.5;">
-        Every standard journal entry requires five core components to be legally complete:
-    </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px;">
-        <div style="background: #fafafb; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 13px;">
-            <strong style="color: #0f172a; display: block; margin-bottom: 4px;">📅 1. Date</strong>
-            The exact day the financial exchange took place.
-        </div>
-        <div style="background: #fafafb; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 13px;">
-            <strong style="color: #0f172a; display: block; margin-bottom: 4px;">📖 2. Accounts Affected</strong>
-            Debits are written on top. Credits are indented below.
-        </div>
-        <div style="background: #fafafb; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 13px;">
-            <strong style="color: #10b981; display: block; margin-bottom: 4px;">➕ 3. Debit Amount</strong>
-            The numeric value recorded in the left-hand column.
-        </div>
-        <div style="background: #fafafb; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 13px;">
-            <strong style="color: #ef4444; display: block; margin-bottom: 4px;">➖ 4. Credit Amount</strong>
-            The numeric value recorded in the right-hand column.
-        </div>
-    </div>
-    <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #1e3a8a;">
-        <strong>📝 5. Description:</strong> A brief, simple note added to the bottom explaining the business purpose of the transaction.
-    </div>
-</div>
-
-<div class="scroll-reveal-card visible" style="margin-bottom: 32px;">
-    <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 6px 0;">The General Journal</h3>
-    <p style="font-size: 13.5px; color: #64748b; margin: 0 0 20px 0;">
-        Study these two examples to see how date matching, indentations, and balanced columns appear in practice:
-    </p>
-
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden;">
-            <div style="background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 800; font-size: 14px; color: #0f172a;">💼 Example 1: Cash Sale (May 15)</span>
-                <span style="font-size: 11px; background: #e2e8f0; color: #475569; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Balanced</span>
-            </div>
-            <div style="padding: 16px; overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid #e2e8f0; color: #475569; font-weight: 700;">
-                            <th style="padding: 8px 12px;">Date</th>
-                            <th style="padding: 8px 12px;">Account Titles & Explanation</th>
-                            <th style="padding: 8px 12px; text-align: right;">Debit ($)</th>
-                            <th style="padding: 8px 12px; text-align: right;">Credit ($)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #f1f5f9;">
-                            <td style="padding: 8px 12px; color: #0f172a; font-weight: 600;">May 15</td>
-                            <td style="padding: 8px 12px; color: #0f172a; font-weight: 700;">Cash <span style="font-weight: normal; font-size: 11px; color: #64748b;">(Asset Increases)</span></td>
-                            <td style="padding: 8px 12px; text-align: right; color: #10b981; font-weight: 700;">2,000</td>
-                            <td style="padding: 8px 12px; text-align: right; color: #94a3b8;">-</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f1f5f9;">
-                            <td style="padding: 8px 12px; color: #94a3b8;"></td>
-                            <td style="padding: 8px 12px 8px 32px; color: #475569; font-weight: 700;">Service Revenue <span style="font-weight: normal; font-size: 11px; color: #64748b;">(Income Increases)</span></td>
-                            <td style="padding: 8px 12px; text-align: right; color: #94a3b8;">-</td>
-                            <td style="padding: 8px 12px; text-align: right; color: #ef4444; font-weight: 700;">2,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td style="padding: 6px 12px 10px 12px; color: #64748b; font-style: italic; font-size: 12px;" colspan="3">
-                                (To record services provided to a client immediately collected in cash)
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden;">
-            <div style="background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 800; font-size: 14px; color: #0f172a;">🚜 Example 2: Purchasing Equipment on Account (Sept 1)</span>
-                <span style="font-size: 11px; background: #e2e8f0; color: #475569; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Balanced</span>
-            </div>
-            <div style="padding: 16px; overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid #e2e8f0; color: #475569; font-weight: 700;">
-                            <th style="padding: 8px 12px;">Date</th>
-                            <th style="padding: 8px 12px;">Account Titles & Explanation</th>
-                            <th style="padding: 8px 12px; text-align: right;">Debit ($)</th>
-                            <th style="padding: 8px 12px; text-align: right;">Credit ($)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #f1f5f9;">
-                            <td style="padding: 8px 12px; color: #0f172a; font-weight: 600;">Sept 1</td>
-                            <td style="padding: 8px 12px; color: #0f172a; font-weight: 700;">Equipment <span style="font-weight: normal; font-size: 11px; color: #64748b;">(Asset Increases)</span></td>
-                            <td style="padding: 8px 12px; text-align: right; color: #10b981; font-weight: 700;">10,000</td>
-                            <td style="padding: 8px 12px; text-align: right; color: #94a3b8;">-</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f1f5f9;">
-                            <td style="padding: 8px 12px; color: #94a3b8;"></td>
-                            <td style="padding: 8px 12px 8px 32px; color: #475569; font-weight: 700;">Accounts Payable <span style="font-weight: normal; font-size: 11px; color: #64748b;">(Liability Increases)</span></td>
-                            <td style="padding: 8px 12px; text-align: right; color: #94a3b8;">-</td>
-                            <td style="padding: 8px 12px; text-align: right; color: #ef4444; font-weight: 700;">10,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td style="padding: 6px 12px 10px 12px; color: #64748b; font-style: italic; font-size: 12px;" colspan="3">
-                                (To record purchase of feed delivery system with payment terms on account)
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="scroll-reveal-card visible" style="margin-bottom: 24px;">
-    <h1 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 800; color: #0f172a;">The General Ledger</h1>
-    <p style="margin: 0; color: #64748b; font-size: 14.5px; line-height: 1.6;">
-        After we have recorded transactions chronologically in the General Journal, we must sort them into separate accounts. This posting process is compiled in the <strong>General Ledger</strong>, tracking running balances for each individual account.
-    </p>
-</div>
-
-<div class="scroll-reveal-card visible" style="margin-bottom: 32px;">
-    <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin: 0 0 16px 0;">Steps to Post a Transaction</h3>
+<div class="anatomy-container" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 32px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.01);">
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
-        
-        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 16px; position: relative; display: flex; flex-direction: column;">
-            <div style="background: #3b82f6; color: white; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; border-radius: 50%; font-size: 12px; margin-bottom: 12px;">1</div>
-            <strong style="color: #0f172a; font-size: 14px; margin-bottom: 6px;">Identify the Accounts</strong>
-            <p style="margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.45;">Look at your journal entries to determine which specific accounts (e.g., Cash, Capital) are affected.</p>
-        </div>
-
-        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 16px; position: relative; display: flex; flex-direction: column;">
-            <div style="background: #3b82f6; color: white; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; border-radius: 50%; font-size: 12px; margin-bottom: 12px;">2</div>
-            <strong style="color: #0f172a; font-size: 14px; margin-bottom: 6px;">Record the Date</strong>
-            <p style="margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.45;">Enter the transaction date in the ledger account chronologically to preserve the audit trail.</p>
-        </div>
-
-        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 16px; position: relative; display: flex; flex-direction: column;">
-            <div style="background: #3b82f6; color: white; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; border-radius: 50%; font-size: 12px; margin-bottom: 12px;">3</div>
-            <strong style="color: #0f172a; font-size: 14px; margin-bottom: 6px;">Transfer Amounts</strong>
-            <p style="margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.45;">Put debit amounts on the left side and credit amounts on the right side of the ledger account.</p>
-        </div>
-
-        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 16px; position: relative; display: flex; flex-direction: column;">
-            <div style="background: #3b82f6; color: white; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; border-radius: 50%; font-size: 12px; margin-bottom: 12px;">4</div>
-            <strong style="color: #0f172a; font-size: 14px; margin-bottom: 6px;">Update Running Balance</strong>
-            <p style="margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.45;">Calculate the new running balance after every entry (De&shy;bits/Cre&shy;dits modify this dynamically).</p>
-        </div>
-
+    <div style="margin-bottom: 24px;">
+        <span style="font-size: 11px; font-weight: 800; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Blueprint</span>
+        <h3 style="font-size: 20px; font-weight: 800; color: #0f172a; margin: 4px 0 8px 0;">Anatomy of a Journal Entry</h3>
+        <p style="font-size: 14.5px; color: #64748b; margin: 0; line-height: 1.5;">
+            Every standard journal entry requires <strong>five core components</strong> to be legally complete. Click the interactive cards below to highlight where they live on a real general journal page!
+        </p>
     </div>
-</div>
 
-<div class="scroll-reveal-card visible" style="margin-bottom: 32px;">
-    <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 6px 0;">Posting & Balance Ledger Examples</h3>
-    <p style="font-size: 13.5px; color: #64748b; margin: 0 0 20px 0;">
-        Study these real-world general ledger accounts showing running balances. Note how we combine and net transactions across accounts:
-    </p>
-
-    <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
         
-        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden;">
-            <details style="width: 100%;">
-                <summary style="display: flex; justify-content: space-between; align-items: center; padding: 16px; cursor: pointer; list-style: none; font-weight: 700; color: #0f172a; font-size: 14.5px;">
-                    <span>💼 Example 1: Cash Investment (July 1)</span>
-                    <span style="font-size: 11px; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; background: #f1f5f9; padding: 3px 12px; border-radius: 4px;">Expand</span>
-                </summary>
-                <div style="padding: 0 16px 16px 16px; border-top: 1px solid #f1f5f9; background: #fafafb; font-size: 13px; line-height: 1.6; color: #475569;">
-                    <div style="margin: 10px 0; font-weight: 600; color: #0f172a;">
-                        Transaction: Owner invests $10,000 into a new business.
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
-                        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px;">
-                            <div style="font-weight: 800; border-bottom: 2px solid #0f172a; padding-bottom: 4px; text-align: center; color: #0f172a;">Cash Account Ledger</div>
-                            <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 12px;">
-                                <div><strong>Date:</strong> July 1</div>
-                                <div><strong>Debit Entry:</strong> <span style="color: #16a34a; font-weight: 700;">$10,000</span></div>
-                                <div style="border-top: 1px dashed #e2e8f0; padding-top: 4px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: #0f172a; font-weight: 700;">$10,000 (Debit)</span></div>
-                            </div>
-                        </div>
-                        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px;">
-                            <div style="font-weight: 800; border-bottom: 2px solid #0f172a; padding-bottom: 4px; text-align: center; color: #0f172a;">Capital Account Ledger</div>
-                            <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 12px;">
-                                <div><strong>Date:</strong> July 1</div>
-                                <div><strong>Credit Entry:</strong> <span style="color: #dc2626; font-weight: 700;">$10,000</span></div>
-                                <div style="border-top: 1px dashed #e2e8f0; padding-top: 4px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: #0f172a; font-weight: 700;">$10,000 (Credit)</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </details>
-        </div>
-
-        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden;">
-            <details style="width: 100%;">
-                <summary style="display: flex; justify-content: space-between; align-items: center; padding: 16px; cursor: pointer; list-style: none; font-weight: 700; color: #0f172a; font-size: 14.5px;">
-                    <span>🚜 Example 2: Buying Equipment on Account (July 5)</span>
-                    <span style="font-size: 11px; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; background: #f1f5f9; padding: 3px 12px; border-radius: 4px;">Expand</span>
-                </summary>
-                <div style="padding: 0 16px 16px 16px; border-top: 1px solid #f1f5f9; background: #fafafb; font-size: 13px; line-height: 1.6; color: #475569;">
-                    <div style="margin: 10px 0; font-weight: 600; color: #0f172a;">
-                        Transaction: Purchased $5,000 worth of equipment and agreed to pay the vendor later.
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
-                        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px;">
-                            <div style="font-weight: 800; border-bottom: 2px solid #0f172a; padding-bottom: 4px; text-align: center; color: #0f172a;">Equipment Account Ledger</div>
-                            <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 12px;">
-                                <div><strong>Date:</strong> July 5</div>
-                                <div><strong>Debit Entry:</strong> <span style="color: #16a34a; font-weight: 700;">$5,000</span></div>
-                                <div style="border-top: 1px dashed #e2e8f0; padding-top: 4px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: #0f172a; font-weight: 700;">$5,000 (Debit)</span></div>
-                            </div>
-                        </div>
-                        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px;">
-                            <div style="font-weight: 800; border-bottom: 2px solid #0f172a; padding-bottom: 4px; text-align: center; color: #0f172a;">Accounts Payable Ledger</div>
-                            <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 12px;">
-                                <div><strong>Date:</strong> July 5</div>
-                                <div><strong>Credit Entry:</strong> <span style="color: #dc2626; font-weight: 700;">$5,000</span></div>
-                                <div style="border-top: 1px dashed #e2e8f0; padding-top: 4px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: #0f172a; font-weight: 700;">$5,000 (Credit)</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </details>
-        </div>
-
-        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden;">
-            <details style="width: 100%;">
-                <summary style="display: flex; justify-content: space-between; align-items: center; padding: 16px; cursor: pointer; list-style: none; font-weight: 700; color: #0f172a; font-size: 14.5px;">
-                    <span>💸 Example 3: Paying Off a Liability (July 15)</span>
-                    <span style="font-size: 11px; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; background: #f1f5f9; padding: 3px 12px; border-radius: 4px;">Expand</span>
-                </summary>
-                <div style="padding: 0 16px 16px 16px; border-top: 1px solid #f1f5f9; background: #fafafb; font-size: 13px; line-height: 1.6; color: #475569;">
-                    <div style="margin: 10px 0; font-weight: 600; color: #0f172a;">
-                        Transaction: Pay $2,000 of the liability owed to the supplier from Scenario 2.
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
-                        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px;">
-                            <div style="font-weight: 800; border-bottom: 2px solid #0f172a; padding-bottom: 4px; text-align: center; color: #0f172a;">Accounts Payable Ledger</div>
-                            <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 12px;">
-                                <div><strong>Date:</strong> July 15</div>
-                                <div><strong>Debit Entry:</strong> <span style="color: #16a34a; font-weight: 700;">$2,000</span></div>
-                                <div style="border-top: 1px dashed #e2e8f0; padding-top: 4px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: #0f172a; font-weight: 700;">$3,000 (Credit)</span> <span style="color: #64748b; font-size: 10px;">($5,000 - $2,000)</span></div>
-                            </div>
-                        </div>
-                        <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px;">
-                            <div style="font-weight: 800; border-bottom: 2px solid #0f172a; padding-bottom: 4px; text-align: center; color: #0f172a;">Cash Account Ledger</div>
-                            <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 12px;">
-                                <div><strong>Date:</strong> July 15</div>
-                                <div><strong>Credit Entry:</strong> <span style="color: #dc2626; font-weight: 700;">$2,000</span></div>
-                                <div style="border-top: 1px dashed #e2e8f0; padding-top: 4px; margin-top: 4px;"><strong>Running Balance:</strong> <span style="color: #0f172a; font-weight: 700;">$8,000 (Debit)</span> <span style="color: #64748b; font-size: 10px;">($10,000 - $2,000)</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </details>
-        </div>
-
-    </div>
-</div>
-
-<div class="scroll-reveal-card visible" style="border-top: 1px dashed #e2e8f0; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 30px;">
-    <div>
-        <h4 style="margin: 0; font-size: 14.5px; font-weight: 800; color: #0f172a;">Ready to record Journals and post Ledgers?</h4>
-        <p style="margin: 4px 0 0 0; font-size: 12.5px; color: #64748b;">Practice placing your accounts, values, and ledger balances across active general accounts!</p>
-    </div>
-    <label for="l1_4_quiz_trigger" style="display: inline-flex; align-items: center; justify-content: center; background: #3b82f6; color: white; font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 8px; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.15); cursor: pointer; user-select: none; transition: background-color 0.2s;">
-        ⚡ Start Quiz
-    </label>
-</div>
-
-
-<input type="checkbox" id="l1_4_quiz_trigger" style="display: none; position: absolute;" />
-
-<style>
-    /* Display state trigger for Quiz Modal */
-    #l1_4_quiz_trigger:checked ~ #pureQuizModal_l1_4 {
-        display: flex !important;
-    }
-    
-    /* Drag-and-Drop Chip Styling */
-    .drag-chip-l14 {
-        display: inline-flex;
-        align-items: center;
-        background: #f1f5f9;
-        border: 1.5px dashed #cbd5e1;
-        color: #1e293b;
-        font-weight: 700;
-        font-size: 12px;
-        padding: 6px 12px;
-        border-radius: 6px;
-        cursor: grab;
-        user-select: none;
-        transition: all 0.15s;
-    }
-    
-    .drag-chip-l14:active {
-        cursor: grabbing;
-        background: #eff6ff;
-        border-color: #3b82f6;
-    }
-
-    /* Target dropzone slots */
-    .target-slot-l14 {
-        background: #fafafb;
-        border: 1.5px dashed #cbd5e1;
-        border-radius: 6px;
-        min-height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px;
-        box-sizing: border-box;
-        transition: all 0.2s;
-        font-size: 11px;
-        color: #64748b;
-        text-align: center;
-    }
-
-    .target-slot-l14.dragover {
-        background: #eff6ff;
-        border-color: #3b82f6;
-    }
-
-    .target-slot-l14.filled {
-        background: white;
-        border-style: solid;
-        border-color: #e2e8f0;
-    }
-
-    /* Single Question Slide Display Controls */
-    .slide-question-l14 {
-        display: none;
-    }
-    .slide-question-l14.active {
-        display: block;
-    }
-</style>
-
-<div id="pureQuizModal_l1_4" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100vw; height: 100vh; background-color: rgba(15, 23, 42, 0.65); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
-    <div style="background: white; width: 100%; max-width: 780px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow: hidden; display: flex; flex-direction: column; max-height: 95vh; box-sizing: border-box;">
-        
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 18px;">📖</span>
-                <h3 style="margin: 0; font-size: 16px; font-weight: 800; color: #0f172a;">Lesson 1.4 Practice Quiz: Journals & Ledgers</h3>
-            </div>
-            <label for="l1_4_quiz_trigger" style="font-size: 24px; color: #94a3b8; cursor: pointer; font-weight: normal; padding: 4px; line-height: 1; transition: color 0.15s;" onmouseover="this.style.color='#64748b'" onmouseout="this.style.color='#94a3b8'">&times;</label>
-        </div>
-
-        <div style="background: #f1f5f9; height: 6px; width: 100%; position: relative;">
-            <div id="quiz_progress_bar_l14" style="background: #3b82f6; height: 100%; width: 25%; transition: width 0.3s ease;"></div>
-        </div>
-
-        <div style="padding: 20px 24px; overflow-y: auto; flex: 1; box-sizing: border-box; background: #fafafb;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;" id="anatomy-selectors">
             
-            <p style="margin: 0 0 16px 0; font-size: 13px; color: #64748b; text-align: center; line-height: 1.5;">
-                Drag the items from the deck into the correct **Journal Entries** and **Ledger T-Accounts**. Click Check Answer to verify!
-            </p>
-
-            <div id="quiz_scenarios_l14">
-                
-                <div class="slide-question-l14 active" id="l14_slide_1">
-                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); margin-bottom: 16px;">
-                        <span style="font-size: 10.5px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Scenario 1 of 4</span>
-                        <h4 style="margin: 4px 0 14px 0; font-size: 14px; font-weight: 800; color: #0f172a;">You provide a service for $500, and they guarantee to pay you by the end of the year.</h4>
-                        
-                        <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px;">
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 4px; margin-bottom: 10px;">General Journal Entry</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center;">
-                                        <div class="target-slot-l14" data-expected="chip14_ar" data-placeholder="Debit Account">Debit Account</div>
-                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Debit ($)">Debit ($)</div>
-                                    </div>
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center; padding-left: 16px;">
-                                        <div class="target-slot-l14" data-expected="chip14_sr" data-placeholder="Credit Account (Indented)">Credit Account</div>
-                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Credit ($)">Credit ($)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 10px;">General Ledger Posting</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569;">Accounts Receivable Ledger Account</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Debit Entry">Debit Entry</div>
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8; font-style: italic;">No Credit</div>
-                                    </div>
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569; margin-top: 4px;">Sales Revenue Ledger Account</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8; font-style: italic;">No Debit</div>
-                                        <div class="target-slot-l14" data-expected="val14_500" data-placeholder="Credit Entry">Credit Entry</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slide-question-l14" id="l14_slide_2">
-                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); margin-bottom: 16px;">
-                        <span style="font-size: 10.5px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Scenario 2 of 4</span>
-                        <h4 style="margin: 4px 0 14px 0; font-size: 14px; font-weight: 800; color: #0f172a;">You buy a new truck for $80,000, paying $25,000 in cash and deciding to pay $55,000 later.</h4>
-                        
-                        <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px;">
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 4px; margin-bottom: 10px;">General Journal Entry</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center;">
-                                        <div class="target-slot-l14" data-expected="chip14_eq" data-placeholder="Debit Account">Debit Account</div>
-                                        <div class="target-slot-l14" data-expected="val14_80k" data-placeholder="Debit ($)">Debit ($)</div>
-                                    </div>
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center; padding-left: 16px;">
-                                        <div class="target-slot-l14" data-expected="chip14_cash" data-placeholder="Credit Account 1">Credit Account 1</div>
-                                        <div class="target-slot-l14" data-expected="val14_25k" data-placeholder="Credit ($)">Credit ($)</div>
-                                    </div>
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center; padding-left: 16px;">
-                                        <div class="target-slot-l14" data-expected="chip14_ap" data-placeholder="Credit Account 2">Credit Account 2</div>
-                                        <div class="target-slot-l14" data-expected="val14_55k" data-placeholder="Credit ($)">Credit ($)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 10px;">General Ledger Posting</div>
-                                <div style="display: flex; flex-direction: column; gap: 6px;">
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569;">Equipment Account Ledger</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div class="target-slot-l14" data-expected="val14_80k" data-placeholder="Debit Entry">Debit Entry</div>
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #94a3b8; font-style: italic;">No Credit</div>
-                                    </div>
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569; margin-top: 2px;">Cash Account Ledger</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #94a3b8; font-style: italic;">No Debit</div>
-                                        <div class="target-slot-l14" data-expected="val14_25k" data-placeholder="Credit Entry">Credit Entry</div>
-                                    </div>
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569; margin-top: 2px;">Accounts Payable Account Ledger</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #94a3b8; font-style: italic;">No Debit</div>
-                                        <div class="target-slot-l14" data-expected="val14_55k" data-placeholder="Credit Entry">Credit Entry</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slide-question-l14" id="l14_slide_3">
-                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); margin-bottom: 16px;">
-                        <span style="font-size: 10.5px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Scenario 3 of 4</span>
-                        <h4 style="margin: 4px 0 14px 0; font-size: 14px; font-weight: 800; color: #0f172a;">You invest $50,000 into the business bank account.</h4>
-                        
-                        <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px;">
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 4px; margin-bottom: 10px;">General Journal Entry</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center;">
-                                        <div class="target-slot-l14" data-expected="chip14_cash" data-placeholder="Debit Account">Debit Account</div>
-                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Debit ($)">Debit ($)</div>
-                                    </div>
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center; padding-left: 16px;">
-                                        <div class="target-slot-l14" data-expected="chip14_cap" data-placeholder="Credit Account (Indented)">Credit Account</div>
-                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Credit ($)">Credit ($)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 10px;">General Ledger Posting</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569;">Cash Account Ledger</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Debit Entry">Debit Entry</div>
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8; font-style: italic;">No Credit</div>
-                                    </div>
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569; margin-top: 4px;">Capital Account Ledger</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8; font-style: italic;">No Debit</div>
-                                        <div class="target-slot-l14" data-expected="val14_50k" data-placeholder="Credit Entry">Credit Entry</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slide-question-l14" id="l14_slide_4">
-                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); margin-bottom: 16px;">
-                        <span style="font-size: 10.5px; font-weight: 800; color: #3b82f6; text-transform: uppercase;">Scenario 4 of 4</span>
-                        <h4 style="margin: 4px 0 14px 0; font-size: 14px; font-weight: 800; color: #0f172a;">You sell goods for $400, but are yet to be paid.</h4>
-                        
-                        <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px;">
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 4px; margin-bottom: 10px;">General Journal Entry</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center;">
-                                        <div class="target-slot-l14" data-expected="chip14_ar" data-placeholder="Debit Account">Debit Account</div>
-                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Debit ($)">Debit ($)</div>
-                                    </div>
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; align-items: center; padding-left: 16px;">
-                                        <div class="target-slot-l14" data-expected="chip14_sr" data-placeholder="Credit Account (Indented)">Credit Account</div>
-                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Credit ($)">Credit ($)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #fdfdfd;">
-                                <div style="font-weight: 800; font-size: 11px; text-transform: uppercase; color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 10px;">General Ledger Posting</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569;">Accounts Receivable Ledger Account</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Debit Entry">Debit Entry</div>
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8; font-style: italic;">No Credit</div>
-                                    </div>
-                                    <div style="font-size: 11px; font-weight: 700; color: #475569; margin-top: 4px;">Sales Revenue Ledger Account</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                                        <div style="background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8; font-style: italic;">No Debit</div>
-                                        <div class="target-slot-l14" data-expected="val14_400" data-placeholder="Credit Entry">Credit Entry</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="anatomy-card active" onclick="highlightComponent('date')" data-component="date" style="border: 2px solid #3b82f6; background: #eff6ff; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+                <strong style="color: #1e3a8a; display: block; margin-bottom: 4px; font-size: 13.5px;">📅 1. Date</strong>
+                <span style="font-size: 11.5px; color: #1e40af; line-height: 1.4;">The exact day the financial exchange took place.</span>
             </div>
 
-            <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
-                <div style="margin-bottom: 14px;">
-                    <span style="font-size: 10.5px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 8px;">Account Titles</span>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="titles_tray_l14">
-                        <div class="drag-chip-l14" draggable="true" id="chip14_cash">Cash</div>
-                        <div class="drag-chip-l14" draggable="true" id="chip14_ap">Accounts Payable</div>
-                        <div class="drag-chip-l14" draggable="true" id="chip14_ar">Accounts Receivable</div>
-                        <div class="drag-chip-l14" draggable="true" id="chip14_eq">Equipment</div>
-                        <div class="drag-chip-l14" draggable="true" id="chip14_sr">Sales Revenue</div>
-                        <div class="drag-chip-l14" draggable="true" id="chip14_cap">Capital</div>
-                    </div>
-                </div>
-
-                <div>
-                    <span style="font-size: 10.5px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 8px;">Amounts & Values</span>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="amounts_tray_l14">
-                        <div class="drag-chip-l14" draggable="true" id="val14_400" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$400</div>
-                        <div class="drag-chip-l14" draggable="true" id="val14_500" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$500</div>
-                        <div class="drag-chip-l14" draggable="true" id="val14_25k" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$25,000</div>
-                        <div class="drag-chip-l14" draggable="true" id="val14_50k" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$50,000</div>
-                        <div class="drag-chip-l14" draggable="true" id="val14_55k" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$55,000</div>
-                        <div class="drag-chip-l14" draggable="true" id="val14_80k" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">$80,000</div>
-                    </div>
-                </div>
+            <div class="anatomy-card" onclick="highlightComponent('accounts')" data-component="accounts" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+                <strong style="color: #0f172a; display: block; margin-bottom: 4px; font-size: 13.5px;">📖 2. Accounts</strong>
+                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">Debits on top. Credits indented below.</span>
             </div>
 
-            <div id="quiz_result_panel_l14" style="display: none; padding: 18px; border-radius: 12px; text-align: center; border: 2px dashed; margin-bottom: 12px;">
-                </div>
+            <div class="anatomy-card" onclick="highlightComponent('debit')" data-component="debit" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+                <strong style="color: #10b981; display: block; margin-bottom: 4px; font-size: 13.5px;">➕ 3. Debit</strong>
+                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">The numeric value in the left column.</span>
+            </div>
+
+            <div class="anatomy-card" onclick="highlightComponent('credit')" data-component="credit" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+                <strong style="color: #ef4444; display: block; margin-bottom: 4px; font-size: 13.5px;">➖ 4. Credit</strong>
+                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">The numeric value in the right column.</span>
+            </div>
+
+            <div class="anatomy-card" onclick="highlightComponent('description')" data-component="description" style="border: 2px solid #e2e8f0; background: #fafafb; padding: 12px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+                <strong style="color: #8b5cf6; display: block; margin-bottom: 4px; font-size: 13.5px;">📝 5. Description</strong>
+                <span style="font-size: 11.5px; color: #64748b; line-height: 1.4;">A brief note explaining the business purpose.</span>
+            </div>
 
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: #f8fafc; border-top: 1px solid #e2e8f0;">
-            <button onclick="resetL14Quiz()" style="background: transparent; color: #64748b; border: 1.5px solid #cbd5e1; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">Reset Quiz</button>
-            <div style="display: flex; gap: 12px;">
-                <button id="btn_check_answer_l14" onclick="checkCurrentSlideL14()" style="background: #3b82f6; color: white; border: none; font-size: 13px; font-weight: 800; padding: 8px 20px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2); transition: background-color 0.15s;" onmouseover="this.style.backgroundColor='#2563eb'" onmouseout="this.style.backgroundColor='#3b82f6'">Check Answer</button>
-                <button id="btn_next_question_l14" onclick="nextSlideL14()" style="display: none; background: #10b981; color: white; border: none; font-size: 13px; font-weight: 800; padding: 8px 20px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);" onmouseover="this.style.backgroundColor='#059669'" onmouseout="this.style.backgroundColor='#10b981'">Next Question ➡️</button>
-                <label for="l1_4_quiz_trigger" style="background: #0f172a; color: white; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center;">Close</label>
+        <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 20px; overflow-x: auto; position: relative;">
+            <div style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                <span>📋 Visualizer:</span> <span id="visualizer-status" style="color: #3b82f6;">Currently Showing: <strong>Date</strong></span>
             </div>
+
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0;">
+                <thead>
+                    <tr style="background: #f1f5f9; color: #475569; font-weight: 700;">
+                        <th style="padding: 10px 14px; width: 15%;">Date</th>
+                        <th style="padding: 10px 14px; width: 55%;">Account Titles & Explanation</th>
+                        <th style="padding: 10px 14px; text-align: right; width: 15%;">Debit ($)</th>
+                        <th style="padding: 10px 14px; text-align: right; width: 15%;">Credit ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="visual-date" style="padding: 12px 14px; vertical-align: top; font-weight: 600; color: #0f172a; transition: all 0.3s; background: rgba(59, 130, 246, 0.15); box-shadow: inset 0 0 0 2px #3b82f6;">
+                            May 15
+                        </td>
+                        
+                        <td style="padding: 12px 14px; vertical-align: top;">
+                            <div id="visual-account-debit" style="font-weight: 700; color: #0f172a; margin-bottom: 4px; padding: 2px 6px; border-radius: 4px; transition: all 0.3s;">
+                                Cash
+                            </div>
+                            <div id="visual-account-credit" style="font-weight: 700; color: #475569; padding: 2px 6px 2px 24px; border-radius: 4px; transition: all 0.3s;">
+                                Service Revenue
+                            </div>
+                            <div id="visual-description" style="color: #64748b; font-style: italic; font-size: 12px; margin-top: 10px; padding: 4px 8px; border-radius: 4px; transition: all 0.3s;">
+                                (To record services provided to a client immediately collected in cash)
+                            </div>
+                        </td>
+
+                        <td id="visual-debit-val" style="padding: 12px 14px; text-align: right; vertical-align: top; color: #10b981; font-weight: 700; transition: all 0.3s;">
+                            2,000
+                        </td>
+
+                        <td id="visual-credit-val" style="padding: 12px 14px; text-align: right; vertical-align: top; color: #ef4444; font-weight: 700; transition: all 0.3s;">
+                            2,000
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
     </div>
 </div>
 
 <script>
-    let currentSlideIndexL14 = 1;
-    const totalSlidesL14 = 4;
-    let draggedElementL14 = null;
-
-    (function initDragAndDropL14() {
-        // Register drag events on chips
-        document.querySelectorAll('.drag-chip-l14').forEach(chip => {
-            chip.addEventListener('dragstart', (e) => {
-                draggedElementL14 = chip;
-                e.dataTransfer.setData('text/plain', chip.id);
-                e.dataTransfer.effectAllowed = 'move';
-                chip.style.opacity = '0.5';
-            });
-
-            chip.addEventListener('dragend', () => {
-                chip.style.opacity = '1';
-                draggedElementL14 = null;
-            });
-        });
-
-        // Register target dropslot configurations
-        document.querySelectorAll('.target-slot-l14').forEach(slot => {
-            slot.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                slot.classList.add('dragover');
-            });
-
-            slot.addEventListener('dragleave', () => {
-                slot.classList.remove('dragover');
-            });
-
-            slot.addEventListener('drop', (e) => {
-                e.preventDefault();
-                slot.classList.remove('dragover');
-
-                if (draggedElementL14) {
-                    // Remove current chip if exist
-                    const existingChip = slot.querySelector('.drag-chip-l14');
-                    if (existingChip) {
-                        existingChip.remove();
-                    }
-
-                    // Populate slot with a copy of the chip
-                    slot.innerHTML = '';
-                    const clone = draggedElementL14.cloneNode(true);
-                    
-                    // Attach click-to-remove listener
-                    clone.addEventListener('click', () => {
-                        clone.remove();
-                        slot.classList.remove('filled');
-                        slot.innerHTML = slot.getAttribute('data-placeholder');
-                        slot.style.borderColor = '#cbd5e1';
-                        slot.style.backgroundColor = '#fafafb';
-                    });
-
-                    slot.appendChild(clone);
-                    slot.classList.add('filled');
-                    slot.style.borderStyle = 'solid';
-                    slot.style.borderColor = '#3b82f6';
-                    slot.style.backgroundColor = 'white';
+    function highlightComponent(component) {
+        // 1. Update Selector Cards UI
+        const cards = document.querySelectorAll('.anatomy-card');
+        cards.forEach(card => {
+            if (card.getAttribute('data-component') === component) {
+                card.style.borderColor = getThemeColor(component).border;
+                card.style.backgroundColor = getThemeColor(component).bg;
+                card.querySelector('strong').style.color = getThemeColor(component).text;
+                if (card.querySelector('span')) {
+                    card.querySelector('span').style.color = getThemeColor(component).subtext;
                 }
-            });
-        });
-    })();
-
-    // Check Answers of current visible slide only
-    function checkCurrentSlideL14() {
-        const activeSlide = document.getElementById(`l14_slide_${currentSlideIndexL14}`);
-        const slots = activeSlide.querySelectorAll('.target-slot-l14');
-        let slideCorrectCount = 0;
-        const totalSlideSlots = slots.length;
-
-        slots.forEach(slot => {
-            const childChip = slot.querySelector('.drag-chip-l14');
-            const expectedId = slot.getAttribute('data-expected');
-
-            if (childChip && childChip.id === expectedId) {
-                slideCorrectCount++;
-                slot.style.borderColor = '#10b981';
-                slot.style.backgroundColor = '#f0fdf4';
             } else {
-                slot.style.borderColor = '#ef4444';
-                slot.style.backgroundColor = '#fef2f2';
+                card.style.borderColor = '#e2e8f0';
+                card.style.backgroundColor = '#fafafb';
+                card.querySelector('strong').style.color = getThemeColor(card.getAttribute('data-component')).defaultStrong;
+                if (card.querySelector('span')) {
+                    card.querySelector('span').style.color = '#64748b';
+                }
             }
         });
 
-        const resultPanel = document.getElementById('quiz_result_panel_l14');
-        resultPanel.style.display = 'block';
-
-        if (slideCorrectCount === totalSlideSlots) {
-            resultPanel.style.backgroundColor = '#ecfdf5';
-            resultPanel.style.borderColor = '#10b981';
-            resultPanel.style.color = '#065f46';
-            resultPanel.innerHTML = `
-                <span style="font-size: 24px;">🎉</span>
-                <h4 style="margin: 4px 0; font-size: 15px; font-weight: 800;">Entry & Posting Correct!</h4>
-                <p style="margin: 0; font-size: 12.5px;">Perfect debit-credit matching and ledger posting. Click "Next Question" to proceed.</p>
-            `;
-            
-            // Toggle footer button visibility on success
-            document.getElementById('btn_check_answer_l14').style.display = 'none';
-            if (currentSlideIndexL14 < totalSlidesL14) {
-                document.getElementById('btn_next_question_l14').style.display = 'inline-block';
-            } else {
-                // Final slide complete!
-                resultPanel.innerHTML = `
-                    <span style="font-size: 32px;">🏆</span>
-                    <h4 style="margin: 6px 0; font-size: 16px; font-weight: 800;">Module Complete!</h4>
-                    <p style="margin: 0; font-size: 13px;">You have successfully journals-entered and ledger-posted every practice transaction. Ready to move on to Lesson 1.5!</p>
-                `;
-            }
-        } else {
-            resultPanel.style.backgroundColor = '#fff5f5';
-            resultPanel.style.borderColor = '#feb2b2';
-            resultPanel.style.color = '#9b2c2c';
-            resultPanel.innerHTML = `
-                <span style="font-size: 24px;">✏️</span>
-                <h4 style="margin: 4px 0; font-size: 15px; font-weight: 800;">Entry Out of Balance</h4>
-                <p style="margin: 0; font-size: 12.5px;">Make sure your debit and credit accounts are placed on the right lines and equal each other!</p>
-            `;
-        }
-    }
-
-    // Advance Slide
-    function nextSlideL14() {
-        if (currentSlideIndexL14 < totalSlidesL14) {
-            // Hide active slide
-            document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.remove('active');
-            
-            // Advance index
-            currentSlideIndexL14++;
-            
-            // Show new active slide
-            document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.add('active');
-            
-            // Update progress bar
-            const progressBar = document.getElementById('quiz_progress_bar_l14');
-            const progressPercent = (currentSlideIndexL14 / totalSlidesL14) * 100;
-            progressBar.style.width = `${progressPercent}%`;
-
-            // Reset buttons & alert banner state
-            document.getElementById('btn_check_answer_l14').style.display = 'inline-block';
-            document.getElementById('btn_next_question_l14').style.display = 'none';
-            document.getElementById('quiz_result_panel_l14').style.display = 'none';
-        }
-    }
-
-    // Reset whole quiz sequence to Slide 1
-    function resetL14Quiz() {
-        document.querySelectorAll('.target-slot-l14').forEach(slot => {
-            slot.classList.remove('filled');
-            slot.innerHTML = slot.getAttribute('data-placeholder');
-            slot.style.borderStyle = 'dashed';
-            slot.style.borderColor = '#cbd5e1';
-            slot.style.backgroundColor = '#fafafb';
+        // 2. Clear all highlights from visualizer
+        const elementsToReset = [
+            document.getElementById('visual-date'),
+            document.getElementById('visual-account-debit'),
+            document.getElementById('visual-account-credit'),
+            document.getElementById('visual-debit-val'),
+            document.getElementById('visual-credit-val'),
+            document.getElementById('visual-description')
+        ];
+        elementsToReset.forEach(el => {
+            el.style.background = 'transparent';
+            el.style.boxShadow = 'none';
         });
 
-        document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.remove('active');
-        currentSlideIndexL14 = 1;
-        document.getElementById(`l14_slide_${currentSlideIndexL14}`).classList.add('active');
+        // 3. Apply active highlight in visualizer
+        const statusText = document.getElementById('visualizer-status');
         
-        document.getElementById('quiz_progress_bar_l14').style.width = '25%';
+        if (component === 'date') {
+            statusText.innerHTML = 'Currently Showing: <strong style="color: #3b82f6;">1. Date</strong>';
+            const target = document.getElementById('visual-date');
+            target.style.background = 'rgba(59, 130, 246, 0.15)';
+            target.style.boxShadow = 'inset 0 0 0 2px #3b82f6';
+        } else if (component === 'accounts') {
+            statusText.innerHTML = 'Currently Showing: <strong style="color: #0f172a;">2. Accounts Affected</strong>';
+            const deb = document.getElementById('visual-account-debit');
+            const cred = document.getElementById('visual-account-credit');
+            deb.style.background = 'rgba(15, 23, 42, 0.1)';
+            deb.style.boxShadow = '0 0 0 1px #0f172a';
+            cred.style.background = 'rgba(15, 23, 42, 0.1)';
+            cred.style.boxShadow = '0 0 0 1px #0f172a';
+        } else if (component === 'debit') {
+            statusText.innerHTML = 'Currently Showing: <strong style="color: #10b981;">3. Debit Amount</strong>';
+            const target = document.getElementById('visual-debit-val');
+            target.style.background = 'rgba(16, 185, 129, 0.15)';
+            target.style.boxShadow = 'inset 0 0 0 2px #10b981';
+        } else if (component === 'credit') {
+            statusText.innerHTML = 'Currently Showing: <strong style="color: #ef4444;">4. Credit Amount</strong>';
+            const target = document.getElementById('visual-credit-val');
+            target.style.background = 'rgba(239, 68, 68, 0.15)';
+            target.style.boxShadow = 'inset 0 0 0 2px #ef4444';
+        } else if (component === 'description') {
+            statusText.innerHTML = 'Currently Showing: <strong style="color: #8b5cf6;">5. Description</strong>';
+            const target = document.getElementById('visual-description');
+            target.style.background = 'rgba(139, 92, 246, 0.15)';
+            target.style.boxShadow = '0 0 0 2px #8b5cf6';
+        }
+    }
 
-        document.getElementById('btn_check_answer_l14').style.display = 'inline-block';
-        document.getElementById('btn_next_question_l14').style.display = 'none';
-        
-        const resultPanel = document.getElementById('quiz_result_panel_l14');
-        resultPanel.style.display = 'none';
-        resultPanel.innerHTML = '';
+    // Color helper map
+    function getThemeColor(component) {
+        const colors = {
+            date: { border: '#3b82f6', bg: '#eff6ff', text: '#1e3a8a', subtext: '#1e40af', defaultStrong: '#0f172a' },
+            accounts: { border: '#0f172a', bg: '#f1f5f9', text: '#0f172a', subtext: '#334155', defaultStrong: '#0f172a' },
+            debit: { border: '#10b981', bg: '#ecfdf5', text: '#065f46', subtext: '#047857', defaultStrong: '#10b981' },
+            credit: { border: '#ef4444', bg: '#fdf2f2', text: '#991b1b', subtext: '#b91c1c', defaultStrong: '#ef4444' },
+            description: { border: '#8b5cf6', bg: '#f5f3ff', text: '#5b21b6', subtext: '#6d28d9', defaultStrong: '#8b5cf6' }
+        };
+        return colors[component];
     }
 </script>
