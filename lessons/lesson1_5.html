@@ -445,6 +445,8 @@
                 currentSlideIndexL15++;
                 document.getElementById(`l15_slide_${currentSlideIndexL15}`).classList.add('active');
                 updateProgressBarL15();
+                
+                // Clear state of the newly displayed slide elements
                 resetL15Quiz();
             } else {
                 alert("🎉 Brilliant! You verified and generated a matched Trial Balance worksheet!");
@@ -458,10 +460,10 @@
         };
 
         window.resetL15Quiz = function() {
-            const activeSlide = document.getElementById(`l15_slide_${currentSlideIndexL15}`);
-            const slots = activeSlide.querySelectorAll('.target-slot-l15');
+            // Find ALL target slots across the entire layout to make sure nothing leaks across scenarios
+            const allSlots = document.querySelectorAll('.target-slot-l15');
             
-            slots.forEach(slot => {
+            allSlots.forEach(slot => {
                 slot.classList.remove('filled');
                 slot.removeAttribute('data-placed-chip-id');
                 slot.innerHTML = slot.getAttribute('data-placeholder');
