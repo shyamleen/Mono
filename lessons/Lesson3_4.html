@@ -1,0 +1,158 @@
+<div style="font-family: system-ui, sans-serif;">
+    <h2 style="color: #4f46e5; margin-top: 0;">Lesson 3.4: Solvency Framework Analysis</h2>
+    <p style="line-height: 1.6; color: #334155;">
+        A solvency ratio measures how well a company's cash flow can cover its long-term debt. Solvency ratios are a key metric for assessing the financial health of a company and can be used to determine the likelihood that a company will default on its debt.
+    </p>
+
+    <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 20px; border-radius: 12px; margin: 24px 0;">
+        <h3 style="margin-top: 0; color: #4f46e5; font-size: 16px;">🎛️ Solvency Scenario Builder</h3>
+        <p style="font-size: 13px; color: #475569; margin-bottom: 16px;">
+            Manipulate internal capital accounts below to simulate macro strain parameters and view systemic leverage alterations instantly.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Total Liabilities ($):</label>
+                <input type="range" id="solv-liab" min="50000" max="400000" value="150000" step="5000" style="width: 100%;" oninput="runSolvencyCalc()">
+                <span id="lbl-liab" style="font-size: 12px; font-weight: 700; color: #4f46e5;">$150,000</span>
+            </div>
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Shareholders' Equity ($):</label>
+                <input type="range" id="solv-eq" min="50000" max="400000" value="200000" step="5000" style="width: 100%;" oninput="runSolvencyCalc()">
+                <span id="lbl-eq" style="font-size: 12px; font-weight: 700; color: #4f46e5;">$200,000</span>
+            </div>
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Annual EBIT ($):</label>
+                <input type="range" id="solv-ebit" min="20000" max="800000" value="450000" step="10000" style="width: 100%;" oninput="runSolvencyCalc()">
+                <span id="lbl-ebit" style="font-size: 12px; font-weight: 700; color: #4f46e5;">$450,000</span>
+            </div>
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Interest Expense ($):</label>
+                <input type="range" id="solv-int" min="5000" max="50000" value="15000" step="1000" style="width: 100%;" oninput="runSolvencyCalc()">
+                <span id="lbl-int" style="font-size: 12px; font-weight: 700; color: #4f46e5;">$15,000</span>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: white; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #e2e8f0;">
+            <div>
+                <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700;">Debt-to-Equity</div>
+                <div id="out-de" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">0.75</div>
+            </div>
+            <div>
+                <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700;">Debt-to-Assets</div>
+                <div id="out-da" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">0.43</div>
+            </div>
+            <div>
+                <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700;">Interest Coverage</div>
+                <div id="out-ic" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">30.00x</div>
+            </div>
+            <div>
+                <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700;">Equity Multiplier</div>
+                <div id="out-em" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">1.75</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #4f46e5; padding-left: 8px;">1. Debt-to-Equity Ratio</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        Compares total balance liabilities straight against shareholder stakes to analyze financial leverage profiles.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Debt-to-Equity = Total Liabilities / Shareholders' Equity</code>
+    </p>
+
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #4f46e5; padding-left: 8px;">2. Debt-to-Assets Ratio</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        Indicates the literal chunk size of structural equipment/property financed through debt capital.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Debt-to-Assets = Total Liabilities / Total Assets</code><br>
+        <em>Tip:</em> Outcomes registering beyond 0.5 quickly flag highly aggressive reliance on capital leveraging.
+    </p>
+
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #4f46e5; padding-left: 8px;">3. Interest Coverage Ratio</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        Determines profit safety thresholds available to fulfill recurring interest obligations comfortably.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Interest Coverage = EBIT / Interest Expenses</code>
+    </p>
+
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #4f46e5; padding-left: 8px;">4. Equity Multiplier</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        Exposes asset funding magnification behaviors achieved via backing configurations.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Equity Multiplier = Total Assets / Shareholders' Equity</code>
+    </p>
+
+    <div style="margin-top: 40px; background: #fafafa; border: 1px solid #e2e8f0; padding: 24px; border-radius: 12px;">
+        <h3 style="margin-top: 0; color: #0f172a; display: flex; align-items: center; gap: 8px;">📝 Module 3.4 Quiz</h3>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 24px;">Complete all 8 analytical problems below:</p>
+
+        <div id="quiz-34-container"></div>
+
+        <button onclick="gradeQuiz34()" style="background: #10b981; color: white; border: none; padding: 12px 24px; font-weight: 700; border-radius: 8px; cursor: pointer; margin-top: 16px; width: 100%;">
+            Submit Completed Exam Sheet
+        </button>
+        <div id="quiz-34-result" style="margin-top: 16px; font-weight: 700; text-align: center; font-size: 15px;"></div>
+    </div>
+</div>
+
+<script>
+    function runSolvencyCalc() {
+        const liab = parseFloat(document.getElementById('solv-liab').value);
+        const eq = parseFloat(document.getElementById('solv-eq').value);
+        const ebit = parseFloat(document.getElementById('solv-ebit').value);
+        const interest = parseFloat(document.getElementById('solv-int').value);
+
+        document.getElementById('lbl-liab').textContent = '$' + liab.toLocaleString();
+        document.getElementById('lbl-eq').textContent = '$' + eq.toLocaleString();
+        document.getElementById('lbl-ebit').textContent = '$' + ebit.toLocaleString();
+        document.getElementById('lbl-int').textContent = '$' + interest.toLocaleString();
+
+        const assets = liab + eq;
+        const de = liab / eq;
+        const da = liab / assets;
+        const ic = ebit / interest;
+        const em = assets / eq;
+
+        document.getElementById('out-de').textContent = de.toFixed(2);
+        document.getElementById('out-da').textContent = da.toFixed(2);
+        document.getElementById('out-ic').textContent = ic.toFixed(2) + 'x';
+        document.getElementById('out-em').textContent = em.toFixed(2);
+    }
+
+    const q34Data = [
+        { q: "What does a solvency ratio measure?", a: ["Daily inventory movement speeds", "How well a company's cash flow can cover its long-term debt liabilities", "The collection speed of short-term receivables", "Immediate cash margins on product lines"], c: 1 },
+        { q: "What is the primary formula used to calculate the Debt-to-Equity Ratio?", a: ["Total Assets ÷ Total Liabilities", "Total Liabilities ÷ Shareholders' Equity", "EBIT ÷ Total Interest Due", "Total Assets ÷ Shareholders' Equity"], c: 1 },
+        { q: "A Debt-to-Assets ratio calculation result above 0.5 indicates:", a: ["Aggressive debt-heavy financing strategies", "Complete exemption from creditor interest payments", "A completely risk-free capital setup", "Low financial leverage metrics"], c: 0 },
+        { q: "Which metric compares EBIT against due interest expenses to assess baseline default risks?", a: ["Equity Multiplier", "Debt-to-Equity Ratio", "Interest Coverage Ratio", "Asset Turnover Matrix"], c: 2 },
+        { q: "The Equity Multiplier ratio specifically evaluates:", a: ["The speed at which credit customers clear obligations", "The portion of structural corporate assets funded by shareholder equity", "Daily operational asset turnover margins", "Long-term bond conversion rates"], c: 1 },
+        { q: "What is the recommended timeframe trend length when monitoring structural financial declines via solvency ratios?", a: ["One to two quarters max", "Exactly ten business days", "Three to five years to spot long-term patterns", "Every single century interval"], c: 2 },
+        { q: "Why is tracking peer competitor solvency data essential?", a: ["To completely copy their exact inventory pricing sheets", "To properly benchmark findings against realistic sector-specific averages", "To eliminate all federal corporate tax liabilities instantly", "To artificially increase the equity multiplier numbers"], c: 1 },
+        { q: "A higher Debt-to-Equity ratio implies...", a: ["An absolute guarantee of zero bankruptcy risks", "Higher financial risk exposure to company creditors", "Optimal balance in operational cash streams", "Immediate reductions in long-term lease debts"], c: 1 }
+    ];
+
+    function buildQuiz34() {
+        const container = document.getElementById('quiz-34-container');
+        container.innerHTML = q34Data.map((item, qIdx) => `
+            <div style="margin-bottom: 20px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 16px;">
+                <p style="font-size: 14px; font-weight: 600; margin: 0 0 10px 0; color: #1e293b;">${qIdx + 1}. ${item.q}</p>
+                ${item.a.map((ans, aIdx) => `
+                    <label style="display: block; font-size: 13px; color: #475569; margin-bottom: 6px; cursor: pointer;">
+                        <input type="radio" name="q34-${qIdx}" value="${aIdx}" style="margin-right: 8px;">
+                        ${ans}
+                    </label>
+                `).join('')}
+            </div>
+        `).join('');
+    }
+
+    function gradeQuiz34() {
+        let score = 0;
+        q34Data.forEach((item, qIdx) => {
+            const selected = document.querySelector(`input[name="q34-${qIdx}"]:checked`);
+            if (selected && parseInt(selected.value) === item.c) {
+                score++;
+            }
+        });
+        const res = document.getElementById('quiz-34-result');
+        res.textContent = `Audit Complete! Score Matrix Output: ${score} / 8 Completed Correctly`;
+        res.style.color = score >= 6 ? "#10b981" : "#ef4444";
+    }
+
+    setTimeout(() => { runSolvencyCalc(); buildQuiz34(); }, 50);
+</script>
