@@ -1,1 +1,232 @@
+<div style="margin-bottom: 32px;">
+    <span style="background: rgba(125, 211, 252, 0.2); color: #0369a1; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em;">Module 2 • Lesson 2.1</span>
+    <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Introduction to Financial Statements</h1>
+    <p style="margin: 0; color: #475569; font-size: 15px; line-height: 1.6;" class="scroll-reveal-card">
+        Financial statements are formal records that summarize a company’s financial positions over a specific period of time, such as a quarter or a year.
+    </p>
+</div>
 
+<div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+    <h3 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700; color: #0f172a;">The four core financial statements:</h3>
+    
+    <div style="display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px;">
+        <button class="interactive-tab-btn active" onclick="activateTab('balance-sheet-tab', this)" style="background: #0ea5e9; color: white; border: none; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap;">Balance Sheet</button>
+        <button class="interactive-tab-btn" onclick="activateTab('income-statement-tab', this)" style="background: #ffffff; color: #475569; border: 1px solid #cbd5e1; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap;">Income Statement</button>
+        <button class="interactive-tab-btn" onclick="activateTab('cash-flow-tab', this)" style="background: #ffffff; color: #475569; border: 1px solid #cbd5e1; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap;">Cash Flow Statement</button>
+        <button class="interactive-tab-btn" onclick="activateTab('equity-tab', this)" style="background: #ffffff; color: #475569; border: 1px solid #cbd5e1; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap;">Statement of Shareholders' Equity</button>
+    </div>
+
+    <div id="balance-sheet-tab" class="interactive-tab-content" style="display: block;">
+        <p style="margin: 0 0 16px 0; font-size: 14.5px; line-height: 1.6; color: #1e293b; background: #ffffff; padding: 16px; border-left: 4px solid #0ea5e9; border-radius: 0 8px 8px 0;">
+            <strong>Balance Sheet:</strong> Provides a snapshot of a company's financial position at a single, specific point in time. It outlines what the business owns (Assets) and what it owes (Liabilities), with the remainder representing Shareholders' Equity.
+        </p>
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+            <div style="font-size: 11px; font-weight: 700; color: #0284c7; text-transform: uppercase; margin-bottom: 8px;">Example: Balance Sheet Mockup</div>
+            <table style="width: 100%; font-size: 12px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #f1f5f9;"><th style="padding: 6px;">Assets</th><th style="padding: 6px; text-align: right;">Liabilities & Equity</th></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Cash: $50,000<br>Equipment: $100,000</td><td style="padding: 6px; text-align: right; color: #475569;">Loans Payable: $60,000<br>Retained Earnings: $90,000</td></tr>
+                <tr><td style="padding: 6px; font-weight: bold; color: #0f172a;">Total Assets: $150,000</td><td style="padding: 6px; text-align: right; font-weight: bold; color: #0f172a;">Total Liab. & Equity: $150,000</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="income-statement-tab" class="interactive-tab-content" style="display: none;">
+        <p style="margin: 0 0 16px 0; font-size: 14.5px; line-height: 1.6; color: #1e293b; background: #ffffff; padding: 16px; border-left: 4px solid #0ea5e9; border-radius: 0 8px 8px 0;">
+            <strong>Income Statement:</strong> Also known as a Profit and Loss (P&L) statement, it details a company's revenues and expenses over a period. It calculates the final Net Income to show whether the business generated a profit or loss.
+        </p>
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+            <div style="font-size: 11px; font-weight: 700; color: #0284c7; text-transform: uppercase; margin-bottom: 8px;">Example: Income Statement Mockup</div>
+            <table style="width: 100%; font-size: 12px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; font-weight: 600;">Revenue (Sales)</td><td style="padding: 6px; text-align: right; color: #16a34a; font-weight: 600;">+$200,000</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Cost of Goods Sold (COGS)</td><td style="padding: 6px; text-align: right; color: #dc2626;">-$80,000</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Operating Expenses (Rent, Utilities)</td><td style="padding: 6px; text-align: right; color: #dc2626;">-$40,000</td></tr>
+                <tr><td style="padding: 6px; font-weight: bold; color: #0f172a;">Net Income</td><td style="padding: 6px; text-align: right; font-weight: bold; color: #0ea5e9;">$80,000</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="cash-flow-tab" class="interactive-tab-content" style="display: none;">
+        <p style="margin: 0 0 16px 0; font-size: 14.5px; line-height: 1.6; color: #1e293b; background: #ffffff; padding: 16px; border-left: 4px solid #0ea5e9; border-radius: 0 8px 8px 0;">
+            <strong>Cash Flow Statement:</strong> Tracks the movement of cash in and out of a business across operating, investing, and financing activities. This confirms whether the company has enough liquid cash to pay its obligations.
+        </p>
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+            <div style="font-size: 11px; font-weight: 700; color: #0284c7; text-transform: uppercase; margin-bottom: 8px;">Example: Cash Flow Statement Mockup</div>
+            <table style="width: 100%; font-size: 12px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Cash from Operating Activities</td><td style="padding: 6px; text-align: right; color: #16a34a;">+$45,000</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Cash from Investing Activities (Equipment Purchase)</td><td style="padding: 6px; text-align: right; color: #dc2626;">-$15,000</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Cash from Financing Activities (Loan Repayment)</td><td style="padding: 6px; text-align: right; color: #dc2626;">-$10,000</td></tr>
+                <tr><td style="padding: 6px; font-weight: bold; color: #0f172a;">Net Increase in Cash</td><td style="padding: 6px; text-align: right; font-weight: bold; color: #0ea5e9;">$20,000</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="equity-tab" class="interactive-tab-content" style="display: none;">
+        <p style="margin: 0 0 16px 0; font-size: 14.5px; line-height: 1.6; color: #1e293b; background: #ffffff; padding: 16px; border-left: 4px solid #0ea5e9; border-radius: 0 8px 8px 0;">
+            <strong>Statement of Shareholders' Equity:</strong> Details the changes in the owners' stake in the business over the reporting period, including retained earnings and the issuance of stock.
+        </p>
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+            <div style="font-size: 11px; font-weight: 700; color: #0284c7; text-transform: uppercase; margin-bottom: 8px;">Example: Shareholders' Equity Mockup</div>
+            <table style="width: 100%; font-size: 12px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Beginning Equity (Jan 1)</td><td style="padding: 6px; text-align: right;">$70,000</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Add: Net Income Contribution</td><td style="padding: 6px; text-align: right; color: #16a34a;">+$30,000</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px; color: #475569;">Less: Dividends Paid</td><td style="padding: 6px; text-align: right; color: #dc2626;">-$10,000</td></tr>
+                <tr><td style="padding: 6px; font-weight: bold; color: #0f172a;">Ending Equity (Dec 31)</td><td style="padding: 6px; text-align: right; font-weight: bold; color: #0ea5e9;">$90,000</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
+        <button id="next-tab-btn" onclick="cycleTab()" style="background: #0ea5e9; color: white; border: none; padding: 8px 16px; font-size: 13px; font-weight: 700; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+            Read Next Statement ➔
+        </button>
+    </div>
+</div>
+
+<p style="margin: 0 0 32px 0; font-size: 14px; line-height: 1.6; color: #475569;" class="scroll-reveal-card">
+    <strong>Important note:</strong> These statements are made using GAAP or IFRS rules to ensure consistency and transparency.
+</p>
+
+<div style="border: 1px solid #bae6fd; background: #f0f9ff; border-radius: 12px; padding: 24px;">
+    <h3 style="margin: 0 0 6px 0; font-size: 16px; font-weight: 800; color: #0369a1;">Statement Assessment Sandbox</h3>
+    <p style="margin: 0 0 20px 0; font-size: 13px; color: #0369a1; font-weight: 500;">Can you identify which financial statement matches each description below?</p>
+
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: white; padding: 16px; border-radius: 8px; border: 1px solid #cbd5e1;">
+            <p style="margin: 0 0 12px 0; font-size: 13.5px; font-weight: 600; color: #1e293b;">1. Identifies the company's net income by detailing revenues minus expenses over a span of time.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button class="quiz-option" data-q="q1" data-val="bs" onclick="selectAnswer('q1', 'bs', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Balance Sheet</button>
+                <button class="quiz-option" data-q="q1" data-val="is" onclick="selectAnswer('q1', 'is', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Income Statement</button>
+                <button class="quiz-option" data-q="q1" data-val="cf" onclick="selectAnswer('q1', 'cf', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Cash Flow Statement</button>
+                <button class="quiz-option" data-q="q1" data-val="se" onclick="selectAnswer('q1', 'se', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Shareholders' Equity</button>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 16px; border-radius: 8px; border: 1px solid #cbd5e1;">
+            <p style="margin: 0 0 12px 0; font-size: 13.5px; font-weight: 600; color: #1e293b;">2. Measures a snapshot at a single point in time, tracking assets vs liabilities and equity.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button class="quiz-option" data-q="q2" data-val="bs" onclick="selectAnswer('q2', 'bs', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Balance Sheet</button>
+                <button class="quiz-option" data-q="q2" data-val="is" onclick="selectAnswer('q2', 'is', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Income Statement</button>
+                <button class="quiz-option" data-q="q2" data-val="cf" onclick="selectAnswer('q2', 'cf', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Cash Flow Statement</button>
+                <button class="quiz-option" data-q="q2" data-val="se" onclick="selectAnswer('q2', 'se', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Shareholders' Equity</button>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 16px; border-radius: 8px; border: 1px solid #cbd5e1;">
+            <p style="margin: 0 0 12px 0; font-size: 13.5px; font-weight: 600; color: #1e293b;">3. Shows operations, investment changes, and financing flows to confirm absolute cash liquidity.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button class="quiz-option" data-q="q3" data-val="bs" onclick="selectAnswer('q3', 'bs', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Balance Sheet</button>
+                <button class="quiz-option" data-q="q3" data-val="is" onclick="selectAnswer('q3', 'is', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Income Statement</button>
+                <button class="quiz-option" data-q="q3" data-val="cf" onclick="selectAnswer('q3', 'cf', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Cash Flow Statement</button>
+                <button class="quiz-option" data-q="q3" data-val="se" onclick="selectAnswer('q3', 'se', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Shareholders' Equity</button>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 16px; border-radius: 8px; border: 1px solid #cbd5e1;">
+            <p style="margin: 0 0 12px 0; font-size: 13.5px; font-weight: 600; color: #1e293b;">4. Highlights the movement of capital ownership, including share purchases and net profit reserves.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button class="quiz-option" data-q="q4" data-val="bs" onclick="selectAnswer('q4', 'bs', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Balance Sheet</button>
+                <button class="quiz-option" data-q="q4" data-val="is" onclick="selectAnswer('q4', 'is', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Income Statement</button>
+                <button class="quiz-option" data-q="q4" data-val="cf" onclick="selectAnswer('q4', 'cf', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Cash Flow Statement</button>
+                <button class="quiz-option" data-q="q4" data-val="se" onclick="selectAnswer('q4', 'se', this)" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-size: 12.5px; font-weight: 500; text-align: left; cursor: pointer;">Shareholders' Equity</button>
+            </div>
+        </div>
+
+        <button onclick="gradeModuleQuiz()" style="background: #0ea5e9; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 800; cursor: pointer;">
+            Verify Answers
+        </button>
+
+        <div id="evaluation-result" style="display: none; padding: 12px; border-radius: 6px; font-size: 13.5px; font-weight: 600;"></div>
+    </div>
+</div>
+
+<script>
+    const userAnswers = { q1: null, q2: null, q3: null, q4: null };
+    const correctAnswers = { q1: "is", q2: "bs", q3: "cf", q4: "se" };
+    const tabSequence = ["balance-sheet-tab", "income-statement-tab", "cash-flow-tab", "equity-tab"];
+
+    function activateTab(tabId, selectedBtn) {
+        document.querySelectorAll('.interactive-tab-content').forEach(el => el.style.display = 'none');
+        document.getElementById(tabId).style.display = 'block';
+
+        document.querySelectorAll('.interactive-tab-btn').forEach(btn => {
+            btn.style.background = '#ffffff';
+            btn.style.color = '#475569';
+            btn.style.border = '1px solid #cbd5e1';
+        });
+
+        selectedBtn.style.background = '#0ea5e9';
+        selectedBtn.style.color = '#ffffff';
+        selectedBtn.style.border = 'none';
+    }
+
+    function cycleTab() {
+        let currentActive = "";
+        tabSequence.forEach(id => {
+            if (document.getElementById(id).style.display === "block") {
+                currentActive = id;
+            }
+        });
+
+        let nextIdx = (tabSequence.indexOf(currentActive) + 1) % tabSequence.length;
+        const nextId = tabSequence[nextIdx];
+        
+        const tabBtns = document.querySelectorAll('.interactive-tab-btn');
+        activateTab(nextId, tabBtns[nextIdx]);
+
+        if (nextIdx === tabSequence.length - 1) {
+            document.getElementById('next-tab-btn').innerHTML = "Restart Cycle ↺";
+        } else {
+            document.getElementById('next-tab-btn').innerHTML = "Read Next Statement ➔";
+        }
+    }
+
+    function selectAnswer(questionId, answerValue, btnElement) {
+        userAnswers[questionId] = answerValue;
+        
+        // Reset styles for sibling buttons
+        const options = document.querySelectorAll(`.quiz-option[data-q="${questionId}"]`);
+        options.forEach(opt => {
+            opt.style.background = "#f8fafc";
+            opt.style.borderColor = "#cbd5e1";
+            opt.style.color = "#1e293b";
+        });
+
+        // Style selected button
+        btnElement.style.background = "#e0f2fe";
+        btnElement.style.borderColor = "#0ea5e9";
+        btnElement.style.color = "#0369a1";
+    }
+
+    function gradeModuleQuiz() {
+        let correctCount = 0;
+        let complete = true;
+
+        for (let q in correctAnswers) {
+            if (!userAnswers[q]) {
+                complete = false;
+            } else if (userAnswers[q] === correctAnswers[q]) {
+                correctCount++;
+            }
+        }
+
+        const resultBox = document.getElementById("evaluation-result");
+        resultBox.style.display = "block";
+
+        if (!complete) {
+            resultBox.style.background = "#fef2f2";
+            resultBox.style.color = "#991b1b";
+            resultBox.textContent = "Please make sure you have selected an option for all 4 questions.";
+            return;
+        }
+
+        if (correctCount === 4) {
+            resultBox.style.background = "#dcfce7";
+            resultBox.style.color = "#166534";
+            resultBox.textContent = "Perfect! You've correctly identified all four financial statements. You are ready to mark this lesson completed.";
+        } else {
+            resultBox.style.background = "#fffbeb";
+            resultBox.style.color = "#92400e";
+            resultBox.textContent = `You scored ${correctCount}/4. Please review the definitions and try again to master them!`;
+        }
+    }
+</script>
