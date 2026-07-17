@@ -5,28 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mono Academy | Accounting Masterclass</title>
     <style>
-        /* --- Modern Custom Scrollbars (Optimized for High Visibility in Pastel Theme) --- */
+        /* --- Modern Custom Scrollbars (Pastel Blue) --- */
         ::-webkit-scrollbar {
             width: 10px;
             height: 10px;
         }
-
         ::-webkit-scrollbar-track {
             background: #ffffff; 
             border-radius: 99px;
         }
-
         ::-webkit-scrollbar-thumb {
-            background: #bae6fd; /* Soft pastel blue scrollbar */
+            background: #bae6fd;
             border-radius: 99px;
             border: 2px solid #ffffff;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: #7dd3fc; 
         }
 
-        /* Prevent default browser styles from rendering ugly defaults */
         html, body {
             margin: 0;
             padding: 0;
@@ -34,7 +30,7 @@
             font-family: system-ui, -apple-system, sans-serif;
             background: #f8fafc;
             color: #1e293b;
-            overflow: hidden; /* Handled by internal flex scrolling */
+            overflow: hidden;
         }
 
         .dashboard-container { 
@@ -44,11 +40,11 @@
             overflow: hidden;
         }
         
-        /* Sidebar layout with beautiful, soft pastel blue background */
+        /* Sidebar layout with pastel light blue background */
         .sidebar { 
             width: 310px; 
-            background: #e0f2fe; /* Light pastel blue background */
-            color: #0f172a; /* High contrast dark text */
+            background: #e0f2fe; 
+            color: #0f172a; 
             padding: 24px; 
             box-sizing: border-box; 
             display: flex; 
@@ -58,31 +54,11 @@
             border-right: 1px solid #bae6fd;
         }
 
-        /* Dedicated sidebar menu viewport with explicit scrolling limits */
         .sidebar-menu { 
             flex-grow: 1; 
             overflow-y: auto; 
             margin-bottom: 16px; 
             padding-right: 4px;
-        }
-
-        /* Sidebar specific custom scrollbars for extreme visibility */
-        .sidebar-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-menu::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.03);
-            border-radius: 99px;
-        }
-
-        .sidebar-menu::-webkit-scrollbar-thumb {
-            background: #bae6fd;
-            border-radius: 99px;
-        }
-
-        .sidebar-menu::-webkit-scrollbar-thumb:hover {
-            background: #7dd3fc;
         }
 
         .main-content { 
@@ -94,7 +70,6 @@
             box-sizing: border-box;
         }
         
-        /* Document Viewport Wrapper */
         .workbook-viewport { 
             background: white; 
             padding: 32px; 
@@ -106,7 +81,6 @@
             position: relative; 
         }
         
-        /* High-contrast Sidebar buttons styled for the light pastel background */
         .nav-btn { 
             display: flex; 
             align-items: center; 
@@ -115,7 +89,7 @@
             text-align: left; 
             background: none; 
             border: none; 
-            color: #1e293b; /* Dark Slate for high legibility */
+            color: #1e293b; 
             padding: 10px 12px; 
             cursor: pointer; 
             font-size: 13.5px; 
@@ -131,7 +105,7 @@
         }
 
         .nav-btn:hover, .nav-btn.active { 
-            background: rgba(125, 211, 252, 0.3); /* Transparent sky blue hover overlay */
+            background: rgba(125, 211, 252, 0.3); 
             color: #0369a1; 
         }
 
@@ -154,7 +128,6 @@
             box-shadow: 0 0 8px rgba(16, 185, 129, 0.5); 
         }
 
-        /* --- Collapsible Accordion Dropdown Styles --- */
         .accordion-header {
             display: flex;
             align-items: center;
@@ -162,7 +135,7 @@
             width: 100%;
             background: none;
             border: none;
-            color: #0369a1; /* Bold pastel blue accent */
+            color: #0369a1; 
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
@@ -182,7 +155,7 @@
         }
 
         .accordion-content.open {
-            max-height: 500px; /* Large enough to fit all content */
+            max-height: 500px; 
             transition: max-height 0.4s ease-in;
         }
 
@@ -196,98 +169,31 @@
             transform: rotate(90deg);
         }
 
-        /* General layout items */
-        .scroll-reveal-card { opacity: 0; transform: translateY(15px); transition: all 0.5s ease; margin-bottom: 24px; }
-        .scroll-reveal-card.visible { opacity: 1; transform: translateY(0); }
-        
-        /* Bottom action banner inside lessons */
+        .scroll-reveal-card { opacity: 1; transform: none; margin-bottom: 24px; }
         .lesson-footer-bar { margin-top: 40px; padding-top: 24px; border-top: 2px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
-        
-        /* Lazy highlighting rules */
-        .lazy-hl { transition: background-color 0.3s ease; padding: 2px 4px; border-radius: 4px; font-weight: 500; }
-        .triggered-lang { background-color: #fef08a !important; color: #854d0e; } /* Yellow */
-        .triggered-asset { background-color: #dbeafe !important; color: #1e40af; } /* Blue */
-        .triggered-liability { background-color: #fee2e2 !important; color: #991b1b; } /* Red */
-        .triggered-equity { background-color: #dcfce7 !important; color: #166534; } /* Green */
 
-        /* NOTES FEATURE STYLES */
+        /* Floating note styling */
         .floating-note-popup {
             position: absolute;
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
             padding: 16px;
             width: 280px;
             z-index: 1000;
             display: none;
         }
         .floating-note-popup textarea {
-            width: 100%;
-            height: 70px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            padding: 8px;
-            font-size: 13px;
-            resize: none;
-            box-sizing: border-box;
-            outline: none;
-            font-family: inherit;
+            width: 100%; height: 70px; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; font-size: 13px; resize: none; box-sizing: border-box; outline: none; font-family: inherit;
         }
-        .floating-note-popup textarea:focus {
-            border-color: #38bdf8;
-        }
+        .floating-note-popup textarea:focus { border-color: #38bdf8; }
 
-        .notes-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-top: 24px;
-        }
-        .journal-note-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
-            position: relative;
-            transition: all 0.2s;
-        }
-        .journal-note-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-        .journal-note-quote {
-            font-size: 13px;
-            font-style: italic;
-            color: #64748b;
-            border-left: 3px solid #38bdf8;
-            padding-left: 12px;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-        .journal-note-text {
-            font-size: 14px;
-            color: #1e293b;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-        .delete-journal-btn {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: #fee2e2;
-            color: #ef4444;
-            border: none;
-            border-radius: 6px;
-            padding: 6px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .delete-journal-btn:hover {
-            background: #fecaca;
-        }
+        .notes-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+        .journal-note-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; position: relative; }
+        .journal-note-quote { font-size: 13px; font-style: italic; color: #64748b; border-left: 3px solid #38bdf8; padding-left: 12px; margin-bottom: 12px; }
+        .journal-note-text { font-size: 14px; color: #1e293b; font-weight: 500; }
+        .delete-journal-btn { position: absolute; top: 16px; right: 16px; background: #fee2e2; color: #ef4444; border: none; border-radius: 6px; padding: 6px 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -307,7 +213,7 @@
                 </button>
                 <div id="module1-content" class="accordion-content open">
                     <button class="nav-btn" id="nav-1.1" onclick="loadLessonContent('1.1')">
-                        <span>Lesson 1.1: Introduction to accounting</span>
+                        <span>Lesson 1.1: Introduction</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.2" onclick="loadLessonContent('1.2')">
@@ -315,7 +221,7 @@
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.3" onclick="loadLessonContent('1.3')">
-                        <span>Lesson 1.3: Debits and Credits</span>
+                        <span>Lesson 1.3: T-Accounts System</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.4" onclick="loadLessonContent('1.4')">
@@ -323,11 +229,11 @@
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.5" onclick="loadLessonContent('1.5')">
-                        <span>Lesson 1.5: The trial balance</span>
+                        <span>Lesson 1.5: The Trial Balance</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-1.6" onclick="loadLessonContent('1.6')">
-                        <span>Lesson 1.6: Module 1 review and quiz</span>
+                        <span>Lesson 1.6: Review and Quiz</span>
                         <span class="completion-dot"></span>
                     </button>
                 </div>
@@ -338,116 +244,7 @@
                 </button>
                 <div id="module2-content" class="accordion-content">
                     <button class="nav-btn" id="nav-2.1" onclick="loadLessonContent('2.1')">
-                        <span>Lesson 2.1: Introduction to financial statements</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-2.2" onclick="loadLessonContent('2.2')">
-                        <span>Lesson 2.2: The income statement</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-2.3" onclick="loadLessonContent('2.3')">
-                        <span>Lesson 2.3: The balance sheet</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-2.4" onclick="loadLessonContent('2.4')">
-                        <span>Lesson 2.4: Statement of Owner’s Equity</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-2.5" onclick="loadLessonContent('2.5')">
-                        <span>Lesson 2.5: The cash flow statement</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-2.6" onclick="loadLessonContent('2.6')">
-                        <span>Lesson 2.6: Module 2 Capstone</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                </div>
-
-                <button class="accordion-header" onclick="toggleAccordion('module3-content', this)">
-                    <span>Module 3: Ratio Analysis & Health</span>
-                    <span class="accordion-arrow">▶</span>
-                </button>
-                <div id="module3-content" class="accordion-content">
-                    <button class="nav-btn" id="nav-3.1" onclick="loadLessonContent('3.1')">
-                        <span>Lesson 3.1: Working capital and liquidity ratios</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-3.2" onclick="loadLessonContent('3.2')">
-                        <span>Lesson 3.2: Profitability ratios</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-3.3" onclick="loadLessonContent('3.3')">
-                        <span>Lesson 3.3: Efficiency ratios</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-3.4" onclick="loadLessonContent('3.4')">
-                        <span>Lesson 3.4: Solvency ratios</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-3.5" onclick="loadLessonContent('3.5')">
-                        <span>Lesson 3.5: Reading an annual report</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-3.6" onclick="loadLessonContent('3.6')">
-                        <span>Lesson 3.6: Module 3 Investor Analysis</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                </div>
-
-                <button class="accordion-header" onclick="toggleAccordion('module4-content', this)">
-                    <span>Module 4: Advanced Corporate</span>
-                    <span class="accordion-arrow">▶</span>
-                </button>
-                <div id="module4-content" class="accordion-content">
-                    <button class="nav-btn" id="nav-4.1" onclick="loadLessonContent('4.1')">
-                        <span>Lesson 4.1: Inventory costing methods</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-4.2" onclick="loadLessonContent('4.2')">
-                        <span>Lesson 4.2: Depreciation and amortization</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-4.3" onclick="loadLessonContent('4.3')">
-                        <span>Lesson 4.3: Accounts receivable and bad debt</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-4.4" onclick="loadLessonContent('4.4')">
-                        <span>Lesson 4.4: Liabilities</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-4.5" onclick="loadLessonContent('4.5')">
-                        <span>Lesson 4.5: Corporate equity</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                </div>
-
-                <button class="accordion-header" onclick="toggleAccordion('module5-content', this)">
-                    <span>Module 5: Global Standards</span>
-                    <span class="accordion-arrow">▶</span>
-                </button>
-                <div id="module5-content" class="accordion-content">
-                    <button class="nav-btn" id="nav-5.1" onclick="loadLessonContent('5.1')">
-                        <span>Lesson 5.1: Business Combinations and Consolidations</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-5.2" onclick="loadLessonContent('5.2')">
-                        <span>Lesson 5.2: Deferred Taxes and Accrual Complexity</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-5.3" onclick="loadLessonContent('5.3')">
-                        <span>Lesson 5.3: Advanced Financial Instruments & Hedging</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-5.4" onclick="loadLessonContent('5.4')">
-                        <span>Lesson 5.4: IFRS vs. US GAAP & Revenue Recognition</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-5.5" onclick="loadLessonContent('5.5')">
-                        <span>Lesson 5.5: Forensic Accounting & Auditing Standards</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-5.6" onclick="loadLessonContent('5.6')">
-                        <span>Lesson 5.6: Case Study & Boardroom Presentation</span>
+                        <span>Lesson 2.1: Intro to Financial Statements</span>
                         <span class="completion-dot"></span>
                     </button>
                 </div>
@@ -473,60 +270,25 @@
         <textarea id="popup-note-input" placeholder="Enter your note here..."></textarea>
         <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;">
             <button onclick="closeNotePopup()" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">Cancel</button>
-            <button onclick="saveNote()" style="background: #38bdf8; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 4px rgba(56, 189, 248, 0.2);">Save</button>
+            <button onclick="saveNote()" style="background: #38bdf8; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;">Save</button>
         </div>
     </div>
 
     <script>
-        // Progress State Management
         let completedLessons = JSON.parse(localStorage.getItem('mono_completed_lessons')) || [];
         let studyNotes = JSON.parse(localStorage.getItem('mono_study_notes')) || [];
+        let selectedQuoteText = ""; 
         
-        let selectedQuoteText = ""; // Holds current text highlight selection
-        
-        // Comprehensive Curriculum Map
         const curriculum = [
-            // Module 1: Accounting Basics
-            { id: "1.1", name: "Lesson 1.1: Introduction to accounting", desc: "What is accounting and why does it matter?" },
-            { id: "1.2", name: "Lesson 1.2: Accounting Equation", desc: "Assets, liabilities, and owner’s equity and the Golden formula." },
-            { id: "1.3", name: "Lesson 1.3: Debits and Credits", desc: "The T-account system and the rules for increasing and decreasing accounts." },
-            { id: "1.4", name: "Lesson 1.4: The Journal and Ledger", desc: "Recording day-to-day transactions and posting entries." },
-            { id: "1.5", name: "Lesson 1.5: The trial balance", desc: "How to check your math and summarize balances." },
-            { id: "1.6", name: "Lesson 1.6: Module 1 review and quiz", desc: "Test your understanding of base accounting principles." },
-
-            // Module 2: Financial statements
-            { id: "2.1", name: "Lesson 2.1: Introduction to financial statements", desc: "Overview of types and purpose of statements." },
-            { id: "2.2", name: "Lesson 2.2: The income statement", desc: "How to read and construct an income statement." },
-            { id: "2.3", name: "Lesson 2.3: The balance sheet", desc: "How to read and build a balance sheet." },
-            { id: "2.4", name: "Lesson 2.4: Statement of Owner’s Equity", desc: "How to read and create an equity statement." },
-            { id: "2.5", name: "Lesson 2.5: The cash flow statement", desc: "How to analyze and construct cash flows." },
-            { id: "2.6", name: "Lesson 2.6: Module 2 Capstone", desc: "Integrating calculations into full reporting structures." },
-
-            // Module 3: Ratio Analysis and financial health
-            { id: "3.1", name: "Lesson 3.1: Working capital and liquidity ratios", desc: "Understanding working capital and key liquidity checks." },
-            { id: "3.2", name: "Lesson 3.2: Profitability ratios", desc: "Gross margins and overall profitability ratios." },
-            { id: "3.3", name: "Lesson 3.3: Efficiency ratios", desc: "Inventory and asset turnovers." },
-            { id: "3.4", name: "Lesson 3.4: Solvency ratios", desc: "Deep dive solvency checks." },
-            { id: "3.5", name: "Lesson 3.5: Reading an annual report", desc: "Calculating ratios quiz and active review." },
-            { id: "3.6", name: "Lesson 3.6: Module 3 Investor Analysis", desc: "Synthesizing ratios to perform complete analyses." },
-
-            // Module 4: Advanced corporate accounting
-            { id: "4.1", name: "Lesson 4.1: Inventory costing methods", desc: "Why we measure inventory and the different methodologies." },
-            { id: "4.2", name: "Lesson 4.2: Depreciation and amortization", desc: "Straight-line and double-declining operations." },
-            { id: "4.3", name: "Lesson 4.3: Accounts receivable and bad debt", desc: "Understanding receivables and bad debt GAAP procedures." },
-            { id: "4.4", name: "Lesson 4.4: Liabilities", desc: "Analyzing advanced liability accounts." },
-            { id: "4.5", name: "Lesson 4.5: Corporate equity", desc: "Stocks, dividends, and retained earnings quiz." },
-
-            // Module 5: Global Standards and Advanced Corporate Transactions
-            { id: "5.1", name: "Lesson 5.1: Business Combinations and Consolidations", desc: "Parent and subsidiary accounting metrics." },
-            { id: "5.2", name: "Lesson 5.2: Deferred Taxes and Accrual Complexity", desc: "Temporary versus permanent book-to-tax structures." },
-            { id: "5.3", name: "Lesson 5.3: Advanced Financial Instruments & Hedging", desc: "Accounting for derivatives, options, and futures." },
-            { id: "5.4", name: "Lesson 5.4: IFRS vs. US GAAP & Revenue Recognition", desc: "Asc 606 and international standards." },
-            { id: "5.5", name: "Lesson 5.5: Forensic Accounting & Auditing Standards", desc: "Detecting earnings fraud and studying opinions." },
-            { id: "5.6", name: "Lesson 5.6: Case Study & Boardroom Presentation", desc: "Study final presentation and exam." }
+            { id: "1.1", name: "Lesson 1.1: Introduction to Accounting", desc: "Foundational concepts and the language of business." },
+            { id: "1.2", name: "Lesson 1.2: The Core Accounting Equation", desc: "Master Assets, Liabilities, and Owner's Equity." },
+            { id: "1.3", name: "Lesson 1.3: The T-Accounts System", desc: "Visualize entries cleanly using left-side and right-side columns." },
+            { id: "1.4", name: "Lesson 1.4: Double-Entry Matrix Rules", desc: "Why debits must always balance with matching credits." },
+            { id: "1.5", name: "Lesson 1.5: Ledger Book Posting Execution", desc: "Transfer raw transactions into visual active ledger pages." },
+            { id: "1.6", name: "Lesson 1.6: Introduction to the Trial Balance", desc: "Verify ledger accuracy using balanced spreadsheets." },
+            { id: "2.1", name: "Lesson 2.1: Intro to Financial Statements", desc: "The four core statements and how they summarize financial positions." }
         ];
 
-        // Initial launch logic
         window.addEventListener('DOMContentLoaded', () => {
             loadDashboard();
             updateSidebarVisuals();
@@ -534,39 +296,26 @@
             initHighlightListener();
         });
 
-        // Toggle collapsible accordion panels
         function toggleAccordion(id, btn) {
             const panel = document.getElementById(id);
             btn.classList.toggle('active');
-            if (panel.classList.contains('open')) {
-                panel.classList.remove('open');
-            } else {
-                panel.classList.add('open');
-            }
+            panel.classList.toggle('open');
         }
 
-        // Update the visual notes counter badge in the sidebar
         function updateNotesBadge() {
             const badge = document.getElementById("notes-counter-badge");
             if (badge) {
                 badge.textContent = studyNotes.length;
-                if (studyNotes.length > 0) {
-                    badge.style.background = "#0284c7";
-                    badge.style.color = "#ffffff";
-                } else {
-                    badge.style.background = "rgba(15, 23, 42, 0.08)";
-                    badge.style.color = "rgba(15, 23, 42, 0.6)";
-                }
+                badge.style.background = studyNotes.length > 0 ? "#0284c7" : "rgba(15, 23, 42, 0.08)";
+                badge.style.color = studyNotes.length > 0 ? "#ffffff" : "rgba(15, 23, 42, 0.6)";
             }
         }
 
-        // FUNCTION 1: Generate the dynamic dashboard tracking board
         function loadDashboard() {
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('dashboard-nav-btn').classList.add('active');
 
             const container = document.getElementById("workbook-content-area");
-            
             const totalCount = curriculum.length;
             const completedCount = completedLessons.length;
             const progressPercent = Math.round((completedCount / totalCount) * 100);
@@ -575,19 +324,15 @@
             curriculum.forEach(lesson => {
                 const isCompleted = completedLessons.includes(lesson.id);
                 cardsHtml += `
-                    <div style="background: #ffffff; border: 1px solid ${isCompleted ? '#bbf7d0' : '#e2e8f0'}; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.01);"
-                         onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.03)'" 
-                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.01)'">
-                        <div style="flex: 1;">
-                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-                                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: ${isCompleted ? '#dcfce7' : '#f1f5f9'}; color: ${isCompleted ? '#166534' : '#64748b'};">
-                                    ${isCompleted ? '✓ Completed' : 'Pending'}
-                                </span>
-                            </div>
-                            <h4 style="margin: 0 0 6px 0; font-size: 15px; font-weight: 700; color: #0f172a;">${lesson.name}</h4>
+                    <div style="background: #ffffff; border: 1px solid ${isCompleted ? '#bbf7d0' : '#e2e8f0'}; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px;">
+                        <div>
+                            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: ${isCompleted ? '#dcfce7' : '#f1f5f9'}; color: ${isCompleted ? '#166534' : '#64748b'};">
+                                ${isCompleted ? '✓ Completed' : 'Pending'}
+                            </span>
+                            <h4 style="margin: 8px 0 4px 0; font-size: 15px; font-weight: 700; color: #0f172a;">${lesson.name}</h4>
                             <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.4;">${lesson.desc}</p>
                         </div>
-                        <button onclick="loadLessonContent('${lesson.id}')" style="background: ${isCompleted ? '#f1f5f9' : '#0f172a'}; color: ${isCompleted ? '#475569' : '#ffffff'}; border: none; padding: 10px 18px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+                        <button onclick="loadLessonContent('${lesson.id}')" style="background: #0f172a; color: white; border: none; padding: 10px 18px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer;">
                             ${isCompleted ? 'Review' : 'Start'}
                         </button>
                     </div>
@@ -595,42 +340,32 @@
             });
 
             container.innerHTML = `
-                <div style="margin-bottom: 24px;">
-                    <span style="background: rgba(15, 23, 42, 0.05); color: #0f172a; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 99px; text-transform: uppercase;">Academy Home</span>
-                    <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Your Mastery Progress</h1>
-                    <p style="margin: 0; color: #64748b; font-size: 14px;">Monitor your journey as you complete lessons in Mono Academy.</p>
-                </div>
-
-                <div style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 28px; border-radius: 16px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; gap: 24px;">
-                    <div style="flex-grow: 1;">
-                        <span style="color: #bae6fd; font-size: 12px; font-weight: 800; text-transform: uppercase;">Overall completion status</span>
-                        <h2 style="margin: 4px 0 16px 0; font-size: 24px; font-weight: 800;">${progressPercent}% Complete</h2>
-                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.2); border-radius: 99px; overflow: hidden;">
-                            <div style="width: ${progressPercent}%; height: 100%; background: #ffffff; border-radius: 99px; transition: width 0.5s ease;"></div>
+                <h1 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Academy Dashboard</h1>
+                <p style="color: #64748b; margin-top: 0; margin-bottom: 24px;">Track your progress across modules.</p>
+                <div style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 24px; border-radius: 12px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px;">
+                    <div>
+                        <h2 style="margin: 0 0 8px 0; font-size: 22px;">Progress: ${progressPercent}% Complete</h2>
+                        <div style="width: 250px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 99px; overflow: hidden;">
+                            <div style="width: ${progressPercent}%; height: 100%; background: white;"></div>
                         </div>
                     </div>
-                    <div style="text-align: center; background: rgba(255,255,255,0.1); padding: 16px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-                        <div style="font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1;">${completedCount}</div>
-                        <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #bae6fd; margin-top: 4px;">of ${totalCount} Done</div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 8px; text-align: center;">
+                        <span style="font-size: 24px; font-weight: 800;">${completedCount} / ${totalCount}</span>
                     </div>
                 </div>
-
-                <div style="display: flex; flex-direction: column; gap: 16px;">
-                    ${cardsHtml}
-                </div>
+                ${cardsHtml}
             `;
         }
 
-        // FUNCTION 2: Load lesson content, force cache bypass, and execute embedded scripts
+        /* Dynamically format filenames to match "LessonX_Y.html" */
         function loadLessonContent(lessonId) {
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`nav-${lessonId}`);
             if (activeBtn) activeBtn.classList.add('active');
 
             const container = document.getElementById("workbook-content-area");
-            
-            const fileSuffix = String(lessonId).includes('.') ? String(lessonId).split('.')[1] : lessonId;
-            const fileName = `lessons/lesson1_${fileSuffix}.html?t=${Date.now()}`;
+            const parts = String(lessonId).split('.');
+            const fileName = `lessons/Lesson${parts[0]}_${parts[1]}.html?t=${Date.now()}`;
 
             fetch(fileName, { cache: "no-store" })
                 .then(response => {
@@ -648,26 +383,19 @@
                         <div id="inner-lesson-content">${htmlContent}</div>
                         
                         <div class="lesson-footer-bar">
-                            <div>
-                                <span style="font-size: 13px; color: #64748b; font-weight: 500;">Finished studying this material?</span>
-                            </div>
+                            <div><span style="font-size: 13px; color: #64748b;">Finished studying this material?</span></div>
                             <div>
                                 ${isCompleted ? `
-                                    <span style="color: #10b981; font-weight: 700; font-size: 14px; margin-right: 16px; display: inline-flex; align-items: center; gap: 4px;">
-                                        ✓ Completed
-                                    </span>
-                                    <button onclick="loadDashboard()" style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer;">
-                                        Exit Lesson
-                                    </button>
+                                    <span style="color: #10b981; font-weight: 700; font-size: 14px; margin-right: 16px;">✓ Completed</span>
+                                    <button onclick="loadDashboard()" style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; padding: 10px 18px; border-radius: 8px; cursor: pointer;">Exit Lesson</button>
                                 ` : `
-                                    <button onclick="markCompleteAndReturn('${lessonId}')" style="background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
-                                        Mark Lesson as Completed ✓
-                                    </button>
+                                    <button onclick="markCompleteAndReturn('${lessonId}')" style="background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer;">Mark Lesson as Completed ✓</button>
                                 `}
                             </div>
                         </div>
                     `;
                     
+                    // Evaluate scripts
                     const scriptElements = container.querySelectorAll("script");
                     scriptElements.forEach(oldScript => {
                         const newScript = document.createElement("script");
@@ -675,16 +403,13 @@
                         newScript.appendChild(document.createTextNode(oldScript.innerHTML));
                         oldScript.parentNode.replaceChild(newScript, oldScript);
                     });
-
-                    runScrollHighlightEngine();
                 })
                 .catch(error => {
                     console.error(error);
-                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600; padding: 20px; background: #fef2f2; border-radius: 8px;">⚠️ Failed to load lesson files. Check your folder configuration.</p>`;
+                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600; padding: 20px; background: #fef2f2; border-radius: 8px;">⚠️ Failed to load lesson files.</p>`;
                 });
         }
 
-        // FUNCTION 3: Save completions
         function markCompleteAndReturn(lessonId) {
             if (!completedLessons.includes(lessonId)) {
                 completedLessons.push(lessonId);
@@ -694,7 +419,6 @@
             loadDashboard();
         }
 
-        // FUNCTION 4: Update Sidebar layout checkmarks
         function updateSidebarVisuals() {
             curriculum.forEach(lesson => {
                 const btn = document.getElementById(`nav-${lesson.id}`);
@@ -708,21 +432,9 @@
             });
         }
 
-        function runScrollHighlightEngine() {
-            document.querySelectorAll('.scroll-reveal-card').forEach(card => card.classList.add('visible'));
-            document.querySelectorAll('.lazy-hl').forEach(span => {
-                const type = span.getAttribute('data-type');
-                if (type) span.classList.add(`triggered-${type}`);
-            });
-        }
-
-        // ==========================================
-        // ACTIVE READING: HIGHLIGHT & NOTE ENGINE
-        // ==========================================
         function initHighlightListener() {
             document.getElementById("workbook-content-area").addEventListener("mouseup", handleTextSelection);
             document.getElementById("workbook-content-area").addEventListener("touchend", handleTextSelection);
-
             document.addEventListener("mousedown", (e) => {
                 const popup = document.getElementById("floating-note-box");
                 if (popup.style.display === "block" && !popup.contains(e.target)) {
@@ -733,10 +445,8 @@
 
         function handleTextSelection(event) {
             const selectedText = window.getSelection().toString().trim();
-            
             if (selectedText.length > 3) {
                 selectedQuoteText = selectedText;
-                
                 const popup = document.getElementById("floating-note-box");
                 const selectedDisplay = document.getElementById("popup-selected-text");
                 const inputField = document.getElementById("popup-note-input");
@@ -748,7 +458,6 @@
                 if (selection.rangeCount > 0) {
                     const range = selection.getRangeAt(0);
                     const rect = range.getBoundingClientRect();
-                    
                     popup.style.top = `${rect.bottom + window.scrollY + 8}px`;
                     popup.style.left = `${rect.left + window.scrollX}px`;
                     popup.style.display = "block";
@@ -764,77 +473,46 @@
         function saveNote() {
             const noteText = document.getElementById("popup-note-input").value.trim();
             if (!noteText) return;
-
-            const newNote = {
-                id: Date.now(),
-                quote: selectedQuoteText,
-                text: noteText
-            };
-
+            const newNote = { id: Date.now(), quote: selectedQuoteText, text: noteText };
             studyNotes.push(newNote);
             localStorage.setItem('mono_study_notes', JSON.stringify(studyNotes));
-            
             updateNotesBadge();
             closeNotePopup();
             window.getSelection().removeAllRanges();
         }
 
-        // ==========================================
-        // STUDY JOURNAL (DEDICATED FULL-PAGE VIEW)
-        // ==========================================
         function loadNotesPage() {
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('nav-notes').classList.add('active');
-
             const container = document.getElementById("workbook-content-area");
 
             if (studyNotes.length === 0) {
                 container.innerHTML = `
-                    <div style="margin-bottom: 24px;">
-                        <span style="background: rgba(15, 23, 42, 0.05); color: #0f172a; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 99px; text-transform: uppercase;">Study Tools</span>
-                        <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Your Study Notes Journal</h1>
-                        <p style="margin: 0; color: #64748b; font-size: 14px;">Your personal storage locker for lesson selections, definitions, and reminders.</p>
-                    </div>
-                    
-                    <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 16px; padding: 60px 40px; text-align: center; margin-top: 32px;">
-                        <span style="font-size: 48px;">📝</span>
-                        <h3 style="margin: 16px 0 8px 0; font-size: 18px; color: #0f172a;">No study notes saved yet!</h3>
-                        <p style="margin: 0; color: #64748b; font-size: 14px; max-width: 400px; margin: 0 auto; line-height: 1.5;">
-                            When reading your workbook lessons, highlight any text (definitions, steps, formulas) and use the interactive notepad popup to write down your notes.
-                        </p>
-                    </div>
+                    <h1 style="font-size: 24px; color: #0f172a; margin-bottom: 8px;">My Study Notes</h1>
+                    <p style="color: #64748b; margin-bottom: 24px;">No notes saved yet.</p>
                 `;
                 return;
             }
 
             const notesCardsHtml = studyNotes.map(note => `
-                <div class="journal-note-card" id="note-card-${note.id}">
-                    <button class="delete-journal-btn" onclick="deleteNoteFromJournal(${note.id})">Delete Note</button>
+                <div class="journal-note-card">
+                    <button class="delete-journal-btn" onclick="deleteNoteFromJournal(${note.id})">Delete</button>
                     <div class="journal-note-quote">"${note.quote}"</div>
                     <div class="journal-note-text">${note.text}</div>
                 </div>
             `).join('');
 
             container.innerHTML = `
-                <div style="margin-bottom: 24px;">
-                    <span style="background: rgba(15, 23, 42, 0.05); color: #0f172a; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 99px; text-transform: uppercase;">Study Tools</span>
-                    <h1 style="margin: 12px 0 6px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Your Study Notes Journal</h1>
-                    <p style="margin: 0; color: #64748b; font-size: 14px;">Your personal storage locker for lesson selections, definitions, and reminders.</p>
-                </div>
-
-                <div class="notes-grid">
-                    ${notesCardsHtml}
-                </div>
+                <h1 style="font-size: 24px; color: #0f172a; margin-bottom: 24px;">My Study Notes</h1>
+                <div class="notes-grid">${notesCardsHtml}</div>
             `;
         }
 
-        // Delete function optimized for the full-page view
         function deleteNoteFromJournal(noteId) {
             studyNotes = studyNotes.filter(note => note.id !== noteId);
             localStorage.setItem('mono_study_notes', JSON.stringify(studyNotes));
-            
             updateNotesBadge();
-            loadNotesPage(); // Re-render the full-page journal automatically
+            loadNotesPage();
         }
     </script>
 </body>
