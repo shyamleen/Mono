@@ -297,10 +297,10 @@
         <p>Fill out the complete equity calculation flow. Select a card from the bank below, then click the correct <b>"?"</b> target slot.</p>
         
         <div style="margin-bottom: 20px; text-align: center;">
-          <div class="bank-item" onclick="selectValue('$10,000', this)">$10,000 (Beg)</div>
-          <div class="bank-item" onclick="selectValue('$7,000', this)">+$7,000 (Additions)</div>
-          <div class="bank-item" onclick="selectValue('$1,000', this)">-$1,000 (Withdrawals)</div>
-          <div class="bank-item" onclick="selectValue('$16,000', this)">$16,000 (Ending)</div>
+          <div class="bank-item" onclick="selectValue('$10,000', this)">$10,000</div>
+          <div class="bank-item" onclick="selectValue('$7,000', this)">$7,000</div>
+          <div class="bank-item" onclick="selectValue('$1,000', this)">$1,000</div>
+          <div class="bank-item" onclick="selectValue('$16,000', this)">$16,000</div>
         </div>
 
         <table class="interactive-table" style="max-width: 500px; margin: 0 auto 20px auto;">
@@ -443,7 +443,7 @@
       const end = document.getElementById('end-slot').innerText;
       const feedback = document.getElementById('practical-feedback');
       
-      if (b.includes('$10,000') && a.includes('$7,000') && d.includes('$1,000') && end.includes('$16,000')) {
+      if (b === '$10,000' && a === '$7,000' && d === '$1,000' && end === '$16,000') {
         feedback.style.color = "green";
         feedback.innerHTML = "Success! That statement flow is beautifully complete! $10,000 + $7,000 - $1,000 = $16,000.";
         document.getElementById('post-quiz-options').style.display = 'block';
