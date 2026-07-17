@@ -115,7 +115,6 @@
       animation: fadeIn 0.3s;
     }
 
-    /* Step-by-Step interactive process */
     .step-box {
       border-left: 4px solid var(--accent);
       padding-left: 20px;
@@ -144,7 +143,6 @@
       opacity: 0.9;
     }
 
-    /* Quiz and Interactive Play area */
     .quiz-area {
       background: #fefefe;
       border: 2px solid #cbd5e1;
@@ -170,7 +168,6 @@
       background: var(--neutral-pastel);
     }
 
-    /* Interactive "Drag and Drop" Board */
     .bank-item {
       display: inline-block;
       padding: 8px 16px;
@@ -204,6 +201,14 @@
       color: #3b82f6;
     }
 
+    .review-box {
+      margin-top: 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
   </style>
@@ -218,7 +223,7 @@
 
     <div class="card">
       <p>
-        The Balance Sheet acts as an instant snap-shot of what your business owns, what it owes, and how much is remaining for the investors. This structural layout always satisfies the legendary Accounting Equation: Assets = Liabilities + Equity.
+        The Balance Sheet acts as an instant snapshot of what your business owns, what it owes, and how much is remaining for the investors. This structural layout always satisfies the legendary Accounting Equation: Assets = Liabilities + Equity.
       </p>
     </div>
 
@@ -272,7 +277,7 @@
       <h3>2. How to Make a Balance Sheet (Step-by-Step)</h3>
       <div id="step1" class="step-box active">
         <h4>Step 1: Choose Date & Format</h4>
-        <p>Set up an exact date (e.g. December 31, 2026). It must display financial accounts at that single point in time.</p>
+        <p>Set up an exact date. It must display financial accounts at that single point in time.</p>
         <button class="btn-next" onclick="nextStep(2)">Next: Categorize Assets →</button>
       </div>
       <div id="step2" class="step-box">
@@ -282,7 +287,7 @@
       </div>
       <div id="step3" class="step-box">
         <h4>Step 3: Organize Liabilities</h4>
-        <p>Group debts by due date: current liabilities (due within a year) and long-term liabilities (due after a year).</p>
+        <p>Group debts by due date: current liabilities and long-term liabilities.</p>
         <button class="btn-next" onclick="nextStep(4)">Next: Balance the Equation →</button>
       </div>
       <div id="step4" class="step-box">
@@ -298,32 +303,48 @@
       
       <div id="build-area" style="display:none; border-top: 2px dashed #cbd5e1; padding-top: 25px; margin-top: 20px;">
         <h3>Practical: Build and Balance</h3>
-        <p>Allocate variables to balance the balance sheet. First, click a card from the bank below, then click the correct <b>"?"</b> target box to slot it in.</p>
+        <p>Construct the Balance Sheet equation. Select a card from the bank below, then click its corresponding <b>"?"</b> target slot.</p>
         
-        <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 20px; text-align: center;">
+          <div class="bank-item" onclick="selectValue('$150,000', this)">$150,000</div>
           <div class="bank-item" onclick="selectValue('$70,000', this)">$70,000</div>
           <div class="bank-item" onclick="selectValue('$80,000', this)">$80,000</div>
-          <div class="bank-item" onclick="selectValue('$150,000', this)">$150,000</div>
         </div>
 
-        <div style="font-size: 1.25em; font-weight: bold; text-align: center;">
-          Assets ($150,000) = Liabilities: <div class="drop-zone" id="liab-slot" onclick="placeValue('liab-slot')">?</div> + Equity: <div class="drop-zone" id="eq-slot" onclick="placeValue('eq-slot')">?</div>
-        </div>
+        <table class="interactive-table" style="max-width: 500px; margin: 0 auto 20px auto;">
+          <tr style="background: var(--asset-bg);">
+            <td><strong>Total Assets:</strong></td>
+            <td><div class="drop-zone" id="assets-slot" onclick="placeValue('assets-slot')">?</div></td>
+          </tr>
+          <tr style="background: var(--liab-bg);">
+            <td><strong>Total Liabilities:</strong></td>
+            <td><div class="drop-zone" id="liab-slot" onclick="placeValue('liab-slot')">?</div></td>
+          </tr>
+          <tr style="background: var(--equity-bg);">
+            <td><strong>Total Shareholders' Equity:</strong></td>
+            <td><div class="drop-zone" id="eq-slot" onclick="placeValue('eq-slot')">?</div></td>
+          </tr>
+        </table>
         
         <button class="btn-next" style="background: #27ae60; display: block; margin: 25px auto 0 auto;" onclick="checkPractical()">Verify Balance Sheet</button>
         <p id="practical-feedback" style="text-align: center; font-weight: bold; margin-top: 15px;"></p>
+      </div>
+
+      <div id="post-quiz-options" style="display:none; text-align:center; margin-top: 20px;">
+        <button class="btn-next" style="background: #475569;" onclick="toggleReview()">Review Quiz Answers</button>
+        <div id="review-panel" style="display:none; text-align:left; margin-top: 20px;"></div>
       </div>
     </div>
   </div>
 
   <script>
     const definitions = {
-      assets: "<strong>Assets:</strong> Resources the company owns that hold value, listed in order of liquidity (how quickly they convert to cash).",
-      currentAssets: "<strong>Current Assets:</strong> Cash and resources expected to be converted into cash, sold, or consumed within one year (e.g. cash, accounts receivable, inventory).",
-      nonCurrentAssets: "<strong>Non-Current Assets:</strong> Long-term investments and assets with a useful life of more than one year (e.g. equipment, buildings).",
-      liabilities: "<strong>Liabilities:</strong> Debts and financial obligations the business owes to outside parties, listed in order of when they are due.",
-      currentLiabilities: "<strong>Current Liabilities:</strong> Debts and obligations due within a standard operating cycle or one year (e.g. accounts payable).",
-      longTermLiabilities: "<strong>Long-Term Liabilities:</strong> Obligations due after one year (e.g. long-term bank mortgages).",
+      assets: "<strong>Assets:</strong> Resources the company owns that hold value, listed in order of liquidity.",
+      currentAssets: "<strong>Current Assets:</strong> Resources expected to be converted into cash, sold, or consumed within one year.",
+      nonCurrentAssets: "<strong>Non-Current Assets:</strong> Assets with a useful life of more than one year.",
+      liabilities: "<strong>Liabilities:</strong> Debts and financial obligations the business owes to outside parties.",
+      currentLiabilities: "<strong>Current Liabilities:</strong> Debts and obligations due within one year.",
+      longTermLiabilities: "<strong>Long-Term Liabilities:</strong> Obligations due after one year.",
       equity: "<strong>Shareholders' Equity:</strong> The net worth of the owners after deducting liabilities from total assets."
     };
 
@@ -342,33 +363,39 @@
       {
         q: "If a company has $150,000 in Total Assets and $70,000 in Total Liabilities, what is the Shareholders' Equity?",
         options: ["$220,000", "$80,000", "$70,000", "$150,000"],
-        correct: 1
+        correct: 1,
+        explanation: "Equity = Assets ($150,000) - Liabilities ($70,000). Thus, Equity is $80,000."
       },
       {
         q: "In what order are Assets typically listed on a Balance Sheet?",
         options: ["Highest value first", "Alphabetical order", "Order of liquidity", "Chronological order of purchase"],
-        correct: 2
+        correct: 2,
+        explanation: "Assets are organized by how quickly they can be converted into cash (liquidity)."
       },
       {
         q: "Which of the following is considered a Current Asset?",
         options: ["Wages Payable", "Cash and Inventory", "Long-Term Patents", "Retained Earnings"],
-        correct: 1
+        correct: 1,
+        explanation: "Cash and inventory are expected to be converted or consumed within one calendar year."
       },
       {
         q: "The Accounting Equation states:",
         options: ["Assets = Liabilities - Equity", "Assets + Liabilities = Equity", "Assets = Liabilities + Equity", "Equity = Liabilities - Assets"],
-        correct: 2
+        correct: 2,
+        explanation: "The structural balance of corporate wealth requires total assets to equal the combined stake of creditors and owners."
       },
       {
         q: "A Balance Sheet provides financial data representing:",
         options: ["A full year of progress", "A single, specific point in time", "Monthly cash inflows only", "Future budget predictions"],
-        correct: 1
+        correct: 1,
+        explanation: "Unlike performance statements, a balance sheet serves as a temporary point-in-time snapshot."
       }
     ];
 
     let currentQIdx = 0;
     let selectedVal = "";
     let selectedEl = null;
+    let userAnswers = [];
 
     function loadQuestion() {
       const data = mcqs[currentQIdx];
@@ -378,29 +405,29 @@
       mapped.sort(() => Math.random() - 0.5);
 
       mapped.forEach(opt => {
-        html += `<button class="option-btn" onclick="checkAnswer(${opt.originalIndex})">${opt.text}</button>`;
+        html += `<button class="option-btn" onclick="checkAnswer(${opt.originalIndex}, '${opt.text.replace(/'/g, "\\'")}')">${opt.text}</button>`;
       });
       document.getElementById('quiz-container').innerHTML = html;
     }
 
-    function checkAnswer(idx) {
+    function checkAnswer(idx, text) {
+      userAnswers.push({ q: mcqs[currentQIdx].q, selected: text, correctOpt: mcqs[currentQIdx].options[mcqs[currentQIdx].correct], exp: mcqs[currentQIdx].explanation });
       if (idx === mcqs[currentQIdx].correct) {
         currentQIdx++;
         if (currentQIdx < mcqs.length) {
           loadQuestion();
         } else {
-          document.getElementById('quiz-container').innerHTML = "<h3 style='color: green;'>🎉 Multiple Choice Questions Passed!</h3>";
+          document.getElementById('quiz-container').innerHTML = "<h3 style='color: green; text-align:center;'>🎉 Multiple Choice Questions Passed!</h3>";
           document.getElementById('build-area').style.display = 'block';
         }
       } else {
-        alert("Incorrect answer. Please review the sheet and try again!");
+        alert("Incorrect answer. Let's try this question again!");
+        userAnswers.pop();
       }
     }
 
     function selectValue(val, el) {
-      if (selectedEl) {
-        selectedEl.classList.remove('selected');
-      }
+      if (selectedEl) selectedEl.classList.remove('selected');
       selectedVal = val;
       selectedEl = el;
       el.classList.add('selected');
@@ -417,17 +444,38 @@
     }
 
     function checkPractical() {
+      const assets = document.getElementById('assets-slot').innerText;
       const liab = document.getElementById('liab-slot').innerText;
       const eq = document.getElementById('eq-slot').innerText;
       const feedback = document.getElementById('practical-feedback');
       
-      if (liab === "$70,000" && eq === "$80,000") {
+      if (assets === "$150,000" && liab === "$70,000" && eq === "$80,000") {
         feedback.style.color = "green";
-        feedback.innerHTML = "Perfect! The Balance Sheet is balanced perfectly! Assets ($150,000) = Liabilities ($70,000) + Equity ($80,000).";
+        feedback.innerHTML = "Perfect! The Balance Sheet balances! Assets ($150k) = Liabilities ($70k) + Equity ($80k).";
+        document.getElementById('post-quiz-options').style.display = 'block';
       } else {
         feedback.style.color = "red";
-        feedback.innerHTML = "Not quite in balance. Check the table above for clues!";
+        feedback.innerHTML = "The equation does not balance. Make sure Assets = Liabilities + Equity.";
       }
+    }
+
+    function toggleReview() {
+      const panel = document.getElementById('review-panel');
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+      }
+      let html = "<h3>Quiz Review</h3>";
+      userAnswers.forEach((ans, i) => {
+        html += `
+          <div class="review-box">
+            <p><strong>Q${i+1}: ${ans.q}</strong></p>
+            <p style="color: green;">✓ Correct Answer: ${ans.correctOpt}</p>
+            <p style="color: var(--text-main); font-style: italic;">Why? ${ans.exp}</p>
+          </div>`;
+      });
+      panel.innerHTML = html;
+      panel.style.display = 'block';
     }
 
     loadQuestion();
