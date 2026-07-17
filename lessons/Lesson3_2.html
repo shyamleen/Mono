@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3.2: The Profitability Prism</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fafafa; color: #2d3748; margin: 0; padding: 40px; }
+        .container { max-width: 850px; margin: 0 auto; background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h1 { color: #1a365d; border-bottom: 3px dashed #cbd5e0; padding-bottom: 12px; margin-top: 0; }
+        h2 { color: #2b6cb0; }
+        p { line-height: 1.7; color: #4a5568; }
+        
+        /* Prism Simulation Split Box */
+        .prism-box { background: linear-gradient(90deg, #edf2f7 0%, #fff 100%); border: 1px solid #e2e8f0; padding: 25px; border-radius: 8px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; margin: 30px 0; }
+        .prism-side { text-align: center; font-weight: bold; padding: 15px; border-radius: 6px; min-width: 150px; }
+        .input-revenue { background: #ebf8ff; border: 2px solid #4299e1; color: #2b6cb0; }
+        .output-gross { background: #e6fffa; border: 2px solid #319795; color: #234e52; }
+        .output-net { background: #faf5ff; border: 2px solid #9f7aea; color: #553c9a; }
+        .arrow { font-size: 1.8em; color: #a0aec0; }
+
+        .formula-box { background: #2d3748; color: #f7fafc; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 1.1em; text-align: center; margin: 15px 0; }
+        
+        /* Quiz Styling */
+        .quiz-section { background: #edf2f7; padding: 25px; border-radius: 10px; margin-top: 40px; }
+        .question-card { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .option-btn { display: block; width: 100%; text-align: left; background: #fff; color: #2d3748; border: 1px solid #cbd5e0; padding: 12px; margin: 8px 0; border-radius: 6px; cursor: pointer; font-size: 1em; }
+        .option-btn:hover { background: #f7fafc; }
+        .explanation { display: none; background: #c6f6d5; border: 1px solid #38a169; padding: 12px; border-radius: 6px; margin-top: 10px; color: #22543d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🗺️ Lesson 3.2: The Profitability Prism</h1>
+    <p>Think of profitability metrics as an <strong>optical prism</strong>. Raw revenue enters through one side as clear white light. As it passes through the mechanics of your business, various operational friction layers break and absorb that light. What completely filters out determine your real financial margins.</p>
+
+    <div class="prism-box">
+        <div class="prism-side input-revenue">🏳️‍🌈 Total Revenue<br>(Gross Sales)</div>
+        <div class="arrow">➡️</div>
+        <div class="prism-side output-gross">🟢 Gross Margin<br>(Minus Production COGS)</div>
+        <div class="arrow">➡️</div>
+        <div class="prism-side output-net">🔮 Net Margin<br>(Minus All Expenses/Taxes)</div>
+    </div>
+
+    <h2>1. Gross Profit Margin (The Value Filter)</h2>
+    <p>Isolates the absolute production metrics and basic scale capabilities of your core product line, filtering out general administrative operations.</p>
+    <div class="formula-box">Gross Margin (%) = [(Revenue - COGS) / Revenue] × 100</div>
+
+    <h2>2. Net Profit Margin (The Enterprise Filter)</h2>
+    <p>The ultimate strategic corporate conversion standard. Out of every single dollar swiped by a retail consumer, how many pennies make it safely into the vault?</p>
+    <div class="formula-box">Net Profit Margin (%) = [Net Income / Revenue] × 100</div>
+
+    <div class="quiz-section">
+        <h2>📝 Prism Breakdown Check: Quiz 3.2</h2>
+        <p>Complete your strategic evaluation challenge below:</p>
+
+        <div class="question-card">
+            <p><strong>Q2:</strong> A bakery generates $10,000 in weekly revenue. Ingredients and direct factory labor total $4,000. Find the <strong>Gross Margin percentage</strong>.</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) 40%</button>
+                <button class="option-btn" onclick="checkAns(this, true)">B) 60%</button>
+                <button class="option-btn" onclick="checkAns(this, false)">C) 25%</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) 150%</button>
+            </div>
+            <div class="explanation">Excellent! Gross Profit = $10,000 - $4,000 = $6,000. Margin = ($6,000 / $10,000) × 100 = 60%.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkAns(btn, isCorrect) {
+        const card = btn.closest('.question-card');
+        const exp = card.querySelector('.explanation');
+        const buttons = card.querySelectorAll('.option-btn');
+        
+        buttons.forEach(b => { b.style.background = '#fff'; b.style.color = '#2d3748'; });
+        
+        if(isCorrect) {
+            btn.style.background = '#38a169';
+            btn.style.color = 'white';
+            exp.style.display = 'block';
+        } else {
+            btn.style.background = '#e53e3e';
+            btn.style.color = 'white';
+            exp.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
