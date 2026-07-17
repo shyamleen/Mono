@@ -1,220 +1,162 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 3.1: The Liquidity Flight Deck</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b132b; color: #f4f6f9; margin: 0; padding: 40px; }
-        .container { max-width: 900px; margin: 0 auto; background: #1c2541; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { color: #4cc9f0; border-bottom: 2px solid #3a0ca3; padding-bottom: 15px; margin-top: 0; }
-        h2 { color: #f72585; margin-top: 35px; }
-        p, li { line-height: 1.6; color: #d1d5db; }
-        .intro-box { background: linear-gradient(135deg, #3a0ca3, #1c2541); padding: 25px; border-radius: 8px; border-left: 5px solid #4cc9f0; margin-bottom: 25px; }
+<div style="font-family: system-ui, sans-serif;">
+    <h2 style="color: #0284c7; margin-top: 0;">Lesson 3.1: Working Capital & Liquidity Ratios</h2>
+    <p style="line-height: 1.6; color: #334155;">
+        Working capital and liquidity ratios are critical metrics used to evaluate a company's short-term financial health and its ability to pay off immediate debts. They ensure smooth day-to-day operations and signal to investors whether a business is efficiently managing its cash and short-term assets.
+    </p>
+
+    <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 20px; border-radius: 12px; margin: 24px 0;">
+        <h3 style="margin-top: 0; color: #0369a1; font-size: 16px;">🎛️ Live Liquidity Simulator</h3>
+        <p style="font-size: 13px; color: #475569; margin-bottom: 16px;">
+            Adjust company balancing parameters to see how shifting allocations from pure cash into stuck inventories changes safety safety thresholds instantly.
+        </p>
         
-        table { width: 100%; border-collapse: collapse; margin: 25px 0; background: #111827; border-radius: 8px; overflow: hidden; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #374151; }
-        th { background-color: #1f2937; font-weight: 600; }
-        .asset-header { color: #10b981; }
-        .liability-header { color: #ef4444; }
-
-        .gauge-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
-        @media(max-width: 768px) { .gauge-container { grid-template-columns: 1fr; } }
-        .gauge-card { background: #222e50; padding: 20px; border-radius: 10px; border: 1px solid #3a0ca3; }
-        .gauge-title { font-weight: bold; font-size: 1.1em; color: #fff; margin-bottom: 10px; }
-        .formula { background: #0b132b; padding: 10px; border-radius: 6px; font-family: monospace; color: #a2d2ff; margin: 10px 0; }
-        
-        .status { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; margin-top: 5px; }
-        .status-g { background: #10b981; color: white; }
-        .status-y { background: #f59e0b; color: #111827; }
-        .status-r { background: #ef4444; color: white; }
-
-        .quiz-section { margin-top: 50px; background: #111827; padding: 30px; border-radius: 12px; border: 2px solid #7209b7; }
-        .question-card { background: #1f2937; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #7209b7; }
-        .options-list { margin-top: 10px; padding-left: 0; list-style: none; }
-        .option-btn { display: block; width: 100%; text-align: left; background: #374151; color: white; border: none; padding: 12px; margin: 8px 0; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
-        .option-btn:hover { background: #4b5563; }
-        .explanation { display: none; background: #10b98133; border: 1px solid #10b981; padding: 12px; border-radius: 6px; margin-top: 10px; color: #a7f3d0; font-size: 0.9em; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>📊 Lesson 3.1: The Liquidity Flight Deck</h1>
-    <div class="intro-box">
-        <p><strong>Flight Log Directive:</strong> Imagine you are a flight controller monitoring an active spaceship orbit. Instead of fuel and raw altitude levels, you are tracking <strong>cash velocity</strong> and <strong>debt hazard metrics</strong>. If your liquidity metrics sink, the vessel stalls out; if they spike inefficiently high, you are carrying dead weight into deep space.</p>
-    </div>
-
-    <h2>🛠️ The Asset-Liability Breakdown</h2>
-    <table>
-        <thead>
-            <tr>
-                <th class="asset-header">🟩 Current Assets (Liquid Fuel)</th>
-                <th class="liability-header">🟥 Current Liabilities (Immediate Drag)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td><strong>Cash:</strong> Instantly spendable utility reserves.</td><td><strong>Accounts Payable:</strong> Money owed to raw material suppliers.</td></tr>
-            <tr><td><strong>Marketable Securities:</strong> Near-cash equity holdings.</td><td><strong>Short-term Debt:</strong> Notes maturing inside 12 months.</td></tr>
-            <tr><td><strong>Accounts Receivable:</strong> Contractual consumer commitments.</td><td><strong>Accrued Expenses:</strong> Accumulated unpaid worker payroll tabs.</td></tr>
-            <tr><td><strong>Inventory:</strong> Physical products awaiting liquidation.</td><td></td></tr>
-        </tbody>
-    </table>
-
-    <h2>🕹️ The 4 Liquidity Gauges</h2>
-    <div class="gauge-container">
-        <div class="gauge-card">
-            <div class="gauge-title">🟢 Gauge 1: Working Capital</div>
-            <div class="formula">Working Capital = Current Assets - Current Liabilities</div>
-            <p><span class="status status-g">Positive:</span> Operational flexibility. <span class="status status-r">Negative:</span> Imminent system lock up.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Pure Cash ($):</label>
+                <input type="range" id="sim-cash" min="0" max="10000" value="5000" step="500" style="width: 100%;" oninput="runSimulation()">
+                <span id="val-cash" style="font-size: 12px; font-weight: 700; color: #0284c7;">$5,000</span>
+            </div>
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Inventory Stock ($):</label>
+                <input type="range" id="sim-inv" min="0" max="10000" value="4000" step="500" style="width: 100%;" oninput="runSimulation()">
+                <span id="val-inv" style="font-size: 12px; font-weight: 700; color: #0284c7;">$4,000</span>
+            </div>
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Receivables ($):</label>
+                <input type="range" id="sim-rec" min="0" max="10000" value="3000" step="500" style="width: 100%;" oninput="runSimulation()">
+                <span id="val-rec" style="font-size: 12px; font-weight: 700; color: #0284c7;">$3,000</span>
+            </div>
+            <div>
+                <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Current Liabilities ($):</label>
+                <input type="range" id="sim-liab" min="2000" max="10000" value="6000" step="500" style="width: 100%;" oninput="runSimulation()">
+                <span id="val-liab" style="font-size: 12px; font-weight: 700; color: #0284c7;">$6,000</span>
+            </div>
         </div>
-        <div class="gauge-card">
-            <div class="gauge-title">🔵 Gauge 2: Current Ratio</div>
-            <div class="formula">Current Ratio = Current Assets / Current Liabilities</div>
-            <p><span class="status status-g">1.2 - 2.0:</span> Target Health. <span class="status status-y">&gt; 2.0:</span> Underutilized resources.</p>
-        </div>
-        <div class="gauge-card">
-            <div class="gauge-title">🟣 Gauge 3: Quick Ratio (Acid-Test)</div>
-            <div class="formula">Quick Ratio = (Cash + Securities + Receivables) / Current Liabilities</div>
-            <p><span class="status status-g">&gt;= 1.0:</span> Survives complete warehouse inventory failure shutdowns.</p>
-        </div>
-        <div class="gauge-card">
-            <div class="gauge-title">🟡 Gauge 4: Cash Ratio</div>
-            <div class="formula">Cash Ratio = (Cash + Cash Equivalents) / Current Liabilities</div>
-            <p><span class="status status-g">&gt;= 0.5:</span> Extreme near-term balance sheet stability performance safety.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: white; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #e2e8f0;">
+            <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700;">Working Capital</div>
+                <div id="res-wc" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">$6,000</div>
+            </div>
+            <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700;">Current Ratio</div>
+                <div id="res-cr" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">2.00</div>
+            </div>
+            <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700;">Quick Ratio</div>
+                <div id="res-qr" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">1.33</div>
+            </div>
+            <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700;">Cash Ratio</div>
+                <div id="res-cashr" style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 4px;">0.83</div>
+            </div>
         </div>
     </div>
 
-    <div class="quiz-section">
-        <h2>📝 Flight Deck Evaluation: Quiz 3.1</h2>
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #38bdf8; padding-left: 8px;">1. Working Capital</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        Indicates the absolute amount of liquid cash a business has available for its daily operations.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Working Capital = Current Assets - Current Liabilities</code><br>
+        <em>Interpretation:</em> Positive working capital means a company can easily fund operations. Negative suggest cash flow bottlenecks.
+    </p>
 
-        <div class="question-card">
-            <p><strong>Q1:</strong> What is omitted from the numerator of the Quick Ratio compared to the Current Ratio?</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) Accounts Receivable</button>
-                <button class="option-btn" onclick="checkAns(this, false)">B) Marketable Securities</button>
-                <button class="option-btn" onclick="checkAns(this, true)">C) Inventory</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) Cash equivalents</button>
-            </div>
-            <div class="explanation">Correct! Inventory is dropped because it takes the longest time to reliably liquidate in emergencies.</div>
-        </div>
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #38bdf8; padding-left: 8px;">2. Current Ratio</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        Measures structural margin protection levels by checking total short asset coverage.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Current Ratio = Current Assets / Current Liabilities</code><br>
+        <em>Interpretation:</em> Healthy ranges fall between 1.2 and 2.0. Below 1.0 flags short-term risk.
+    </p>
 
-        <div class="question-card">
-            <p><strong>Q2:</strong> Cash: $50,000 | Receivables: $30,000 | Inventory: $40,000 | Accounts Payable: $60,000. Calculate <strong>Working Capital</strong>.</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) $120,000</button>
-                <button class="option-btn" onclick="checkAns(this, true)">B) $60,000</button>
-                <button class="option-btn" onclick="checkAns(this, false)">C) $20,000</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) -$20,000</button>
-            </div>
-            <div class="explanation">Correct! Total Assets ($120k) - Liabilities ($60k) leaves a positive cushion of $60,000.</div>
-        </div>
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #38bdf8; padding-left: 8px;">3. Quick Ratio (Acid-Test)</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        A strict test omitting complex inventory items that require conversion time.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Quick Ratio = (Cash + Marketable Securities + Accounts Receivable) / Current Liabilities</code><br>
+        <em>Interpretation:</em> A value of 1.0 or higher is preferred, showing the ability to pay debts without selling stock.
+    </p>
 
-        <div class="question-card">
-            <p><strong>Q3:</strong> Which metric represents the most strict, ultra-conservative baseline test of direct solvency?</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) Current Ratio</button>
-                <button class="option-btn" onclick="checkAns(this, false)">B) Quick Ratio</button>
-                <button class="option-btn" onclick="checkAns(this, true)">C) Cash Ratio</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) Working Capital Cushion</button>
-            </div>
-            <div class="explanation">Correct! The Cash Ratio eliminates receivables and inventory, measuring only immediate hard asset capital reserves.</div>
-        </div>
+    <h3 style="color: #0f172a; font-size: 16px; border-left: 4px solid #38bdf8; padding-left: 8px;">4. Cash Ratio</h3>
+    <p style="font-size: 14px; color: #475569; line-height: 1.5; padding-left: 12px;">
+        The ultimate defense test checking immediate liquidity with pure monetary values.<br>
+        <strong>Formula:</strong> <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px;">Cash Ratio = (Cash + Cash Equivalents) / Current Liabilities</code>
+    </p>
 
-        <div class="question-card">
-            <p><strong>Q4:</strong> Using data from Q2 (Assets = $120,000; Liabilities = $60,000), compute the **Current Ratio**.</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) 0.5</button>
-                <button class="option-btn" onclick="checkAns(this, false)">B) 1.5</button>
-                <button class="option-btn" onclick="checkAns(this, true)">C) 2.0</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) 1.2</button>
-            </div>
-            <div class="explanation">Correct! $120,000 / $60,000 = 2.0.</div>
-        </div>
+    <div style="margin-top: 40px; background: #fafafa; border: 1px solid #e2e8f0; padding: 24px; border-radius: 12px;">
+        <h3 style="margin-top: 0; color: #0f172a; display: flex; align-items: center; gap: 8px;">📝 Module 3.1 Verification Exam</h3>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 24px;">Complete all 10 analytical problem configurations below:</p>
 
-        <div class="question-card">
-            <p><strong>Q5:</strong> A bloated Current Ratio calculation equal to 4.5 points typically identifies:</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) Maximum enterprise deployment capability</button>
-                <button class="option-btn" onclick="checkAns(this, true)">B) Strategic operational resource accumulation inefficiency</button>
-                <button class="option-btn" onclick="checkAns(this, false)">C) Absolute optimization of current debt management channels</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) Imminent risk vectors</button>
-            </div>
-            <div class="explanation">Correct! Stagnant capital returns zero growth vectors; hoarding cash shows resource misallocation.</div>
-        </div>
+        <div id="quiz-31-container"></div>
 
-        <div class="question-card">
-            <p><strong>Q6:</strong> Cash: $15,000 | Securities: $5,000 | Receivables: $10,000 | Inventory: $20,000 | Current Liabilities: $25,000. Calculate the <strong>Quick Ratio</strong>.</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, true)">A) 1.2</button>
-                <button class="option-btn" onclick="checkAns(this, false)">B) 0.8</button>
-                <button class="option-btn" onclick="checkAns(this, false)">C) 2.0</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) 1.0</button>
-            </div>
-            <div class="explanation">Correct! ($15k + $5k + $10k) / $25k = 30 / 25 = 1.2.</div>
-        </div>
-
-        <div class="question-card">
-            <p><strong>Q7:</strong> Using the structural corporate variables from Q6, identify the final <strong>Cash Ratio</strong> output status.</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) 0.6</button>
-                <button class="option-btn" onclick="checkAns(this, true)">B) 0.8</button>
-                <button class="option-btn" onclick="checkAns(this, false)">C) 1.2</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) 0.5</button>
-            </div>
-            <div class="explanation">Correct! Only pure Cash + Securities count ($20k / $25k = 0.8).</div>
-        </div>
-
-        <div class="question-card">
-            <p><strong>Q8:</strong> Sustaining clear structural **negative** balance readings across core Working Capital channels indicates:</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) Dynamic funding capability scaling matrices</button>
-                <button class="option-btn" onclick="checkAns(this, true)">B) Structural liabilities completely outstripping short-term asset reserves</button>
-                <button class="option-btn" onclick="checkAns(this, false)">C) High optimization of fixed capital depreciation timelines</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) Inverted gross margin structural adjustments</button>
-            </div>
-            <div class="explanation">Correct! Your short-term debts outweigh your short-term liquid tools. Immediate liquidity crunch danger.</div>
-        </div>
-
-        <div class="question-card">
-            <p><strong>Q9:</strong> An operations model demands a Current Ratio calibration equal to 1.5x. Liabilities sit at $100,000. What must <strong>Current Assets</strong> equal?</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) $66,667</button>
-                <button class="option-btn" onclick="checkAns(this, true)">B) $150,000</button>
-                <button class="option-btn" onclick="checkAns(this, false)">C) $100,000</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) $250,000</button>
-            </div>
-            <div class="explanation">Correct! Assets = 1.5 Target x $100,000 Liabilities = $150,000.</div>
-        </div>
-
-        <div class="question-card">
-            <p><strong>Q10:</strong> Which internal line item cleanly populates standard corporate <strong>Current Liabilities</strong> registers?</p>
-            <div class="options-list">
-                <button class="option-btn" onclick="checkAns(this, false)">A) Unbilled Client Balances</button>
-                <button class="option-btn" onclick="checkAns(this, false)">B) Deferred Procurement Valuations</button>
-                <button class="option-btn" onclick="checkAns(this, true)">C) Accrued Expense Records</button>
-                <button class="option-btn" onclick="checkAns(this, false)">D) Amortization Allocations</button>
-            </div>
-            <div class="explanation">Correct! Accrued expenses are short-term liabilities representing incurred but unpaid operational bills.</div>
-        </div>
+        <button onclick="gradeQuiz31()" style="background: #10b981; color: white; border: none; padding: 12px 24px; font-weight: 700; border-radius: 8px; cursor: pointer; margin-top: 16px; width: 100%;">
+            Submit Completed Exam Sheet
+        </button>
+        <div id="quiz-31-result" style="margin-top: 16px; font-weight: 700; text-align: center; font-size: 15px;"></div>
     </div>
 </div>
 
 <script>
-    function checkAns(btn, isCorrect) {
-        const card = btn.closest('.question-card');
-        const exp = card.querySelector('.explanation');
-        const buttons = card.querySelectorAll('.option-btn');
-        buttons.forEach(b => b.style.opacity = '0.4');
-        btn.style.opacity = '1';
-        if(isCorrect) {
-            btn.style.background = '#10b981';
-            exp.style.display = 'block';
-        } else {
-            btn.style.background = '#ef4444';
-            exp.style.display = 'none';
-        }
+    function runSimulation() {
+        const cash = parseFloat(document.getElementById('sim-cash').value);
+        const inv = parseFloat(document.getElementById('sim-inv').value);
+        const rec = parseFloat(document.getElementById('sim-rec').value);
+        const liab = parseFloat(document.getElementById('sim-liab').value);
+
+        document.getElementById('val-cash').textContent = '$' + cash.toLocaleString();
+        document.getElementById('val-inv').textContent = '$' + inv.toLocaleString();
+        document.getElementById('val-rec').textContent = '$' + rec.toLocaleString();
+        document.getElementById('val-liab').textContent = '$' + liab.toLocaleString();
+
+        const ca = cash + inv + rec;
+        const wc = ca - liab;
+        const cr = ca / liab;
+        const qr = (cash + rec) / liab;
+        const cashr = cash / liab;
+
+        document.getElementById('res-wc').textContent = (wc >= 0 ? '$' : '-$') + Math.abs(wc).toLocaleString();
+        document.getElementById('res-cr').textContent = cr.toFixed(2);
+        document.getElementById('res-qr').textContent = qr.toFixed(2);
+        document.getElementById('res-cashr').textContent = cashr.toFixed(2);
     }
+
+    const q31Data = [
+        { q: "What is the formula for Working Capital?", a: ["Current Assets - Current Liabilities", "Current Assets / Current Liabilities", "Cash / Current Liabilities"], c: 0 },
+        { q: "Which of the following assets is explicitly excluded when computing the Quick Ratio?", a: ["Accounts Receivable", "Marketable Securities", "Inventory"], c: 2 },
+        { q: "If Current Assets = $50,000 and Current Liabilities = $25,000, calculate the Current Ratio.", a: ["1.50", "2.00", "0.50"], c: 1 },
+        { q: "A firm possesses Working Capital of $10,000. If Current Liabilities equal $15,000, what are total Current Assets?", a: ["$5,000", "$25,000", "$15,000"], c: 1 },
+        { q: "Calculate the Quick Ratio given: Cash = $5,000, Receivables = $5,000, Inventory = $10,000, Current Liabilities = $10,000.", a: ["1.00", "2.00", "0.50"], c: 0 },
+        { q: "Which liquidity metrics represents the most conservative measure?", a: ["Current Ratio", "Quick Ratio", "Cash Ratio"], c: 2 },
+        { q: "If a company has a Current Ratio of 0.8, it indicates:", a: ["The company has an ideal cushion", "Current Liabilities exceed Current Assets", "Inventory is too high"], c: 1 },
+        { q: "Calculate the Cash Ratio if Cash = $4,000, Marketable Securities = $2,000, Inventory = $6,000, and Current Liabilities = $12,000.", a: ["0.33", "0.50", "0.16"], c: 1 },
+        { q: "Prepaid expenses are included in the numerator of which ratio?", a: ["Current Ratio", "Quick Ratio", "Cash Ratio"], c: 0 },
+        { q: "An excessively high Current Ratio (e.g., 4.5) can be a sign of:", a: ["High risk of bankruptcy", "Inefficient asset utilization or excess idle cash", "Excellent supply chain control"], c: 1 }
+    ];
+
+    function buildQuiz31() {
+        const container = document.getElementById('quiz-31-container');
+        container.innerHTML = q31Data.map((item, qIdx) => `
+            <div style="margin-bottom: 20px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 16px;">
+                <p style="font-size: 14px; font-weight: 600; margin: 0 0 10px 0; color: #1e293b;">${qIdx + 1}. ${item.q}</p>
+                ${item.a.map((ans, aIdx) => `
+                    <label style="display: block; font-size: 13px; color: #475569; margin-bottom: 6px; cursor: pointer;">
+                        <input type="radio" name="q31-${qIdx}" value="${aIdx}" style="margin-right: 8px;">
+                        ${ans}
+                    </label>
+                `).join('')}
+            </div>
+        `).join('');
+    }
+
+    function gradeQuiz31() {
+        let score = 0;
+        q31Data.forEach((item, qIdx) => {
+            const selected = document.querySelector(`input[name="q31-${qIdx}"]:checked`);
+            if (selected && parseInt(selected.value) === item.c) {
+                score++;
+            }
+        });
+        const res = document.getElementById('quiz-31-result');
+        res.textContent = `Score Matrix Output: ${score} / 10 Completed Correctly`;
+        res.style.color = score >= 7 ? "#10b981" : "#ef4444";
+    }
+
+    setTimeout(() => { runSimulation(); buildQuiz31(); }, 50);
 </script>
-</body>
-</html>
