@@ -1,0 +1,181 @@
+import React, { useState } from 'react';
+import { BookOpen, Award, CheckCircle2, XCircle, Activity, HelpCircle, RefreshCw } from 'lucide-react';
+
+const Lesson33 = () => {
+  // Quiz 3.3 State
+  const [quizAnswers, setQuizAnswers] = useState(Array(8).fill(null));
+  const [showResults, setShowResults] = useState(false);
+
+  // Game State
+  const [selectedDefinition, setSelectedDefinition] = useState(null);
+  const [matchedPairs, setMatchedPairs] = useState([]);
+  const [gameFeedback, setGameFeedback] = useState("");
+
+  const gameItems = [
+    { id: '1', type: 'ratio', name: 'Inventory Turnover' },
+    { id: '2', type: 'ratio', name: 'Receivables Turnover' },
+    { id: '3', type: 'ratio', name: 'Asset Turnover' },
+    { id: '1-def', type: 'def', text: 'Measures how many times a company sells and replaces its stock over a period.' },
+    { id: '2-def', type: 'def', text: 'Measures how efficiently a company collects cash from its credit customers.' },
+    { id: '3-def', type: 'def', text: 'Measures how efficiently a company uses all its assets to generate net sales.' }
+  ];
+
+  const handleGameMatch = (item) => {
+    if (!selectedDefinition) {
+      if (item.type === 'def') {
+        setSelectedDefinition(item);
+        setGameFeedback("Now click the matching Ratio card!");
+      } else {
+        setGameFeedback("Tip: Select a definition description card first!");
+      }
+      return;
+    }
+
+    if (item.type === 'ratio') {
+      const matchId = item.id;
+      if (selectedDefinition.id.startsWith(matchId)) {
+        setMatchedPairs([...matchedPairs, matchId]);
+        setGameFeedback("🎉 Correct match!");
+      } else {
+        setGameFeedback("❌ Not quite right. Try matching that description to another ratio.");
+      }
+    } else {
+      setSelectedDefinition(item);
+      setGameFeedback("Switched selected definition.");
+    }
+    setSelectedDefinition(null);
+  };
+
+  const quizQuestions = [
+    { q: "What do efficiency ratios primarily measure?", options: ["Long-term debt repayment capabilities", "How effectively a company utilizes its assets and liabilities to generate revenue", "The total valuation of equity shares", "The safety net of cash flow defaults"], correct: 1 },
+    { q: "Which breakdown best describes asset utilization efficiency?", options: ["How quickly inventory transforms into actual sales revenue", "The volume of short-term liabilities relative to cash reserves", "The operational margins before income tax calculations", "The structural changes in physical infrastructure"], correct: 0 },
+    { q: "If a company has a higher efficiency ratio relative to its peers, what does it usually signify?", options: ["Capital is needlessly locked up in inventory storage", "Strong daily operational performance and resource optimization", "Increased risk of long-term default to commercial creditors", "Poor customer cash collection practices"], correct: 1 },
+    { q: "An optimal performance benchmark for activity ratios...", options: ["Is identical across all global corporate structures", "Varies significantly depending on the specific industry standard", "Requires a perfect score of 1.0 to be considered stable", "Is dictated exclusively by federal interest rates"], correct: 1 },
+    { q: "When capital is needlessly tied up, a company's efficiency ratios will likely...", options: ["Decline", "Skyrocket exponentially", "Remain perfectly balanced and optimized", "Transform directly into equity multipliers"], correct: 0 },
+    { q: "Activity ratios are also frequently referred to as:", options: ["Leverage ratios", "Solvency ratios", "Efficiency ratios", "Liquidity benchmarks"], correct: 2 },
+    { q: "Which of the following is an example of an efficiency ratio focus point?", options: ["Total cash structure liabilities", "How effectively liabilities are handled to secure revenue flows", "The probability of long-term commercial bankruptcy", "Long-term fixed bond interest protections"], correct: 1 },
+    { q: "Tracking operational efficiency helps managers detect if...", options: ["A company can cover 20 years of bond debts", "Resources are currently being fully maximized on a daily basis", "The absolute floor price of company shares is safe", "Tax code classifications have shifted out of bounds"], correct: 1 }
+  ];
+
+  return (
+    <div className="max-w-5xl mx-auto p-4 sm:p-6 bg-slate-50 min-h-screen font-sans text-slate-800 space-y-8">
+      <div className="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-2xl p-6 sm:p-8 text-white shadow-xl">
+        <span className="text-blue-200 text-sm font-bold uppercase tracking-wider mb-2 block">Lesson 3.3</span>
+        <h1 className="text-3xl font-extrabold tracking-tight">Efficiency Ratios</h1>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div className="flex items-center gap-2 text-blue-600 font-bold mb-4">
+          <BookOpen className="w-5 h-5" />
+          <span>Core Operational Concepts</span>
+        </div>
+        <p className="text-slate-600 leading-relaxed text-base mb-6">
+          <strong>Efficiency ratios</strong> (or activity ratios) measure how effectively a company uses its assets and manages liabilities to generate revenue. They highlight daily operational performance, showing whether resources are being maximized or if capital is needlessly tied up. Higher ratios generally signal strong performance, with optimal benchmarks varying by industry.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+            <span className="text-emerald-800 font-bold block mb-1">High-Efficiency Ratios</span>
+            <p className="text-emerald-700 text-sm">Signifies optimized workflows, fast inventory cycles, and quick customer cash collections.</p>
+          </div>
+          <div className="bg-rose-50 border border-rose-200 rounded-xl p-5">
+            <span className="text-rose-800 font-bold block mb-1">Depressed-Efficiency Ratios</span>
+            <p className="text-rose-700 text-sm">Indicates operating capital is locked away in unused assets or uncollected balances.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* GAME SETUP */}
+      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-lg border border-slate-800">
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <span className="bg-blue-500/20 text-blue-400 font-bold text-xs uppercase px-2.5 py-1 rounded-md border border-blue-500/30">Interactive Simulator</span>
+            <h3 className="text-xl font-bold mt-2">Activity Metric Matcher Game</h3>
+          </div>
+          <button onClick={() => { setMatchedPairs([]); setSelectedDefinition(null); setGameFeedback(""); }} className="flex items-center gap-2 border border-slate-700 hover:bg-slate-800 text-slate-300 text-xs font-bold px-3 py-2 rounded-lg transition">
+            <RefreshCw className="w-3.5 h-3.5" /> Reset Game
+          </button>
+        </div>
+
+        {gameFeedback && (
+          <div className={`p-3 rounded-lg mb-6 text-sm font-medium text-center ${gameFeedback.includes('🎉') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'}`}>
+            {gameFeedback}
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          {gameItems.filter(i => i.type === 'ratio').map(ratio => {
+            const isMatched = matchedPairs.includes(ratio.id);
+            return (
+              <div key={ratio.id} onClick={() => handleGameMatch(ratio)} className={`p-5 rounded-xl border transition-all text-center flex flex-col justify-center items-center h-28 ${isMatched ? 'bg-emerald-950/40 border-emerald-500 text-emerald-300 cursor-default' : 'bg-slate-800/80 border-slate-700 hover:border-slate-500 cursor-pointer'}`}>
+                <span className="font-bold text-base block">{ratio.name}</span>
+                {isMatched && <span className="text-emerald-400 text-xs font-semibold mt-2 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Synced</span>}
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="space-y-3">
+          {gameItems.filter(i => i.type === 'def').map(def => {
+            if (matchedPairs.includes(def.id.split('-')[0])) return null;
+            return (
+              <button key={def.id} onClick={() => handleGameMatch(def)} className={`text-left w-full p-4 rounded-xl border text-sm transition-all ${selectedDefinition?.id === def.id ? 'bg-blue-950 border-blue-500 text-blue-200' : 'bg-slate-800/40 border-slate-700 hover:bg-slate-800 text-slate-300'}`}>
+                {def.text}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* QUIZ SECTION */}
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div className="flex items-center gap-2 text-slate-900 font-bold mb-6 text-xl">
+          <HelpCircle className="w-5 h-5 text-blue-600" />
+          <h3>Module 3.3 Comprehension Audit</h3>
+        </div>
+
+        <div className="space-y-6">
+          {quizQuestions.map((qObj, qIdx) => (
+            <div key={qIdx} className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+              <p className="text-slate-800 font-medium mb-3 text-sm sm:text-base">{qIdx + 1}. {qObj.q}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {qObj.options.map((opt, oIdx) => {
+                  const isSelected = quizAnswers[qIdx] === oIdx;
+                  const isCorrect = qObj.correct === oIdx;
+                  let btnStyle = "bg-white text-slate-700 border-slate-200";
+
+                  if (isSelected) {
+                    btnStyle = showResults ? (isCorrect ? "bg-emerald-100 border-emerald-500 text-emerald-800" : "bg-rose-100 border-rose-500 text-rose-800") : "bg-blue-100 border-blue-500 text-blue-800 font-semibold";
+                  } else if (showResults && isCorrect) {
+                    btnStyle = "bg-emerald-50 border-emerald-300 text-emerald-700 italic";
+                  }
+
+                  return (
+                    <button key={oIdx} disabled={showResults} onClick={() => { const updated = [...quizAnswers]; updated[qIdx] = oIdx; setQuizAnswers(updated); }} className={`text-left p-3 rounded-lg border text-xs sm:text-sm transition-all flex items-center justify-between ${btnStyle}`}>
+                      <span>{opt}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-6">
+          {!showResults ? (
+            <button onClick={() => setShowResults(true)} disabled={quizAnswers.includes(null)} className={`px-6 py-3 rounded-xl font-bold text-sm text-white ${quizAnswers.includes(null) ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
+              Grade Assessment
+            </button>
+          ) : (
+            <div className="w-full flex justify-between items-center">
+              <span className="font-bold text-slate-700">Score: {quizAnswers.filter((ans, idx) => ans === quizQuestions[idx].correct).length} / 8</span>
+              <button onClick={() => { setQuizAnswers(Array(8).fill(null)); setShowResults(false); }} className="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm">Retry</button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Lesson33;
