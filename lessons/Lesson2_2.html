@@ -116,7 +116,6 @@
       animation: fadeIn 0.3s;
     }
 
-    /* Step-by-Step interactive engine */
     .step-box {
       border-left: 4px solid var(--accent);
       padding-left: 20px;
@@ -145,7 +144,6 @@
       opacity: 0.9;
     }
 
-    /* Quiz Panel */
     .quiz-area {
       background: #fdfdfd;
       border: 2px solid var(--is-border);
@@ -206,6 +204,14 @@
       color: var(--accent);
     }
 
+    .review-box {
+      margin-top: 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
   </style>
@@ -220,7 +226,7 @@
 
     <div class="card">
       <p>
-        An income statement, or profit and loss (P&amp;L) statement, is a core financial document that summarizes a company’s revenues, expenses, gains, and losses over a specific period. It begins with total revenue (the "top line") and ends with net income (the "bottom line") to show overall profitability.
+        An income statement summarizes a company’s revenues, expenses, gains, and losses over a specific period. It begins with total revenue (the "top line") and ends with net income (the "bottom line").
       </p>
     </div>
 
@@ -271,22 +277,22 @@
       <h3>2. How to Make an Income Statement (Step-by-Step)</h3>
       <div id="step1" class="step-box active">
         <h4>Step 1: Choose Header Info & Total Revenue</h4>
-        <p>Set a standard three-line header (Company Name, Statement Title, and specific Time Period like "For the month ended..."). Record Gross Revenue and subtract returns to get your Top Line.</p>
+        <p>Set a standard three-line header. Record Gross Revenue and subtract returns to get your Top Line.</p>
         <button class="btn-next" onclick="nextStep(2)">Next: Calculate Gross Profit →</button>
       </div>
       <div id="step2" class="step-box">
         <h4>Step 2: Subtract Production Expenses (COGS)</h4>
-        <p>Take your total revenue and subtract direct manufacturing or labor costs. <br><strong>Formula: Gross Profit = Total Revenue - COGS</strong></p>
+        <p>Take your total revenue and subtract direct manufacturing costs. <br><strong>Formula: Gross Profit = Total Revenue - COGS</strong></p>
         <button class="btn-next" onclick="nextStep(3)">Next: Deduct Operating Expenses →</button>
       </div>
       <div id="step3" class="step-box">
         <h4>Step 3: Account for Day-to-Day Operations</h4>
-        <p>Deduct indirect overhead costs like office rent, marketing, and corporate administrative wages. <br><strong>Formula: Operating Income = Gross Profit - Operating Expenses</strong></p>
+        <p>Deduct overhead costs like office rent, marketing, and wages. <br><strong>Formula: Operating Income = Gross Profit - Operating Expenses</strong></p>
         <button class="btn-next" onclick="nextStep(4)">Next: Factor Interest and Taxes →</button>
       </div>
       <div id="step4" class="step-box">
         <h4>Step 4: The Bottom Line</h4>
-        <p>Subtract your non-operating charges (interest and income taxes) to yield the ultimate profitability. <br><strong>Formula: Net Income = Operating Income - Interest and Taxes</strong></p>
+        <p>Subtract non-operating charges to yield the final net earnings. <br><strong>Formula: Net Income = Operating Income - Interest and Taxes</strong></p>
         <button class="btn-next" onclick="nextStep(1)">Restart Guide ↺</button>
       </div>
     </div>
@@ -297,33 +303,49 @@
       
       <div id="build-area" style="display:none; border-top: 2px dashed #cbd5e1; padding-top: 25px; margin-top: 20px;">
         <h3>Practical: Build the Statement</h3>
-        <p>Calculate the <b>Gross Profit</b>. Click a value from the bank, then click the <b>"?"</b> target box to slot it in.</p>
+        <p>Fill out the primary structure of the Income Statement. Click a value from the bank below, then click its matching <b>"?"</b> target box.</p>
         
-        <div style="margin-bottom: 20px;">
-          <div class="bank-item" onclick="selectValue('$150,000', this)">$150,000</div>
+        <div style="margin-bottom: 20px; text-align: center;">
           <div class="bank-item" onclick="selectValue('$250,000', this)">$250,000</div>
           <div class="bank-item" onclick="selectValue('$100,000', this)">$100,000</div>
+          <div class="bank-item" onclick="selectValue('$150,000', this)">$150,000</div>
         </div>
 
-        <div style="font-size: 1.25em; font-weight: bold;">
-          Revenue ($250,000) - COGS ($100,000) = <div class="drop-zone" id="gp-slot" onclick="placeValue('gp-slot')">?</div>
-        </div>
+        <table class="interactive-table" style="max-width: 500px; margin: 0 auto 20px auto;">
+          <tr>
+            <td><strong>Revenue:</strong></td>
+            <td><div class="drop-zone" id="rev-slot" onclick="placeValue('rev-slot')">?</div></td>
+          </tr>
+          <tr>
+            <td><strong>Less: COGS:</strong></td>
+            <td><div class="drop-zone" id="cogs-slot" onclick="placeValue('cogs-slot')">?</div></td>
+          </tr>
+          <tr style="background: var(--light-gray); font-weight: bold;">
+            <td><strong>Gross Profit:</strong></td>
+            <td><div class="drop-zone" id="gp-slot" onclick="placeValue('gp-slot')">?</div></td>
+          </tr>
+        </table>
         
-        <button class="btn-next" style="background: var(--accent); margin-top: 20px;" onclick="checkPractical()">Check Result</button>
-        <p id="practical-feedback" style="font-weight: bold; margin-top: 15px;"></p>
+        <button class="btn-next" style="background: var(--accent); display:block; margin: 20px auto 0 auto;" onclick="checkPractical()">Verify Statement</button>
+        <p id="practical-feedback" style="font-weight: bold; margin-top: 15px; text-align:center;"></p>
+      </div>
+
+      <div id="post-quiz-options" style="display:none; text-align:center; margin-top: 20px;">
+        <button class="btn-next" style="background: #475569;" onclick="toggleReview()">Review Quiz Answers</button>
+        <div id="review-panel" style="display:none; text-align:left; margin-top: 20px;"></div>
       </div>
     </div>
   </div>
 
   <script>
     const definitions = {
-      rev: "<strong>Revenue / Sales:</strong> The top line. Represents total income from selling goods or services before any expenses are subtracted.",
-      cogs: "<strong>Cost of Goods Sold (COGS):</strong> The direct production cost associated with creating the physical product or service.",
-      gp: "<strong>Gross Profit:</strong> Revenue minus COGS. Measures how efficiently a business uses raw assets, supplies, and assembly labor.",
-      opex: "<strong>Operating Expenses (OpEx):</strong> Day-to-day overhead costs to run the business that aren't tied directly to production (e.g. rent, payroll, marketing).",
-      opi: "<strong>Operating Income:</strong> Gross profit minus operating expenses. Reflects earnings from regular, core business activities.",
-      nonOp: "<strong>Non-Operating Items:</strong> Outside costs or gains like interest paid on debt, investment returns, or corporate taxes.",
-      ni: "<strong>Net Income:</strong> The bottom line. The absolute final profit or loss after subtracting all revenues, expenses, and taxes."
+      rev: "<strong>Revenue / Sales:</strong> The top line. Represents total income from selling goods or services.",
+      cogs: "<strong>Cost of Goods Sold (COGS):</strong> Direct production costs associated with creating the physical product.",
+      gp: "<strong>Gross Profit:</strong> Revenue minus COGS. Measures asset creation efficiency.",
+      opex: "<strong>Operating Expenses (OpEx):</strong> Day-to-day overhead costs to run the business (e.g. rent, payroll).",
+      opi: "<strong>Operating Income:</strong> Gross profit minus operating expenses.",
+      nonOp: "<strong>Non-Operating Items:</strong> Outside costs or gains like interest paid or taxes.",
+      ni: "<strong>Net Income:</strong> The absolute final profit or loss after subtracting all expenses."
     };
 
     function showDef(term) {
@@ -341,33 +363,39 @@
       {
         q: "What is often referred to as the 'top line' of an Income Statement?",
         options: ["Net Income", "Operating Income", "Gross Revenue / Sales", "Gross Profit"],
-        correct: 2
+        correct: 2,
+        explanation: "Revenue/Sales represents the absolute first line item from which all subsequent business costs are deducted."
       },
       {
         q: "Which calculation represents Operating Income?",
         options: ["Gross Profit - Operating Expenses", "Total Revenue - COGS", "Operating Income - Taxes", "Revenue + Cash"],
-        correct: 0
+        correct: 0,
+        explanation: "Operating Income measures profit from regular operations by deducting day-to-day OpEx from Gross Profit."
       },
       {
         q: "What type of expense are items like office rent, marketing, and standard executive salaries?",
         options: ["Cost of Goods Sold", "Non-Operating Expenses", "Operating Expenses (OpEx)", "Equity Dividends"],
-        correct: 2
+        correct: 2,
+        explanation: "Operating Expenses (OpEx) consist of the general administrative overhead needed to run operations daily."
       },
       {
         q: "If Revenue is $200,000 and COGS is $80,000, what is the Gross Profit?",
         options: ["$280,000", "$120,000", "$80,000", "$200,000"],
-        correct: 1
+        correct: 1,
+        explanation: "Gross Profit = Revenue ($200,000) minus COGS ($80,000) which leaves $120,000."
       },
       {
         q: "Where do taxes and interest on business loans get factored on the Income Statement?",
         options: ["They are added to revenue", "Just before calculating Net Income", "They are ignored", "Within Operating Expenses"],
-        correct: 1
+        correct: 1,
+        explanation: "Interest and taxes are non-operating costs that are deducted near the end, right before concluding with Net Income."
       }
     ];
 
     let currentQIdx = 0;
     let selectedVal = "";
     let selectedEl = null;
+    let userAnswers = [];
 
     function loadQuestion() {
       const data = mcqs[currentQIdx];
@@ -377,29 +405,29 @@
       mapped.sort(() => Math.random() - 0.5);
 
       mapped.forEach(opt => {
-        html += `<button class="option-btn" onclick="checkAnswer(${opt.originalIndex})">${opt.text}</button>`;
+        html += `<button class="option-btn" onclick="checkAnswer(${opt.originalIndex}, '${opt.text.replace(/'/g, "\\'")}')">${opt.text}</button>`;
       });
       document.getElementById('quiz-container').innerHTML = html;
     }
 
-    function checkAnswer(idx) {
+    function checkAnswer(idx, text) {
+      userAnswers.push({ q: mcqs[currentQIdx].q, selected: text, correctOpt: mcqs[currentQIdx].options[mcqs[currentQIdx].correct], exp: mcqs[currentQIdx].explanation });
       if (idx === mcqs[currentQIdx].correct) {
         currentQIdx++;
         if (currentQIdx < mcqs.length) {
           loadQuestion();
         } else {
-          document.getElementById('quiz-container').innerHTML = "<h3 style='color: var(--accent);'>🎉 Multiple Choice Questions Passed!</h3>";
+          document.getElementById('quiz-container').innerHTML = "<h3 style='color: var(--accent); text-align:center;'>🎉 Multiple Choice Questions Passed!</h3>";
           document.getElementById('build-area').style.display = 'block';
         }
       } else {
-        alert("Incorrect answer. Please review the material and try again!");
+        alert("Incorrect answer. Let's try this question again!");
+        userAnswers.pop(); // Remove the wrong try and let them answer again
       }
     }
 
     function selectValue(val, el) {
-      if (selectedEl) {
-        selectedEl.classList.remove('selected');
-      }
+      if (selectedEl) selectedEl.classList.remove('selected');
       selectedVal = val;
       selectedEl = el;
       el.classList.add('selected');
@@ -417,15 +445,38 @@
     }
 
     function checkPractical() {
-      const answer = document.getElementById('gp-slot').innerText;
+      const r = document.getElementById('rev-slot').innerText;
+      const c = document.getElementById('cogs-slot').innerText;
+      const gp = document.getElementById('gp-slot').innerText;
       const feedback = document.getElementById('practical-feedback');
-      if (answer === "$150,000") {
+      
+      if (r === "$250,000" && c === "$100,000" && gp === "$150,000") {
         feedback.style.color = "var(--accent)";
-        feedback.innerHTML = "Awesome! That is correct. Gross Profit is indeed $150,000.";
+        feedback.innerHTML = "Awesome! You have built the statement perfectly. Revenue ($250k) - COGS ($100k) = Gross Profit ($150k).";
+        document.getElementById('post-quiz-options').style.display = 'block';
       } else {
         feedback.style.color = "red";
-        feedback.innerHTML = "Incorrect balance. Try again! Formula: Revenue - COGS.";
+        feedback.innerHTML = "Incorrect layout. Make sure Revenue is highest, direct costs are COGS, and the difference is Gross Profit.";
       }
+    }
+
+    function toggleReview() {
+      const panel = document.getElementById('review-panel');
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+      }
+      let html = "<h3>Quiz Review</h3>";
+      userAnswers.forEach((ans, i) => {
+        html += `
+          <div class="review-box">
+            <p><strong>Q${i+1}: ${ans.q}</strong></p>
+            <p style="color: green;">✓ Correct Answer: ${ans.correctOpt}</p>
+            <p style="color: var(--text-muted); font-style: italic;">Why? ${ans.exp}</p>
+          </div>`;
+      });
+      panel.innerHTML = html;
+      panel.style.display = 'block';
     }
 
     loadQuestion();
