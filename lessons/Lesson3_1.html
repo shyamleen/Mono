@@ -6,34 +6,29 @@
     <title>Lesson 3.1: The Liquidity Flight Deck</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b132b; color: #f4f6f9; margin: 0; padding: 40px; }
-        .container { max-width: 850px; margin: 0 auto; background: #1c2541; padding: 35px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .container { max-width: 900px; margin: 0 auto; background: #1c2541; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         h1 { color: #4cc9f0; border-bottom: 2px solid #3a0ca3; padding-bottom: 15px; margin-top: 0; }
-        h2 { color: #f72585; margin-top: 30px; }
-        h3 { color: #4cc9f0; }
+        h2 { color: #f72585; margin-top: 35px; }
         p, li { line-height: 1.6; color: #d1d5db; }
-        .intro-box { background: linear-gradient(135deg, #3a0ca3, #1c2541); padding: 20px; border-radius: 8px; border-left: 5px solid #4cc9f0; margin-bottom: 25px; }
+        .intro-box { background: linear-gradient(135deg, #3a0ca3, #1c2541); padding: 25px; border-radius: 8px; border-left: 5px solid #4cc9f0; margin-bottom: 25px; }
         
-        /* Table Styling */
         table { width: 100%; border-collapse: collapse; margin: 25px 0; background: #111827; border-radius: 8px; overflow: hidden; }
         th, td { padding: 15px; text-align: left; border-bottom: 1px solid #374151; }
         th { background-color: #1f2937; font-weight: 600; }
         .asset-header { color: #10b981; }
         .liability-header { color: #ef4444; }
 
-        /* Gauge Cards */
-        .gauge-container { display: grid; grid-template-columns: 1px 1px; gap: 20px; margin-top: 25px; }
+        .gauge-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
         @media(max-width: 768px) { .gauge-container { grid-template-columns: 1fr; } }
-        .gauge-card { background: #222e50; padding: 20px; border-radius: 10px; border: 1px solid #38b000; position: relative; }
-        .gauge-title { font-weight: bold; font-size: 1.1em; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .formula { background: #0b132b; padding: 10px; border-radius: 6px; font-family: 'Courier New', Courier, monospace; color: #a2d2ff; margin: 10px 0; font-size: 0.95em; }
+        .gauge-card { background: #222e50; padding: 20px; border-radius: 10px; border: 1px solid #3a0ca3; }
+        .gauge-title { font-weight: bold; font-size: 1.1em; color: #fff; margin-bottom: 10px; }
+        .formula { background: #0b132b; padding: 10px; border-radius: 6px; font-family: monospace; color: #a2d2ff; margin: 10px 0; }
         
-        /* Status Badges */
         .status { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; margin-top: 5px; }
         .status-g { background: #10b981; color: white; }
         .status-y { background: #f59e0b; color: #111827; }
         .status-r { background: #ef4444; color: white; }
 
-        /* Quiz Box */
         .quiz-section { margin-top: 50px; background: #111827; padding: 30px; border-radius: 12px; border: 2px solid #7209b7; }
         .question-card { background: #1f2937; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #7209b7; }
         .options-list { margin-top: 10px; padding-left: 0; list-style: none; }
@@ -47,12 +42,10 @@
 <div class="container">
     <h1>📊 Lesson 3.1: The Liquidity Flight Deck</h1>
     <div class="intro-box">
-        <p><strong>Mission Briefing:</strong> Imagine you are a flight controller monitoring a spacecraft. Instead of fuel and altitude, you are tracking <strong>cash flow</strong> and <strong>debt safety zones</strong>. If your liquidity metrics drop too low, the ship stalls; if they are too high, you're carrying dead weight.</p>
+        <p><strong>Flight Log Directive:</strong> Imagine you are a flight controller monitoring an active spaceship orbit. Instead of fuel and raw altitude levels, you are tracking <strong>cash velocity</strong> and <strong>debt hazard metrics</strong>. If your liquidity metrics sink, the vessel stalls out; if they spike inefficiently high, you are carrying dead weight into deep space.</p>
     </div>
 
     <h2>🛠️ The Asset-Liability Breakdown</h2>
-    <p>Before balancing your ratios, you must sort your short-term "fuel" from your operational "drag":</p>
-    
     <table>
         <thead>
             <tr>
@@ -61,64 +54,39 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><strong>Cash & Equivalents:</strong> Pure, instant spendable energy.</td>
-                <td><strong>Accounts Payable:</strong> Money owed to suppliers immediately.</td>
-            </tr>
-            <tr>
-                <td><strong>Marketable Securities:</strong> Near-cash stocks/bonds.</td>
-                <td><strong>Short-term Debt:</strong> Bank notes due within the fiscal year.</td>
-            </tr>
-            <tr>
-                <td><strong>Accounts Receivable:</strong> Owed by customers arriving soon.</td>
-                <td><strong>Accrued Expenses:</strong> Unpaid wages and utility bills accumulation.</td>
-            </tr>
-            <tr>
-                <td><strong>Inventory:</strong> Physical products requiring sales conversion effort.</td>
-                <td></td>
-            </tr>
+            <tr><td><strong>Cash:</strong> Instantly spendable utility reserves.</td><td><strong>Accounts Payable:</strong> Money owed to raw material suppliers.</td></tr>
+            <tr><td><strong>Marketable Securities:</strong> Near-cash equity holdings.</td><td><strong>Short-term Debt:</strong> Notes maturing inside 12 months.</td></tr>
+            <tr><td><strong>Accounts Receivable:</strong> Contractual consumer commitments.</td><td><strong>Accrued Expenses:</strong> Accumulated unpaid worker payroll tabs.</td></tr>
+            <tr><td><strong>Inventory:</strong> Physical products awaiting liquidation.</td><td></td></tr>
         </tbody>
     </table>
-
-    <hr style="border-color: #38b000; margin: 40px 0;">
 
     <h2>🕹️ The 4 Liquidity Gauges</h2>
     <div class="gauge-container">
         <div class="gauge-card">
             <div class="gauge-title">🟢 Gauge 1: Working Capital</div>
-            <p>Measures the absolute volume of liquid capital available for day-to-day maneuvers.</p>
             <div class="formula">Working Capital = Current Assets - Current Liabilities</div>
-            <div><span class="status status-g">Positive:</span> Powered smoothly.</div>
-            <div><span class="status status-r">Negative:</span> Warning! High insolvency risk.</div>
+            <p><span class="status status-g">Positive:</span> Operational flexibility. <span class="status status-r">Negative:</span> Imminent system lock up.</p>
         </div>
-
         <div class="gauge-card">
             <div class="gauge-title">🔵 Gauge 2: Current Ratio</div>
-            <p>Evaluates how many times short-term assets can shield current liabilities.</p>
             <div class="formula">Current Ratio = Current Assets / Current Liabilities</div>
-            <div><span class="status status-r">&lt; 1.0:</span> Critical shortage.</div>
-            <div><span class="status status-g">1.2 - 2.0:</span> Stable Orbit.</div>
-            <div><span class="status status-y">&gt; 2.0:</span> Cash Hoarding inefficiencies.</div>
+            <p><span class="status status-g">1.2 - 2.0:</span> Target Health. <span class="status status-y">&gt; 2.0:</span> Underutilized resources.</p>
         </div>
-
         <div class="gauge-card">
             <div class="gauge-title">🟣 Gauge 3: Quick Ratio (Acid-Test)</div>
-            <p>Strips away slow-moving inventory. Can you pay instantly if sales stop entirely?</p>
             <div class="formula">Quick Ratio = (Cash + Securities + Receivables) / Current Liabilities</div>
-            <div><span class="status status-g">1.0 or higher:</span> Safe tactical buffer zone.</div>
+            <p><span class="status status-g">&gt;= 1.0:</span> Survives complete warehouse inventory failure shutdowns.</p>
         </div>
-
         <div class="gauge-card">
             <div class="gauge-title">🟡 Gauge 4: Cash Ratio</div>
-            <p>The absolute most conservative floor metric. No collections, no sales—just hard cash.</p>
             <div class="formula">Cash Ratio = (Cash + Cash Equivalents) / Current Liabilities</div>
-            <div><span class="status status-g">0.5 or higher:</span> Strong immediate cash position.</div>
+            <p><span class="status status-g">&gt;= 0.5:</span> Extreme near-term balance sheet stability performance safety.</p>
         </div>
     </div>
 
     <div class="quiz-section">
-        <h2>📝 Flight Deck Verification: Quiz 3.1</h2>
-        <p>Confirm your dashboard calculations. Click an option to check your answers.</p>
+        <h2>📝 Flight Deck Evaluation: Quiz 3.1</h2>
 
         <div class="question-card">
             <p><strong>Q1:</strong> What is omitted from the numerator of the Quick Ratio compared to the Current Ratio?</p>
@@ -128,7 +96,7 @@
                 <button class="option-btn" onclick="checkAns(this, true)">C) Inventory</button>
                 <button class="option-btn" onclick="checkAns(this, false)">D) Cash equivalents</button>
             </div>
-            <div class="explanation">Correct! Inventory is eliminated because it takes the longest time to liquidate during an immediate crunch.</div>
+            <div class="explanation">Correct! Inventory is dropped because it takes the longest time to reliably liquidate in emergencies.</div>
         </div>
 
         <div class="question-card">
@@ -139,10 +107,97 @@
                 <button class="option-btn" onclick="checkAns(this, false)">C) $20,000</button>
                 <button class="option-btn" onclick="checkAns(this, false)">D) -$20,000</button>
             </div>
-            <div class="explanation">Correct! Total Assets = $50k+$30k+$40k = $120k. Working Capital = $120k - $60k = $60,000.</div>
+            <div class="explanation">Correct! Total Assets ($120k) - Liabilities ($60k) leaves a positive cushion of $60,000.</div>
         </div>
 
+        <div class="question-card">
+            <p><strong>Q3:</strong> Which metric represents the most strict, ultra-conservative baseline test of direct solvency?</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) Current Ratio</button>
+                <button class="option-btn" onclick="checkAns(this, false)">B) Quick Ratio</button>
+                <button class="option-btn" onclick="checkAns(this, true)">C) Cash Ratio</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) Working Capital Cushion</button>
+            </div>
+            <div class="explanation">Correct! The Cash Ratio eliminates receivables and inventory, measuring only immediate hard asset capital reserves.</div>
         </div>
+
+        <div class="question-card">
+            <p><strong>Q4:</strong> Using data from Q2 (Assets = $120,000; Liabilities = $60,000), compute the **Current Ratio**.</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) 0.5</button>
+                <button class="option-btn" onclick="checkAns(this, false)">B) 1.5</button>
+                <button class="option-btn" onclick="checkAns(this, true)">C) 2.0</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) 1.2</button>
+            </div>
+            <div class="explanation">Correct! $120,000 / $60,000 = 2.0.</div>
+        </div>
+
+        <div class="question-card">
+            <p><strong>Q5:</strong> A bloated Current Ratio calculation equal to 4.5 points typically identifies:</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) Maximum enterprise deployment capability</button>
+                <button class="option-btn" onclick="checkAns(this, true)">B) Strategic operational resource accumulation inefficiency</button>
+                <button class="option-btn" onclick="checkAns(this, false)">C) Absolute optimization of current debt management channels</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) Imminent risk vectors</button>
+            </div>
+            <div class="explanation">Correct! Stagnant capital returns zero growth vectors; hoarding cash shows resource misallocation.</div>
+        </div>
+
+        <div class="question-card">
+            <p><strong>Q6:</strong> Cash: $15,000 | Securities: $5,000 | Receivables: $10,000 | Inventory: $20,000 | Current Liabilities: $25,000. Calculate the <strong>Quick Ratio</strong>.</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, true)">A) 1.2</button>
+                <button class="option-btn" onclick="checkAns(this, false)">B) 0.8</button>
+                <button class="option-btn" onclick="checkAns(this, false)">C) 2.0</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) 1.0</button>
+            </div>
+            <div class="explanation">Correct! ($15k + $5k + $10k) / $25k = 30 / 25 = 1.2.</div>
+        </div>
+
+        <div class="question-card">
+            <p><strong>Q7:</strong> Using the structural corporate variables from Q6, identify the final <strong>Cash Ratio</strong> output status.</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) 0.6</button>
+                <button class="option-btn" onclick="checkAns(this, true)">B) 0.8</button>
+                <button class="option-btn" onclick="checkAns(this, false)">C) 1.2</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) 0.5</button>
+            </div>
+            <div class="explanation">Correct! Only pure Cash + Securities count ($20k / $25k = 0.8).</div>
+        </div>
+
+        <div class="question-card">
+            <p><strong>Q8:</strong> Sustaining clear structural **negative** balance readings across core Working Capital channels indicates:</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) Dynamic funding capability scaling matrices</button>
+                <button class="option-btn" onclick="checkAns(this, true)">B) Structural liabilities completely outstripping short-term asset reserves</button>
+                <button class="option-btn" onclick="checkAns(this, false)">C) High optimization of fixed capital depreciation timelines</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) Inverted gross margin structural adjustments</button>
+            </div>
+            <div class="explanation">Correct! Your short-term debts outweigh your short-term liquid tools. Immediate liquidity crunch danger.</div>
+        </div>
+
+        <div class="question-card">
+            <p><strong>Q9:</strong> An operations model demands a Current Ratio calibration equal to 1.5x. Liabilities sit at $100,000. What must <strong>Current Assets</strong> equal?</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) $66,667</button>
+                <button class="option-btn" onclick="checkAns(this, true)">B) $150,000</button>
+                <button class="option-btn" onclick="checkAns(this, false)">C) $100,000</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) $250,000</button>
+            </div>
+            <div class="explanation">Correct! Assets = 1.5 Target x $100,000 Liabilities = $150,000.</div>
+        </div>
+
+        <div class="question-card">
+            <p><strong>Q10:</strong> Which internal line item cleanly populates standard corporate <strong>Current Liabilities</strong> registers?</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="checkAns(this, false)">A) Unbilled Client Balances</button>
+                <button class="option-btn" onclick="checkAns(this, false)">B) Deferred Procurement Valuations</button>
+                <button class="option-btn" onclick="checkAns(this, true)">C) Accrued Expense Records</button>
+                <button class="option-btn" onclick="checkAns(this, false)">D) Amortization Allocations</button>
+            </div>
+            <div class="explanation">Correct! Accrued expenses are short-term liabilities representing incurred but unpaid operational bills.</div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -150,10 +205,8 @@
         const card = btn.closest('.question-card');
         const exp = card.querySelector('.explanation');
         const buttons = card.querySelectorAll('.option-btn');
-        
-        buttons.forEach(b => b.style.opacity = '0.5');
+        buttons.forEach(b => b.style.opacity = '0.4');
         btn.style.opacity = '1';
-        
         if(isCorrect) {
             btn.style.background = '#10b981';
             exp.style.display = 'block';
