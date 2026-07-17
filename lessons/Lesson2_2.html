@@ -4,24 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 2.2: The Income Statement</title>
-  
   <style>
     :root {
-      --bg-dark: #111a2e;
-      --card-bg: #1e293b;
-      --border-color: #334155;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --primary-accent: #3b82f6;
-      --success: #10b981;
-      --error: #ef4444;
-      --warning: #f59e0b;
+      --is-bg: #f0fdf4;
+      --is-border: #bbf7d0;
+      --is-text: #166534;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #15803d;
+      --light-gray: #f8fafc;
     }
 
     body {
       margin: 0;
       padding: 20px;
-      background-color: transparent;
+      background-color: #fafaf9;
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
@@ -33,29 +31,33 @@
     }
 
     .header-banner {
-      background: linear-gradient(135deg, #4f46e5, #06b6d4);
-      padding: 24px;
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      padding: 30px;
       border-radius: 12px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+      border-left: 8px solid var(--accent);
     }
 
     .header-banner h1 {
       margin: 0 0 10px 0;
       font-size: 28px;
+      color: var(--is-text);
     }
 
     .header-banner p {
       margin: 0;
-      opacity: 0.9;
-      font-size: 15px;
+      color: var(--is-text);
+      font-weight: 600;
+      font-size: 14px;
     }
 
     .card {
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
       padding: 24px;
       margin-bottom: 25px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
     }
 
     h2, h3 {
@@ -64,386 +66,369 @@
     }
 
     h2 {
-      border-bottom: 2px solid var(--border-color);
+      border-bottom: 2px solid #f1f5f9;
       padding-bottom: 8px;
     }
 
-    ul, ol {
-      padding-left: 20px;
-      margin-bottom: 20px;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    strong {
-      color: #fff;
-    }
-
-    .formula-box {
-      background: rgba(59, 130, 246, 0.1);
-      border-left: 4px solid var(--primary-accent);
-      padding: 12px;
-      margin: 10px 0 20px 0;
-      font-family: monospace;
-      font-size: 14px;
-    }
-
-    /* Quiz Elements */
-    .quiz-card {
-      background: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 12px;
-      padding: 25px;
-      margin-top: 35px;
-    }
-
-    .step-group {
-      margin-bottom: 20px;
-    }
-
-    .step-label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--text-main);
-      font-size: 15px;
-    }
-
-    .quiz-select {
+    .interactive-table {
       width: 100%;
-      padding: 12px;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
       border-radius: 8px;
-      border: 1px solid var(--border-color);
-      background-color: #0f172a;
-      color: var(--text-main);
-      font-size: 14px;
-      outline: none;
-      box-sizing: border-box;
-      transition: all 0.25s ease;
+      overflow: hidden;
     }
 
-    .quiz-select:focus {
-      border-color: var(--primary-accent);
+    .interactive-table th {
+      background-color: var(--accent);
+      color: white;
+      padding: 12px 15px;
+      text-align: left;
     }
 
-    #feedback-message {
-      margin-bottom: 15px;
+    .interactive-table td {
+      padding: 12px 15px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .term-hl {
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
       font-weight: bold;
-      text-align: center;
-      padding: 10px;
-      border-radius: 6px;
+      transition: all 0.2s;
+      background: var(--is-bg);
+      color: var(--is-text);
+    }
+
+    .term-hl:hover {
+      background: #bbf7d0;
+    }
+
+    #def-display {
+      min-height: 60px;
+      padding: 15px;
+      margin: 20px 0;
+      background: #fef8e7;
+      border: 1px solid #fde047;
+      border-radius: 8px;
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+
+    /* Step-by-Step interactive engine */
+    .step-box {
+      border-left: 4px solid var(--accent);
+      padding-left: 20px;
+      margin: 20px 0;
       display: none;
     }
 
-    .submit-btn {
-      width: 100%;
-      padding: 14px;
+    .step-box.active {
+      display: block;
+      animation: slideIn 0.4s ease-out;
+    }
+
+    .btn-next {
+      background: var(--accent);
+      color: white;
       border: none;
-      background: var(--primary-accent);
-      color: #fff;
-      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
       font-weight: bold;
+      margin-top: 15px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-next:hover {
+      opacity: 0.9;
+    }
+
+    /* Quiz Panel */
+    .quiz-area {
+      background: #fdfdfd;
+      border: 2px solid var(--is-border);
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 40px;
+    }
+
+    .option-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
+      background: white;
       cursor: pointer;
       transition: background 0.2s;
     }
 
-    .submit-btn:hover {
-      background: #2563eb;
+    .option-btn:hover {
+      background: var(--light-gray);
     }
 
-    /* Success Panel */
-    #success-panel {
-      display: none;
-      text-align: center;
-      padding: 30px 15px;
-    }
-
-    .success-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-
-    .exit-btn {
-      padding: 12px 30px;
-      border: none;
-      background: var(--success);
-      color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
+    /* Practical Board Placement */
+    .bank-item {
+      display: inline-block;
+      padding: 8px 16px;
+      margin: 5px;
+      background: var(--is-bg);
+      border: 2px solid var(--is-border);
+      color: var(--is-text);
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: bold;
       transition: transform 0.1s;
     }
 
-    .exit-btn:hover {
-      transform: scale(1.02);
+    .bank-item.selected {
+      transform: scale(0.95);
+      opacity: 0.6;
+      border-style: dashed;
     }
+
+    .drop-zone {
+      display: inline-block;
+      width: 120px;
+      height: 35px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 6px;
+      vertical-align: middle;
+      text-align: center;
+      line-height: 35px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
   </style>
 </head>
 <body>
 
   <div class="lesson-container">
-    
     <div class="header-banner">
-      <p>MODULE 2: FINANCIAL STATEMENTS</p>
-      <h1>Lesson 2.2: The Income Statement</h1>
+      <p>LESSON 2.2</p>
+      <h1>The Income Statement</h1>
     </div>
 
     <div class="card">
       <p>
-        An income statement, or profit and loss (P&amp;L) statement, is a core financial document that summarizes a company’s revenues, expenses, gains, and losses over a specific period. It begins with total revenue (the "top line") and ends with net income (the "bottom line") to show overall profitability. 
+        An income statement, or profit and loss (P&amp;L) statement, is a core financial document that summarizes a company’s revenues, expenses, gains, and losses over a specific period. It begins with total revenue (the "top line") and ends with net income (the "bottom line") to show overall profitability.
       </p>
     </div>
 
+    <h3>1. Interactive Statement View</h3>
+    <p><i>Click the <strong>highlighted items</strong> below to see their definitions.</i></p>
+
+    <div id="def-display"></div>
+
     <div class="card">
-      <h2>How to Make an Income Statement</h2>
+      <table class="interactive-table">
+        <thead>
+          <tr><th colspan="2">Snapshot Corp | Income Statement | For the Year Ended Dec 31, 2026</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="term-hl" onclick="showDef('rev')">Revenue / Sales</span></td>
+            <td style="text-align: right;">$250,000</td>
+          </tr>
+          <tr>
+            <td><span class="term-hl" onclick="showDef('cogs')">Cost of Goods Sold (COGS)</span></td>
+            <td style="text-align: right;">($100,000)</td>
+          </tr>
+          <tr style="background: var(--light-gray); font-weight: bold;">
+            <td><span class="term-hl" onclick="showDef('gp')">Gross Profit</span></td>
+            <td style="text-align: right;">$150,000</td>
+          </tr>
+          <tr>
+            <td><span class="term-hl" onclick="showDef('opex')">Operating Expenses (OpEx)</span></td>
+            <td style="text-align: right;">($80,000)</td>
+          </tr>
+          <tr style="background: var(--light-gray); font-weight: bold;">
+            <td><span class="term-hl" onclick="showDef('opi')">Operating Income</span></td>
+            <td style="text-align: right;">$70,000</td>
+          </tr>
+          <tr>
+            <td><span class="term-hl" onclick="showDef('nonOp')">Non-Operating Items</span></td>
+            <td style="text-align: right;">($20,000)</td>
+          </tr>
+          <tr style="background: var(--is-bg); font-weight: bold; color: var(--is-text);">
+            <td><span class="term-hl" onclick="showDef('ni')">Net Income</span></td>
+            <td style="text-align: right; border-bottom: 4px double var(--accent);">$50,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>2. How to Make an Income Statement (Step-by-Step)</h3>
+      <div id="step1" class="step-box active">
+        <h4>Step 1: Choose Header Info & Total Revenue</h4>
+        <p>Set a standard three-line header (Company Name, Statement Title, and specific Time Period like "For the month ended..."). Record Gross Revenue and subtract returns to get your Top Line.</p>
+        <button class="btn-next" onclick="nextStep(2)">Next: Calculate Gross Profit →</button>
+      </div>
+      <div id="step2" class="step-box">
+        <h4>Step 2: Subtract Production Expenses (COGS)</h4>
+        <p>Take your total revenue and subtract direct manufacturing or labor costs. <br><strong>Formula: Gross Profit = Total Revenue - COGS</strong></p>
+        <button class="btn-next" onclick="nextStep(3)">Next: Deduct Operating Expenses →</button>
+      </div>
+      <div id="step3" class="step-box">
+        <h4>Step 3: Account for Day-to-Day Operations</h4>
+        <p>Deduct indirect overhead costs like office rent, marketing, and corporate administrative wages. <br><strong>Formula: Operating Income = Gross Profit - Operating Expenses</strong></p>
+        <button class="btn-next" onclick="nextStep(4)">Next: Factor Interest and Taxes →</button>
+      </div>
+      <div id="step4" class="step-box">
+        <h4>Step 4: The Bottom Line</h4>
+        <p>Subtract your non-operating charges (interest and income taxes) to yield the ultimate profitability. <br><strong>Formula: Net Income = Operating Income - Interest and Taxes</strong></p>
+        <button class="btn-next" onclick="nextStep(1)">Restart Guide ↺</button>
+      </div>
+    </div>
+
+    <div class="quiz-area">
+      <h2 style="text-align: center;">🏁 Lesson 2.2 Quiz Challenge</h2>
+      <div id="quiz-container"></div>
       
-      <h3 style="margin-top: 15px;">1. Set the Header</h3>
-      <p>Every income statement requires a standard three-line header:</p>
-      <ul>
-        <li><strong>Company Name:</strong> [Company Name]</li>
-        <li><strong>Statement Name:</strong> Income Statement (or Profit and Loss Statement)</li>
-        <li><strong>Time Period:</strong> "For the month ended [Date]" or "For the year ended [Date]"</li>
-      </ul>
-
-      <h3>2. List Your Revenues</h3>
-      <p>Start by tracking all the money your business earned from selling goods or services.</p>
-      <ul>
-        <li><strong>Gross Revenue / Sales:</strong> The total amount of money made before any deductions.</li>
-        <li><strong>Total Revenue:</strong> Gross revenue minus returns, discounts, or refunds.</li>
-      </ul>
-
-      <h3>3. Account for Cost of Goods Sold (COGS)</h3>
-      <p>Subtract the direct costs required to produce or deliver your products/services. This includes raw materials, labor, and shipping.</p>
-      <div class="formula-box">Gross Profit = Total Revenue - COGS</div>
-
-      <h3>4. Deduct Operating Expenses</h3>
-      <p>List your indirect, day-to-day business costs, such as rent, utilities, marketing, and employee salaries.</p>
-      <div class="formula-box">Operating Income = Gross Profit - Operating Expenses</div>
-
-      <h3>5. Factor in Interest and Taxes</h3>
-      <p>Account for expenses not directly related to day-to-day operations, such as interest on business loans and corporate income tax.</p>
-      <div class="formula-box">Net Income = Operating Income - Interest and Taxes</div>
-    </div>
-
-    <div class="card">
-      <h2>Key Terms to Remember</h2>
-      <ul>
-        <li><strong>Revenue / Sales:</strong> The "top line" represents total income from selling goods or providing services before any expenses are deducted.</li>
-        <li><strong>Cost of Goods Sold (COGS):</strong> The direct costs associated with creating the product or delivering the service, such as raw materials and direct labor.</li>
-        <li><strong>Gross Profit:</strong> Revenue minus COGS. This indicates how efficiently a company uses labor and supplies in the production process.</li>
-        <li><strong>Operating Expenses (OpEx):</strong> Day-to-day overhead costs required to run the business that aren't tied directly to production, such as rent, salaries, marketing, and utilities.</li>
-        <li><strong>Operating Income:</strong> Gross profit minus operating expenses. This measures the profit earned from regular, core business operations.</li>
-        <li><strong>Non-Operating Items:</strong> Revenues, expenses, gains, or losses that fall outside regular business operations, such as interest paid on debt, interest earned on investments, or taxes.</li>
-        <li><strong>Net Income:</strong> The "bottom line." This is the final profit or loss after all revenues, expenses, and taxes have been accounted for.</li>
-      </ul>
-    </div>
-
-    <div class="quiz-card">
-      <h3 style="text-align: center; margin-bottom: 5px;">Assemble the Statement</h3>
-      <p style="text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">
-        Select the correct structural elements below to assemble a standard Income Statement in the proper descending order.
-      </p>
-
-      <div id="quiz-form">
-        <div class="step-group">
-          <label class="step-label">Step 1: Header / Top Line</label>
-          <select id="step1" class="quiz-select">
-            <option value="">-- Select Option --</option>
-          </select>
-        </div>
-
-        <div class="step-group">
-          <label class="step-label">Step 2: Subtract Direct Production Cost</label>
-          <select id="step2" class="quiz-select">
-            <option value="">-- Select Option --</option>
-          </select>
-        </div>
-
-        <div class="step-group">
-          <label class="step-label">Step 3: Intermediate Profit Result</label>
-          <select id="step3" class="quiz-select">
-            <option value="">-- Select Option --</option>
-          </select>
-        </div>
-
-        <div class="step-group">
-          <label class="step-label">Step 4: Subtract Commercial Overheads</label>
-          <select id="step4" class="quiz-select">
-            <option value="">-- Select Option --</option>
-          </select>
-        </div>
-
-        <div class="step-group">
-          <label class="step-label">Step 5: Bottom Profit Result</label>
-          <select id="step5" class="quiz-select">
-            <option value="">-- Select Option --</option>
-          </select>
-        </div>
-
-        <div id="feedback-message"></div>
+      <div id="build-area" style="display:none; border-top: 2px dashed #cbd5e1; padding-top: 25px; margin-top: 20px;">
+        <h3>Practical: Build the Statement</h3>
+        <p>Calculate the <b>Gross Profit</b>. Click a value from the bank, then click the <b>"?"</b> target box to slot it in.</p>
         
-        <button id="submit-quiz-btn" class="submit-btn">
-          Check Answers
-        </button>
-      </div>
+        <div style="margin-bottom: 20px;">
+          <div class="bank-item" onclick="selectValue('$150,000', this)">$150,000</div>
+          <div class="bank-item" onclick="selectValue('$250,000', this)">$250,000</div>
+          <div class="bank-item" onclick="selectValue('$100,000', this)">$100,000</div>
+        </div>
 
-      <div id="success-panel">
-        <div class="success-icon">🎉</div>
-        <h3 style="font-size: 24px; margin-bottom: 10px;">Excellent Effort!</h3>
-        <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 15px;">
-          You've completed all segments of this interactive profit &amp; loss analysis worksheet.
-        </p>
-        <button id="exit-practice-btn" class="exit-btn">
-          Exit Practice Panel
-        </button>
+        <div style="font-size: 1.25em; font-weight: bold;">
+          Revenue ($250,000) - COGS ($100,000) = <div class="drop-zone" id="gp-slot" onclick="placeValue('gp-slot')">?</div>
+        </div>
+        
+        <button class="btn-next" style="background: var(--accent); margin-top: 20px;" onclick="checkPractical()">Check Result</button>
+        <p id="practical-feedback" style="font-weight: bold; margin-top: 15px;"></p>
       </div>
     </div>
-
   </div>
 
   <script>
-    // Data containing correct structures and 5-6 total unique elements per step
-    const quizData = {
-      step1: {
-        correct: "Gross Revenue / Sales",
-        options: [
-          "Gross Revenue / Sales",
-          "Cost of Goods Sold",
-          "Gross Profit margin",
-          "Operating Expenses (SG&A)",
-          "Retained Earnings",
-          "Accounts Receivable"
-        ]
-      },
-      step2: {
-        correct: "Cost of Goods Sold (COGS)",
-        options: [
-          "Cost of Goods Sold (COGS)",
-          "Gross Profit margin",
-          "Depreciation Expense",
-          "Interest & Tax expense",
-          "Owner's Equity Draw"
-        ]
-      },
-      step3: {
-        correct: "Gross Profit",
-        options: [
-          "Gross Profit",
-          "Operating Income (EBIT)",
-          "Net Profit / Net Income",
-          "Total Revenue",
-          "Working Capital"
-        ]
-      },
-      step4: {
-        correct: "Operating Expenses (SG&A)",
-        options: [
-          "Operating Expenses (SG&A)",
-          "Cost of Goods Sold (COGS)",
-          "Interest & Tax expense",
-          "Dividends Distributed",
-          "Amortization Costs"
-        ]
-      },
-      step5: {
-        correct: "Net Income / Net Profit",
-        options: [
-          "Net Income / Net Profit",
-          "Gross Profit",
-          "Operating Income (EBIT)",
-          "Sales Revenue",
-          "Trial Balance Total"
-        ]
-      }
+    const definitions = {
+      rev: "<strong>Revenue / Sales:</strong> The top line. Represents total income from selling goods or services before any expenses are subtracted.",
+      cogs: "<strong>Cost of Goods Sold (COGS):</strong> The direct production cost associated with creating the physical product or service.",
+      gp: "<strong>Gross Profit:</strong> Revenue minus COGS. Measures how efficiently a business uses raw assets, supplies, and assembly labor.",
+      opex: "<strong>Operating Expenses (OpEx):</strong> Day-to-day overhead costs to run the business that aren't tied directly to production (e.g. rent, payroll, marketing).",
+      opi: "<strong>Operating Income:</strong> Gross profit minus operating expenses. Reflects earnings from regular, core business activities.",
+      nonOp: "<strong>Non-Operating Items:</strong> Outside costs or gains like interest paid on debt, investment returns, or corporate taxes.",
+      ni: "<strong>Net Income:</strong> The bottom line. The absolute final profit or loss after subtracting all revenues, expenses, and taxes."
     };
 
-    // Fisher-Yates array shuffling logic
-    function shuffleArray(array) {
-      let arr = [...array];
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
+    function showDef(term) {
+      const display = document.getElementById('def-display');
+      display.innerHTML = definitions[term];
+      display.style.display = 'block';
     }
 
-    // Populate drop selectors on window mount
-    function initQuiz() {
-      for (let stepId in quizData) {
-        const selectElement = document.getElementById(stepId);
-        const shuffled = shuffleArray(quizData[stepId].options);
-        
-        shuffled.forEach(optionText => {
-          const opt = document.createElement("option");
-          opt.value = optionText;
-          opt.textContent = optionText;
-          selectElement.appendChild(opt);
-        });
-      }
+    function nextStep(num) {
+      document.querySelectorAll('.step-box').forEach(sb => sb.classList.remove('active'));
+      document.getElementById('step' + num).classList.add('active');
     }
 
-    // Validation checking
-    document.getElementById("submit-quiz-btn").addEventListener("click", function() {
-      let allCorrect = true;
-      let allSelected = true;
-      const feedback = document.getElementById("feedback-message");
+    const mcqs = [
+      {
+        q: "What is often referred to as the 'top line' of an Income Statement?",
+        options: ["Net Income", "Operating Income", "Gross Revenue / Sales", "Gross Profit"],
+        correct: 2
+      },
+      {
+        q: "Which calculation represents Operating Income?",
+        options: ["Gross Profit - Operating Expenses", "Total Revenue - COGS", "Operating Income - Taxes", "Revenue + Cash"],
+        correct: 0
+      },
+      {
+        q: "What type of expense are items like office rent, marketing, and standard executive salaries?",
+        options: ["Cost of Goods Sold", "Non-Operating Expenses", "Operating Expenses (OpEx)", "Equity Dividends"],
+        correct: 2
+      },
+      {
+        q: "If Revenue is $200,000 and COGS is $80,000, what is the Gross Profit?",
+        options: ["$280,000", "$120,000", "$80,000", "$200,000"],
+        correct: 1
+      },
+      {
+        q: "Where do taxes and interest on business loans get factored on the Income Statement?",
+        options: ["They are added to revenue", "Just before calculating Net Income", "They are ignored", "Within Operating Expenses"],
+        correct: 1
+      }
+    ];
 
-      feedback.style.display = "none";
+    let currentQIdx = 0;
+    let selectedVal = "";
+    let selectedEl = null;
 
-      for (let stepId in quizData) {
-        const selectElement = document.getElementById(stepId);
-        const val = selectElement.value;
+    function loadQuestion() {
+      const data = mcqs[currentQIdx];
+      let html = `<h4>Question ${currentQIdx + 1} of 5</h4><p style="font-weight: 500;">${data.q}</p>`;
+      
+      let mapped = data.options.map((opt, idx) => ({ text: opt, originalIndex: idx }));
+      mapped.sort(() => Math.random() - 0.5);
 
-        if (!val) {
-          allSelected = false;
-        }
+      mapped.forEach(opt => {
+        html += `<button class="option-btn" onclick="checkAnswer(${opt.originalIndex})">${opt.text}</button>`;
+      });
+      document.getElementById('quiz-container').innerHTML = html;
+    }
 
-        if (val === quizData[stepId].correct) {
-          selectElement.style.borderColor = "var(--success)";
-          selectElement.style.backgroundColor = "rgba(16, 185, 129, 0.1)";
+    function checkAnswer(idx) {
+      if (idx === mcqs[currentQIdx].correct) {
+        currentQIdx++;
+        if (currentQIdx < mcqs.length) {
+          loadQuestion();
         } else {
-          allCorrect = false;
-          if (val) {
-            selectElement.style.borderColor = "var(--error)";
-            selectElement.style.backgroundColor = "rgba(239, 68, 68, 0.1)";
-          } else {
-            selectElement.style.borderColor = "var(--border-color)";
-            selectElement.style.backgroundColor = "#0f172a";
-          }
+          document.getElementById('quiz-container').innerHTML = "<h3 style='color: var(--accent);'>🎉 Multiple Choice Questions Passed!</h3>";
+          document.getElementById('build-area').style.display = 'block';
         }
+      } else {
+        alert("Incorrect answer. Please review the material and try again!");
       }
+    }
 
-      // Ensure all blanks are filled in
-      if (!allSelected) {
-        feedback.textContent = "Please answer all 5 steps before checking!";
-        feedback.style.color = "var(--warning)";
-        feedback.style.backgroundColor = "rgba(245, 158, 11, 0.1)";
-        feedback.style.display = "block";
+    function selectValue(val, el) {
+      if (selectedEl) {
+        selectedEl.classList.remove('selected');
+      }
+      selectedVal = val;
+      selectedEl = el;
+      el.classList.add('selected');
+    }
+
+    function placeValue(targetId) {
+      if (!selectedVal) {
+        alert("Please click a value from the bank first!");
         return;
       }
+      const target = document.getElementById(targetId);
+      target.innerText = selectedVal;
+      target.style.borderColor = "var(--accent)";
+      target.style.color = "var(--accent)";
+    }
 
-      // Determine final success state
-      if (allCorrect) {
-        document.getElementById("quiz-form").style.display = "none";
-        document.getElementById("success-panel").style.display = "block";
+    function checkPractical() {
+      const answer = document.getElementById('gp-slot').innerText;
+      const feedback = document.getElementById('practical-feedback');
+      if (answer === "$150,000") {
+        feedback.style.color = "var(--accent)";
+        feedback.innerHTML = "Awesome! That is correct. Gross Profit is indeed $150,000.";
       } else {
-        feedback.textContent = "Some answers are incorrect. Check the red highlighted fields and try again!";
-        feedback.style.color = "var(--error)";
-        feedback.style.backgroundColor = "rgba(239, 68, 68, 0.1)";
-        feedback.style.display = "block";
+        feedback.style.color = "red";
+        feedback.innerHTML = "Incorrect balance. Try again! Formula: Revenue - COGS.";
       }
-    });
+    }
 
-    // Exit Button Handler
-    document.getElementById("exit-practice-btn").addEventListener("click", function() {
-      window.location.href = "../index.html"; 
-    });
-
-    window.onload = initQuiz;
+    loadQuestion();
   </script>
 </body>
 </html>
