@@ -1,0 +1,83 @@
+<div style="font-family: system-ui, sans-serif;">
+    <h2 style="color: #4f46e5; margin-top: 0;">Lesson 3.6: Professional Investment Intelligence Auditing</h2>
+    <p style="line-height: 1.6; color: #334155;">
+        As an institutional allocator, your ultimate goal is to process incoming quantitative data sheets, identify hidden structural risks, and generate definitive binary **Invest** or **Do Not Invest** capital deployment strategies.
+    </p>
+
+    <div style="background: #faf5ff; border: 1px solid #e9d5ff; padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h3 style="margin-top: 0; color: #6b21a8; font-size: 16px;">💼 Target Profile Case File: Lumina BioTech Logistics</h3>
+        <p style="font-size: 14px; color: #475569; line-height: 1.5;">
+            Lumina BioTech routes sensitive temperature-dependent biological assets. They have recently reported record-high top-line growth figures across industry media networks. However, multiple corporate insider data updates reflect shifting cash cycle alignments underneath. Review their multi-year performance sheets to trace the structural reality.
+        </p>
+
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 16px 0;">
+            <span style="font-size: 11px; text-transform: uppercase; color: #a21caf; font-weight: 700; block mb-8">Structural Performance Trend Metrics</span>
+            <table style="width: 100%; font-size: 13px; border-collapse: collapse; text-align: left; margin-top: 8px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #e2e8f0; color: #1e293b; font-weight: 700;">
+                        <th style="padding: 6px 0;">Metric Track Checked</th>
+                        <th>Year 2023</th>
+                        <th>Year 2024</th>
+                        <th>Year 2025</th>
+                    </tr>
+                </thead>
+                <tbody style="color: #475569;">
+                    <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 8px 0; font-weight: 600; color: #1e293b;">Net Revenues Generated</td><td>$10M</td><td>$15M</td><td>$24M</td></tr>
+                    <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 8px 0;">Current Ratio Scale</td><td>2.10</td><td>1.45</td><td>0.85</td></tr>
+                    <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 8px 0;">Debt-to-Equity Ratio</td><td>0.45</td><td>1.10</td><td>2.65</td></tr>
+                    <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 8px 0;">Receivables Turnover Index</td><td>12.4x</td><td>7.2x</td><td>3.1x</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <label style="font-size: 13px; font-weight: 700; color: #1e293b; display: block; margin-bottom: 8px;">🚨 BOARDROOM PORTFOLIO DECISION ACTION:</label>
+            <p style="font-size: 12px; color: #64748b; margin-top: 0; margin-bottom: 12px;">Synthesize the ratios trend lines. Is Lumina BioTech a safe, worth-investing environment for your capital deployment profile?</p>
+            
+            <div style="display: flex; gap: 16px;">
+                <label style="cursor: pointer; font-size: 14px; font-weight: 600; color: #10b981;">
+                    <input type="radio" name="inv-decision" value="yes" style="margin-right: 6px;"> Deploy Capital (INVEST)
+                </label>
+                <label style="cursor: pointer; font-size: 14px; font-weight: 600; color: #ef4444;">
+                    <input type="radio" name="inv-decision" value="no" style="margin-right: 6px;"> Reject Strategy (DO NOT INVEST)
+                </label>
+            </div>
+
+            <button onclick="evaluateInvestment()" style="background: #4f46e5; color: white; border: none; padding: 10px 16px; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 16px; width: 100%;">
+                Log Professional Investment Thesis Choice
+            </button>
+            <div id="decision-feedback" style="margin-top: 14px; font-size: 13px; line-height: 1.5; padding-left: 4px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function evaluateInvestment() {
+        const selectedOption = document.querySelector('input[name="inv-decision"]:checked');
+        const feedback = document.getElementById('decision-feedback');
+        
+        if (!selectedOption) {
+            feedback.textContent = "⚠️ Allocation error: You must check a definitive binary position before submitting your thesis profile.";
+            feedback.style.color = "#b45309";
+            return;
+        }
+
+        if (selectedOption.value === "no") {
+            feedback.innerHTML = `
+                <span style="color: #10b981; font-weight: 700; display: block; font-size: 14px;">🎉 CORRECT INVESTMENT THESIS CHOICE. REJECTION PROFILE LOGGED ACCURATELY.</span>
+                <span style="color: #334155; display: block; margin-top: 6px;">
+                    <strong>Core Analysis:</strong> While top-line revenues look spectacular on media briefings ($10M to $24M), Lumina BioTech is suffering from systemic decay. 
+                    Their short-term liquidity collapsed under safety lines (Current Ratio plummeted down to 0.85), debt loads skyrocketed into risky tiers (2.65), and customer cash cycles are grinding to a halt (Receivables Turnover collapsed from 12.4x down to 3.1x). 
+                    They are fueling fake top-line growth using aggressive debt lines while locking cash into uncollected invoices. Great catch!
+                </span>`;
+        } else {
+            feedback.innerHTML = `
+                <span style="color: #ef4444; font-weight: 700; display: block; font-size: 14px;">❌ STRATEGIC WARNING: INVESTOR LOSS DETECTED.</span>
+                <span style="color: #334155; display: block; margin-top: 6px;">
+                    <strong>Core Analysis:</strong> You fell into the top-line income trap. Lumina BioTech's growth profile is completely unsustainable. 
+                    By funding infrastructure using massive leverage lines (Debt-to-Equity hit a dangerous 2.65 threshold) and showing an inability to collect customer cash values efficiently (Receivables Turnover down to 3.1x), they possess structural default risk characteristics. 
+                    Re-examine the metrics profiles to identify their critical liquidity bottlenecks!
+                </span>`;
+        }
+    }
+</script>
