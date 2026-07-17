@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2.6: Financial Statement Assembly Challenge</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #0284c7;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --light-gray: #f8fafc;
+      --success: #16a34a;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #fafaf9;
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .lesson-container {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .header-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      border-left: 8px solid var(--accent);
+      color: white;
+    }
+
+    .header-banner h1 {
+      margin: 0 0 10px 0;
+      font-size: 28px;
+    }
+
+    .header-banner p {
+      margin: 0;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+
+    .bank-area {
+      background: #f1f5f9;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .bank-item {
+      display: inline-block;
+      padding: 8px 14px;
+      margin: 5px;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+    }
+
+    .bank-item:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .bank-item.selected {
+      background: var(--accent);
+      color: white;
+      border-style: dotted;
+      opacity: 0.5;
+    }
+
+    .interactive-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .interactive-table th {
+      background-color: var(--primary);
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .interactive-table td {
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .drop-zone {
+      display: inline-block;
+      width: 180px;
+      height: 32px;
+      border: 2px dashed #94a3b8;
+      border-radius: 4px;
+      vertical-align: middle;
+      text-align: center;
+      line-height: 32px;
+      background: #fafafa;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .drop-zone.filled {
+      border-style: solid;
+      background: white;
+    }
+
+    .btn-action {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      display: inline-block;
+      margin: 15px 5px 0 5px;
+    }
+
+    .btn-action:hover {
+      opacity: 0.95;
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .progress-dots {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      margin: 0 6px;
+    }
+
+    .dot.active {
+      background: var(--accent);
+    }
+
+    .dot.completed {
+      background: var(--success);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-container">
+    <div class="header-banner">
+      <p>LESSON 2.6: CHALLENGE MODE</p>
+      <h1>Financial Statement Masterclass</h1>
+    </div>
+
+    <div class="progress-dots">
+      <span class="dot active" id="dot-1"></span>
+      <span class="dot" id="dot-2"></span>
+      <span class="dot" id="dot-3"></span>
+      <span class="dot" id="dot-4"></span>
+    </div>
+
+    <div class="card">
+      <h2 id="stage-title">Stage 1: Build the Income Statement</h2>
+      <p id="stage-desc">Place the appropriate items to finish the Income Statement framework.</p>
+    </div>
+
+    <div class="bank-area" id="options-bank"></div>
+
+    <div class="card" style="overflow-x: auto;">
+      <table class="interactive-table" id="statement-table"></table>
+    </div>
+
+    <div style="text-align: center;">
+      <button class="btn-action" onclick="verifyStage()">Verify Structure</button>
+      <button class="btn-action" id="next-stage-btn" style="background: var(--success); display: none;" onclick="advanceStage()">Next Statement →</button>
+      <p id="stage-feedback" class="feedback"></p>
+    </div>
+  </div>
+
+  <script>
+    const stages = [
+      {
+        title: "Stage 1: Build the Income Statement",
+        desc: "Build the Income Statement from the top line to the bottom line.",
+        headers: ["Line Item Description", "Amount / Type"],
+        bank: ["Gross Revenue / Sales", "Cost of Goods Sold (COGS)", "Gross Profit", "Operating Expenses (OpEx)", "Operating Income", "Interest & Taxes", "Net Income"],
+        rows: [
+          { label: "1. Revenue Header:", target: "Gross Revenue / Sales" },
+          { label: "2. Cost subtracted directly from revenue:", target: "Cost of Goods Sold (COGS)" },
+          { label: "3. First intermediate profit margin:", target: "Gross Profit" },
+          { label: "4. Day-to-day administrative overhead:", target: "Operating Expenses (OpEx)" },
+          { label: "5. Profit generated from core operations:", target: "Operating Income" },
+          { label: "6. Non-operating costs:", target: "Interest & Taxes" },
+          { label: "7. The bottom line profit value:", target: "Net Income" }
+        ]
+      },
+      {
+        title: "Stage 2: Build the Balance Sheet",
+        desc: "Construct the central elements of the Accounting Equation.",
+        headers: ["Accounting Block", "Target Placement Group"],
+        bank: ["Current Assets", "Fixed Assets", "Total Assets", "Current Liabilities", "Long-Term Liabilities", "Total Liabilities", "Shareholders' Equity"],
+        rows: [
+          { label: "1. Liquid assets (cash, receivables):", target: "Current Assets" },
+          { label: "2. Long-lived property & equipment:", target: "Fixed Assets" },
+          { label: "3. Left side of the accounting equation:", target: "Total Assets" },
+          { label: "4. Debts due in under 12 months:", target: "Current Liabilities" },
+          { label: "5. Multi-year loan obligations:", target: "Long-Term Liabilities" },
+          { label: "6. All creditors' claims:", target: "Total Liabilities" },
+          { label: "7. Owners' net interest inside the firm:", target: "Shareholders' Equity" }
+        ]
+      },
+      {
+        title: "Stage 3: Build the Statement of Owner's Equity",
+        desc: "Detail the chronological changes in the owner's net worth.",
+        headers: ["Equity Event Transaction", "Target Category"],
+        bank: ["Beginning Capital", "Additions", "Net Income", "Less: Owner Withdrawals", "Ending Capital"],
+        rows: [
+          { label: "1. Asset value of ownership on day 1:", target: "Beginning Capital" },
+          { label: "2. Fresh owner investments:", target: "Additions" },
+          { label: "3. Income brought from income statement:", target: "Net Income" },
+          { label: "4. Assets extracted for personal use:", target: "Less: Owner Withdrawals" },
+          { label: "5. Final equity carried to balance sheet:", target: "Ending Capital" }
+        ]
+      },
+      {
+        title: "Stage 4: Build the Cash Flow Statement",
+        desc: "Assemble the foundational segments that track actual liquidity flow.",
+        headers: ["Transaction Channel", "Category Group"],
+        bank: ["Operating Activities", "Investing Activities", "Financing Activities", "Net Cash Reconciliation"],
+        rows: [
+          { label: "1. Core transactional customer revenue:", target: "Operating Activities" },
+          { label: "2. Buying long-term warehouse properties:", target: "Investing Activities" },
+          { label: "3. Issuing equity shares to general public:", target: "Financing Activities" },
+          { label: "4. Final verification against balance sheet cash:", target: "Net Cash Reconciliation" }
+        ]
+      }
+    ];
+
+    let currentStage = 0;
+    let selectedVal = "";
+    let selectedEl = null;
+
+    function initStage() {
+      const stage = stages[currentStage];
+      
+      document.getElementById('stage-title').innerText = stage.title;
+      document.getElementById('stage-desc').innerText = stage.desc;
+      document.getElementById('stage-feedback').innerText = "";
+      document.getElementById('next-stage-btn').style.display = 'none';
+
+      // Load Bank
+      const bankDiv = document.getElementById('options-bank');
+      let randomizedBank = [...stage.bank].sort(() => Math.random() - 0.5);
+      bankDiv.innerHTML = randomizedBank.map(item => `
+        <div class="bank-item" onclick="selectItem('${item.replace(/'/g, "\\'")}', this)">${item}</div>
+      `).join('');
+
+      // Load Table
+      const table = document.getElementById('statement-table');
+      let tableHtml = `
+        <thead>
+          <tr>
+            <th>${stage.headers[0]}</th>
+            <th>${stage.headers[1]}</th>
+          </tr>
+        </thead>
+        <tbody>
+      `;
+
+      stage.rows.forEach((row, i) => {
+        tableHtml += `
+          <tr>
+            <td><strong>${row.label}</strong></td>
+            <td><div class="drop-zone" id="slot-${i}" onclick="placeItem('slot-${i}')">?</div></td>
+          </tr>
+        `;
+      });
+
+      tableHtml += `</tbody>`;
+      table.innerHTML = tableHtml;
+      
+      selectedVal = "";
+      selectedEl = null;
+    }
+
+    function selectItem(val, el) {
+      if (selectedEl) selectedEl.classList.remove('selected');
+      selectedVal = val;
+      selectedEl = el;
+      el.classList.add('selected');
+    }
+
+    function placeItem(slotId) {
+      if (!selectedVal) {
+        alert("Select a block from the bank first!");
+        return;
+      }
+      const slot = document.getElementById(slotId);
+      slot.innerText = selectedVal;
+      slot.classList.add('filled');
+      
+      if (selectedEl) {
+        selectedEl.classList.remove('selected');
+        selectedEl = null;
+        selectedVal = "";
+      }
+    }
+
+    function verifyStage() {
+      const stage = stages[currentStage];
+      let allCorrect = true;
+
+      stage.rows.forEach((row, i) => {
+        const value = document.getElementById(`slot-${i}`).innerText;
+        if (value !== row.target) {
+          allCorrect = false;
+        }
+      });
+
+      const feedback = document.getElementById('stage-feedback');
+      if (allCorrect) {
+        feedback.style.color = "var(--success)";
+        feedback.innerText = "Excellent Work! That statement is structurally perfect.";
+        document.getElementById('next-stage-btn').style.display = 'inline-block';
+        document.getElementById(`dot-${currentStage + 1}`).className = "dot completed";
+      } else {
+        feedback.style.color = "red";
+        feedback.innerText = "Error detected! Double check your logical arrangement.";
+      }
+    }
+
+    function advanceStage() {
+      currentStage++;
+      if (currentStage < stages.length) {
+        document.getElementById(`dot-${currentStage + 1}`).className = "dot active";
+        initStage();
+      } else {
+        document.getElementById('options-bank').style.display = 'none';
+        document.getElementById('statement-table').style.display = 'none';
+        document.getElementById('next-stage-btn').style.display = 'none';
+        
+        document.getElementById('stage-title').innerText = "🏆 Masterclass Finished!";
+        document.getElementById('stage-desc').innerText = "You have perfectly built all four core financial statements from scratch. Outstanding work!";
+        document.getElementById('stage-feedback').innerHTML = "All 4 modules validated perfectly.";
+      }
+    }
+
+    initStage();
+  </script>
+</body>
+</html>
