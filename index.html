@@ -268,21 +268,6 @@
                         <span class="completion-dot"></span>
                     </button>
                 </div>
-
-                <button class="accordion-header" onclick="toggleAccordion('module3-content', this)">
-                    <span>Module 3: Health & Profitability</span>
-                    <span class="accordion-arrow">▶</span>
-                </button>
-                <div id="module3-content" class="accordion-content">
-                    <button class="nav-btn" id="nav-3.1" onclick="loadLessonContent('3.1')">
-                        <span>Lesson 3.1: Liquidity Flight Deck</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                    <button class="nav-btn" id="nav-3.2" onclick="loadLessonContent('3.2')">
-                        <span>Lesson 3.2: Profitability Prism</span>
-                        <span class="completion-dot"></span>
-                    </button>
-                </div>
             </div>
 
             <div style="border-top: 1px solid rgba(3, 105, 161, 0.2); padding-top: 16px;">
@@ -326,10 +311,7 @@
             { id: "2.3", name: "Lesson 2.3: The Balance Sheet", desc: "Deep dive into organizing and verifying assets, liabilities, and equity." },
             { id: "2.4", name: "Lesson 2.4: Statement of Owner’s Equity", desc: "Track how investments, drawings, and earnings alter capital over time." },
             { id: "2.5", name: "Lesson 2.5: The Cash Flow Statement", desc: "Learn to track actual operational, investing, and financing cash changes." },
-            { id: "2.6", name: "Lesson 2.6: Module 2 Capstone: Full Financial Statements", desc: "Put it all together and construct a complete set of integrated statements." },
-            // Module 3 Paths Added
-            { id: "3.1", name: "Lesson 3.1: The Liquidity Flight Deck", desc: "Monitor near-term liquidity safety margins and calculations." },
-            { id: "3.2", name: "Lesson 3.2: The Profitability Prism", desc: "Evaluate margin optimization across gross and net profit thresholds." }
+            { id: "2.6", name: "Lesson 2.6: Module 2 Capstone: Full Financial Statements", desc: "Put it all together and construct a complete set of integrated statements." }
         ];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -400,6 +382,7 @@
             `;
         }
 
+        /* Dynamically format filenames to match "LessonX_Y.html" */
         function loadLessonContent(lessonId) {
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`nav-${lessonId}`);
@@ -407,8 +390,6 @@
 
             const container = document.getElementById("workbook-content-area");
             const parts = String(lessonId).split('.');
-            
-            // Format to match Lesson3_1.html pattern matching your master logic
             const fileName = `lessons/Lesson${parts[0]}_${parts[1]}.html?t=${Date.now()}`;
 
             fetch(fileName, { cache: "no-store" })
@@ -450,7 +431,7 @@
                 })
                 .catch(error => {
                     console.error(error);
-                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600; padding: 20px; background: #fef2f2; border-radius: 8px;">⚠️ Failed to load lesson files (${fileName}). Ensure capitals match.</p>`;
+                    container.innerHTML = `<p style="color: #ef4444; font-weight: 600; padding: 20px; background: #fef2f2; border-radius: 8px;">⚠️ Failed to load lesson files.</p>`;
                 });
         }
 
@@ -523,7 +504,6 @@
             updateNotesBadge();
             closeNotePopup();
             window.getSelection().removeAllRanges();
-            if(document.getElementById('nav-notes').classList.contains('active')) loadNotesPage();
         }
 
         function loadNotesPage() {
@@ -534,7 +514,7 @@
             if (studyNotes.length === 0) {
                 container.innerHTML = `
                     <h1 style="font-size: 24px; color: #0f172a; margin-bottom: 8px;">My Study Notes</h1>
-                    <p style="color: #64748b; margin-bottom: 24px;">No notes saved yet. Highlight any lesson text to take a note!</p>
+                    <p style="color: #64748b; margin-bottom: 24px;">No notes saved yet.</p>
                 `;
                 return;
             }
