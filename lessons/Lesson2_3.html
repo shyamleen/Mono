@@ -1,1 +1,238 @@
+<style>
+    :root {
+        --asset-bg: #e3f2fd;
+        --asset-border: #90caf9;
+        --liab-bg: #fff3e0;
+        --liab-border: #ffcc80;
+        --equity-bg: #f3e5f5;
+        --equity-border: #ce93d8;
+        --neutral-pastel: #f5f5f5;
+    }
 
+    .bs-container { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; line-height: 1.6; }
+    .interactive-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .interactive-table th, .interactive-table td { padding: 12px 15px; border: 1px solid #eee; text-align: left; }
+    .interactive-table th { background-color: #34495e; color: white; }
+    
+    .term-hl { cursor: pointer; padding: 2px 5px; border-radius: 4px; font-weight: bold; transition: all 0.2s; border-bottom: 2px solid transparent; }
+    .term-hl:hover { filter: brightness(0.9); border-bottom-color: currentColor; }
+    
+    .asset-hl { background: var(--asset-bg); color: #1565c0; }
+    .liab-hl { background: var(--liab-bg); color: #e65100; }
+    .equity-hl { background: var(--equity-bg); color: #7b1fa2; }
+
+    /* Definition Box */
+    #def-display { min-height: 60px; padding: 15px; margin: 20px 0; background: #fffbe6; border: 1px solid #ffe58f; border-radius: 8px; display: none; animation: fadeIn 0.3s; }
+
+    /* Step-by-Step */
+    .step-box { background: white; border: 1px solid #ddd; padding: 20px; border-radius: 12px; margin: 20px 0; }
+    .step-content { display: none; }
+    .step-content.active { display: block; animation: slideIn 0.4s ease-out; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    .quiz-area { background: #fdfaf6; border: 2px solid #e7e5e4; border-radius: 15px; padding: 25px; margin-top: 40px; }
+    .option-btn { display: block; width: 100%; text-align: left; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; }
+    .option-btn:hover { background: #f0f0f0; }
+</style>
+
+<div class="bs-container">
+    <div style="background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+        <h1 style="color: #2c3e50; margin: 0;">Lesson 2.3: The Balance Sheet</h1>
+        <p style="color: #546e7a;">The financial snapshot of a company's health.</p>
+    </div>
+
+    <h3>1. Interactive Balance Sheet Example</h3>
+    <p><i>Click on the <strong>highlighted terms</strong> below to see their definitions.</i></p>
+
+    <div id="def-display"></div>
+
+    <table class="interactive-table">
+        <thead>
+            <tr><th colspan="2">Snapshot Corp. | Balance Sheet | As of Dec 31, 2026</th></tr>
+        </thead>
+        <tbody>
+            <tr style="background: #f8fafc;"><td colspan="2"><strong><span class="term-hl asset-hl" onclick="showDef('assets')">Assets (What you own)</span></strong></td></tr>
+            <tr>
+                <td style="padding-left: 30px;"><span class="term-hl asset-hl" onclick="showDef('currentAssets')">Current Assets</span></td>
+                <td style="text-align: right;">$45,000</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;"><span class="term-hl asset-hl" onclick="showDef('nonCurrentAssets')">Non-Current (Fixed) Assets</span></td>
+                <td style="text-align: right;">$105,000</td>
+            </tr>
+            <tr style="font-weight: bold;"><td>Total Assets</td><td style="text-align: right; border-top: 2px solid #333; border-bottom: 4px double #333;">$150,000</td></tr>
+            
+            <tr style="background: #fdfaf6;"><td colspan="2"><strong><span class="term-hl liab-hl" onclick="showDef('liabilities')">Liabilities (What you owe)</span></strong></td></tr>
+            <tr>
+                <td style="padding-left: 30px;"><span class="term-hl liab-hl" onclick="showDef('currentLiabilities')">Current Liabilities</span></td>
+                <td style="text-align: right;">$20,000</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;"><span class="term-hl liab-hl" onclick="showDef('longTermLiabilities')">Long-Term Liabilities</span></td>
+                <td style="text-align: right;">$50,000</td>
+            </tr>
+            <tr style="font-weight: bold;"><td>Total Liabilities</td><td style="text-align: right; border-top: 1px solid #333;">$70,000</td></tr>
+
+            <tr style="background: #faf5ff;"><td colspan="2"><strong><span class="term-hl equity-hl" onclick="showDef('equity')">Shareholders' Equity (Net Worth)</span></strong></td></tr>
+            <tr>
+                <td style="padding-left: 30px;">Common Stock & Retained Earnings</td>
+                <td style="text-align: right;">$80,000</td>
+            </tr>
+            <tr style="font-weight: bold; background: #eee;">
+                <td>Total Liabilities & Equity</td>
+                <td style="text-align: right; border-top: 2px solid #333; border-bottom: 4px double #333;">$150,000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 40px;">
+        <h3>2. How to Make a Balance Sheet (Step-by-Step)</h3>
+        <div class="step-box">
+            <div id="step1" class="step-content active">
+                <h4>Step 1: Choose a Date and Format</h4>
+                <p>Select the specific "as of" date for your snapshot. A balance sheet is a <strong>point-in-time</strong> report, unlike the Income Statement which covers a period.</p>
+                <button onclick="nextStep(2)" style="background: #34495e; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer;">Next: List Assets →</button>
+            </div>
+            <div id="step2" class="step-content">
+                <h4>Step 2: List and Categorize Assets</h4>
+                <p>Organize resources by <strong>Liquidity</strong>. Start with Cash, then Accounts Receivable, then fixed assets like Equipment.</p>
+                <div style="background: var(--asset-bg); padding: 10px; border-radius: 5px; margin: 10px 0;">Total Assets = Current + Non-Current</div>
+                <button onclick="nextStep(3)" style="background: #34495e; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer;">Next: Record Liabilities →</button>
+            </div>
+            <div id="step3" class="step-content">
+                <h4>Step 3: Record Liabilities</h4>
+                <p>Categorize by due date. Current (due < 1 year) and Long-Term (due > 1 year).</p>
+                <button onclick="nextStep(4)" style="background: #34495e; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer;">Next: Calculate Equity →</button>
+            </div>
+            <div id="step4" class="step-content">
+                <h4>Step 4: Calculate Shareholders' Equity</h4>
+                <p>Use the proven calculation: <strong>Equity = Total Assets - Total Liabilities</strong>. This ensures your net worth is accurate.</p>
+                <button onclick="nextStep(5)" style="background: #34495e; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer;">Next: Final Review →</button>
+            </div>
+            <div id="step5" class="step-content">
+                <h4>Step 5: Review and Balance</h4>
+                <p>Check the Golden Rule: <br><center><strong>Assets must = Liabilities + Equity</strong></center></p>
+                <button onclick="nextStep(1)" style="background: #95a5a6; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer;">Restart Guide ↺</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-area">
+        <h2 style="text-align: center;">🏁 Knowledge Check: Lesson 2.3</h2>
+        <div id="quiz-container">
+            </div>
+        
+        <div id="build-area" style="display:none; margin-top: 30px; border-top: 2px dashed #ccc; padding-top: 20px;">
+            <h3>Challenge: Build the Balance Sheet</h3>
+            <p>Drag the values to make the equation balance ($100,000 Total Assets).</p>
+            <div style="display: flex; gap: 20px; justify-content: center; align-items: center; font-size: 1.2em;">
+                <div style="background: var(--asset-bg); padding: 20px; border-radius: 10px;">Assets: $100,000</div>
+                <span>=</span>
+                <input type="number" id="user-liab" placeholder="Liabilities" style="padding: 10px; width: 120px;">
+                <span>+</span>
+                <input type="number" id="user-equity" placeholder="Equity" style="padding: 10px; width: 120px;">
+                <button onclick="checkBuild()" style="padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer;">Check Balance</button>
+            </div>
+            <p id="build-feedback" style="text-align: center; margin-top: 10px; font-weight: bold;"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const definitions = {
+        assets: "<strong>Assets:</strong> Resources the company owns that hold value, listed in order of liquidity (how quickly they convert to cash).",
+        currentAssets: "<strong>Current Assets:</strong> Cash and resources expected to be converted into cash, sold, or consumed within one year (e.g., cash, A/R, inventory).",
+        nonCurrentAssets: "<strong>Non-Current Assets:</strong> Long-term investments and assets with a useful life of more than one year (e.g., machinery, land, patents).",
+        liabilities: "<strong>Liabilities:</strong> Debts and financial obligations the business owes to outside parties, listed in order of when they are due.",
+        currentLiabilities: "<strong>Current Liabilities:</strong> Debts and obligations due within one year (e.g., accounts payable, short-term debt).",
+        longTermLiabilities: "<strong>Long-Term Liabilities:</strong> Obligations due after one year (e.g., mortgages, long-term bonds).",
+        equity: "<strong>Shareholders' Equity:</strong> The residual interest left for owners after all liabilities are deducted from assets."
+    };
+
+    function showDef(term) {
+        const display = document.getElementById('def-display');
+        display.innerHTML = definitions[term];
+        display.style.display = 'block';
+    }
+
+    function nextStep(stepNum) {
+        document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + stepNum).classList.add('active');
+    }
+
+    const quizQuestions = [
+        {
+            q: "If a company has $150,000 in Total Assets and $70,000 in Total Liabilities, what is the Shareholders' Equity?",
+            options: ["$220,000", "$80,000", "$70,000", "$150,000"],
+            correct: 1
+        },
+        {
+            q: "In what order are Assets typically listed on a Balance Sheet?",
+            options: ["Alphabetical order", "Random order", "Order of liquidity", "Highest value first"],
+            correct: 2
+        },
+        {
+            q: "Which of the following is a Current Liability?",
+            options: ["Inventory", "A 30-year Mortgage", "Accounts Payable", "Common Stock"],
+            correct: 2
+        },
+        {
+            q: "What does the 'Accounting Equation' state?",
+            options: ["Assets = Liabilities - Equity", "Assets + Liabilities = Equity", "Assets = Liabilities + Equity", "Equity = Assets + Liabilities"],
+            correct: 2
+        },
+        {
+            q: "A Balance Sheet provides a snapshot of a company's position at:",
+            options: ["Over a 1-year period", "A single, specific point in time", "Only at the start of a business", "Monthly average"],
+            correct: 1
+        }
+    ];
+
+    let currentQ = 0;
+
+    function loadQuestion() {
+        const q = quizQuestions[currentQ];
+        let html = `<h4>Question ${currentQ + 1} of 5</h4><p>${q.q}</p>`;
+        
+        // Shuffle options but keep track of correct one
+        let opts = q.options.map((o, i) => ({ text: o, index: i }));
+        opts.sort(() => Math.random() - 0.5);
+
+        opts.forEach(opt => {
+            html += `<button class="option-btn" onclick="checkAnswer(${opt.index})">${opt.text}</button>`;
+        });
+        document.getElementById('quiz-container').innerHTML = html;
+    }
+
+    function checkAnswer(idx) {
+        if (idx === quizQuestions[currentQ].correct) {
+            currentQ++;
+            if (currentQ < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-container').innerHTML = "<h3 style='color: green;'>MCQs Complete! Now for the practical challenge.</h3>";
+                document.getElementById('build-area').style.display = 'block';
+            }
+        } else {
+            alert("Not quite! Try again.");
+        }
+    }
+
+    function checkBuild() {
+        const l = parseInt(document.getElementById('user-liab').value);
+        const e = parseInt(document.getElementById('user-equity').value);
+        const feedback = document.getElementById('build-feedback');
+        
+        if (l + e === 100000) {
+            feedback.style.color = "green";
+            feedback.innerHTML = "Perfect! The Balance Sheet is in balance! Assets ($100k) = Liabilities + Equity.";
+        } else {
+            feedback.style.color = "red";
+            feedback.innerHTML = `Still out of balance! Your total is $${(l+e).toLocaleString()}. It must equal $100,000.`;
+        }
+    }
+
+    loadQuestion();
+</script>
