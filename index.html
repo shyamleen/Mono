@@ -128,6 +128,7 @@
             box-shadow: 0 0 8px rgba(16, 185, 129, 0.5); 
         }
 
+        /* Fixed Accordion Headers: Clean uniform alignment, text wrapping support, and layout spacing */
         .accordion-header {
             display: flex;
             align-items: center;
@@ -145,6 +146,9 @@
             margin-top: 16px;
             margin-bottom: 4px;
             border-bottom: 1px solid rgba(125, 211, 252, 0.3);
+            text-align: left;
+            line-height: 1.4;
+            gap: 8px;
         }
 
         .accordion-content {
@@ -163,6 +167,7 @@
             transition: transform 0.2s ease;
             font-size: 10px;
             color: #0369a1;
+            flex-shrink: 0;
         }
 
         .accordion-header.active .accordion-arrow {
@@ -445,7 +450,7 @@
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('dashboard-nav-btn').classList.add('active');
 
-            // Force scroll viewport to absolute top position
+            // Force viewport wrapper reset to top view bounds immediately
             document.getElementById("main-scroll-viewport").scrollTop = 0;
 
             const container = document.getElementById("workbook-content-area");
@@ -453,7 +458,7 @@
             const completedCount = completedLessons.length;
             const progressPercent = Math.round((completedCount / totalCount) * 100);
 
-            // Group curriculum dynamically into modular nodes
+            // Structure dynamic modular data arrays
             const modulesMap = {};
             curriculum.forEach(lesson => {
                 if (!modulesMap[lesson.module]) {
@@ -522,7 +527,7 @@
             const activeBtn = document.getElementById(`nav-${lessonId}`);
             if (activeBtn) activeBtn.classList.add('active');
 
-            // Force scroll viewport back to absolute top position
+            // Explicitly force scroll container coordinate arrays back to 0 baseline
             document.getElementById("main-scroll-viewport").scrollTop = 0;
 
             const container = document.getElementById("workbook-content-area");
