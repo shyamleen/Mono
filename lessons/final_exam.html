@@ -1,106 +1,190 @@
 <div id="final-exam-wrapper" style="font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 16px; box-sizing: border-box;">
     
     <div class="scroll-reveal-card" style="margin-bottom: 24px; padding: 24px; border-radius: 12px; background: #f0f9ff; border: 1px solid #bae6fd; box-sizing: border-box; text-align: left;">
-        <span style="background: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Final Exam</span>
-        <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #0f172a; letter-spacing: -0.01em;">Final Exam</h1>
+        <span style="background: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Milestone Examination</span>
+        <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #0f172a; letter-spacing: -0.01em;">Chartered Masterclass Final Exam</h1>
         <p style="margin: 0; color: #334155; font-size: 15px; line-height: 1.6; font-weight: 500;">
-            Take this final test to check your understanding of everything you have learnt in these past 5 modules.
+            This evaluation tests your understanding across accounting architecture, corporate financial statements, liquidity ratio calculations, long-term liability amortization, and advanced consolidation rules under GAAP and IFRS frameworks.
         </p>
+        
+        <div id="exam-score-banner" style="display: none; margin-top: 16px; padding: 14px 20px; border-radius: 8px; font-weight: 700; font-size: 16px;"></div>
     </div>
 
     <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); box-sizing: border-box; margin-bottom: 24px; text-align: left;">
         <h3 style="margin-top: 0; color: #0f172a; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 24px; display: flex; align-items: center; gap: 6px;">📝 10 Comprehensive Questions</h3>
         
         <div id="quiz-final-container" style="display: flex; flex-direction: column; gap: 28px;">
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">1. If a corporate business purchases raw operational hardware equipment priced at $15,000 using $5,000 cash and financing the rest through a short-term bank note, what is the immediate net structural structural change to the Core Accounting Equation?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Assets increase by $15,000; Liabilities increase by $15,000.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Assets increase by $10,000; Liabilities increase by $10,000.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Assets increase by $10,000; Owner's Equity increases by $10,000.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_1" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Assets increase by $15,000; Liabilities increase by $15,000.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_1" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Assets increase by $10,000; Liabilities increase by $10,000.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_1" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Assets increase by $10,000; Owner's Equity increases by $10,000.</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">2. Which financial sheet registers information explicitly mapped across an isolated stretch of operational duration rather than an absolute snapshot date?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>The Balance Sheet statement report</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>The Income Statement</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>The Trial Balance ledger configuration summary sheet</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_2" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>The Balance Sheet statement report</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_2" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>The Income Statement</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_2" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>The Trial Balance ledger configuration summary sheet</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">3. A company has Current Assets of $60,000 (including $15,000 in Inventory) and Current Liabilities of $30,000. What is its Quick (Acid-Test) Ratio metric value?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_3" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>2.00 baseline value</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_3" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>1.50 calculation value</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_3" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>0.75 calculation metric</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_3" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>2.00 baseline value</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_3" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>1.50 calculation value</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_3" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>0.75 calculation metric</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">4. During inflationary financial periods, which inventory valuation system outputs the lowest Gross Profit margin value metrics?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_4" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>First-In, First-Out (FIFO) configuration allocation rules</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_4" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Last-In, First-Out (LIFO) tracking matrix configurations</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_4" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Weighted Average structural inventory tracking method</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_4" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>First-In, First-Out (FIFO) configuration allocation rules</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_4" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Last-In, First-Out (LIFO) tracking matrix configurations</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_4" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Weighted Average structural inventory tracking method</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">5. Under the Allowance Method for uncollectible accounts receivable transactions, what is the balance sheet effect of writing off a specific uncollectible invoice balance?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_5" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>It immediately reduces total Net Income performance parameters.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_5" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>It leaves the total Net Realizable Value of Accounts Receivable unchanged.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_5" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>It decreases total current Liabilities balances structural configurations.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_5" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>It immediately reduces total Net Income performance parameters.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_5" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>It leaves the total Net Realizable Value of Accounts Receivable unchanged.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_5" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>It decreases total current Liabilities balances structural configurations.</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">6. When an acquiring parent corporation buys a subsidiary company and the price exceeds the fair market value of net identifiable assets, this excess value is recorded as:</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_6" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Amortized operational Retained Earnings structures</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_6" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Goodwill (an unamortized intangible asset tested for impairment)</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_6" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Deferred Revenue balances recognized instantly across statement lines</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_6" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Amortized operational Retained Earnings structures</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_6" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Goodwill (an unamortized intangible asset tested for impairment)</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_6" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>Deferred Revenue balances recognized instantly across statement lines</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="0">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">7. What condition triggers the baseline creation metrics of a Deferred Tax Liability (DTL) account profile?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_7" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>When accounting book income is temporarily greater than taxable tax income.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_7" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>When taxable income is permanently greater than book accounting statements.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_7" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>When net dynamic operational carryforward credits expire completely.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_7" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>When accounting book income is temporarily greater than taxable tax income.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_7" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>When taxable income is permanently greater than book accounting statements.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_7" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>When net dynamic operational carryforward credits expire completely.</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">8. Which framework parameter characterizes the structural step sequence of the ASC 606 / IFRS 15 standardized revenue recognition model matrix?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_8" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>A multi-phased path focused entirely on cash collection confirmation steps</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_8" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>A unified 5-step model built around identifying performance obligations and transferring control.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_8" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>An optional matching metric set applied solely for international derivative accounting lines</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_8" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>A multi-phased path focused entirely on cash collection confirmation steps</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_8" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>A unified 5-step model built around identifying performance obligations and transferring control.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_8" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>An optional matching metric set applied solely for international derivative accounting lines</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="1">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">9. In corporate auditing standard metrics, an auditor's opinion stating that the financial report statements present positions fairly in all material aspects is classified as:</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_9" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>An Adverse Opinion metric parameter</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_9" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>An Unmodified (Clean) Opinion</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_9" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>A Disclaimer of Opinion statement condition</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_9" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>An Adverse Opinion metric parameter</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_9" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>An Unmodified (Clean) Opinion</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_9" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>A Disclaimer of Opinion statement condition</span></label>
                 </div>
             </div>
 
-            <div>
+            <div class="quiz-question-block" data-correct="0">
                 <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 12px 0; line-height: 1.4;">10. How do collectibility verification metrics fundamentally differ between US GAAP and IFRS framework parameters?</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_10" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>US GAAP implements a higher probability standard threshold ("probable") than IFRS ("more likely than not").</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_10" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>IFRS handles bad debt configurations with strict 100% legal collection rules exclusively.</span></label>
-                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer;"><input type="radio" name="fe_10" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>There are zero differences, as both assign an identical 80% boundary framework limit line.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_10" value="0" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>US GAAP implements a higher probability standard threshold ("probable") than IFRS ("more likely than not").</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_10" value="1" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>IFRS handles bad debt configurations with strict 100% legal collection rules exclusively.</span></label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; display: flex; align-items: center; cursor: pointer; transition: all 0.2s;"><input type="radio" name="fe_10" value="2" style="margin: 0 12px 0 0; flex-shrink: 0;"> <span>There are zero differences, as both assign an identical 80% boundary framework limit line.</span></label>
                 </div>
             </div>
         </div>
+
+        <div style="margin-top: 36px; border-top: 2px solid #f1f5f9; padding-top: 24px; display: flex; justify-content: flex-end;">
+            <button id="check-exam-btn" onclick="evaluateFinalMasterclassExam()" style="background: #0f172a; color: #ffffff; border: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 14.5px; cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                Submit & Check Answers ✓
+            </button>
+        </div>
     </div>
 </div>
+
+<script>
+    function evaluateFinalMasterclassExam() {
+        const questions = document.querySelectorAll('.quiz-question-block');
+        let correctCount = 0;
+        let totalCount = questions.length;
+        let incomplete = false;
+
+        // Verify user selection states across blocks
+        questions.forEach((block, idx) => {
+            const chosenInput = block.querySelector('input[type="radio"]:checked');
+            if (!chosenInput) {
+                incomplete = true;
+            }
+        });
+
+        if (incomplete) {
+            alert("Please provide an answer choice selection for all 10 evaluation questions before submitting.");
+            return;
+        }
+
+        // Parse metrics, tally correct logs, apply feedback styling
+        questions.forEach((block) => {
+            const correctValue = block.getAttribute('data-correct');
+            const choices = block.querySelectorAll('label');
+            const chosenInput = block.querySelector('input[type="radio"]:checked');
+
+            choices.forEach((label, cIdx) => {
+                // Remove existing states
+                label.style.background = "#f8fafc";
+                label.style.borderColor = "#e2e8f0";
+                label.style.color = "#334155";
+
+                // Map results visually to matching pastel indicators
+                if (cIdx === parseInt(correctValue)) {
+                    label.style.background = "#dcfce7"; // Light green for correct answers
+                    label.style.borderColor = "#4ade80";
+                    label.style.color = "#14532d";
+                } else if (chosenInput && parseInt(chosenInput.value) === cIdx) {
+                    label.style.background = "#fee2e2"; // Light red for incorrect choices
+                    label.style.borderColor = "#f87171";
+                    label.style.color = "#7f1d1d";
+                }
+            });
+
+            if (chosenInput && chosenInput.value === correctValue) {
+                correctCount++;
+            }
+        });
+
+        // Display dashboard feedback module banner card dynamically
+        const banner = document.getElementById('exam-score-banner');
+        banner.style.display = "block";
+        
+        if (correctCount >= 8) {
+            banner.style.background = "#dcfce7";
+            banner.style.color = "#166534";
+            banner.style.border = "1px solid #bbf7d0";
+            banner.innerHTML = `🎉 Congratulations! You Passed. Score: ${correctCount} / ${totalCount} (${(correctCount/totalCount)*100}%). Exceptional knowledge alignment.`;
+        } else {
+            banner.style.background = "#fef2f2";
+            banner.style.color = "#991b1b";
+            banner.style.border = "1px solid #fee2e2";
+            banner.innerHTML = `⚠️ Score: ${correctCount} / ${totalCount} (${(correctCount/totalCount)*100}%). Review the flagged concepts and try again to master all international frameworks.`;
+        }
+
+        // Lock form interactions to preserve academic validation
+        document.querySelectorAll('input[type="radio"]').forEach(radio => radio.disabled = true);
+        
+        // Hide the local check button to avoid duplicate event cascades
+        document.getElementById('check-exam-btn').style.display = "none";
+        
+        // Scroll workspace view directly up to expose header statistics metrics
+        document.getElementById("main-scroll-viewport").scrollTop = 0;
+    }
+</script>
