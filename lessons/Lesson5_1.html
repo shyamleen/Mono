@@ -2,28 +2,37 @@
     <span style="background: #dcfce7; color: #166534; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">M&A & Consolidation</span>
     <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #14532d; letter-spacing: -0.01em;">Lesson 5.1: Business Combinations and Consolidations</h1>
     <p style="margin: 0; color: #166534; font-size: 15px; line-height: 1.6; font-weight: 500;">
-        In M&A and advanced accounting, business combinations are accounted for using the acquisition method, consolidating parent and subsidiary statements. All the subsidiary's assets and liabilities are reported at fair value. Goodwill represents the purchase premium paid above the fair value of net identifiable assets. [1, 2, 3, 4, 5]
+        In M&A and advanced accounting, business combinations are accounted for using the acquisition method, consolidating parent and subsidiary statements. All the subsidiary's assets and liabilities are reported at fair value. Goodwill represents the purchase premium paid above the fair value of net identifiable assets.
     </p>
 </div>
 
-<div class="scroll-reveal-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-sizing: border-box;">
-    <h4 style="margin: 0 0 16px 0; font-size: 14px; color: #475569; text-transform: uppercase; letter-spacing: 0.05em;">📊 M&A Asset Allocation Stack & Goodwill Premium</h4>
-    <div style="display: flex; flex-direction: column; gap: 4px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px dashed #cbd5e1;">
-        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; color: #991b1b; font-weight: bold; font-size: 13px;">
-            <span>✨ GOODWILL PREMIUM (Residual Value Paid)</span>
-            <span>Excess Premium Over Net Fair Value</span>
+<div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-sizing: border-box;">
+    <h4 style="margin: 0 0 16px 0; font-size: 14px; color: #475569; text-transform: uppercase; letter-spacing: 0.05em;">🧮 Active Learning: Live Goodwill Allocation Sandbox</h4>
+    <p style="font-size: 13.5px; color: #475569; margin: 0 0 16px 0;">Modify the purchase details below to visually witness how Goodwill updates as a true corporate residual value asset.</p>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+        <div>
+            <label style="display: block; font-size: 12.5px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">Consideration Transferred ($M):</label>
+            <input type="number" id="input_consideration" value="500" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;" oninput="recalcGoodwill()">
         </div>
-        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 6px; color: #0369a1; font-weight: 600; font-size: 13px;">
-            <span>🔍 IDENTIFIABLE INTANGIBLE ASSETS</span>
-            <span>Patents, Brand Names & Technology (Fair Value)</span>
+        <div>
+            <label style="display: block; font-size: 12.5px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">Net Identifiable Assets ($M):</label>
+            <input type="number" id="input_assets" value="380" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;" oninput="recalcGoodwill()">
         </div>
-        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; color: #166534; font-weight: 600; font-size: 13px;">
-            <span>🏢 TANGIBLE NET IDENTIFIABLE ASSETS</span>
-            <span>PP&E, Inventory, Receivables minus Liabilities (Fair Value)</span>
+        <div>
+            <label style="display: block; font-size: 12.5px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">Fair Value of NCI ($M):</label>
+            <input type="number" id="input_nci" value="20" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;" oninput="recalcGoodwill()">
+        </div>
+        <div>
+            <label style="display: block; font-size: 12.5px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">Previous Equity FV ($M):</label>
+            <input type="number" id="input_prev" value="0" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;" oninput="recalcGoodwill()">
         </div>
     </div>
-    <p style="margin: 12px 0 0 0; font-size: 12px; color: #64748b; font-style: italic; text-align: center;">
-       
+
+    <div style="background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px dashed #cbd5e1; text-align: center;">
+        <span style="font-size: 14px; color: #64748b; font-weight: 600; display: block; margin-bottom: 4px;">DETERMINED RESIDUAL GOODWILL VALUE:</span>
+        <span id="goodwill_result" style="font-size: 24px; font-weight: 800; color: #16a34a;">$140M</span>
+    </div>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-sizing: border-box;">
@@ -38,96 +47,125 @@
         <li style="margin-bottom: 8px;"><strong>1. Consideration Transferred:</strong> The total purchase price paid by the acquirer, which includes cash, stock issued, assumed liabilities, and contingent earn-outs.</li>
         <li style="margin-bottom: 8px;"><strong>2. Net Identifiable Assets:</strong> The fair market value of the target's tangible assets and identifiable intangible assets (e.g., patents, brand names), minus its liabilities.</li>
         <li style="margin-bottom: 8px;"><strong>3. Non-Controlling Interest (NCI):</strong> If the parent acquires less than 100% of the subsidiary, NCI must be accounted for.</li>
-        <li style="margin-bottom: 0;"><strong>4. Fair Value Adjustments:</strong> The subsidiary's historical book values are adjusted upward or downward to reflect their exact market value on the acquisition date. [1, 2, 3, 4, 5, 6]</li>
+        <li style="margin-bottom: 0;"><strong>4. Fair Value Adjustments:</strong> The subsidiary's historical book values are adjusted upward or downward to reflect their exact market value on the acquisition date.</li>
     </ul>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700;">Parent and Subsidiary Consolidation Basics</h3>
     <p style="font-size: 14.5px; color: #334155;">
-        Once the parent company gains controlling interest (typically holding more than 50% of voting stock), it must treat the parent and subsidiary as a single economic entity for financial reporting. [1, 2]
+        Once the parent company gains controlling interest (typically holding more than 50% of voting stock), it must treat the parent and subsidiary as a single economic entity for financial reporting.
     </p>
     <ul style="padding-left: 20px; color: #334155; font-size: 14px; line-height: 1.7;">
-        <li style="margin-bottom: 8px;"><strong>Full Consolidation:</strong> The parent combines 100% of the subsidiary’s revenues, expenses, assets, and liabilities on its consolidated balance sheet, regardless of its exact ownership percentage. [1, 2]</li>
-        <li style="margin-bottom: 8px;"><strong>Elimination Entries:</strong> All intercompany transactions (e.g., intercompany sales, receivables, payables, dividends) must be fully eliminated to avoid double-counting at the group level. [1, 2]</li>
-        <li style="margin-bottom: 0;"><strong>Investment Elimination:</strong> The parent's "Investment in Subsidiary" account is replaced with the actual assets and liabilities of the subsidiary. [1]</li>
+        <li style="margin-bottom: 8px;"><strong>Full Consolidation:</strong> The parent combines 100% of the subsidiary’s revenues, expenses, assets, and liabilities on its consolidated balance sheet, regardless of its exact ownership percentage.</li>
+        <li style="margin-bottom: 8px;"><strong>Elimination Entries:</strong> All intercompany transactions (e.g., intercompany sales, receivables, payables, dividends) must be fully eliminated to avoid double-counting at the group level.</li>
+        <li style="margin-bottom: 0;"><strong>Investment Elimination:</strong> The parent's "Investment in Subsidiary" account is replaced with the actual assets and liabilities of the subsidiary.</li>
     </ul>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700;">M&A Accounting Treatment</h3>
     <ul style="padding-left: 20px; color: #334155; font-size: 14px; line-height: 1.7; margin-bottom: 0;">
-        <li style="margin-bottom: 8px;"><strong>Acquisition Expenses:</strong> Costs like legal fees, consulting, and due diligence are expensed immediately in the period incurred. [1]</li>
-        <li style="margin-bottom: 8px;"><strong>Stock Issuance Costs:</strong> Costs directly associated with issuing new stock to finance the deal (e.g., underwriting fees) are deducted directly from Additional Paid-In Capital (APIC) rather than expensed. [1]</li>
+        <li style="margin-bottom: 8px;"><strong>Acquisition Expenses:</strong> Costs like legal fees, consulting, and due diligence are expensed immediately in the period incurred.</li>
+        <li style="margin-bottom: 8px;"><strong>Stock Issuance Costs:</strong> Costs directly associated with issuing new stock to finance the deal (e.g., underwriting fees) are deducted directly from Additional Paid-In Capital (APIC) rather than expensed.</li>
         <li style="margin-bottom: 0;"><strong>Goodwill Impairment:</strong> Under US GAAP and IFRS, goodwill is not amortized. Instead, it must be evaluated for impairment annually to ensure its recorded value hasn't dropped.</li>
     </ul>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); box-sizing: border-box;">
-    <h3 style="margin-top: 0; color: #0f172a; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 24px;">📝 Lesson 5.1 Knowledge Verification (7 Questions)</h3>
+    <h3 style="margin-top: 0; color: #0f172a; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 24px;">📝 Lesson 5.1 Knowledge Verification</h3>
     
     <div id="quiz-container-51">
         <div style="margin-bottom: 20px;">
             <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">1. Which method is globally mandated under GAAP and IFRS to account for business combinations?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_1" style="margin-right: 8px;">Pooling of interests method</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_1" style="margin-right: 8px;">Acquisition method</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_1" style="margin-right: 8px;">Equity historical cost method</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_1" value="wrong" style="margin-right: 8px;">Pooling of interests method</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_1" value="correct" style="margin-right: 8px;">Acquisition method</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_1" value="wrong" style="margin-right: 8px;">Equity historical cost method</label>
             </div>
         </div>
 
         <div style="margin-bottom: 20px;">
             <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">2. How are a subsidiary's assets and liabilities measured and brought onto the parent books on the consolidation date?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_2" style="margin-right: 8px;">At historical net book value</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_2" style="margin-right: 8px;">At current fair value</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_2" style="margin-right: 8px;">At liquidation value</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_2" value="wrong" style="margin-right: 8px;">At historical net book value</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_2" value="correct" style="margin-right: 8px;">At current fair value</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_2" value="wrong" style="margin-right: 8px;">At liquidation value</label>
             </div>
         </div>
 
         <div style="margin-bottom: 20px;">
-            <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">3. If a parent acquires 80% of a subsidiary, how much of the subsidiary's assets and revenues are merged into the consolidated balance sheet and income statement?</p>
+            <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">3. If a parent acquires 80% of a subsidiary, how much of the subsidiary's assets and revenues are merged into the consolidated statements?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_3" style="margin-right: 8px;">Exactly 80%</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_3" style="margin-right: 8px;">100% (Full consolidation with a distinct line item for Non-Controlling Interest)</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_3" style="margin-right: 8px;">0% until 100% control is reached</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_3" value="wrong" style="margin-right: 8px;">Exactly 80%</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_3" value="correct" style="margin-right: 8px;">100% (Full consolidation with a distinct line item for Non-Controlling Interest)</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_3" value="wrong" style="margin-right: 8px;">0% until 100% control is reached</label>
             </div>
         </div>
 
         <div style="margin-bottom: 20px;">
             <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">4. Why are elimination entries required during the consolidation preparation process?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_4" style="margin-right: 8px;">To calculate corporate income tax liabilities</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_4" style="margin-right: 8px;">To drop internal group margins and eliminate double-counting of intercompany transactions</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_4" style="margin-right: 8px;">To reduce historical deprecation rates</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_4" value="wrong" style="margin-right: 8px;">To calculate corporate income tax liabilities</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_4" value="correct" style="margin-right: 8px;">To drop internal group margins and eliminate double-counting of intercompany transactions</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_4" value="wrong" style="margin-right: 8px;">To reduce historical depreciation rates</label>
             </div>
         </div>
 
         <div style="margin-bottom: 20px;">
             <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">5. How are advisory, legal, and due diligence expenses accounted for during an acquisition?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_5" style="margin-right: 8px;">Capitalized into the cost of the Investment account</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_5" style="margin-right: 8px;">Expensed immediately in the period incurred</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_5" style="margin-right: 8px;">Amortized evenly over a 15-year horizon</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_5" value="wrong" style="margin-right: 8px;">Capitalized into the cost of the Investment account</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_5" value="correct" style="margin-right: 8px;">Expensed immediately in the period incurred</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_5" value="wrong" style="margin-right: 8px;">Amortized evenly over a 15-year horizon</label>
             </div>
         </div>
 
         <div style="margin-bottom: 20px;">
             <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">6. Where are stock issuance underwriting fees deducted when corporate equity is issued to fund a merger?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_6" style="margin-right: 8px;">Directly from Additional Paid-In Capital (APIC)</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_6" style="margin-right: 8px;">Charged straight to Net Operating Loss</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_6" style="margin-right: 8px;">Expensed through the Income statement as operational overhead</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_6" value="correct" style="margin-right: 8px;">Directly from Additional Paid-In Capital (APIC)</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_6" value="wrong" style="margin-right: 8px;">Charged straight to Net Operating Loss</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_6" value="wrong" style="margin-right: 8px;">Expensed through the Income statement as operational overhead</label>
             </div>
         </div>
 
-        <div style="margin-bottom: 0;">
+        <div style="margin-bottom: 24px;">
             <p style="font-weight: 700; font-size: 14.5px; color: #0f172a; margin: 0 0 10px 0;">7. Under current global frameworks, what is the accounting treatment for Goodwill after its initial calculation?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_7" style="margin-right: 8px;">Amortized straight-line over a 20-year operational life</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_7" style="margin-right: 8px;">Tested annually for impairment, but never amortized</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q51_7" style="margin-right: 8px;">Written off entirely through retained equity within year one</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_7" value="wrong" style="margin-right: 8px;">Amortized straight-line over a 20-year operational life</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_7" value="correct" style="margin-right: 8px;">Tested annually for impairment, but never amortized</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q51_7" value="wrong" style="margin-right: 8px;">Written off entirely through retained equity within year one</label>
             </div>
         </div>
+
+        <button onclick="checkQuiz51()" style="padding: 12px 24px; background: #16a34a; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%;">Submit & Check Answers</button>
+        <div id="result_51" style="margin-top: 16px; font-weight: bold; font-size: 15px; text-align: center;"></div>
     </div>
 </div>
+
+<script>
+function recalcGoodwill() {
+    let consideration = parseFloat(document.getElementById('input_consideration').value) || 0;
+    let assets = parseFloat(document.getElementById('input_assets').value) || 0;
+    let nci = parseFloat(document.getElementById('input_nci').value) || 0;
+    let prev = parseFloat(document.getElementById('input_prev').value) || 0;
+    
+    let goodwill = (consideration + nci + prev) - assets;
+    document.getElementById('goodwill_result').innerText = '$' + goodwill + 'M';
+}
+
+function checkQuiz51() {
+    let score = 0;
+    let total = 7;
+    for (let i = 1; i <= total; i++) {
+        let radios = document.getElementsByName('q51_' + i);
+        for (let r of radios) {
+            if (r.checked && r.value === 'correct') score++;
+        }
+    }
+    let res = document.getElementById('result_51');
+    res.innerText = "You scored " + score + " out of " + total + "!";
+    res.style.color = score === total ? "#16a34a" : "#dc2626";
+}
+</script>
