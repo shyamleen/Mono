@@ -23,9 +23,9 @@
     </p>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px;">
-        <button onclick="simulateInventory('FIFO')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s; display: inline-flex; justify-content: center; align-items: center;">First-In, First-Out (FIFO)</button>
-        <button onclick="simulateInventory('LIFO')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s; display: inline-flex; justify-content: center; align-items: center;">Last-In, First-Out (LIFO)</button>
-        <button onclick="simulateInventory('WAC')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s; display: inline-flex; justify-content: center; align-items: center;">Weighted Average (WAC)</button>
+        <button onclick="simulateInventory('FIFO')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; text-align: center; min-height: 40px; box-sizing: border-box;">First-In, First-Out (FIFO)</button>
+        <button onclick="simulateInventory('LIFO')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; text-align: center; min-height: 40px; box-sizing: border-box;">Last-In, First-Out (LIFO)</button>
+        <button onclick="simulateInventory('WAC')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; text-align: center; min-height: 40px; box-sizing: border-box;">Weighted Average (WAC)</button>
     </div>
 
     <div id="sim-display" style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 20px; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-sizing: border-box;">
@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <button onclick="evaluateModuleQuiz()" style="background: #6b21a8; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: background 0.2s;">Submit Quiz Tracker Answers</button>
+        <button onclick="evaluateModuleQuiz()" style="background: #6b21a8; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer;">Submit Quiz Tracker Answers</button>
         <div id="quiz-results" style="margin-top: 18px; text-align: center; font-weight: bold; font-size: 15px; color: #3b0764;"></div>
     </div>
 </div>
