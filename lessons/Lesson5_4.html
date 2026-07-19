@@ -1,97 +1,55 @@
-<div class="scroll-reveal-card" style="margin-bottom: 24px; padding: 24px; border-radius: 12px; background: #fff7ed; border: 1px solid #fed7aa; box-sizing: border-box;">
-    <span style="background: #ffedd5; color: #9a3412; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Financial Instruments</span>
-    <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #7c2d12; letter-spacing: -0.01em;">Lesson 5.3: Advanced Financial Instruments & Hedging</h1>
-    <p style="margin: 0; color: #9a3412; font-size: 15px; line-height: 1.6; font-weight: 500;">
-        Accounting for advanced financial instruments involves recording derivatives (options, futures, forwards) at fair value. Gains and losses are either recognized in net income (speculation/fair value hedges) or Other Comprehensive Income (cash flow hedges). Foreign currency translation requires remeasuring financial statements to the functional currency and then translating them to the reporting currency.
-    </p>
-</div>
-
-<div class="scroll-reveal-card" style="background: white; border: 1px solid #fed7aa; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-sizing: border-box;">
-    <h4 style="margin: 0 0 16px 0; font-size: 14px; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.05em;">🎛️ Hedging Strategy </h4>
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
-        <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 14px; border-radius: 8px;">
-            <strong style="color: #0f172a; font-size: 13.5px; display: block; margin-bottom: 6px;">📈 Fair Value Hedge</strong>
-            <span style="font-size: 12.5px; color: #475569; display: block; line-height: 1.4;">Hedges book-asset value variance. Gains & losses hit <strong>Current Earnings / Net Income</strong> instantly alongside the hedged item.</span>
-        </div>
-        <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 14px; border-radius: 8px;">
-            <strong style="color: #0f172a; font-size: 13.5px; display: block; margin-bottom: 6px;">🌊 Cash Flow Hedge</strong>
-            <span style="font-size: 12.5px; color: #475569; display: block; line-height: 1.4;">Hedges expected future cash flow changes. Gains are parked in <strong>OCI</strong>, reversing when the transaction impacts net income.</span>
-        </div>
-        <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 14px; border-radius: 8px;">
-            <strong style="color: #0f172a; font-size: 13.5px; display: block; margin-bottom: 6px;">🌍 Net Investment</strong>
-            <span style="font-size: 12.5px; color: #475569; display: block; line-height: 1.4;">Hedges corporate interests in net foreign assets. Recorded within the <strong>Cumulative Translation Adjustment (CTA)</strong> in OCI.</span>
-        </div>
+<div id="lesson-54-section">
+    <div class="scroll-reveal-card" style="margin-bottom: 24px; padding: 24px; border-radius: 12px; background: #fff7ed; border: 1px solid #fed7aa; box-sizing: border-box;">
+        <span style="background: #ffedd5; color: #9a3412; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Revenue Recognition</span>
+        <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #7c2d12; letter-spacing: -0.01em;">Lesson 5.4: Revenue Recognition (ASC 606 & IFRS 15)</h1>
+        <p style="margin: 0; color: #9a3412; font-size: 15px; line-height: 1.6; font-weight: 500;">
+            Both ASC 606 (US GAAP) and IFRS 15 require companies to follow a unified 5-step model to recognize revenue based on the transfer of control rather than cash receipt. While they share the core framework, nuances between the two frameworks remain.
+        </p>
     </div>
-</div>
 
-<div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-sizing: border-box;">
-    <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700;">Critical details governing derivative accounting and foreign currency risk:</h3>
-    
-    <h4 style="color: #7c2d12; font-size: 15px; margin: 18px 0 6px 0;">1. Accounting for Derivatives & Hedging</h4>
-    <ul style="padding-left: 20px; color: #334155; font-size: 13.5px; line-height: 1.7; margin-bottom: 14px;">
-        <li><strong>Fair Value Hedges:</strong> Derivatives used to hedge exposure to changes in the fair value of an asset or liability. Both the gain/loss on the derivative and the hedged item are recognized in current earnings.</li>
-        <li><strong>Cash Flow Hedges:</strong> Derivatives used to hedge variability in expected future cash flows. The effective portion of the derivative's gain/loss is temporarily deferred in Other Comprehensive Income (OCI) and reclassified to earnings when the hedged transaction impacts net income.</li>
-        <li><strong>Net Investment Hedges:</strong> Used to hedge the foreign currency exposure of a reporting entity's interest in the net assets of a foreign operation. The effective portion is recorded in the cumulative translation adjustment (CTA) component of OCI to offset the translation impact of the foreign subsidiary.</li>
-    </ul>
+    <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-sizing: border-box;">
+        <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700; margin-bottom: 16px;">The 5-Step Revenue Model</h3>
+        <ul style="padding-left: 20px; color: #334155; font-size: 13.5px; line-height: 1.7; margin-bottom: 24px;">
+            <li><strong>Identify the contract:</strong> Establish that a valid agreement exists (e.g., it has commercial substance and is legally enforceable).</li>
+            <li><strong>Identify performance obligations:</strong> Unbundle the contract into distinct, separate promises to deliver goods or services.</li>
+            <li><strong>Determine the transaction price:</strong> Calculate the amount the company expects to be entitled to, accounting for variable considerations.</li>
+            <li><strong>Allocate the price:</strong> Distribute the total transaction price among the identified performance obligations based on their standalone selling prices.</li>
+            <li><strong>Recognize revenue:</strong> Record the revenue when or as the control of the goods or services is transferred to the customer (either over time or at a point in time).</li>
+        </ul>
 
-    <h4 style="color: #7c2d12; font-size: 15px; margin: 18px 0 6px 0;">2. Foreign Currency Translation and Risk Types</h4>
-    <ul style="padding-left: 20px; color: #334155; font-size: 13.5px; line-height: 1.7; margin-bottom: 14px;">
-        <li><strong>Transaction Exposure:</strong> Arrives when a company engages in transactions denominated in a currency other than its functional currency. Gains and losses from exchange rate fluctuations are recognized directly in the income statement prior to settlement.</li>
-        <li><strong>Translation Exposure:</strong> The risk that a parent company's consolidated financial statements are impacted by fluctuations in exchange rates when holding assets/liabilities of foreign subsidiaries.</li>
-        <li><strong>Economic Exposure:</strong> The long-term risk that exchange rate movements will alter the present value of a firm's future operational cash flows and competitive position.</li>
-    </ul>
+        <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700; margin-bottom: 12px;">Key Differences Between US GAAP and IFRS</h3>
+        <ul style="padding-left: 20px; color: #334155; font-size: 13.5px; line-height: 1.7; margin-bottom: 0;">
+            <li><strong>Collectibility Threshold:</strong> US GAAP (ASC 606) requires collection to be "probable" (generally interpreted as a 75%–80% chance). IFRS 15 sets the threshold lower at "more likely than not" (greater than 50%).</li>
+            <li><strong>Shipping and Handling:</strong> ASC 606 offers a practical accounting policy election to treat shipping and handling activities that happen after the customer takes control as a simple fulfillment expense. IFRS 15 does not provide this election; these activities are strictly accounted for as a separate performance obligation.</li>
+            <li><strong>Interim Disclosures:</strong> IFRS 15 enforces highly detailed interim (quarterly) disclosure requirements, including the disaggregation of revenue. ASC 606 provides more relaxed interim disclosure relief, particularly for private companies.</li>
+            <li><strong>Onerous Contracts (Loss Contracts):</strong> Under IFRS 15, the measurement of a loss on an onerous contract defaults to the standard guidelines under IAS 37 (assessed at the contract level). US GAAP handles this on a contract-type specific basis within the Codification.</li>
+            <li><strong>Business Combinations:</strong> Under US GAAP, acquired contract assets and liabilities are measured at their Topic 606 values. IFRS assesses them at their acquisition-date fair value.</li>
+        </ul>
+    </div>
 
-    <h4 style="color: #7c2d12; font-size: 15px; margin: 18px 0 6px 0;">3. Key Instruments for Hedging</h4>
-    <ul style="padding-left: 20px; color: #334155; font-size: 13.5px; line-height: 1.7; margin-bottom: 0;">
-        <li><strong>Forward Contracts:</strong> Over-the-counter (OTC) customized agreements to exchange currencies at a specified rate on a specific future date. They are heavily utilized for locking in exchange rates to hedge specific payables or receivables.</li>
-        <li><strong>Futures Contracts:</strong> Similar to forwards, but traded on standardized exchanges with standardized maturity dates.</li>
-        <li><strong>Options:</strong> Contracts that give the buyer the right (but not the obligation) to exchange currency at a predetermined strike price, allowing the firm to benefit from favorable exchange rate movements while hedging against unfavorable ones.</li>
-        <li><strong>Currency Swaps:</strong> Agreements to exchange principal and interest payments in different currencies, typically used to hedge long-term foreign currency debt.</li>
-    </ul>
-</div>
-
-<div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); box-sizing: border-box;">
-    <h3 style="margin-top: 0; color: #0f172a; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 24px;">📝 Lesson 5.3 Knowledge Verification (8 Questions)</h3>
-    
-    <div id="quiz-container-53">
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">1. At what metric must derivatives (options, futures, forwards) be recorded on the financial statements?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_1" style="margin-right: 8px;"> Historical cost value</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_1" style="margin-right: 8px;"> Fair value</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_1" style="margin-right: 8px;"> Lower of cost or market value</label>
+    <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); box-sizing: border-box; margin-bottom: 32px;">
+        <h3 style="margin-top: 0; color: #0f172a; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 24px;">📝 Lesson 5.4 Quiz</h3>
+        
+        <div id="quiz-container-54">
+            <div style="margin-bottom: 18px;">
+                <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">1. Under both ASC 606 and IFRS 15, what acts as the dynamic trigger for revenue recognition?</p>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_1" style="margin-right: 8px;"> The actual architectural receipt or processing of cash statements</label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_1" style="margin-right: 8px;"> The dynamic transfer of control over assets or services to the consumer</label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_1" style="margin-right: 8px;"> The initial execution date of an enforceable corporate contract</label>
+                </div>
             </div>
-        </div>
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">2. Where are gains and losses from speculation or Fair Value Hedges recognized?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_2" style="margin-right: 8px;"> Other Comprehensive Income (OCI)</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_2" style="margin-right: 8px;"> Current earnings / Net income</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_2" style="margin-right: 8px;"> Additional Paid-In Capital</label>
+            <div style="margin-bottom: 18px;">
+                <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">2. How do collectibility validation metrics fundamentally differ between US GAAP and IFRS framework parameters?</p>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_2" style="margin-right: 8px;"> US GAAP implements a higher threshold standard ("probable") than IFRS ("more likely than not").</label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_2" style="margin-right: 8px;"> IFRS maps a stricter baseline verification range requiring absolute full payment assurance.</label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_2" style="margin-right: 8px;"> Both frameworks treat contract collection logic identically at an exact 50% statistical tie.</label>
+                </div>
             </div>
-        </div>
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">3. For Cash Flow Hedges, where is the effective portion of the derivative's gain or loss temporarily deferred?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_3" style="margin-right: 8px;"> Other Comprehensive Income (OCI)</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_3" style="margin-right: 8px;"> Net income directly</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_3" style="margin-right: 8px;"> Retained earnings statement adjustment</label>
-            </div>
-        </div>
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">4. In a Net Investment Hedge, the effective portion is recorded within which component of OCI?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_4" style="margin-right: 8px;"> Gross profit adjustment tier</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_4" style="margin-right: 8px;"> Cumulative Translation Adjustment (CTA)</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_4" style="margin-right: 8px;"> Amortized risk reserves</label>
-            </div>
-        </div>
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">5. Which risk type arises before settlement when a company conducts a transaction denominated in a non-functional currency?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_5" style="margin-right: 8px;"> Translation Exposure</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_5" style="margin-right: 8px;"> Economic Exposure</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q53_5" style="margin-right: 8px;"> Transaction Exposure</label>
-            </div>
-        </div>
-        <div style="margin-bottom
+            <div style="margin-bottom: 18px;">
+                <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">3. Which standard permits an accounting choice to record post-control shipping and handling as a simple fulfillment expense?</p>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_3" style="margin-right: 8px;"> IFRS 15 parameters</label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_3" style="margin-right: 8px;"> US GAAP (ASC 606)</label>
+                    <label style="font-size: 13.5px; color: #334155; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q54_3" style="margin-right: 8px;">
