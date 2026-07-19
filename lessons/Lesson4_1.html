@@ -1,4 +1,4 @@
-<div class="scroll-reveal-card" style="margin-bottom: 24px; padding: 24px; border-radius: 12px; background: #faf5ff; border: 1px solid #e9d5ff;">
+<div class="scroll-reveal-card" style="margin-bottom: 24px; padding: 24px; border-radius: 12px; background: #faf5ff; border: 1px solid #e9d5ff; box-sizing: border-box;">
     <span style="background: #f3e8ff; color: #6b21a8; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Asset Valuation</span>
     <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #3b0764; letter-spacing: -0.01em;">Inventory Costing Methods</h1>
     <p style="margin: 0; color: #581c87; font-size: 15px; line-height: 1.6; font-weight: 500;">
@@ -6,80 +6,90 @@
     </p>
 </div>
 
-<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(107, 33, 168, 0.03);">
-    <h3 style="margin-top: 0; color: #3b0764; font-size: 18px; font-weight: 700; border-bottom: 2px solid #f3e8ff; padding-bottom: 8px;">Vital Functions of Inventory Measurement</h3>
+<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(107, 33, 168, 0.03); box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 18px; font-weight: 700; border-bottom: 2px solid #f3e8ff; padding-bottom: 8px; margin-bottom: 16px;">Vital Functions of Inventory Measurement</h3>
     <ul style="padding-left: 20px; color: #581c87; font-size: 14px; line-height: 1.8; margin-bottom: 0;">
-        <li><strong style="color: #3b0764;">Profitability Analysis:</strong> Tracks the exact expenses (materials, labor, overhead) tied to producing goods, allowing you to set profitable selling prices.</li>
-        <li><strong style="color: #3b0764;">Financial Reporting:</strong> Values unsold goods as current assets to provide banks, investors, and lenders with an accurate picture of the company's financial health.</li>
-        <li><strong style="color: #3b0764;">Tax Compliance:</strong> Reports inventory value correctly on tax returns.</li>
-        <li><strong style="color: #3b0764;">Risk Mitigation:</strong> Identifies issues like obsolescence, spoilage, or shrinkage, preventing the inflation of assets and allowing for timely write-downs.</li>
+        <li style="margin-bottom: 8px;"><strong style="color: #3b0764;">Profitability Analysis:</strong> Tracks the exact expenses (materials, labor, overhead) tied to producing goods, allowing you to set profitable selling prices.</li>
+        <li style="margin-bottom: 8px;"><strong style="color: #3b0764;">Financial Reporting:</strong> Values unsold goods as current assets to provide banks, investors, and lenders with an accurate picture of the company's financial health.</li>
+        <li style="margin-bottom: 8px;"><strong style="color: #3b0764;">Tax Compliance:</strong> Reports inventory value correctly on tax returns.</li>
+        <li style="margin-bottom: 0;"><strong style="color: #3b0764;">Risk Mitigation:</strong> Identifies issues like obsolescence, spoilage, or shrinkage, preventing the inflation of assets and allowing for timely write-downs.</li>
     </ul>
 </div>
 
-<div class="scroll-reveal-card" style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-    <h3 style="margin-top: 0; color: #3b0764; font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 16px;">Different methods of measuring inventory.</h3>
-    <p style="font-size: 13.5px; color: #581c87; margin-bottom: 16px; text-align: center;">
+<div class="scroll-reveal-card" style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 8px;">Different methods of measuring inventory.</h3>
+    <p style="font-size: 13.5px; color: #581c87; margin-bottom: 20px; text-align: center; margin-top: 0;">
         Select an accounting system below to see a different way of measuring inventory.
     </p>
     
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
-        <button onclick="simulateInventory('FIFO')" style="background: #6b21a8; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer;">First-In, First-Out (FIFO)</button>
-        <button onclick="simulateInventory('LIFO')" style="background: #6b21a8; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer;">Last-In, First-Out (LIFO)</button>
-        <button onclick="simulateInventory('WAC')" style="background: #6b21a8; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer;">Weighted Average (WAC)</button>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px;">
+        <button onclick="simulateInventory('FIFO')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s; display: inline-flex; justify-content: center; align-items: center;">First-In, First-Out (FIFO)</button>
+        <button onclick="simulateInventory('LIFO')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s; display: inline-flex; justify-content: center; align-items: center;">Last-In, First-Out (LIFO)</button>
+        <button onclick="simulateInventory('WAC')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s; display: inline-flex; justify-content: center; align-items: center;">Weighted Average (WAC)</button>
     </div>
 
-    <div id="sim-display" style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 16px; min-height: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <div id="sim-display" style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 20px; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-sizing: border-box;">
         <p style="color: #701a75; font-weight: 600; font-size: 14px; margin: 0;">Click a costing framework above to run diagnostic asset tracking calculations.</p>
     </div>
 </div>
 
-<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin-bottom: 32px; box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #3b0764; font-size: 18px; font-weight: 700; margin-bottom: 12px;">Specific Identification Method</h3>
     <p style="margin: 0; font-size: 14px; color: #581c87; line-height: 1.6;">
         Tracks the exact cost of each individual item. This is used primarily for high-ticket or unique items like luxury jewelry, real estate, or custom art, where mixing or smoothing costs would produce distorted balance sheets.
     </p>
 </div>
 
-<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(107, 33, 168, 0.05);">
-    <h3 style="margin-top: 0; color: #3b0764; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f3e8ff; padding-bottom: 10px; margin-bottom: 20px;">📝 Module 4.1 Knowledge Assessment</h3>
+<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(107, 33, 168, 0.05); box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f3e8ff; padding-bottom: 10px; margin-bottom: 24px;">📝 Module 4.1 Knowledge Assessment</h3>
     
     <div id="quiz-container">
-        <div class="quiz-question" style="margin-bottom: 20px;">
-            <p style="font-weight: 600; font-size: 14.5px; color: #3b0764; margin-bottom: 8px;">1. Why do companies measure inventory costing profiles under structural guidelines?</p>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q1" value="0" style="margin-right: 8px;">To increase marketing outreach parameters.</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q1" value="1" style="margin-right: 8px;">To accurately compute COGS, determine margins, and value current assets.</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q1" value="0" style="margin-right: 8px;">To eliminate short-term accounts payable liabilities completely.</label>
-        </div>
-
-        <div class="quiz-question" style="margin-bottom: 20px;">
-            <p style="font-weight: 600; font-size: 14.5px; color: #3b0764; margin-bottom: 8px;">2. Which method assumes that the oldest inventory batches are sold off first?</p>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q2" value="1" style="margin-right: 8px;">First-In, First-Out (FIFO)</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q2" value="0" style="margin-right: 8px;">Last-In, First-Out (LIFO)</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q2" value="0" style="margin-right: 8px;">Specific Identification Method</label>
-        </div>
-
-        <div class="quiz-question" style="margin-bottom: 20px;">
-            <p style="font-weight: 600; font-size: 14.5px; color: #3b0764; margin-bottom: 8px;">3. During rising inflation, why would a company utilize the LIFO methodology?</p>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q3" value="0" style="margin-right: 8px;">To maximize standard closing net asset evaluations.</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q3" value="0" style="margin-right: 8px;">To avoid compliance protocols under United States GAAP laws.</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q3" value="1" style="margin-right: 8px;">It causes higher COGS evaluations, lowering legal taxable earnings.</label>
-        </div>
-
-        <div class="quiz-question" style="margin-bottom: 20px;">
-            <p style="font-weight: 600; font-size: 14.5px; color: #3b0764; margin-bottom: 8px;">4. True or False: The LIFO model is fully permitted for international usage under IFRS protocols.</p>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q4" value="0" style="margin-right: 8px;">True</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q4" value="1" style="margin-right: 8px;">False</label>
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">1. Why do companies measure inventory costing profiles under structural guidelines?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q1" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>To increase marketing outreach parameters.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q1" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>To accurately compute COGS, determine margins, and value current assets.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q1" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>To eliminate short-term accounts payable liabilities completely.</span></label>
+            </div>
         </div>
 
         <div class="quiz-question" style="margin-bottom: 24px;">
-            <p style="font-weight: 600; font-size: 14.5px; color: #3b0764; margin-bottom: 8px;">5. Which layout averages out structural pricing spikes by blending all identical assets?</p>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q5" value="0" style="margin-right: 8px;">Specific Identification Matrix</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q5" value="1" style="margin-right: 8px;">Weighted Average Cost (WAC)</label>
-            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 6px; cursor: pointer;"><input type="radio" name="q5" value="0" style="margin-right: 8px;">Perishable Asset Linear Allocation</label>
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">2. Which method assumes that the oldest inventory batches are sold off first?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q2" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>First-In, First-Out (FIFO)</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q2" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Last-In, First-Out (LIFO)</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q2" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Specific Identification Method</span></label>
+            </div>
         </div>
 
-        <button onclick="evaluateModuleQuiz()" style="background: #6b21a8; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer;">Submit Quiz Tracker Answers</button>
-        <div id="quiz-results" style="margin-top: 16px; text-align: center; font-weight: bold; font-size: 15px; color: #3b0764;"></div>
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">3. During rising inflation, why would a company utilize the LIFO methodology?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q3" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>To maximize standard closing net asset evaluations.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q3" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>To avoid compliance protocols under United States GAAP laws.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q3" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>It causes higher COGS evaluations, lowering legal taxable earnings.</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">4. True or False: The LIFO model is fully permitted for international usage under IFRS protocols.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q4" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>True</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q4" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>False</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 28px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">5. Which layout averages out structural pricing spikes by blending all identical assets?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q5" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Specific Identification Matrix</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q5" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Weighted Average Cost (WAC)</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q5" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Perishable Asset Linear Allocation</span></label>
+            </div>
+        </div>
+
+        <button onclick="evaluateModuleQuiz()" style="background: #6b21a8; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: background 0.2s;">Submit Quiz Tracker Answers</button>
+        <div id="quiz-results" style="margin-top: 18px; text-align: center; font-weight: bold; font-size: 15px; color: #3b0764;"></div>
     </div>
 </div>
 
@@ -88,15 +98,15 @@
         const display = document.getElementById('sim-display');
         if(type === 'FIFO') {
             display.innerHTML = `
-                <p style="margin: 0; font-size: 13px; color: #581c87; line-height: 1.5;">Older cheaper costs are cleared first. <br><strong style="color: #c026d3;">Result:</strong> Lower recorded COGS, higher ending balance sheet inventory values, and inflated net profits during periods of inflation.</p>
+                <p style="margin: 0; font-size: 13.5px; color: #581c87; line-height: 1.5; text-align: center;">Older cheaper costs are cleared first. <br><strong style="color: #c026d3;">Result:</strong> Lower recorded COGS, higher ending balance sheet inventory values, and inflated net profits during periods of inflation.</p>
             `;
         } else if(type === 'LIFO') {
             display.innerHTML = `
-                <p style="margin: 0; font-size: 13px; color: #581c87; line-height: 1.5;">Newer, more expensive purchases are written off first. <br><strong style="color: #c026d3;">Result:</strong> Maximized COGS reporting, suppressed net margins, and significantly reduced corporate tax exposure.</p>
+                <p style="margin: 0; font-size: 13.5px; color: #581c87; line-height: 1.5; text-align: center;">Newer, more expensive purchases are written off first. <br><strong style="color: #c026d3;">Result:</strong> Maximized COGS reporting, suppressed net margins, and significantly reduced corporate tax exposure.</p>
             `;
         } else if(type === 'WAC') {
             display.innerHTML = `
-                <p style="margin: 0; font-size: 13px; color: #581c87; line-height: 1.5;">Blends total costs evenly over complete pool assets.<br><strong style="color: #c026d3;">Result:</strong> Completely smooths transaction price peaks, providing balanced, mid-tier results for both balance sheet asset records and margins.</p>
+                <p style="margin: 0; font-size: 13.5px; color: #581c87; line-height: 1.5; text-align: center;">Blends total costs evenly over complete pool assets.<br><strong style="color: #c026d3;">Result:</strong> Completely smooths transaction price peaks, providing balanced, mid-tier results for both balance sheet asset records and margins.</p>
             `;
         }
     }
