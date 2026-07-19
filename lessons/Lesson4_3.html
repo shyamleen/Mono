@@ -1,0 +1,152 @@
+<div class="scroll-reveal-card" style="margin-bottom: 24px; padding: 24px; border-radius: 12px; background: #faf5ff; border: 1px solid #e9d5ff; box-sizing: border-box;">
+    <span style="background: #f3e8ff; color: #6b21a8; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Asset Valuation</span>
+    <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #3b0764; letter-spacing: -0.01em;">Accounts Receivable & Bad Debt</h1>
+    <p style="margin: 0; color: #581c87; font-size: 15px; line-height: 1.6; font-weight: 500;">
+        Accounts receivable (AR) represent the money customers owe your business for credit sales. Bad debt occurs when those invoices become uncollectible, usually due to customer bankruptcy or refusal to pay. Under accrual accounting, businesses estimate and record bad debt as an expense to avoid overstating their assets.
+    </p>
+</div>
+
+<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(107, 33, 168, 0.03); box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 18px; font-weight: 700; border-bottom: 2px solid #f3e8ff; padding-bottom: 8px; margin-bottom: 16px;">The Allowance Method (GAAP Required)</h3>
+    <p style="margin: 0 0 16px 0; font-size: 14px; color: #581c87; line-height: 1.6;">
+        To ensure financial statements remain accurate, businesses primarily rely on the <strong>allowance method</strong> (required by GAAP) to anticipate and record bad debt. This forward-looking process estimates bad debt and matches it to the period of the related sale, reporting accounts receivable at their <strong>net realizable value</strong> and preventing major swings in reported profits when specific invoices are written off.
+    </p>
+    <ul style="padding-left: 20px; color: #581c87; font-size: 14px; line-height: 1.8; margin-bottom: 0;">
+        <li style="margin-bottom: 8px;"><strong style="color: #3b0764;">Bad Debt Expense:</strong> An income statement expense account that records the estimated amount of uncollectible invoices matching the revenue generation window.</li>
+        <li style="margin-bottom: 8px;"><strong style="color: #3b0764;">Allowance for Doubtful Accounts (AFDA / ADA):</strong> A contra-asset account on the balance sheet that reduces the total gross Accounts Receivable to what you realistically expect to collect.</li>
+        <li style="margin-bottom: 0;"><strong style="color: #3b0764;">Write-Offs:</strong> When an account becomes definitively uncollectible, you remove it from your books. Debit the AFDA account and credit the specific customer’s AR. This does not impact net income because the estimated expense was already recorded.</li>
+    </ul>
+</div>
+
+<div class="scroll-reveal-card" style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 8px;">Interactive Estimation Model Matrix</h3>
+    <p style="font-size: 13.5px; color: #581c87; margin-bottom: 20px; text-align: center; margin-top: 0;">
+        Toggle between the two primary estimation frameworks to inspect bookkeeping journal patterns.
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px;">
+        <button onclick="simulateBadDebt('SALES')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; text-align: center; min-height: 40px; box-sizing: border-box;">Percentage of Credit Sales Method</button>
+        <button onclick="simulateBadDebt('AGING')" style="background: #6b21a8; color: white; border: none; padding: 12px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; text-align: center; min-height: 40px; box-sizing: border-box;">Accounts Receivable Aging Method</button>
+    </div>
+
+    <div id="baddebt-display" style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 20px; min-height: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-sizing: border-box;">
+        <p style="color: #701a75; font-weight: 600; font-size: 14px; margin: 0; text-align: center;">Click a method above to view valuation balances and entry structures.</p>
+    </div>
+</div>
+
+<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(107, 33, 168, 0.05); box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f3e8ff; padding-bottom: 10px; margin-bottom: 24px;">📝 Module 4.3 Knowledge Assessment</h3>
+    
+    <div id="quiz-container-43">
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">1. Which method for recognizing bad debt is strictly required by GAAP for public financial reporting?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_1" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>The Direct Write-Off Method.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_1" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>The Allowance Method.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_1" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>The Cash Liquidation Approach.</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">2. How is the Allowance for Doubtful Accounts (AFDA) classified on the balance sheet?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_2" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Contra-asset account.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_2" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Current Liability.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_2" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Operating Expense.</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">3. What accounting approach is emphasis-linked to the Percentage of Credit Sales method?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_3" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Income statement approach focusing on matching expenses with revenues.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_3" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Balance sheet approach focusing on asset net realizable value accuracy.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_3" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Fair market valuation adjustment model.</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">4. When an individual customer account is officially written off, what is the impact on Net Income?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_4" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Net income decreases by the written-off amount.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_4" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Net income increases because liabilities drop.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_4" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>There is no impact on net income at the time of the write-off.</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">5. Why is the aging of accounts receivable method highly recommended over flat percentage metrics?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_5" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>It applies higher uncollectible percentages to invoices that are further past due.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_5" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>It avoids looking at individual customer invoice timing entirely.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_5" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>It is based exclusively on macro cash collected patterns.</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">6. What is the fundamental accounting equation utilized to determine Net Realizable Value of AR?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_6" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Gross Accounts Receivable minus Allowance for Doubtful Accounts.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_6" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Gross Accounts Receivable plus Bad Debt Expense.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_6" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Net Income divided by Credit Sales metrics.</span></label>
+            </div>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 28px;">
+            <p style="font-weight: 700; font-size: 15px; color: #3b0764; margin: 0 0 12px 0;">7. What are the specific journal ledger movements when recording estimated defaults?</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_7" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Debit Accounts Receivable, Credit Bad Debt Expense.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_7" value="1" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Debit Bad Debt Expense, Credit Allowance for Doubtful Accounts.</span></label>
+                <label style="display: flex; align-items: flex-start; font-size: 13.5px; color: #581c87; cursor: pointer; padding: 10px; border: 1px solid #f3e8ff; border-radius: 6px; background: #faf5ff;"><input type="radio" name="q43_7" value="0" style="margin: 3px 8px 0 0; flex-shrink: 0;"><span>Debit Allowance for Doubtful Accounts, Credit Cash.</span></label>
+            </div>
+        </div>
+
+        <button onclick="evaluateModuleQuiz43()" style="background: #6b21a8; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer;">Submit Quiz Tracker Answers</button>
+        <div id="quiz-results-43" style="margin-top: 18px; text-align: center; font-weight: bold; font-size: 15px; color: #3b0764;"></div>
+    </div>
+</div>
+
+<script>
+    function simulateBadDebt(type) {
+        const display = document.getElementById('baddebt-display');
+        if(type === 'SALES') {
+            display.innerHTML = `
+                <div style="text-align: left; width: 100%; font-size: 13.5px; color: #581c87; line-height: 1.5;">
+                    <strong style="color: #6b21a8;">📈 Percentage of Credit Sales Method (Income Statement Focus)</strong><br>
+                    Focuses heavily on matching period bad debt with period credit revenue. Existing balance parameters inside the AFDA account are ignored when booking the calculated expense transaction.<br><br>
+                    <strong>Journal Setup entry:</strong><br>
+                    <span style="font-family: monospace; display: block; padding-left: 10px;">• DEBIT: Bad Debt Expense ($X)</span>
+                    <span style="font-family: monospace; display: block; padding-left: 10px;">• CREDIT: Allowance for Doubtful Accounts ($X)</span>
+                </div>
+            `;
+        } else if(type === 'AGING') {
+            display.innerHTML = `
+                <div style="text-align: left; width: 100%; font-size: 13.5px; color: #581c87; line-height: 1.5;">
+                    <strong style="color: #6b21a8;">⏳ Accounts Receivable Aging Method (Balance Sheet Focus)</strong><br>
+                    Classifies receivables by duration parameters. The calculation output determines the *target ending balance* for AFDA. Any legacy credit/debit balances inside AFDA must be factored in to determine the required adjusting entry amount.<br><br>
+                    <strong>Journal Setup entry (Adjusted for legacy balances):</strong><br>
+                    <span style="font-family: monospace; display: block; padding-left: 10px;">• DEBIT: Bad Debt Expense ($Required Adjustment)</span>
+                    <span style="font-family: monospace; display: block; padding-left: 10px;">• CREDIT: Allowance for Doubtful Accounts ($Required Adjustment)</span>
+                </div>
+            `;
+        }
+    }
+
+    function evaluateModuleQuiz43() {
+        let score = 0;
+        const total = 7;
+        for(let i=1; i<=total; i++) {
+            const checked = document.querySelector(`input[name="q43_${i}"]:checked`);
+            if(checked && checked.value === "1") score++;
+        }
+
+        const resultDiv = document.getElementById('quiz-results-43');
+        resultDiv.textContent = `You scored ${score} / ${total}!`;
+        if(score === total) {
+            resultDiv.style.color = "#16a34a";
+            resultDiv.textContent += " Perfect bad debt valuation score verified! 🌟";
+        } else {
+            resultDiv.style.color = "#dc2626";
+        }
+    }
+</script>
