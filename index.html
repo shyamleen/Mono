@@ -333,23 +333,23 @@
                 </button>
                 <div id="module5-content" class="accordion-content">
                     <button class="nav-btn" id="nav-5.1" onclick="loadLessonContent('5.1')">
-                        <span>Lesson 5.1: Business Combinations and Consolidations</span>
+                        <span>Lesson 5.1: Business Combinations</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-5.2" onclick="loadLessonContent('5.2')">
-                        <span>Lesson 5.2: Deferred Taxes and Accrual Complexity</span>
+                        <span>Lesson 5.2: Deferred Taxes</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-5.3" onclick="loadLessonContent('5.3')">
-                        <span>Lesson 5.3: Advanced Financial Instruments & Hedging</span>
+                        <span>Lesson 5.3: Advanced Instruments</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-5.4" onclick="loadLessonContent('5.4')">
-                        <span>Lesson 5.4: IFRS vs. US GAAP & Revenue Recognition</span>
+                        <span>Lesson 5.4: Revenue Recognition</span>
                         <span class="completion-dot"></span>
                     </button>
                     <button class="nav-btn" id="nav-5.5" onclick="loadLessonContent('5.5')">
-                        <span>Lesson 5.5: Forensic Accounting & Auditing Standards</span>
+                        <span>Lesson 5.5: Forensic Accounting</span>
                         <span class="completion-dot"></span>
                     </button>
                 </div>
@@ -363,7 +363,7 @@
             </div>
         </div>
 
-        <div class="main-content">
+        <div class="main-content" id="main-scroll-viewport">
             <div id="workbook-content-area" class="workbook-viewport">
             </div>
         </div>
@@ -385,41 +385,38 @@
         let selectedQuoteText = ""; 
         
         const curriculum = [
-            { id: "1.1", name: "Lesson 1.1: Introduction to Accounting", desc: "Foundational concepts and the language of business." },
-            { id: "1.2", name: "Lesson 1.2: The Core Accounting Equation", desc: "Master Assets, Liabilities, and Owner's Equity." },
-            { id: "1.3", name: "Lesson 1.3: The T-Accounts System", desc: "Visualize entries cleanly using left-side and right-side columns." },
-            { id: "1.4", name: "Lesson 1.4: Double-Entry Matrix Rules", desc: "Why debits must always balance with matching credits." },
-            { id: "1.5", name: "Lesson 1.5: Ledger Book Posting Execution", desc: "Transfer raw transactions into visual active ledger pages." },
-            { id: "1.6", name: "Lesson 1.6: Introduction to the Trial Balance", desc: "Verify ledger accuracy using balanced spreadsheets." },
+            { id: "1.1", module: 1, modName: "Module 1: Accounting Basics", name: "Lesson 1.1: Introduction to Accounting", desc: "Foundational concepts and the language of business." },
+            { id: "1.2", module: 1, modName: "Module 1: Accounting Basics", name: "Lesson 1.2: The Core Accounting Equation", desc: "Master Assets, Liabilities, and Owner's Equity." },
+            { id: "1.3", module: 1, modName: "Module 1: Accounting Basics", name: "Lesson 1.3: The T-Accounts System", desc: "Visualize entries cleanly using left-side and right-side columns." },
+            { id: "1.4", module: 1, modName: "Module 1: Accounting Basics", name: "Lesson 1.4: Double-Entry Matrix Rules", desc: "Why debits must always balance with matching credits." },
+            { id: "1.5", module: 1, modName: "Module 1: Accounting Basics", name: "Lesson 1.5: Ledger Book Posting Execution", desc: "Transfer raw transactions into visual active ledger pages." },
+            { id: "1.6", module: 1, modName: "Module 1: Accounting Basics", name: "Lesson 1.6: Introduction to the Trial Balance", desc: "Verify ledger accuracy using balanced spreadsheets." },
             
-            /* Formatted and Normalized Module 2 Array Strings */
-            { id: "2.1", name: "Lesson 2.1: Intro to Financial Statements", desc: "The four core statements and how they summarize financial positions." },
-            { id: "2.2", name: "Lesson 2.2: The Income Statement", desc: "Understand revenues, expenses, and calculating net profit or loss." },
-            { id: "2.3", name: "Lesson 2.3: The Balance Sheet", desc: "Deep dive into organizing and verifying assets, liabilities, and equity." },
-            { id: "2.4", name: "Lesson 2.4: Statement of Owner's Equity", desc: "Track how investments, drawings, and earnings alter capital over time." },
-            { id: "2.5", name: "Lesson 2.5: The Cash Flow Statement", desc: "Learn to track actual operational, investing, and financing cash changes." },
-            { id: "2.6", name: "Lesson 2.6: Module 2 Capstone: Full Financial Statements", desc: "Put it all together and construct a complete set of integrated statements." },
+            { id: "2.1", module: 2, modName: "Module 2: Financial Statements", name: "Lesson 2.1: Intro to Financial Statements", desc: "The four core statements and how they summarize financial positions." },
+            { id: "2.2", module: 2, modName: "Module 2: Financial Statements", name: "Lesson 2.2: The Income Statement", desc: "Understand revenues, expenses, and calculating net profit or loss." },
+            { id: "2.3", module: 2, modName: "Module 2: Financial Statements", name: "Lesson 2.3: The Balance Sheet", desc: "Deep dive into organizing and verifying assets, liabilities, and equity." },
+            { id: "2.4", module: 2, modName: "Module 2: Financial Statements", name: "Lesson 2.4: Statement of Owner's Equity", desc: "Track how investments, drawings, and earnings alter capital over time." },
+            { id: "2.5", module: 2, modName: "Module 2: Financial Statements", name: "Lesson 2.5: The Cash Flow Statement", desc: "Learn to track actual operational, investing, and financing cash changes." },
+            { id: "2.6", module: 2, modName: "Module 2: Financial Statements", name: "Lesson 2.6: Module 2 Capstone", desc: "Put it all together and construct a complete set of integrated statements." },
             
-            { id: "3.1", name: "Lesson 3.1: Working Capital & Liquidity Ratios", desc: "Evaluate short-term financial health and immediate liability defenses." },
-            { id: "3.2", name: "Lesson 3.2: Profitability Margmargins", desc: "Learn to assess direct pricing performance and absolute bottom-line net conversion percentages." },
-            { id: "3.3", name: "Lesson 3.3: Efficiency Ratios", desc: "Track asset conversion turns and operational velocity cycles." },
-            { id: "3.4", name: "Lesson 3.4: Solvency Ratios", desc: "Evaluate leverage metrics and long-term capital structural health structures." },
-            { id: "3.5", name: "Lesson 3.5: Reading an Annual Report", desc: "Unpack hidden notes, disclosures, and structural items within a standard 10-K report." },
-            { id: "3.6", name: "Lesson 3.6: Module 3 Investor Analysis Capstone", desc: "Run a full diagnostic cross-comparison health evaluation on target firms." },
+            { id: "3.1", module: 3, modName: "Module 3: Ratio & Health", name: "Lesson 3.1: Working Capital & Liquidity Ratios", desc: "Evaluate short-term financial health and immediate liability defenses." },
+            { id: "3.2", module: 3, modName: "Module 3: Ratio & Health", name: "Lesson 3.2: Profitability Margins", desc: "Learn to assess direct pricing performance and absolute bottom-line net conversion percentages." },
+            { id: "3.3", module: 3, modName: "Module 3: Ratio & Health", name: "Lesson 3.3: Efficiency Ratios", desc: "Track asset conversion turns and operational velocity cycles." },
+            { id: "3.4", module: 3, modName: "Module 3: Ratio & Health", name: "Lesson 3.4: Solvency Ratios", desc: "Evaluate leverage metrics and long-term capital structural health structures." },
+            { id: "3.5", module: 3, modName: "Module 3: Ratio & Health", name: "Lesson 3.5: Reading an Annual Report", desc: "Unpack hidden notes, disclosures, and structural items within a standard 10-K report." },
+            { id: "3.6", module: 3, modName: "Module 3: Ratio & Health", name: "Lesson 3.6: Module 3 Investor Analysis Capstone", desc: "Run a full diagnostic cross-comparison health evaluation on target firms." },
 
-            /* Added Module 4 Curricular Configuration Nodes */
-            { id: "4.1", name: "Lesson 4.1: Inventory Costing Methods", desc: "Explore core operational balancing methods including FIFO, LIFO, and Weighted Average structures." },
-            { id: "4.2", name: "Lesson 4.2: Depreciation & Amortization", desc: "Master asset allocation tracking mechanics, straight-line rules, and systematic allocation metrics." },
-            { id: "4.3", name: "Lesson 4.3: Accounts Receivable & Bad Debt", desc: "Unpack loss allowances, aging analysis profiles, and valuation adjustment configurations." },
-            { id: "4.4", name: "Lesson 4.4: Liabilities", desc: "Classify operational short-term current obligations against structured long-term debt liabilities." },
-            { id: "4.5", name: "Lesson 4.5: Corporate Equity", desc: "Analyze premium capital stock items, retained earnings pools, and treasury buyback balances." },
+            { id: "4.1", module: 4, modName: "Module 4: Assets, Liabilities & Equity", name: "Lesson 4.1: Inventory Costing Methods", desc: "Explore core operational balancing methods including FIFO, LIFO, and Weighted Average structures." },
+            { id: "4.2", module: 4, modName: "Module 4: Assets, Liabilities & Equity", name: "Lesson 4.2: Depreciation & Amortization", desc: "Master asset allocation tracking mechanics, straight-line rules, and systematic allocation metrics." },
+            { id: "4.3", module: 4, modName: "Module 4: Assets, Liabilities & Equity", name: "Lesson 4.3: Accounts Receivable & Bad Debt", desc: "Unpack loss allowances, aging analysis profiles, and valuation adjustment configurations." },
+            { id: "4.4", module: 4, modName: "Module 4: Assets, Liabilities & Equity", name: "Lesson 4.4: Liabilities", desc: "Classify operational short-term current obligations against structured long-term debt liabilities." },
+            { id: "4.5", module: 4, modName: "Module 4: Assets, Liabilities & Equity", name: "Lesson 4.5: Corporate Equity", desc: "Analyze premium capital stock items, retained earnings pools, and treasury buyback balances." },
 
-            /* Added Module 5 Curricular Configuration Nodes */
-            { id: "5.1", name: "Lesson 5.1: Business Combinations and Consolidations", desc: "Investigate reporting protocols for mergers, acquisitions, and parent-subsidiary controlling tracking." },
-            { id: "5.2", name: "Lesson 5.2: Deferred Taxes and Accrual Complexity", desc: "Resolve temporary differences between tax obligations and book-value financial accounting metrics." },
-            { id: "5.3", name: "Lesson 5.3: Advanced Financial Instruments & Hedging", desc: "Leverage financial derivative strategies to manage pricing exposure and mitigate market volatility." },
-            { id: "5.4", name: "Lesson 5.4: IFRS vs. US GAAP & Revenue Recognition", desc: "Contrast regulatory frameworks, convergence efforts, and standardized contract performance criteria." },
-            { id: "5.5", name: "Lesson 5.5: Forensic Accounting & Auditing Standards", desc: "Apply specialized data investigative techniques and legal evidence standards to audit internal controls." }
+            { id: "5.1", module: 5, modName: "Module 5: Advanced Accounting", name: "Lesson 5.1: Business Combinations and Consolidations", desc: "Investigate reporting protocols for mergers, acquisitions, and parent-subsidiary controlling tracking." },
+            { id: "5.2", module: 5, modName: "Module 5: Advanced Accounting", name: "Lesson 5.2: Deferred Taxes and Accrual Complexity", desc: "Resolve temporary differences between tax obligations and book-value financial accounting metrics." },
+            { id: "5.3", module: 5, modName: "Module 5: Advanced Accounting", name: "Lesson 5.3: Advanced Financial Instruments & Hedging", desc: "Leverage financial derivative strategies to manage pricing exposure and mitigate market volatility." },
+            { id: "5.4", module: 5, modName: "Module 5: Advanced Accounting", name: "Lesson 5.4: IFRS vs. US GAAP & Revenue Recognition", desc: "Contrast regulatory frameworks, convergence efforts, and standardized contract performance criteria." },
+            { id: "5.5", module: 5, modName: "Module 5: Advanced Accounting", name: "Lesson 5.5: Forensic Accounting & Auditing Standards", desc: "Apply specialized data investigative techniques and legal evidence standards to audit internal controls." }
         ];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -448,33 +445,63 @@
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('dashboard-nav-btn').classList.add('active');
 
+            // Force scroll viewport to absolute top position
+            document.getElementById("main-scroll-viewport").scrollTop = 0;
+
             const container = document.getElementById("workbook-content-area");
             const totalCount = curriculum.length;
             const completedCount = completedLessons.length;
             const progressPercent = Math.round((completedCount / totalCount) * 100);
 
-            let cardsHtml = '';
+            // Group curriculum dynamically into modular nodes
+            const modulesMap = {};
             curriculum.forEach(lesson => {
-                const isCompleted = completedLessons.includes(lesson.id);
-                cardsHtml += `
-                    <div style="background: #ffffff; border: 1px solid ${isCompleted ? '#bbf7d0' : '#e2e8f0'}; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px; text-align: left;">
-                        <div>
-                            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: ${isCompleted ? '#dcfce7' : '#f1f5f9'}; color: ${isCompleted ? '#166534' : '#64748b'};">
-                                ${isCompleted ? '✓ Completed' : 'Pending'}
-                            </span>
-                            <h4 style="margin: 8px 0 4px 0; font-size: 15px; font-weight: 700; color: #0f172a;">${lesson.name}</h4>
-                            <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.4;">${lesson.desc}</p>
+                if (!modulesMap[lesson.module]) {
+                    modulesMap[lesson.module] = { title: lesson.modName, lessons: [] };
+                }
+                modulesMap[lesson.module].lessons.push(lesson);
+            });
+
+            let modulesContentHtml = '';
+            Object.keys(modulesMap).forEach(modId => {
+                const mod = modulesMap[modId];
+                modulesContentHtml += `
+                    <div style="margin-bottom: 28px;">
+                        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #0369a1; border-bottom: 1px solid #bae6fd; padding-bottom: 6px; margin-bottom: 12px; text-align: left;">
+                            ${mod.title}
                         </div>
-                        <button onclick="loadLessonContent('${lesson.id}')" style="background: #0f172a; color: white; border: none; padding: 10px 18px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer;">
-                            ${isCompleted ? 'Review' : 'Start'}
-                        </button>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                `;
+
+                mod.lessons.forEach(lesson => {
+                    const isCompleted = completedLessons.includes(lesson.id);
+                    modulesContentHtml += `
+                        <div style="background: #ffffff; border: 1px solid ${isCompleted ? '#cbd5e1' : '#e2e8f0'}; padding: 16px 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; transition: box-shadow 0.2s;">
+                            <div style="flex: 1;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: ${isCompleted ? '#dcfce7' : '#f1f5f9'}; color: ${isCompleted ? '#166534' : '#64748b'};">
+                                        ${isCompleted ? '✓ Completed' : 'Pending'}
+                                    </span>
+                                    <h4 style="margin: 0; font-size: 14.5px; font-weight: 700; color: #0f172a;">${lesson.name}</h4>
+                                </div>
+                                <p style="margin: 6px 0 0 0; font-size: 13px; color: #64748b; line-height: 1.4;">${lesson.desc}</p>
+                            </div>
+                            <button onclick="loadLessonContent('${lesson.id}')" style="background: #0f172a; color: white; border: none; padding: 8px 16px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; flex-shrink: 0; transition: background 0.2s;">
+                                ${isCompleted ? 'Review' : 'Start'}
+                            </button>
+                        </div>
+                    `;
+                });
+
+                modulesContentHtml += `
+                        </div>
                     </div>
                 `;
             });
 
             container.innerHTML = `
-                <h1 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 800; color: #0f172a;">Academy Dashboard</h1>
-                <p style="color: #64748b; margin-top: 0; margin-bottom: 24px;">Track your progress across modules.</p>
+                <h1 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 800; color: #0f172a; text-align: left;">Academy Dashboard</h1>
+                <p style="color: #64748b; margin-top: 0; margin-bottom: 24px; text-align: left;">Track your progress across modules.</p>
                 <div style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 24px; border-radius: 12px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; text-align: left;">
                     <div>
                         <h2 style="margin: 0 0 8px 0; font-size: 22px;">Progress: ${progressPercent}% Complete</h2>
@@ -486,7 +513,7 @@
                         <span style="font-size: 24px; font-weight: 800;">${completedCount} / ${totalCount}</span>
                     </div>
                 </div>
-                ${cardsHtml}
+                ${modulesContentHtml}
             `;
         }
 
@@ -494,6 +521,9 @@
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`nav-${lessonId}`);
             if (activeBtn) activeBtn.classList.add('active');
+
+            // Force scroll viewport back to absolute top position
+            document.getElementById("main-scroll-viewport").scrollTop = 0;
 
             const container = document.getElementById("workbook-content-area");
             const parts = String(lessonId).split('.');
@@ -516,10 +546,10 @@
                         
                         <div class="lesson-footer-bar">
                             <div><span style="font-size: 13px; color: #64748b;">Finished studying this material?</span></div>
-                            <div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
                                 ${isCompleted ? `
-                                    <span style="color: #10b981; font-weight: 700; font-size: 14px; margin-right: 16px;">✓ Completed</span>
-                                    <button onclick="loadDashboard()" style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; padding: 10px 18px; border-radius: 8px; cursor: pointer;">Exit Lesson</button>
+                                    <span style="color: #10b981; font-weight: 700; font-size: 14px;">✓ Completed</span>
+                                    <button onclick="loadDashboard()" style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600;">Exit Lesson</button>
                                 ` : `
                                     <button onclick="markCompleteAndReturn('${lessonId}')" style="background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer;">Mark Lesson as Completed ✓</button>
                                 `}
@@ -615,6 +645,8 @@
         function loadNotesPage() {
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('nav-notes').classList.add('active');
+            
+            document.getElementById("main-scroll-viewport").scrollTop = 0;
             const container = document.getElementById("workbook-content-area");
 
             if (studyNotes.length === 0) {
