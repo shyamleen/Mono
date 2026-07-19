@@ -17,9 +17,9 @@
 </div>
 
 <div class="scroll-reveal-card" style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-    <h3 style="margin-top: 0; color: #3b0764; font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 16px;">📈 Interactive Inflation Scenario Matrix</h3>
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 16px;">Different methods of measuring inventory.</h3>
     <p style="font-size: 13.5px; color: #581c87; margin-bottom: 16px; text-align: center;">
-        Select an accounting system below to simulate how costs flow during periods of rising prices (Inflationary Environment).
+        Select an accounting system below to see a different way of measuring inventory.
     </p>
     
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
@@ -88,17 +88,14 @@
         const display = document.getElementById('sim-display');
         if(type === 'FIFO') {
             display.innerHTML = `
-                <h4 style="margin: 0 0 6px 0; color: #6b21a8; font-size: 15px;">📊 FIFO Active Simulation</h4>
                 <p style="margin: 0; font-size: 13px; color: #581c87; line-height: 1.5;">Older cheaper costs are cleared first. <br><strong style="color: #c026d3;">Result:</strong> Lower recorded COGS, higher ending balance sheet inventory values, and inflated net profits during periods of inflation.</p>
             `;
         } else if(type === 'LIFO') {
             display.innerHTML = `
-                <h4 style="margin: 0 0 6px 0; color: #6b21a8; font-size: 15px;">📊 LIFO Active Simulation</h4>
                 <p style="margin: 0; font-size: 13px; color: #581c87; line-height: 1.5;">Newer, more expensive purchases are written off first. <br><strong style="color: #c026d3;">Result:</strong> Maximized COGS reporting, suppressed net margins, and significantly reduced corporate tax exposure.</p>
             `;
         } else if(type === 'WAC') {
             display.innerHTML = `
-                <h4 style="margin: 0 0 6px 0; color: #6b21a8; font-size: 15px;">📊 WAC Active Simulation</h4>
                 <p style="margin: 0; font-size: 13px; color: #581c87; line-height: 1.5;">Blends total costs evenly over complete pool assets.<br><strong style="color: #c026d3;">Result:</strong> Completely smooths transaction price peaks, providing balanced, mid-tier results for both balance sheet asset records and margins.</p>
             `;
         }
