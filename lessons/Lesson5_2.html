@@ -2,155 +2,119 @@
     <span style="background: #dbeafe; color: #1e40af; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Accrual Complexity</span>
     <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #1e3a8a; letter-spacing: -0.01em;">Lesson 5.2: Deferred Taxes and Accrual Complexity</h1>
     <p style="margin: 0; color: #1e40af; font-size: 15px; line-height: 1.6; font-weight: 500;">
-        Deferred taxes arise because financial accounting (GAAP) and tax authorities (IRS) have conflicting goals. GAAP measures a company’s economic performance, while tax authorities govern cash collection. This accrual complexity requires companies to track how and when revenues and expenses are recognized, ensuring future tax consequences are properly matched. [1, 2, 3, 4]
+        Deferred taxes arise because financial accounting (GAAP) and tax authorities (IRS) have conflicting goals. GAAP measures a company’s economic performance, while tax authorities govern cash collection. This accrual complexity requires companies to track how and when revenues and expenses are recognized, ensuring future tax consequences are properly matched.
     </p>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #bfdbfe; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-sizing: border-box;">
-    <h4 style="margin: 0 0 14px 0; font-size: 14px; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.04em;">🧠 Regulations </h4>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 14px; border-radius: 8px; text-align: left;">
-            <strong style="color: #166534; font-size: 13.5px; display: block; margin-bottom: 6px;">📋 GAAP Financial Books</strong>
-            <span style="font-size: 12.5px; color: #14532d; line-height: 1.4; display: block;">
-                <strong>Goal:</strong> True Economic Performance Accrual Matching.<br>
-                <strong>Depreciation:</strong> Conservative Straight-Line over uniform functional asset life.
-            </span>
+    <h4 style="margin: 0 0 12px 0; font-size: 14px; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.04em;">🧠 Interactive Lab: Difference Classification Deck</h4>
+    <p style="font-size: 13.5px; color: #475569; margin: 0 0 16px 0;">Click each accounting transaction card below to flip it and reveal whether it constitutes a Temporary or Permanent difference item.</p>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div onclick="this.querySelector('.flip-content').style.transform = this.querySelector('.flip-content').style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';" style="perspective: 1000px; height: 100px; cursor: pointer;">
+            <div class="flip-content" style="position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-shadow; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; display: flex; align-items: center; justify-content: center; padding: 12px; box-sizing: border-box;">
+                <div><strong>Accelerated Depreciation (MACRS)</strong><br><span style="font-size: 11px; color: #64748b;">(Click to Flip)</span></div>
+                <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #dcfce7; color: #166534; border-radius: 8px; display: flex; align-items: center; justify-content: center; transform: rotateY(180deg); font-weight: bold; top:0; left:0; box-sizing: border-box;">TEMPORARY (Reverses over life)</div>
+            </div>
         </div>
-        <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 14px; border-radius: 8px; text-align: left;">
-            <strong style="color: #92400e; font-size: 13.5px; display: block; margin-bottom: 6px;">🏛️ IRS Statutory Filing</strong>
-            <span style="font-size: 12.5px; color: #78350f; line-height: 1.4; display: block;">
-                <strong>Goal:</strong> Cash Collection Regulatory Compliance.<br>
-                <strong>Depreciation:</strong> Accelerated MACRS tables allowing maximum early cash shelter.
-            </span>
+
+        <div onclick="this.querySelector('.flip-content').style.transform = this.querySelector('.flip-content').style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';" style="perspective: 1000px; height: 100px; cursor: pointer;">
+            <div class="flip-content" style="position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-shadow; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; display: flex; align-items: center; justify-content: center; padding: 12px; box-sizing: border-box;">
+                <div><strong>Regulatory Fines & IRS Penalties</strong><br><span style="font-size: 11px; color: #64748b;">(Click to Flip)</span></div>
+                <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #fee2e2; color: #991b1b; border-radius: 8px; display: flex; align-items: center; justify-content: center; transform: rotateY(180deg); font-weight: bold; top:0; left:0; box-sizing: border-box;">PERMANENT (Alters ETR only)</div>
+            </div>
         </div>
-    </div>
-    <div style="margin-top: 14px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 6px; font-size: 12.5px; color: #475569; text-align: center;">
-        ⚖️ <strong>Resulting Discrepancy:</strong> Temporary gaps between these ledgers manifest as active assets or liabilities!
     </div>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700;">Temporary vs. Permanent Differences</h3>
     <p style="font-size: 14.5px; color: #334155;">
-        To accurately calculate deferred taxes, it is vital to distinguish between two types of book-to-tax differences: [1]
+        To accurately calculate deferred taxes, it is vital to distinguish between two types of book-to-tax differences:
     </p>
     <ul style="padding-left: 20px; color: #334155; font-size: 14px; line-height: 1.7;">
-        <li style="margin-bottom: 12px;"><strong>Temporary Differences:</strong> These are timing differences between when an item is recognized on the income statement and when it is recognized on the tax return. They will eventually "reverse" or balance out over time. These differences trigger Deferred Tax Assets (DTAs) and Deferred Tax Liabilities (DTLs). [1, 2, 3]</li>
-        <li style="margin-bottom: 0;"><strong>Permanent Differences:</strong> These are items recognized for book or tax purposes that will never reverse. Examples include meals and entertainment expenses or tax fines, which are recorded on the financial books but are completely non-deductible for tax purposes. Permanent differences never generate DTAs or DTLs, but they do alter a company's Effective Tax Rate (ETR). [1, 2]</li>
+        <li style="margin-bottom: 12px;"><strong>Temporary Differences:</strong> These are timing differences between when an item is recognized on the income statement and when it is recognized on the tax return. They will eventually "reverse" or balance out over time. These differences trigger Deferred Tax Assets (DTAs) and Deferred Tax Liabilities (DTLs).</li>
+        <li style="margin-bottom: 0;"><strong>Permanent Differences:</strong> These are items recognized for book or tax purposes that will never reverse. Examples include meals and entertainment expenses or tax fines, which are recorded on the financial books but are completely non-deductible for tax purposes. Permanent differences never generate DTAs or DTLs, but they do alter a company's Effective Tax Rate (ETR).</li>
     </ul>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700;">Creating Deferred Tax Assets (DTAs) and Liabilities (DTLs)</h3>
     <p style="font-size: 14.5px; color: #334155;">
-        DTAs and DTLs represent the future tax impacts resulting from accumulated temporary differences. [1, 2]
+        DTAs and DTLs represent the future tax impacts resulting from accumulated temporary differences.
     </p>
     
     <h4 style="color: #b91c1c; font-size: 15px; margin: 18px 0 8px 0;">1. Deferred Tax Liabilities (DTLs)</h4>
     <p style="font-size: 14px; color: #334155; margin-top: 0;">
-        A DTL arises when a company pays less tax today than it should mathematically owe on its reported book income, meaning it will owe higher cash taxes in the future. [1, 2]
+        A DTL arises when a company pays less tax today than it should mathematically owe on its reported book income, meaning it will owe higher cash taxes in the future.
     </p>
     <ul style="padding-left: 20px; color: #334155; font-size: 13.5px; line-height: 1.6; margin-bottom: 14px;">
-        <li><strong>The Cause:</strong> Book expenses are recognized *after* tax deductions, or book revenues are taxed *earlier*.</li>
-        <li><strong>Classic Example:</strong> Accelerated depreciation (e.g., MACRS). Early on, tax depreciation exceeds book depreciation, resulting in lower current taxable income. As the asset ages, book depreciation surpasses tax depreciation, requiring higher tax payments.</li>
-        <li><strong>Calculation:</strong> DTL = Cumulative Temporary Difference × Enacted Tax Rate [1, 2, 3, 4, 5]</li>
+        <li><strong>The Cause:</strong> Book expenses are recognized before tax deductions, or book revenues are taxed later.</li>
+        <li><strong>Classic Example:</strong> Accelerated depreciation. For tax purposes, companies often front-load depreciation deductions (e.g., MACRS). In the early years of an asset's life, tax depreciation exceeds book depreciation, resulting in lower current taxable income. As the asset ages, book depreciation will surpass tax depreciation, requiring higher tax payments.</li>
+        <li><strong>Calculation:</strong> DTL = Cumulative Temporary Difference × Enacted Tax Rate</li>
     </ul>
 
     <h4 style="color: #15803d; font-size: 15px; margin: 18px 0 8px 0;">2. Deferred Tax Assets (DTAs)</h4>
     <p style="font-size: 14px; color: #334155; margin-top: 0;">
-        A DTA arises when a company pays more tax today than it would mathematically owe on its reported book income, entitling it to future tax benefits or lower cash taxes later. [1]
+        A DTA arises when a company pays more tax today than it would mathematically owe on its reported book income, entitling it to future tax benefits or lower cash taxes later.
     </p>
     <ul style="padding-left: 20px; color: #334155; font-size: 13.5px; line-height: 1.6; margin-bottom: 0;">
-        <li><strong>The Cause:</strong> Tax deductions are taken *after* book expenses, or taxable revenues are recognized *earlier* than book revenues. [1]</li>
-        <li><strong>Classic Example:</strong> Warranty expenses or Bad Debt. Under GAAP, companies accrue warranty expense when products sell. The IRS only allows a deduction when cash is spent fixing them, creating a temporary difference that results in a DTA. NOL carryforwards and stock-based compensation also generate DTAs. [1, 2, 3, 4, 5]</li>
-        <li><strong>Calculation:</strong> DTA = Cumulative Temporary Difference × Enacted Tax Rate [1, 2]</li>
-        <li><strong>Valuation Allowance Protection:</strong> Companies must use the "more likely than not" standard to assess if they will generate enough future taxable income to utilize DTAs. If not, they must create a <em>Valuation Allowance</em> that reduces the DTA on the balance sheet. [1, 2]</li>
+        <li><strong>The Cause:</strong> Tax deductions are taken before book expenses, or taxable revenues are recognized before book revenues.</li>
+        <li><strong>Classic Example:</strong> Warranty expenses or Bad Debt. Under GAAP, a company must estimate and accrue warranty expenses in the period the product is sold. However, the IRS only permits a tax deduction when the cash is actually paid out to fix the defective product. This creates a temporary difference that results in a DTA. Other common DTAs are Net Operating Loss (NOL) carryforwards and stock-based compensation.</li>
+        <li><strong>Calculation:</strong> DTA = Cumulative Temporary Difference × Enacted Tax Rate</li>
+        <li><strong>Complexity Consideration:</strong> Companies must use the "more likely than not" standard to assess if they will generate enough future taxable income to utilize DTAs. If not, they must create a Valuation Allowance that reduces the DTA on the balance sheet.</li>
     </ul>
 </div>
 
 <div class="scroll-reveal-card" style="background: white; border: 1px solid #cbd5e1; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); box-sizing: border-box;">
-    <h3 style="margin-top: 0; color: #0f172a; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 24px;">📝 Lesson 5.2 Knowledge Verification (10 Questions)</h3>
+    <h3 style="margin-top: 0; color: #0f172a; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 24px;">📝 Lesson 5.2 Knowledge Verification</h3>
     
     <div id="quiz-container-52">
         <div style="margin-bottom: 18px;">
             <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">1. Which factor forms the underlying structural cause of deferred tax tracking balances?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_1"> Differences in functional currency structures</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_1"> Accounting divergence between GAAP accrual metrics and tax code cash rules</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_1"> Errors in recording historical ledger adjustments</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_1" value="wrong"> Differences in functional currency structures</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_1" value="correct"> Accounting divergence between GAAP accrual metrics and tax code cash rules</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_1" value="wrong"> Errors in recording historical ledger adjustments</label>
             </div>
         </div>
         <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">2. What defines a temporary book-to-tax differences configuration item?</p>
+            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">2. What defines a temporary book-to-tax difference configuration item?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_2"> A discrepancy that will reverse and balance out across future horizons</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_2"> A transaction item omitted entirely from federal filings</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_2"> A permanent legal shelter that changes the statutory tax code</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_2" value="correct"> A discrepancy that will reverse and balance out across future horizons</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_2" value="wrong"> A transaction item omitted entirely from federal filings</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_2" value="wrong"> A permanent legal shelter that changes the statutory tax code</label>
             </div>
         </div>
         <div style="margin-bottom: 18px;">
             <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">3. Which of the following constitutes a permanent book-to-tax difference configuration?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_3"> Modified Accelerated Cost Recovery depreciation schedules</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_3"> Non-deductible tax fines and structural corporate penalties</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_3"> Estimated warranty provisions recorded during delivery cycles</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_3" value="wrong"> Modified Accelerated Cost Recovery depreciation schedules</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_3" value="correct"> Non-deductible tax fines and structural corporate penalties</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_3" value="wrong"> Estimated warranty provisions recorded during delivery cycles</label>
             </div>
         </div>
         <div style="margin-bottom: 18px;">
             <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">4. What effect do permanent accounting discrepancies exert on a corporate organization's financials?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_4"> They generate large rolling DTL balances on balance sheets</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_4"> They shift the organization's Effective Tax Rate (ETR) but never create DTAs or DTLs</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_4"> They require immediate entry adjustment via equity APIC write-offs</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_4" value="wrong"> They generate large rolling DTL balances on balance sheets</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_4" value="correct"> They shift the organization's Effective Tax Rate (ETR) but never create DTAs or DTLs</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_4" value="wrong"> They require immediate entry adjustment via equity APIC write-offs</label>
             </div>
         </div>
         <div style="margin-bottom: 18px;">
             <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">5. A Deferred Tax Liability (DTL) signals that an enterprise will face which outcome?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_5"> Lower cash tax outflows in subsequent operational calendar years</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_5"> Higher cash taxes in the future due to current book-income outperformance</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_5"> Total immunity from future IRS operational reporting scrutiny</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_5" value="wrong"> Lower cash tax outflows in subsequent operational calendar years</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_5" value="correct"> Higher cash taxes in the future due to timing variations</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_5" value="wrong"> Total immunity from future IRS operational reporting scrutiny</label>
             </div>
         </div>
         <div style="margin-bottom: 18px;">
             <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">6. Which scenario typically acts as the classic generator of large DTL allocations?</p>
             <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_6"> Using estimated historical bad debt accounts</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_6"> Utilizing accelerated depreciation (MACRS) for tax filings and straight-line for book purposes</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_6"> Receiving tax-exempt municipal interest receipts</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_6" value="wrong"> Using estimated historical bad debt accounts</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_6" value="correct"> Utilizing accelerated depreciation (MACRS) for tax filings and straight-line for book purposes</label>
+                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block; cursor: pointer;"><input type="radio" name="q52_6" value="wrong"> Receiving tax-exempt municipal interest receipts</label>
             </div>
         </div>
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">7. Which operational setup creates a Deferred Tax Asset (DTA)?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_7"> When taxable income matches book income perfectly</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_7"> Paying higher taxes today than book accruals suggest due to estimated warranty accruals</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_7"> Failing to track inventory turnover rules properly</label>
-            </div>
-        </div>
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">8. Why does the IRS trigger a DTA scenario when a GAAP company records estimated warranty expenses?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_8"> Because the tax code requires full immediate matching formulas</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_8"> Because the IRS only allows a deduction when cash is actually paid out to settle claims later</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_8"> Because warranties are completely tax-exempt under federal law</label>
-            </div>
-        </div>
-        <div style="margin-bottom: 18px;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">9. Which baseline calculation determines the balance sheet value of a DTA or DTL?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_9"> Cumulative Temporary Difference ÷ Expected Net Income</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_9"> Cumulative Temporary Difference × Enacted Tax Rate</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_9"> Historical Cash Cost × Gross Depreciation Schedules</label>
-            </div>
-        </div>
-        <div style="margin-bottom: 0;">
-            <p style="font-weight: 700; font-size: 14px; color: #0f172a; margin: 0 0 8px 0;">10. What bookkeeping adjustment must be introduced if a company doubts its ability to fully utilize its DTAs?</p>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_10"> Write off all plant assets straight to equity metrics</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_10"> Establish a Valuation Allowance to reduce the DTA balance on the sheet</label>
-                <label style="font-size: 13.5px; color: #334155; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; display: block;"><input type="radio" name="q52_10"> Automatically double the statutory tax calculation rates</label>
-            </div>
-        </div>
-    </div>
-</div>
