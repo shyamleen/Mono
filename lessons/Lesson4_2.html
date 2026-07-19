@@ -1,0 +1,131 @@
+<div class="scroll-reveal-card" style="margin-bottom: 24px; padding: 24px; border-radius: 12px; background: #faf5ff; border: 1px solid #e9d5ff;">
+    <span style="background: #f3e8ff; color: #6b21a8; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">Expense Allocation</span>
+    <h1 style="margin: 0 0 10px 0; font-size: 26px; font-weight: 800; color: #3b0764; letter-spacing: -0.01em;">Depreciation and Amortization</h1>
+    <p style="margin: 0; color: #581c87; font-size: 15px; line-height: 1.6; font-weight: 500;">
+        Depreciation and amortization are accounting methods used to spread the acquisition cost of an asset systematically across its expected useful lifespan. The operational dividing baseline depends completely on the core properties of the asset class.
+    </p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+    <div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; padding: 20px; border-radius: 12px; margin: 0;">
+        <h4 style="margin-top: 0; color: #3b0764; font-size: 15px; font-weight: 700; border-bottom: 2px solid #f3e8ff; padding-bottom: 6px;">⚙️ Depreciation: Tangible Assets</h4>
+        <p style="font-size: 13px; color: #581c87; line-height: 1.5; margin-bottom: 8px;">
+            Accounts for the physical wear, operational aging, or direct technical obsolescence of physical property blocks.
+        </p>
+        <span style="font-size: 12px; color: #6b21a8; font-weight: 600;">Examples: Vehicles, heavy machinery, buildings, corporate office furniture.</span>
+        <p style="font-size: 12px; font-style: italic; color: #701a75; margin-top: 6px; margin-bottom: 0;">* Often retains residual resale salvage values.</p>
+    </div>
+    <div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; padding: 20px; border-radius: 12px; margin: 0;">
+        <h4 style="margin-top: 0; color: #3b0764; font-size: 15px; font-weight: 700; border-bottom: 2px solid #f3e8ff; padding-bottom: 6px;">📜 Amortization: Intangible Assets</h4>
+        <p style="font-size: 13px; color: #581c87; line-height: 1.5; margin-bottom: 8px;">
+            Spreads structural historical balance metrics for non-physical assets that yield legal long-term economic utility values.
+        </p>
+        <span style="font-size: 12px; color: #6b21a8; font-weight: 600;">Examples: Registered patents, trademarks, corporate copyrights, software.</span>
+        <p style="font-size: 12px; font-style: italic; color: #701a75; margin-top: 6px; margin-bottom: 0;">* Typically holds zero end salvage value profiles.</p>
+    </div>
+</div>
+
+<div class="scroll-reveal-card" style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 12px;">📊 Active Allocation Method Evaluator</h3>
+    <p style="font-size: 13px; color: #581c87; text-align: center; margin-bottom: 16px;">
+        Compare calculations using a baseline asset value of <strong>$10,000</strong> with a <strong>$1,000</strong> salvage value over a <strong>5-year</strong> useful life.
+    </p>
+
+    <div style="display: flex; gap: 12px; justify-content: center; margin-bottom: 16px;">
+        <button onclick="calculateMethod('SL')" style="background: #6b21a8; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px;">Run Straight-Line Allocation</button>
+        <button onclick="calculateMethod('DDB')" style="background: #6b21a8; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px;">Run Double-Declining balance</button>
+    </div>
+
+    <div id="method-output" style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 16px; font-size: 13.5px; color: #581c87; min-height: 100px;">
+        <p style="text-align: center; font-style: italic; margin: 12px 0;">Select an allocation configuration button to trigger active accounting simulations.</p>
+    </div>
+</div>
+
+<div class="scroll-reveal-card" style="background: white; border: 1px solid #e9d5ff; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(107, 33, 168, 0.05);">
+    <h3 style="margin-top: 0; color: #3b0764; font-size: 19px; font-weight: 800; border-bottom: 2px solid #f3e8ff; padding-bottom: 10px; margin-bottom: 20px;">📝 Module 4.2 Knowledge Assessment</h3>
+    
+    <div id="quiz-container-2">
+        <div class="quiz-question" style="margin-bottom: 16px;">
+            <p style="font-weight: 600; font-size: 14px; color: #3b0764; margin-bottom: 6px;">1. Amortization applies exclusively to which asset classification group?</p>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q1" value="0" style="margin-right: 8px;">Tangible assets like manufacturing tools.</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q1" value="1" style="margin-right: 8px;">Intangible, non-physical assets holding economic value.</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q1" value="0" style="margin-right: 8px;">Liquid cash equivalents and security deposits.</label>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 16px;">
+            <p style="font-weight: 600; font-size: 14px; color: #3b0764; margin-bottom: 6px;">2. What is subtracted from historical cost under Straight-Line tracking rules?</p>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q2" value="1" style="margin-right: 8px;">Salvage or residual value.</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q2" value="0" style="margin-right: 8px;">Accounts receivable allowances.</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q2" value="0" style="margin-right: 8px;">Premium equity shares capital.</label>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 16px;">
+            <p style="font-weight: 600; font-size: 14px; color: #3b0764; margin-bottom: 6px;">3. What is the annual expense for a $10,000 asset with a $1,000 salvage value over 5 years under straight-line rules?</p>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q3" value="0" style="margin-right: 8px;">$2,000 per year</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q3" value="1" style="margin-right: 8px;">$1,800 per year</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q3" value="0" style="margin-right: 8px;">$4,000 per year</label>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 16px;">
+            <p style="font-weight: 600; font-size: 14px; color: #3b0764; margin-bottom: 6px;">4. Which allocation framework heavily front-loads metric writing expenses early?</p>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q4" value="0" style="margin-right: 8px;">Straight-Line Allocation Method</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q4" value="1" style="margin-right: 8px;">Double-Declining Balance (DDB)</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q4" value="0" style="margin-right: 8px;">Historical Identification System</label>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 16px;">
+            <p style="font-weight: 600; font-size: 14px; color: #3b0764; margin-bottom: 6px;">5. True or False: Double-Declining Balance ignores residual salvage fields until the closing final year.</p>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q5" value="1" style="margin-right: 8px;">True</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q5" value="0" style="margin-right: 8px;">False</label>
+        </div>
+
+        <div class="quiz-question" style="margin-bottom: 20px;">
+            <p style="font-weight: 600; font-size: 14px; color: #3b0764; margin-bottom: 6px;">6. What type of asset parameters are computers or advanced engineering machinery?</p>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q6" value="1" style="margin-right: 8px;">Assets losing value rapidly from early heavy wear or structural obsolescence.</label>
+            <label style="display: block; font-size: 13.5px; color: #581c87; margin-bottom: 4px; cursor: pointer;"><input type="radio" name="m2_q6" value="0" style="margin-right: 8px;">Intangible fields without substance completely.</label>
+        </div>
+
+        <button onclick="evaluateModuleQuiz2()" style="background: #6b21a8; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer;">Submit Quiz Tracker Answers</button>
+        <div id="quiz-results-2" style="margin-top: 16px; text-align: center; font-weight: bold; font-size: 15px; color: #3b0764;"></div>
+    </div>
+</div>
+
+<script>
+    function calculateMethod(method) {
+        const out = document.getElementById('method-output');
+        if(method === 'SL') {
+            out.innerHTML = `
+                <strong style="color:#6b21a8;">📏 Straight-Line Math Breakdown:</strong><br>
+                Formula: <span style="font-family: monospace;">(Cost - Salvage) / Useful Life</span><br>
+                Calculation: <span style="font-family: monospace;">($10,000 - $1,000) / 5 Years = $1,800 / year</span><br>
+                <span style="display:inline-block; margin-top:6px; font-size:12px; color:#701a75;">Provides steady, highly predictable operational expenses annually.</span>
+            `;
+        } else if(method === 'DDB') {
+            out.innerHTML = `
+                <strong style="color:#6b21a8;">⚡ Double-Declining Balance Math Breakdown:</strong><br>
+                Rate: <span style="font-family: monospace;">2 / 5 Years = 40% annually</span><br>
+                Year 1 Expense: <span style="font-family: monospace;">$10,000 × 40% = $4,000</span><br>
+                Year 2 Expense: <span style="font-family: monospace;">($10,000 - $4,000) × 40% = $2,400</span><br>
+                <span style="display:inline-block; margin-top:6px; font-size:12px; color:#701a75;">Front-loads expenses early, significantly reducing immediate taxable income pools.</span>
+            `;
+        }
+    }
+
+    function evaluateModuleQuiz2() {
+        let score = 0;
+        const answers = ['m2_q1', 'm2_q2', 'm2_q3', 'm2_q4', 'm2_q5', 'm2_q6'];
+        answers.forEach(qName => {
+            const checked = document.querySelector(\`input[name="\${qName}"]:checked\`);
+            if(checked && checked.value === "1") score++;
+        });
+
+        const resultDiv = document.getElementById('quiz-results-2');
+        resultDiv.textContent = `You scored ${score} / 6!`;
+        if(score === 6) {
+            resultDiv.style.color = "#16a34a";
+            resultDiv.textContent += " Perfect asset allocation score verified! 🌟";
+        } else {
+            resultDiv.style.color = "#dc2626";
+        }
+    }
+</script>
